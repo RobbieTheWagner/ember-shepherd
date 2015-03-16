@@ -1,5 +1,7 @@
 # Ember-shepherd
 
+This is an Ember wrapper for the [Shepherd](https://github.com/HubSpot/Shepherd), site tour, library.
+
 This README outlines the details of collaborating on this Ember addon.
 
 ## Installation
