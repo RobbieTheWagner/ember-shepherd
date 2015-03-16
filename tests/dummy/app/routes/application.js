@@ -18,7 +18,9 @@ export default Ember.Route.extend({
           buttons: [
             {
               text: 'Next',
-              action: tour.next
+              action: function() {
+                controller.set('next', true);
+              }.bind(this)
             }
           ]
         }
@@ -31,17 +33,23 @@ export default Ember.Route.extend({
           buttons: [
             {
               text: 'Previous',
-              action: tour.back
+              action: function() {
+                controller.set('back', true);
+              }.bind(this)
             },
             {
               text: 'Next',
-              action: tour.next
+              action: function() {
+                controller.set('next', true);
+              }.bind(this)
             }
           ]
         }
       }
     ];
+    steps.forEach(function(step) {
+      tour.addStep(step.name, step.options);
+    });
     controller.set('tour', tour);
-    controller.set('steps', steps);
   }
 });

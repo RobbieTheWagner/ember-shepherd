@@ -5,5 +5,6 @@
   <div class="test-element2">
     <span>This is another test element.</span>
   </div>
-  {{ember-shepherd tour=tour steps=steps}}
+  <button {{action 'toggleHelp'}}>Display Help</button>
+  {{ember-shepherd tour=tour steps=steps next=next back=back start=showHelp}}
 </div>
