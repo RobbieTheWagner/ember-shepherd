@@ -10,48 +10,39 @@ export default Ember.Component.extend({
         scrollTo: true
       }
     });
-    var steps = [
-      {
-        id: 'test',
-        options: {
-          text: 'Testing step',
-          attachTo: '.test-element bottom',
-          buttons: [
-            {
-              text: 'Next',
-              action: function() {
-                this.set('next', true);
-              }.bind(this)
+
+    this.get('steps').forEach(function(step) {
+      var shepherdStepOptions = {buttons: []};
+      for (var option in step.options) {
+        if (option === 'builtInButtons') {
+          step.options.builtInButtons.forEach(function(button) {
+            if (button.type === 'next') {
+              shepherdStepOptions.buttons.push({
+                text: button.text,
+                action: function() {
+                  this.set('next', true);
+                }.bind(this)
+              });
             }
-          ],
-          showCancelLink: true
+            else if (button.type === 'back') {
+              shepherdStepOptions.buttons.push({
+                text: button.text,
+                action: function() {
+                  this.set('back', true);
+                }.bind(this)
+              });
+            }
+          }.bind(this));
+
         }
-      },
-      {
-        id: 'test2',
-        options: {
-          text: 'Testing step 2',
-          attachTo: '.test-element2 bottom',
-          buttons: [
-            {
-              text: 'Previous',
-              action: function() {
-                this.set('back', true);
-              }.bind(this)
-            },
-            {
-              text: 'Next',
-              action: function() {
-                this.set('next', true);
-              }.bind(this)
-            }
-          ],
-          showCancelLink: true
+        else if (option === 'customButtons') {
+
+        }
+        else {
+          shepherdStepOptions[option] = step.options[option];
         }
       }
-    ];
-    steps.forEach(function(step) {
-      var tourStep = tour.addStep(step.id, step.options);
+      var tourStep = tour.addStep(step.id, shepherdStepOptions);
       tourStep.on('show', function(currentStep) {
         if (this.get('useShadowBox')) {
           this.createHighlightOverlay(currentStep.step);

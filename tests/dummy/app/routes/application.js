@@ -2,53 +2,41 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   setupController: function(controller, model) {
-    /*var steps = [
+    var steps = [
       {
-        name: 'test',
+        id: 'test',
         options: {
           text: 'Testing step',
           attachTo: '.test-element bottom',
-          buttons: [
-            {
-              text: 'Exit',
-              action: tour.cancel
-            },
+          builtInButtons: [
             {
               text: 'Next',
-              action: function() {
-                controller.set('next', true);
-              }.bind(this)
+              type: 'next'
             }
-          ]
+          ],
+          showCancelLink: true
         }
       },
       {
-        name: 'test2',
+        id: 'test2',
         options: {
           text: 'Testing step 2',
           attachTo: '.test-element2 bottom',
-          buttons: [
-            {
-              text: 'Exit',
-              action: tour.cancel
-            },
+          builtInButtons: [
             {
               text: 'Previous',
-              action: function() {
-                controller.set('back', true);
-              }.bind(this)
+              type: 'back'
             },
             {
               text: 'Next',
-              action: function() {
-                controller.set('next', true);
-              }.bind(this)
+              type: 'next'
             }
-          ]
+          ],
+          showCancelLink: true
         }
       }
     ];
 
-    controller.set('tour', tour);*/
+    controller.set('steps', steps);
   }
 });
