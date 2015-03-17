@@ -14,7 +14,8 @@ export default Ember.Route.extend({
               type: 'next'
             }
           ],
-          showCancelLink: true
+          showCancelLink: true,
+          copyStyles: false
         }
       },
       {
@@ -32,7 +33,8 @@ export default Ember.Route.extend({
               type: 'next'
             }
           ],
-          showCancelLink: true
+          showCancelLink: true,
+          copyStyles: false
         }
       }
     ];

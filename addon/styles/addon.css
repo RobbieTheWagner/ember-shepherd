@@ -16,6 +16,11 @@
   z-index: 10000;
 }
 
-.shepherd-step{
+.shepherd-step {
   z-index: 10002;
+}
+
+.shepherd-modal.shepherd-enabled {
+  position: relative;
+  z-index: 10001;
 }
