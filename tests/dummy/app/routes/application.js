@@ -2,20 +2,17 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   setupController: function(controller, model) {
-    var tour = new Shepherd.Tour({
-      defaults: {
-        classes: 'shepherd-theme-arrows',
-        scrollTo: true
-      }
-    });
-
-    var steps = [
+    /*var steps = [
       {
         name: 'test',
         options: {
           text: 'Testing step',
           attachTo: '.test-element bottom',
           buttons: [
+            {
+              text: 'Exit',
+              action: tour.cancel
+            },
             {
               text: 'Next',
               action: function() {
@@ -32,6 +29,10 @@ export default Ember.Route.extend({
           attachTo: '.test-element2 bottom',
           buttons: [
             {
+              text: 'Exit',
+              action: tour.cancel
+            },
+            {
               text: 'Previous',
               action: function() {
                 controller.set('back', true);
@@ -47,9 +48,7 @@ export default Ember.Route.extend({
         }
       }
     ];
-    steps.forEach(function(step) {
-      tour.addStep(step.name, step.options);
-    });
-    controller.set('tour', tour);
+
+    controller.set('tour', tour);*/
   }
 });

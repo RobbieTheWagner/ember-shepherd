@@ -1,10 +1,25 @@
-<div>
-  <div class="test-element">
-    <span>This is a test element.</span>
+<div class="row">
+  <div class="medium-8 columns medium-centered text-center">
+    <h1 class="pageTitle">Ember-Shepherd</h1>
   </div>
-  <div class="test-element2">
-    <span>This is another test element.</span>
+</div>
+<div class="row">
+  <div class="medium-8 columns medium-centered text-center test-element">
+    <div class="panel">
+      <span>This is a test element.</span>
+    </div>
   </div>
-  <button {{action 'toggleHelp'}}>Display Help</button>
-  {{ember-shepherd tour=tour steps=steps next=next back=back start=showHelp}}
+</div>
+<div class="row">
+  <div class="medium-8 columns medium-centered text-center test-element2">
+    <div class="panel">
+      <span>This is another test element.</span>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="medium-8 columns medium-centered text-center">
+    <button {{action 'toggleHelp'}}>Start</button>
+    {{ember-shepherd steps=steps start=showHelp useShadowBox=true}}
+  </div>
 </div>

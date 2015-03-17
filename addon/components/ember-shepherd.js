@@ -1,29 +1,111 @@
+/* globals Shepherd */
 import Ember from 'ember';
+import $ from 'jquery';
 
 export default Ember.Component.extend({
+  didInsertElement: function() {
+    var tour = new Shepherd.Tour({
+      defaults: {
+        classes: 'shepherd-theme-arrows',
+        scrollTo: true
+      }
+    });
+    var steps = [
+      {
+        id: 'test',
+        options: {
+          text: 'Testing step',
+          attachTo: '.test-element bottom',
+          buttons: [
+            {
+              text: 'Next',
+              action: function() {
+                this.set('next', true);
+              }.bind(this)
+            }
+          ],
+          showCancelLink: true
+        }
+      },
+      {
+        id: 'test2',
+        options: {
+          text: 'Testing step 2',
+          attachTo: '.test-element2 bottom',
+          buttons: [
+            {
+              text: 'Previous',
+              action: function() {
+                this.set('back', true);
+              }.bind(this)
+            },
+            {
+              text: 'Next',
+              action: function() {
+                this.set('next', true);
+              }.bind(this)
+            }
+          ],
+          showCancelLink: true
+        }
+      }
+    ];
+    steps.forEach(function(step) {
+      var tourStep = tour.addStep(step.id, step.options);
+      tourStep.on('show', function(currentStep) {
+        if (this.get('useShadowBox')) {
+          this.createHighlightOverlay(currentStep.step);
+        }
+      }.bind(this));
+      tourStep.on('complete', function() {
+        //debugger
+      }.bind(this));
+
+    }.bind(this));
+    tour.on('start', function() {
+      $('body').append('<div id="shepherdOverlay"> </div>');
+    }.bind(this));
+    tour.on('complete', function() {
+      $('#shepherdOverlay').remove();
+      $('#highlightOverlay').remove();
+    }.bind(this));
+    tour.on('cancel', function() {
+      $('#shepherdOverlay').remove();
+      $('#highlightOverlay').remove();
+    }.bind(this));
+    this.set('tour', tour);
+  },
   previousStep: function() {
     if (this.get('back')) {
       this.get('tour').back();
       this.set('back', false);
-      this.createHighlightOverlay(this.get('tour').getCurrentStep());
     }
   }.observes('back'),
   nextStep: function() {
     if (this.get('next')) {
       this.get('tour').next();
       this.set('next', false);
-      this.createHighlightOverlay(this.get('tour').getCurrentStep());
     }
   }.observes('next'),
   createHighlightOverlay: function(step) {
-    Ember.$('#highlightOverlay').remove();
-    var elementPosition = this.getElementPosition(Ember.$(step.options.attachTo.split(' ')[0])[0]);
-    Ember.$('body').append('<div id="highlightOverlay"></div>');
-    Ember.$('#highlightOverlay').css('position', 'absolute');
-    Ember.$('#highlightOverlay').css('left', elementPosition.left);
-    Ember.$('#highlightOverlay').css('top', elementPosition.top);
-    Ember.$('#highlightOverlay').css('width', elementPosition.width);
-    Ember.$('#highlightOverlay').css('height', elementPosition.height);
+    $('#highlightOverlay').remove();
+    var currentElement = Ember.$(step.options.attachTo.split(' ')[0])[0];
+    var elementPosition = this.getElementPosition(currentElement);
+    var highlightElement = $(currentElement).clone();
+    highlightElement.attr('id', 'highlightOverlay');
+    highlightElement.css('position', 'absolute');
+    highlightElement.css('left', elementPosition.left);
+    highlightElement.css('top', elementPosition.top);
+    highlightElement.css('width', elementPosition.width);
+    highlightElement.css('height', elementPosition.height);
+
+    $('body').append(highlightElement);
+    /*var computedStyle = window.getComputedStyle(currentElement).cssText;
+     $('#highlightOverlay').cssText = computedStyle;
+
+     $('#highlightOverlay').html($(currentElement).html());
+     highlightElement.cssText = computedStyle;
+     highlightElement.appendTo('#highlightOverlay');*/
   },
   startTour: function() {
     Ember.run.scheduleOnce('afterRender', this, function() {
