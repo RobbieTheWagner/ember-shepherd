@@ -73,9 +73,11 @@ export default Ember.Component.extend({
         }.bind(this));
         tour.on('complete', function() {
           this.cleanupModalLeftovers();
+          this.set('start', false);
         }.bind(this));
         tour.on('cancel', function() {
           this.cleanupModalLeftovers();
+          this.set('start', false);
         }.bind(this));
         this.set('tour', tour);
       }
