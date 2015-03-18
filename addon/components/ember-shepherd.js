@@ -8,8 +8,9 @@ export default Ember.Component.extend({
       if (this.get('steps')) {
         var tour = new Shepherd.Tour({
           defaults: {
-            classes: 'shepherd-theme-arrows',
-            scrollTo: true
+            classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
+            scrollTo: true,
+            showCancelLink: true
           }
         });
 
