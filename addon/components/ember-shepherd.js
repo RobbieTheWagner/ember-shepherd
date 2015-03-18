@@ -43,6 +43,7 @@ export default Ember.Component.extend({
           var tourStep = tour.addStep(step.id, shepherdStepOptions);
           tourStep.on('show', function(currentStep) {
             if (this.get('modal')) {
+              $(currentStep.step.options.attachTo.split(' ')[0])[0].style.pointerEvents = 'none';
               if (currentStep.step.options.copyStyles) {
                 this.createHighlightOverlay(currentStep.step);
               }
@@ -51,21 +52,21 @@ export default Ember.Component.extend({
               }
             }
           }.bind(this));
-          tourStep.on('complete', function() {
-            //debugger
-          }.bind(this));
-
         }.bind(this));
         tour.on('start', function() {
           $('body').append('<div id="shepherdOverlay"> </div>');
         }.bind(this));
         tour.on('complete', function() {
-          $('#shepherdOverlay').remove();
-          $('#highlightOverlay').remove();
+          if (this.get('modal')) {
+            $('#shepherdOverlay').remove();
+            $('#highlightOverlay').remove();
+          }
         }.bind(this));
         tour.on('cancel', function() {
-          $('#shepherdOverlay').remove();
-          $('#highlightOverlay').remove();
+          if (this.get('modal')) {
+            $('#shepherdOverlay').remove();
+            $('#highlightOverlay').remove();
+          }
         }.bind(this));
         this.set('tour', tour);
       }
@@ -73,24 +74,26 @@ export default Ember.Component.extend({
   }.on('didInsertElement').observes('steps'),
   previousStep: function() {
     if (this.get('back')) {
+      $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0].style.pointerEvents = 'auto';
       this.get('tour').back();
       this.set('back', false);
     }
   }.observes('back'),
   nextStep: function() {
     if (this.get('next')) {
+      $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0].style.pointerEvents = 'auto';
       this.get('tour').next();
       this.set('next', false);
     }
   }.observes('next'),
   popoutElement: function(step) {
     $('.shepherd-modal').removeClass('shepherd-modal');
-    var currentElement = Ember.$(step.options.attachTo.split(' ')[0])[0];
+    var currentElement = $(step.options.attachTo.split(' ')[0])[0];
     $(currentElement).addClass('shepherd-modal');
   },
   createHighlightOverlay: function(step) {
     $('#highlightOverlay').remove();
-    var currentElement = Ember.$(step.options.attachTo.split(' ')[0])[0];
+    var currentElement = $(step.options.attachTo.split(' ')[0])[0];
     var elementPosition = this.getElementPosition(currentElement);
     var highlightElement = $(currentElement).clone();
     highlightElement.attr('id', 'highlightOverlay');
