@@ -9,22 +9,40 @@
   </div>
 </div>
 <div class="row">
-  <div class="medium-8 columns medium-centered text-center test-element">
-    <div class="panel">
-      <span>This is a test element.</span>
-    </div>
+  <div class="medium-8 columns medium-centered text-center install-element">
+    <h5>Installation</h5>
+      <pre>
+        <code class="language-bash">ember install:addon ember-shepherd</code>
+      </pre>
   </div>
 </div>
 <div class="row">
-  <div class="medium-8 columns medium-centered text-center test-element2">
-    <div class="panel">
-      <span>This is another test element.</span>
+  <div class="medium-8 columns medium-centered text-center usage-element">
+    <h5>Usage</h5>
+      <pre>
+        <code class="language-handlebars">{{usage}}</code>
+      </pre>
+  </div>
+</div>
+<div class="row">
+  <div class="medium-8 columns medium-centered text-center usage-element">
+    <h5>Additional Features</h5>
+      <div class="medium-4 columns panel modal-element">
+        Modal
+      </div>
+    <div class="medium-4 columns panel style-copy-element">
+      Style Copy
+    </div>
+    <div class="medium-4 columns panel built-in-buttons-element">
+      Built-in Buttons
     </div>
   </div>
 </div>
 <div class="row">
   <div class="medium-8 columns medium-centered text-center">
-    <button {{action 'toggleHelp'}}>Start</button>
-    {{ember-shepherd steps=steps start=showHelp useShadowBox=true}}
+    <a class="bottomButton" {{action 'toggleHelp'}}>Demo</a>
+    <a class="bottomButton" href="https://github.com/rwwagner90/ember-shepherd/blob/master/README.md">Docs</a>
+    <a class="bottomButton" href="https://github.com/rwwagner90/ember-shepherd">Github</a>
+    {{ember-shepherd steps=steps start=showHelp modal=true}}
   </div>
 </div>

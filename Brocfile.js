@@ -18,4 +18,9 @@ var app = new EmberAddon();
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
+app.import(app.bowerDirectory + '/prism/themes/prism.css');
+app.import(app.bowerDirectory + '/prism/prism.js');
+app.import(app.bowerDirectory + '/prism/components/prism-bash.js');
+app.import(app.bowerDirectory + '/prism/components/prism-handlebars.js');
+
 module.exports = app.toTree();

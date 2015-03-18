@@ -42,7 +42,7 @@ export default Ember.Component.extend({
           }
           var tourStep = tour.addStep(step.id, shepherdStepOptions);
           tourStep.on('show', function(currentStep) {
-            if (this.get('useShadowBox')) {
+            if (this.get('modal')) {
               if (currentStep.step.options.copyStyles) {
                 this.createHighlightOverlay(currentStep.step);
               }
