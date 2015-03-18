@@ -72,3 +72,9 @@ A lot of the options are the same as Shepherd options, but I will go through eac
   - **showCancelLink**: When true, an x will appear in the top right of the popup, for canceling the tour.
   - **text**: A string of text content to display in the tour popup
   - **when**: An object that contains function to be executed when events occur on the step. Supported events are **show, hide, complete, cancel, and destroy**.
+
+### start
+***start*** should be set to true, when you would like the tour to start. Set it to a variable, and set that variable to true with an action in your Ember app, when you click a button or something, to initiate the tour.
+
+### modal
+***modal*** is a boolean, that should be set to true, if you would like the rest of the screen, other than the current element, greyed out, and the current element highlighted. If you do not need modal functionality, you can remove this option or set it to false.
