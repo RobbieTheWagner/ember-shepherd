@@ -3,6 +3,9 @@ import Ember from 'ember';
 import $ from 'jquery';
 
 export default Ember.Component.extend({
+  /**
+   * Initializes a new tour, whenever a new set of steps is passed to the component
+   */
   initialize: function() {
     Ember.run.scheduleOnce('afterRender', this, function() {
       if (this.get('steps')) {
@@ -57,44 +60,33 @@ export default Ember.Component.extend({
           $('body').append('<div id="shepherdOverlay"> </div>');
         }.bind(this));
         tour.on('complete', function() {
-          if (this.get('modal')) {
-            $('#shepherdOverlay').remove();
-            $('#highlightOverlay').remove();
-          }
+          this.cleanupModalLeftovers();
         }.bind(this));
         tour.on('cancel', function() {
-          if (this.get('modal')) {
-            $('#shepherdOverlay').remove();
-            $('#highlightOverlay').remove();
-          }
+          this.cleanupModalLeftovers();
         }.bind(this));
         this.set('tour', tour);
       }
     });
   }.on('didInsertElement').observes('steps'),
-  previousStep: function() {
-    if (this.get('back')) {
-      $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0].style.pointerEvents = 'auto';
-      this.get('tour').back();
-      this.set('back', false);
+  /**
+   * Removes overlays and classes associated with modal functionality
+   */
+  cleanupModalLeftovers: function() {
+    if (this.get('modal')) {
+      $('#shepherdOverlay').remove();
+      $('#highlightOverlay').remove();
+      $('.shepherd-modal').removeClass('shepherd-modal');
     }
-  }.observes('back'),
-  nextStep: function() {
-    if (this.get('next')) {
-      $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0].style.pointerEvents = 'auto';
-      this.get('tour').next();
-      this.set('next', false);
-    }
-  }.observes('next'),
-  popoutElement: function(step) {
-    $('.shepherd-modal').removeClass('shepherd-modal');
-    var currentElement = $(step.options.attachTo.split(' ')[0])[0];
-    $(currentElement).addClass('shepherd-modal');
   },
+  /**
+   * Creates an overlay element clone of the element you want to highlight and copies all the styles.
+   * @param step The step object that points to the element to highlight
+   */
   createHighlightOverlay: function(step) {
     $('#highlightOverlay').remove();
     var currentElement = $(step.options.attachTo.split(' ')[0])[0];
-    var elementPosition = this.getElementPosition(currentElement);
+    var elementPosition = this._getElementPosition(currentElement);
     var highlightElement = $(currentElement).clone();
     highlightElement.attr('id', 'highlightOverlay');
     $('body').append(highlightElement);
@@ -114,6 +106,32 @@ export default Ember.Component.extend({
     highlightElement.css('height', elementPosition.height);
     highlightElement.css('z-index', '10002');
   },
+  /**
+   * A built-in button wrapper to move to the next step
+   */
+  nextStep: function() {
+    if (this.get('next')) {
+      $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0].style.pointerEvents = 'auto';
+      this.get('tour').next();
+      this.set('next', false);
+    }
+  }.observes('next'),
+  popoutElement: function(step) {
+    $('.shepherd-modal').removeClass('shepherd-modal');
+    var currentElement = $(step.options.attachTo.split(' ')[0])[0];
+    $(currentElement).addClass('shepherd-modal');
+  },
+  /**
+   * A built-in button wrapper to move to the previous step
+   */
+  previousStep: function() {
+    if (this.get('back')) {
+      $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0].style.pointerEvents = 'auto';
+      this.get('tour').back();
+      this.set('back', false);
+    }
+  }.observes('back'),
+
   startTour: function() {
     Ember.run.scheduleOnce('afterRender', this, function() {
       if (this.get('start')) {
@@ -131,7 +149,7 @@ export default Ember.Component.extend({
    * @param {Object} element
    * @returns {*} Element's position info
    */
-  getElementPosition: function(element) {
+  _getElementPosition: function(element) {
     var elementPosition = {};
 
     //set width
