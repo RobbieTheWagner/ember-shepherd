@@ -9,6 +9,11 @@ export default Ember.Route.extend({
           attachTo: '.first-element bottom',
           builtInButtons: [
             {
+              classes: 'shepherd-button-secondary',
+              text: 'Exit',
+              type: 'cancel'
+            },
+            {
               classes: 'shepherd-button-primary',
               text: 'Next',
               type: 'next'
@@ -26,7 +31,10 @@ export default Ember.Route.extend({
           'overflow. Try resizing your browser to see what we mean.'],
           when: {
             show: function() {
-              console.log('intro');
+              console.log('show step');
+            }.bind(this),
+            hide: function(){
+              console.log('hide step')
             }.bind(this)
           }
         }
@@ -36,6 +44,11 @@ export default Ember.Route.extend({
         options: {
           attachTo: '.install-element bottom',
           builtInButtons: [
+            {
+              classes: 'shepherd-button-secondary',
+              text: 'Exit',
+              type: 'cancel'
+            },
             {
               classes: 'shepherd-button-primary',
               text: 'Back',
@@ -65,6 +78,11 @@ export default Ember.Route.extend({
           attachTo: '.usage-element bottom',
           builtInButtons: [
             {
+              classes: 'shepherd-button-secondary',
+              text: 'Exit',
+              type: 'cancel'
+            },
+            {
               classes: 'shepherd-button-primary',
               text: 'Back',
               type: 'back'
@@ -87,6 +105,11 @@ export default Ember.Route.extend({
         options: {
           attachTo: '.modal-element top',
           builtInButtons: [
+            {
+              classes: 'shepherd-button-secondary',
+              text: 'Exit',
+              type: 'cancel'
+            },
             {
               classes: 'shepherd-button-primary',
               text: 'Back',
@@ -112,6 +135,11 @@ export default Ember.Route.extend({
           attachTo: '.style-copy-element top',
           builtInButtons: [
             {
+              classes: 'shepherd-button-secondary',
+              text: 'Exit',
+              type: 'cancel'
+            },
+            {
               classes: 'shepherd-button-primary',
               text: 'Back',
               type: 'back'
@@ -136,6 +164,11 @@ export default Ember.Route.extend({
         options: {
           attachTo: '.built-in-buttons-element top',
           builtInButtons: [
+            {
+              classes: 'shepherd-button-secondary',
+              text: 'Exit',
+              type: 'cancel'
+            },
             {
               classes: 'shepherd-button-primary',
               text: 'Back',

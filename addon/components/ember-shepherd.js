@@ -24,6 +24,7 @@ export default Ember.Component.extend({
               step.options.builtInButtons.forEach(function(button) {
                 if (button.type === 'next') {
                   shepherdStepOptions.buttons.push({
+                    classes: button.classes,
                     text: button.text,
                     action: function() {
                       this.set('next', true);
@@ -31,9 +32,18 @@ export default Ember.Component.extend({
                   });
                 } else if (button.type === 'back') {
                   shepherdStepOptions.buttons.push({
+                    classes: button.classes,
                     text: button.text,
                     action: function() {
                       this.set('back', true);
+                    }.bind(this)
+                  });
+                } else if (button.type === 'cancel') {
+                  shepherdStepOptions.buttons.push({
+                    classes: button.classes,
+                    text: button.text,
+                    action: function() {
+                      this.set('cancel', true);
                     }.bind(this)
                   });
                 }
@@ -71,11 +81,19 @@ export default Ember.Component.extend({
       }
     });
   }.on('didInsertElement').observes('steps'),
+  cancelTour: function(){
+    if (this.get('cancel')) {
+      this.cleanupModalLeftovers();
+      this.get('tour').cancel();
+      this.set('cancel', false);
+    }
+  }.observes('cancel'),
   /**
    * Removes overlays and classes associated with modal functionality
    */
   cleanupModalLeftovers: function() {
     if (this.get('modal')) {
+      $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0].style.pointerEvents = 'auto';
       $('#shepherdOverlay').remove();
       $('#highlightOverlay').remove();
       $('.shepherd-modal').removeClass('shepherd-modal');
