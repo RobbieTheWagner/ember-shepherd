@@ -1,7 +1,7 @@
 {
   "name": "ember-shepherd",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "An Ember wrapper for the site tour library Shepherd.",
   "directories": {
     "doc": "doc",
     "test": "tests"
