@@ -23,7 +23,12 @@ export default Ember.Route.extend({
           'extends its functionality. ' +
           'Shepherd uses <a href="http://github.hubspot.com/tether/">Tether</a>, another open source library, to ' +
           'position all of its steps.', 'Tether makes sure your steps never end up off screen or cropped by an ' +
-          'overflow. Try resizing your browser to see what we mean.']
+          'overflow. Try resizing your browser to see what we mean.'],
+          when: {
+            show: function() {
+              console.log('intro');
+            }.bind(this)
+          }
         }
       },
       {
@@ -46,7 +51,12 @@ export default Ember.Route.extend({
           copyStyles: false,
           scrollTo: false,
           showCancelLink: true,
-          text: ['Installation is simple, if you are using Ember-CLI, just install like any other addon.']
+          text: ['Installation is simple, if you are using Ember-CLI, just install like any other addon.'],
+          when: {
+            show: function() {
+              console.log('install');
+            }.bind(this)
+          }
         }
       },
       {

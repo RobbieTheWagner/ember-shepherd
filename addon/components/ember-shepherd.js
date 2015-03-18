@@ -17,7 +17,7 @@ export default Ember.Component.extend({
           }
         });
 
-        this.get('steps').forEach(function(step) {
+        this.get('steps').forEach(function(step, index) {
           var shepherdStepOptions = {buttons: []};
           for (var option in step.options) {
             if (option === 'builtInButtons') {
@@ -43,15 +43,17 @@ export default Ember.Component.extend({
               shepherdStepOptions[option] = step.options[option];
             }
           }
-          var tourStep = tour.addStep(step.id, shepherdStepOptions);
-          tourStep.on('show', function(currentStep) {
+          tour.addStep(step.id, shepherdStepOptions);
+
+          var currentStep = tour.steps[index];
+          currentStep.on('show', function() {
             if (this.get('modal')) {
-              $(currentStep.step.options.attachTo.split(' ')[0])[0].style.pointerEvents = 'none';
-              if (currentStep.step.options.copyStyles) {
-                this.createHighlightOverlay(currentStep.step);
+              $(currentStep.options.attachTo.split(' ')[0])[0].style.pointerEvents = 'none';
+              if (currentStep.options.copyStyles) {
+                this.createHighlightOverlay(currentStep);
               }
               else {
-                this.popoutElement(currentStep.step);
+                this.popoutElement(currentStep);
               }
             }
           }.bind(this));
