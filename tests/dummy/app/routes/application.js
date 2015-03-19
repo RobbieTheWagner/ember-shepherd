@@ -21,6 +21,7 @@ export default Ember.Route.extend({
           ],
           classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
           copyStyles: false,
+          title: 'Welcome to Ember-Shepherd!',
           text: ['Ember-Shepherd is a javascript library for guiding users through your Ember app. ' +
           'It is an Ember addon that wraps <a href="https://github.com/HubSpot/shepherd">Shepherd</a> and ' +
           'extends its functionality. ' +
