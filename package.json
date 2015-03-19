@@ -1,7 +1,8 @@
 {
   "name": "ember-shepherd",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "An Ember wrapper for the site tour library Shepherd.",
+  "homepage": "http://rwwagner90.github.io/ember-shepherd/",
   "directories": {
     "doc": "doc",
     "test": "tests"
