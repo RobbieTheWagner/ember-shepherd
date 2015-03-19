@@ -193,9 +193,9 @@ export default Ember.Route.extend({
 
     controller.set('steps', steps);
 
-    controller.set('usage', '{{ember-shepherd \n' +
-    'steps=steps \n' +
-    'start=showHelp \n' +
+    controller.set('usage', '{{ember-shepherd ' +
+    'steps=steps ' +
+    'start=showHelp ' +
     'modal=true}}');
   }
 });
