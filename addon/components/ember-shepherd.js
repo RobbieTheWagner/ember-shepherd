@@ -17,33 +17,7 @@ export default Ember.Component.extend({
           var shepherdStepOptions = {buttons: []};
           for (var option in step.options) {
             if (option === 'builtInButtons') {
-              step.options.builtInButtons.forEach(function(button) {
-                if (button.type === 'next') {
-                  shepherdStepOptions.buttons.push({
-                    classes: button.classes,
-                    text: button.text,
-                    action: function() {
-                      this.set('next', true);
-                    }.bind(this)
-                  });
-                } else if (button.type === 'back') {
-                  shepherdStepOptions.buttons.push({
-                    classes: button.classes,
-                    text: button.text,
-                    action: function() {
-                      this.set('back', true);
-                    }.bind(this)
-                  });
-                } else if (button.type === 'cancel') {
-                  shepherdStepOptions.buttons.push({
-                    classes: button.classes,
-                    text: button.text,
-                    action: function() {
-                      this.set('cancel', true);
-                    }.bind(this)
-                  });
-                }
-              }.bind(this));
+              this.addBuiltInButtons(step, shepherdStepOptions);
             } else if (option === 'customButtons') {
             } else {
               shepherdStepOptions[option] = step.options[option];
@@ -81,6 +55,35 @@ export default Ember.Component.extend({
       }
     });
   }.on('didInsertElement').observes('steps'),
+  addBuiltInButtons: function(step, shepherdStepOptions) {
+    step.options.builtInButtons.forEach(function(button) {
+      if (button.type === 'next') {
+        shepherdStepOptions.buttons.push({
+          classes: button.classes,
+          text: button.text,
+          action: function() {
+            this.set('next', true);
+          }.bind(this)
+        });
+      } else if (button.type === 'back') {
+        shepherdStepOptions.buttons.push({
+          classes: button.classes,
+          text: button.text,
+          action: function() {
+            this.set('back', true);
+          }.bind(this)
+        });
+      } else if (button.type === 'cancel') {
+        shepherdStepOptions.buttons.push({
+          classes: button.classes,
+          text: button.text,
+          action: function() {
+            this.set('cancel', true);
+          }.bind(this)
+        });
+      }
+    }.bind(this));
+  },
   cancelTour: function() {
     if (this.get('cancel')) {
       this.cleanupModalLeftovers();

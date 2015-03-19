@@ -33,7 +33,7 @@ export default Ember.Route.extend({
               console.log('show step');
             }.bind(this),
             hide: function() {
-              console.log('hide step')
+              console.log('hide step');
             }.bind(this)
           }
         }
