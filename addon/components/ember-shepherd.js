@@ -37,6 +37,10 @@ export default Ember.Component.extend({
               }
             }
           }.bind(this));
+          currentStep.on('hide', function() {
+            //Remove element copy, if it was cloned
+            $('#highlightOverlay').remove();
+          });
         }.bind(this));
         tour.on('start', function() {
           if (this.get('modal')) {
@@ -142,6 +146,7 @@ export default Ember.Component.extend({
    */
   nextStep: function() {
     if (this.get('next')) {
+      //Re-enable clicking on the element
       $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0].style.pointerEvents = 'auto';
       this.get('tour').next();
       this.set('next', false);
@@ -161,6 +166,7 @@ export default Ember.Component.extend({
    */
   previousStep: function() {
     if (this.get('back')) {
+      //Re-enable clicking on the element
       $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0].style.pointerEvents = 'auto';
       this.get('tour').back();
       this.set('back', false);
