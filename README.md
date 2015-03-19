@@ -16,12 +16,21 @@ ember install:addon ember-shepherd
 After installing, you'll need to include the tour component in the template for the page you would like it on. If you would like it on multiple pages, I would recommend putting it in the application template, so it will be accessible on any route.
 
 ```hbs
-{{ember-shepherd
-defaults=shepherdDefaults
-steps=steps
-start=showHelp
-modal=isModal}}
+{{ember-shepherd 
+currentPath=currentPath 
+defaults=shepherdDefaults 
+modal=isModal 
+start=showHelp 
+steps=steps}}
 ```
+
+### currentPath
+**currentPath** is used to detect route changes, and cancel the tour when one occurs. If you put the code in your 
+application level template, ```currentPath=currentPath``` is all you need. If you are using it somewhere else, you 
+will need to pass in ```controllerFor('application').get('currentPath')```.
+
+If you **do not** want the tour to cancel when you switch routes, just do not specify anything for currentPath, but 
+this functionality is not yet supported, so you'll have to do some hacky things.
 
 ### defaults
 **defaults** is used to set the options that will be applied to each step by default. You can pass in any of the options that you can with Shepherd. It will be an object of a form something like:
@@ -32,6 +41,27 @@ var shepherdDefaults =
   scrollTo: false,
   showCancelLink: true
 };
+```
+
+### modal
+**modal** is a boolean, that should be set to true, if you would like the rest of the screen, other than the current element, greyed out, and the current element highlighted. If you do not need modal functionality, you can remove this option or set it to false.
+
+### start
+**start** should be set to true, when you would like the tour to start. Set it to a variable, and set that variable to true with an action in your Ember app, when you click a button or something, to initiate the tour.
+
+On the demo page, we initiate the tour, supporting both modal, and non-modal, by calling the following actions on the application controller:
+
+```js
+actions: {
+    toggleHelpModal: function() {
+      this.set('isModal', true);
+      this.toggleProperty('showHelp');
+    },
+    toggleHelpNonmodal: function() {
+      this.set('isModal', false);
+      this.toggleProperty('showHelp');
+    }
+  }
 ```
 
 ### steps
@@ -99,27 +129,6 @@ A lot of the options are the same as Shepherd options, but I will go through eac
   - **tetherOptions**: Extra options to pass to tether
   - **text**: A string of text content to display in the tour popup
   - **when**: An object that contains function to be executed when events occur on the step. Supported events are **show, hide, complete, cancel, and destroy**.
-
-### start
-***start*** should be set to true, when you would like the tour to start. Set it to a variable, and set that variable to true with an action in your Ember app, when you click a button or something, to initiate the tour.
-
-### modal
-***modal*** is a boolean, that should be set to true, if you would like the rest of the screen, other than the current element, greyed out, and the current element highlighted. If you do not need modal functionality, you can remove this option or set it to false.
-
-On the demo page, we initiate the tour, supporting both modal, and non-modal, by calling the following actions on the application controller:
-
-```js
-actions: {
-    toggleHelpModal: function() {
-      this.set('isModal', true);
-      this.toggleProperty('showHelp');
-    },
-    toggleHelpNonmodal: function() {
-      this.set('isModal', false);
-      this.toggleProperty('showHelp');
-    }
-  }
-```
 
 ## Contributing
 Please feel free to post any issues you encounter or feature requests on the issues in this repo. Pull requests welcome as well!

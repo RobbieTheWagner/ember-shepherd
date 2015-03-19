@@ -108,7 +108,9 @@ export default Ember.Component.extend({
    */
   cleanupModalLeftovers: function() {
     if (this.get('modal')) {
-      $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0].style.pointerEvents = 'auto';
+      if (this.get('tour') && $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0]) {
+        $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0].style.pointerEvents = 'auto';
+      }
       $('#shepherdOverlay').remove();
       $('#highlightOverlay').remove();
       $('.shepherd-modal').removeClass('shepherd-modal');
@@ -172,7 +174,15 @@ export default Ember.Component.extend({
       this.set('back', false);
     }
   }.observes('back'),
-
+  /**
+   * Cancel the tour, if a route change occurs
+   */
+  routeChange: function() {
+    if (this.get('tour')) {
+      this.get('tour').cancel();
+      this.set('tour', null);
+    }
+  }.observes('currentPath'),
   /**
    * Observes start, and starts the tour whenever start becomes true
    */

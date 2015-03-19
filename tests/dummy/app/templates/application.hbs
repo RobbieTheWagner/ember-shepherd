@@ -41,7 +41,6 @@
     <a class="bottomButton" {{action 'toggleHelpNonmodal'}}>Non-modal</a>
     <a class="bottomButton" href="https://github.com/rwwagner90/ember-shepherd/blob/master/README.md">Docs</a>
     <a class="bottomButton" href="https://github.com/rwwagner90/ember-shepherd">Github</a>
-    {{ember-shepherd defaults=shepherdDefaults steps=steps start=showHelp modal=isModal}}
   </div>
 </div>
 <div class="row">
@@ -112,3 +111,5 @@
     </a>
   </div>
 </div>
+
+{{ember-shepherd currentPath=currentPath defaults=shepherdDefaults modal=isModal start=showHelp steps=steps}}

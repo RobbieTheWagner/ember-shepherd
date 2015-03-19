@@ -182,11 +182,12 @@ export default Ember.Route.extend({
 
     controller.set('steps', steps);
 
-    controller.set('usage', '{{ember-shepherd ' +
-    '\ndefaults=shepherdDefaults ' +
-    '\nsteps=steps ' +
-    '\nstart=showHelp ' +
-    '\nmodal=isModal}}');
+    controller.set('usage', '{{ember-shepherd ' + '\n' +
+    'currentPath=currentPath ' + '\n' +
+    'defaults=shepherdDefaults ' + '\n' +
+    'modal=isModal ' + '\n' +
+    'start=showHelp ' + '\n' +
+    'steps=steps}}');
 
     controller.set('shepherdDefaults', {
       classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
