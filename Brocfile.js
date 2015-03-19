@@ -22,5 +22,6 @@ app.import(app.bowerDirectory + '/prism/themes/prism.css');
 app.import(app.bowerDirectory + '/prism/prism.js');
 app.import(app.bowerDirectory + '/prism/components/prism-bash.js');
 app.import(app.bowerDirectory + '/prism/components/prism-handlebars.js');
+app.import(app.bowerDirectory + '/ember/ember-template-compiler.js')
 
 module.exports = app.toTree();
