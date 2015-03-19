@@ -2,7 +2,9 @@
 
 This is an Ember wrapper for the [Shepherd](https://github.com/HubSpot/Shepherd), site tour, library. It provides additional functionality, on top of Shepherd, as well.
 
+## Demo
 [![Guide your users through a tour of your app](http://i.imgur.com/yOw7GrM.png)](http://rwwagner90.github.io/ember-shepherd/)
+http://rwwagner90.github.io/ember-shepherd/
 
 ## Getting started
 
