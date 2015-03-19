@@ -69,7 +69,9 @@ export default Ember.Component.extend({
           }.bind(this));
         }.bind(this));
         tour.on('start', function() {
-          $('body').append('<div id="shepherdOverlay"> </div>');
+          if (this.get('modal')) {
+            $('body').append('<div id="shepherdOverlay"> </div>');
+          }
         }.bind(this));
         tour.on('complete', function() {
           this.cleanupModalLeftovers();
@@ -83,7 +85,7 @@ export default Ember.Component.extend({
       }
     });
   }.on('didInsertElement').observes('steps'),
-  cancelTour: function(){
+  cancelTour: function() {
     if (this.get('cancel')) {
       this.cleanupModalLeftovers();
       this.get('tour').cancel();

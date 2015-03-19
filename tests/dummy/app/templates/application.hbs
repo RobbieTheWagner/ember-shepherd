@@ -36,9 +36,10 @@
 </div>
 <div class="row">
   <div class="medium-8 columns medium-centered text-center">
-    <a class="bottomButton" {{action 'toggleHelp'}}>Demo</a>
+    <a class="bottomButton" {{action 'toggleHelpModal'}}>Modal Demo</a>
+    <a class="bottomButton" {{action 'toggleHelpNonmodal'}}>Non-modal</a>
     <a class="bottomButton" href="https://github.com/rwwagner90/ember-shepherd/blob/master/README.md">Docs</a>
     <a class="bottomButton" href="https://github.com/rwwagner90/ember-shepherd">Github</a>
-    {{ember-shepherd steps=steps start=showHelp modal=true}}
+    {{ember-shepherd steps=steps start=showHelp modal=isModal}}
   </div>
 </div>

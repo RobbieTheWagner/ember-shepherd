@@ -196,6 +196,6 @@ export default Ember.Route.extend({
     controller.set('usage', '{{ember-shepherd ' +
     'steps=steps ' +
     'start=showHelp ' +
-    'modal=true}}');
+    'modal=isModal}}');
   }
 });
