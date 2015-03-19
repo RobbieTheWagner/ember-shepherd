@@ -15,9 +15,21 @@ After installing, you'll need to include the tour component in the template for 
 
 ```hbs
 {{ember-shepherd
+defaults=shepherdDefaults
 steps=steps
 start=showHelp
-modal=true}}
+modal=isModal}}
+```
+
+### defaults
+**defaults** is used to set the options that will be applied to each step by default. You can pass in any of the options that you can with Shepherd. It will be an object of a form something like:
+```js
+var shepherdDefaults = 
+{
+  classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
+  scrollTo: false,
+  showCancelLink: true
+};
 ```
 
 ### steps
