@@ -44,6 +44,16 @@ var steps = [
           attachTo: '.first-element bottom',
           builtInButtons: [
             {
+              classes: 'shepherd-button-secondary',
+              text: 'Exit',
+              type: 'cancel'
+            },
+            {
+              classes: 'shepherd-button-primary',
+              text: 'Back',
+              type: 'back'
+            },
+            {
               classes: 'shepherd-button-primary',
               text: 'Next',
               type: 'next'
@@ -53,6 +63,7 @@ var steps = [
           copyStyles: false,
           scrollTo: false,
           showCancelLink: true,
+          title: 'Welcome to Ember-Shepherd!',
           text: ['Ember-Shepherd is a javascript library for guiding users through your Ember app. ' +
           'It is an Ember addon that wraps <a href="https://github.com/HubSpot/shepherd">Shepherd</a> and ' +
           'extends its functionality. ' +
@@ -82,6 +93,8 @@ A lot of the options are the same as Shepherd options, but I will go through eac
   - **copyStyles**: This is a boolean, and when set to ```true``` it will fully clone the element and styles, rather than just increasing the element's z-index. This should only be used if the element does not pop out and highlight like it should, when using modal functionality.
   - **scrollTo**: This sets whether the screen should be scrolled to get to the element or not, when the step is active.
   - **showCancelLink**: When true, an x will appear in the top right of the popup, for canceling the tour.
+  - **title**: The step's title. It becomes an h3 at the top of the step.
+  - **tetherOptions**: Extra options to pass to tether
   - **text**: A string of text content to display in the tour popup
   - **when**: An object that contains function to be executed when events occur on the step. Supported events are **show, hide, complete, cancel, and destroy**.
 
@@ -90,3 +103,21 @@ A lot of the options are the same as Shepherd options, but I will go through eac
 
 ### modal
 ***modal*** is a boolean, that should be set to true, if you would like the rest of the screen, other than the current element, greyed out, and the current element highlighted. If you do not need modal functionality, you can remove this option or set it to false.
+
+On the demo page, we initiate the tour, supporting both modal, and non-modal, by calling the following actions on the application controller:
+
+```js
+actions: {
+    toggleHelpModal: function() {
+      this.set('isModal', true);
+      this.toggleProperty('showHelp');
+    },
+    toggleHelpNonmodal: function() {
+      this.set('isModal', false);
+      this.toggleProperty('showHelp');
+    }
+  }
+```
+
+## Contributing
+Please feel free to post any issues you encounter or feature requests on the issues in this repo. Pull requests welcome as well!
