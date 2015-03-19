@@ -10,11 +10,7 @@ export default Ember.Component.extend({
     Ember.run.scheduleOnce('afterRender', this, function() {
       if (this.get('steps')) {
         var tour = new Shepherd.Tour({
-          defaults: {
-            classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
-            scrollTo: true,
-            showCancelLink: true
-          }
+          defaults: this.get('defaults') ? this.get('defaults') : {}
         });
 
         this.get('steps').forEach(function(step, index) {

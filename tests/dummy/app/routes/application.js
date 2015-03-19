@@ -21,8 +21,6 @@ export default Ember.Route.extend({
           ],
           classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
           copyStyles: false,
-          scrollTo: false,
-          showCancelLink: true,
           text: ['Ember-Shepherd is a javascript library for guiding users through your Ember app. ' +
           'It is an Ember addon that wraps <a href="https://github.com/HubSpot/shepherd">Shepherd</a> and ' +
           'extends its functionality. ' +
@@ -33,7 +31,7 @@ export default Ember.Route.extend({
             show: function() {
               console.log('show step');
             }.bind(this),
-            hide: function(){
+            hide: function() {
               console.log('hide step')
             }.bind(this)
           }
@@ -62,8 +60,6 @@ export default Ember.Route.extend({
           ],
           classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
           copyStyles: false,
-          scrollTo: false,
-          showCancelLink: true,
           text: ['Installation is simple, if you are using Ember-CLI, just install like any other addon.'],
           when: {
             show: function() {
@@ -95,8 +91,6 @@ export default Ember.Route.extend({
           ],
           classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
           copyStyles: false,
-          scrollTo: false,
-          showCancelLink: true,
           text: ['To instantiate the tour, just put this code in your application template, wherever you would like.'],
         }
       },
@@ -123,8 +117,6 @@ export default Ember.Route.extend({
           ],
           classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
           copyStyles: false,
-          scrollTo: false,
-          showCancelLink: true,
           text: ['We implemented true modal functionality by disabling clicking of the rest of the page. ' +
           'If you would like to enable modal, simply set modal=true.']
         }
@@ -152,8 +144,6 @@ export default Ember.Route.extend({
           ],
           classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
           copyStyles: false,
-          scrollTo: false,
-          showCancelLink: true,
           text: ['When using a modal, most times just setting the z-index of your element to something high will ' +
           'make it highlight. For complicated cases, where this does not work, we implemented a copyStyles option ' +
           'that clones the element and copies its computed styles.']
@@ -182,8 +172,6 @@ export default Ember.Route.extend({
           ],
           classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
           copyStyles: false,
-          scrollTo: false,
-          showCancelLink: true,
           text: ['For the common button types, next, back, cancel, etc, we implemented Ember actions that perform ' +
           'these actions on your tour automatically. To use them, simply include in the builtInButtons array in ' +
           'each step.']
@@ -194,8 +182,15 @@ export default Ember.Route.extend({
     controller.set('steps', steps);
 
     controller.set('usage', '{{ember-shepherd ' +
-    'steps=steps ' +
-    'start=showHelp ' +
-    'modal=isModal}}');
+    '\ndefaults=shepherdDefaults ' +
+    '\nsteps=steps ' +
+    '\nstart=showHelp ' +
+    '\nmodal=isModal}}');
+
+    controller.set('shepherdDefaults', {
+      classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
+      scrollTo: false,
+      showCancelLink: true
+    });
   }
 });
