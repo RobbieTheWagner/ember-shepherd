@@ -55,6 +55,11 @@ export default Ember.Component.extend({
       }
     });
   }.on('didInsertElement').observes('steps'),
+  /**
+   * Checks the builtInButtons array for the step and adds a button with the correct action for the type
+   * @param step The step to add the buttons to
+   * @param shepherdStepOptions The options array to modify
+   */
   addBuiltInButtons: function(step, shepherdStepOptions) {
     step.options.builtInButtons.forEach(function(button) {
       if (button.type === 'next') {
@@ -84,6 +89,9 @@ export default Ember.Component.extend({
       }
     }.bind(this));
   },
+  /**
+   * Function to call from the built in cancel button, to cancel the tour
+   */
   cancelTour: function() {
     if (this.get('cancel')) {
       this.cleanupModalLeftovers();
@@ -139,6 +147,10 @@ export default Ember.Component.extend({
       this.set('next', false);
     }
   }.observes('next'),
+  /**
+   * Increases the z-index of the element, to pop it out above the overlay and highlight it
+   * @param step The step object that attaches to the element
+   */
   popoutElement: function(step) {
     $('.shepherd-modal').removeClass('shepherd-modal');
     var currentElement = $(step.options.attachTo.split(' ')[0])[0];
@@ -155,6 +167,9 @@ export default Ember.Component.extend({
     }
   }.observes('back'),
 
+  /**
+   * Observes start, and starts the tour whenever start becomes true
+   */
   startTour: function() {
     Ember.run.scheduleOnce('afterRender', this, function() {
       if (this.get('start')) {
