@@ -13,7 +13,8 @@
     "ember-qunit-notifications": "0.0.7",
     "qunit": "~1.17.1",
     "foundation": "~5.5.0",
-    "prism": "gh-pages"
+    "prism": "gh-pages",
+    "es5-shim": "^4.0.5"
   },
   "devDependencies": {
     "shepherd.js": "~0.7.0"
