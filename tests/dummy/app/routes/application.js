@@ -9,12 +9,12 @@ export default Ember.Route.extend({
           attachTo: '.first-element bottom',
           builtInButtons: [
             {
-              classes: 'shepherd-button-secondary',
+              classes: 'shepherd-button-secondary cancel-button',
               text: 'Exit',
               type: 'cancel'
             },
             {
-              classes: 'shepherd-button-primary',
+              classes: 'shepherd-button-primary next-button',
               text: 'Next',
               type: 'next'
             }
@@ -44,17 +44,17 @@ export default Ember.Route.extend({
           attachTo: '.install-element bottom',
           builtInButtons: [
             {
-              classes: 'shepherd-button-secondary',
+              classes: 'shepherd-button-secondary cancel-button',
               text: 'Exit',
               type: 'cancel'
             },
             {
-              classes: 'shepherd-button-primary',
+              classes: 'shepherd-button-primary back-button',
               text: 'Back',
               type: 'back'
             },
             {
-              classes: 'shepherd-button-primary',
+              classes: 'shepherd-button-primary next-button',
               text: 'Next',
               type: 'next'
             }
@@ -75,17 +75,17 @@ export default Ember.Route.extend({
           attachTo: '.usage-element bottom',
           builtInButtons: [
             {
-              classes: 'shepherd-button-secondary',
+              classes: 'shepherd-button-secondary cancel-button',
               text: 'Exit',
               type: 'cancel'
             },
             {
-              classes: 'shepherd-button-primary',
+              classes: 'shepherd-button-primary back-button',
               text: 'Back',
               type: 'back'
             },
             {
-              classes: 'shepherd-button-primary',
+              classes: 'shepherd-button-primary next-button',
               text: 'Next',
               type: 'next'
             }
@@ -101,17 +101,17 @@ export default Ember.Route.extend({
           attachTo: '.modal-element top',
           builtInButtons: [
             {
-              classes: 'shepherd-button-secondary',
+              classes: 'shepherd-button-secondary cancel-button',
               text: 'Exit',
               type: 'cancel'
             },
             {
-              classes: 'shepherd-button-primary',
+              classes: 'shepherd-button-primary back-button',
               text: 'Back',
               type: 'back'
             },
             {
-              classes: 'shepherd-button-primary',
+              classes: 'shepherd-button-primary next-button',
               text: 'Next',
               type: 'next'
             }
@@ -128,17 +128,17 @@ export default Ember.Route.extend({
           attachTo: '.style-copy-element top',
           builtInButtons: [
             {
-              classes: 'shepherd-button-secondary',
+              classes: 'shepherd-button-secondary cancel-button',
               text: 'Exit',
               type: 'cancel'
             },
             {
-              classes: 'shepherd-button-primary',
+              classes: 'shepherd-button-primary back-button',
               text: 'Back',
               type: 'back'
             },
             {
-              classes: 'shepherd-button-primary',
+              classes: 'shepherd-button-primary next-button',
               text: 'Next',
               type: 'next'
             }
@@ -156,17 +156,17 @@ export default Ember.Route.extend({
           attachTo: '.built-in-buttons-element top',
           builtInButtons: [
             {
-              classes: 'shepherd-button-secondary',
+              classes: 'shepherd-button-secondary cancel-button',
               text: 'Exit',
               type: 'cancel'
             },
             {
-              classes: 'shepherd-button-primary',
+              classes: 'shepherd-button-primary back-button',
               text: 'Back',
               type: 'back'
             },
             {
-              classes: 'shepherd-button-primary',
+              classes: 'shepherd-button-primary next-button',
               text: 'Next',
               type: 'next'
             }

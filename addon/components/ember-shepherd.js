@@ -103,6 +103,11 @@ export default Ember.Component.extend({
       this.set('cancel', false);
     }
   }.observes('cancel'),
+  willDestroyElement: function() {
+    if (this.get('tour')) {
+      this.get('tour').cancel();
+    }
+  },
   /**
    * Removes overlays and classes associated with modal functionality
    */
