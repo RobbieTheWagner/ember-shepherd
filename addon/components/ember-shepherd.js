@@ -8,7 +8,7 @@ export default Ember.Component.extend({
    */
   initialize: function() {
     Ember.run.scheduleOnce('afterRender', this, function() {
-      if (this.get('steps')) {
+      if (this.get('steps') && this.get('requiredElementsPresent')) {
         var tour = new Shepherd.Tour({
           defaults: this.get('defaults') ? this.get('defaults') : {}
         });
@@ -175,6 +175,22 @@ export default Ember.Component.extend({
     }
   }.observes('back'),
   /**
+   * Observes the array of requiredElements, which are the elements that must be present at the start of the tour,
+   * and determines if they exist, and are visible, if either is false, it will stop the tour from executing.
+   */
+  requiredElementsPresent: function() {
+    var allElementsPresent = true;
+    if (this.get('requiredElements')) {
+      this.get('requiredElements').forEach(function(element) {
+        if (allElementsPresent && (!$(element.selector)[0] || !$(element.selector).is(":visible"))) {
+          allElementsPresent = false;
+          this.set('messageForUser', element.message);
+        }
+      }.bind(this));
+    }
+    return allElementsPresent;
+  }.property('requiredElements'),
+  /**
    * Cancel the tour, if a route change occurs
    */
   routeChange: function() {
@@ -188,7 +204,7 @@ export default Ember.Component.extend({
    */
   startTour: function() {
     Ember.run.scheduleOnce('afterRender', this, function() {
-      if (this.get('start')) {
+      if (this.get('start') && this.get('requiredElementsPresent')) {
         this.get('tour').start();
       }
     });

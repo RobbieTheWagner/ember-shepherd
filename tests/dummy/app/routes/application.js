@@ -180,12 +180,24 @@ export default Ember.Route.extend({
       }
     ];
 
+    controller.set('requiredElements', [
+      {
+        selector: '.first-element',
+        message: 'First element not found'
+      },
+      {
+        selector: '.install-element',
+        message: 'Install element not found'
+      }
+    ]);
+
     controller.set('steps', steps);
 
     controller.set('usage', '{{ember-shepherd ' + '\n' +
     'currentPath=currentPath ' + '\n' +
     'defaults=shepherdDefaults ' + '\n' +
     'modal=isModal ' + '\n' +
+    'requiredElements=requiredElements ' + '\n' +
     'start=showHelp ' + '\n' +
     'steps=steps}}');
 

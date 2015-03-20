@@ -20,6 +20,7 @@ After installing, you'll need to include the tour component in the template for 
 currentPath=currentPath 
 defaults=shepherdDefaults 
 modal=isModal 
+requiredElements=requiredElements
 start=showHelp 
 steps=steps}}
 ```
@@ -45,6 +46,27 @@ var shepherdDefaults =
 
 ### modal
 **modal** is a boolean, that should be set to true, if you would like the rest of the screen, other than the current element, greyed out, and the current element highlighted. If you do not need modal functionality, you can remove this option or set it to false.
+
+### requiredElements (optional)
+**requiredElements** is an array of objects that indicate DOM elements that are **REQUIRED** by your tour and must 
+exist and be visible for the tour to start. If any elements are not present, it will keep the tour from starting.
+
+You can also specify a message, this message can be used to tell the user what they need to do to make the tour work.
+
+You'll want to do something like this:
+```js
+controllerFor('application').set('requiredElements', [
+      {
+        selector: '.search-result-element',
+        message: 'No search results found. Please execute another search, and try to start the tour again.'
+      },
+      {
+        selector: '.username-element',
+        message: 'User not logged in, please log in to start this tour.'
+      },
+    ]);
+
+```
 
 ### start
 **start** should be set to true, when you would like the tour to start. Set it to a variable, and set that variable to true with an action in your Ember app, when you click a button or something, to initiate the tour.
