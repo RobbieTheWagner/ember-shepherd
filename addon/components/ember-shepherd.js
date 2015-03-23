@@ -227,7 +227,7 @@ export default Ember.Component.extend({
    */
   startTour: function() {
     Ember.run.scheduleOnce('afterRender', this, function() {
-      if (this.get('start')) {
+      if (this.get('start') && this.get('tour')) {
         this.get('tour').start();
       }
     });
