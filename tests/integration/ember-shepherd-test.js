@@ -39,6 +39,7 @@ test("Non-modal page contents", function(assert) {
 });
 
 
+/*
 test("Tour next, back, and cancel builtInButtons work", function(assert) {
   assert.expect(6);
   visit('/').then(function() {
@@ -53,4 +54,5 @@ test("Tour next, back, and cancel builtInButtons work", function(assert) {
     assert.equal($('[class^=shepherd-button]:visible').length, 0, "Ensure that all buttons are gone, after exit");
   });
 });
+*/
 
