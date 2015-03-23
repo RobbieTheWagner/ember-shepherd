@@ -8,40 +8,56 @@ export default Ember.Component.extend({
    */
   initialize: function() {
     Ember.run.scheduleOnce('afterRender', this, function() {
-      if (this.get('steps') && this.get('requiredElementsPresent')) {
+      if (this.get('steps')) {
         var tour = new Shepherd.Tour({
           defaults: this.get('defaults') ? this.get('defaults') : {}
         });
-
-        this.get('steps').forEach(function(step, index) {
-          var shepherdStepOptions = {buttons: []};
-          for (var option in step.options) {
-            if (option === 'builtInButtons') {
-              this.addBuiltInButtons(step, shepherdStepOptions);
-            } else if (option === 'customButtons') {
-            } else {
-              shepherdStepOptions[option] = step.options[option];
-            }
-          }
-          tour.addStep(step.id, shepherdStepOptions);
-
-          var currentStep = tour.steps[index];
-          currentStep.on('show', function() {
-            if (this.get('modal')) {
-              $(currentStep.options.attachTo.split(' ')[0])[0].style.pointerEvents = 'none';
-              if (currentStep.options.copyStyles) {
-                this.createHighlightOverlay(currentStep);
-              }
-              else {
-                this.popoutElement(currentStep);
+        if (this.get('requiredElementsPresent')) {
+          this.get('steps').forEach(function(step, index) {
+            var shepherdStepOptions = {buttons: []};
+            for (var option in step.options) {
+              if (option === 'builtInButtons') {
+                this.addBuiltInButtons(step, shepherdStepOptions);
+              } else if (option === 'customButtons') {
+              } else {
+                shepherdStepOptions[option] = step.options[option];
               }
             }
+            tour.addStep(step.id, shepherdStepOptions);
+
+            var currentStep = tour.steps[index];
+            currentStep.on('show', function() {
+              if (this.get('modal')) {
+                $(currentStep.options.attachTo.split(' ')[0])[0].style.pointerEvents = 'none';
+                if (currentStep.options.copyStyles) {
+                  this.createHighlightOverlay(currentStep);
+                }
+                else {
+                  this.popoutElement(currentStep);
+                }
+              }
+            }.bind(this));
+            currentStep.on('hide', function() {
+              //Remove element copy, if it was cloned
+              $('#highlightOverlay').remove();
+            });
           }.bind(this));
-          currentStep.on('hide', function() {
-            //Remove element copy, if it was cloned
-            $('#highlightOverlay').remove();
-          });
-        }.bind(this));
+        } else {
+          var errorMessageOptions =
+          {
+            buttons: [
+              {
+                text: 'Exit',
+                action: tour.cancel
+              }
+            ],
+            classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+            copyStyles: false,
+            title: 'Error: required element not found',
+            text: [this.get('messageForUser')]
+          };
+          tour.addStep('error', errorMessageOptions);
+        }
         tour.on('start', function() {
           if (this.get('modal')) {
             $('body').append('<div id="shepherdOverlay"> </div>');
@@ -58,7 +74,7 @@ export default Ember.Component.extend({
         this.set('tour', tour);
       }
     });
-  }.on('didInsertElement').observes('steps'),
+  }.on('didInsertElement').observes('steps', 'requiredElements'),
   /**
    * Checks the builtInButtons array for the step and adds a button with the correct action for the type
    * @param step The step to add the buttons to
@@ -113,7 +129,9 @@ export default Ember.Component.extend({
    */
   cleanupModalLeftovers: function() {
     if (this.get('modal')) {
-      if (this.get('tour') && $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0]) {
+      if (this.get('tour') &&
+        this.get('tour').getCurrentStep().options.attachTo &&
+        $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0]) {
         $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0].style.pointerEvents = 'auto';
       }
       $('#shepherdOverlay').remove();
@@ -209,7 +227,7 @@ export default Ember.Component.extend({
    */
   startTour: function() {
     Ember.run.scheduleOnce('afterRender', this, function() {
-      if (this.get('start') && this.get('requiredElementsPresent')) {
+      if (this.get('start')) {
         this.get('tour').start();
       }
     });
