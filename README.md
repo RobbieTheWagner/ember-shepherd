@@ -120,6 +120,7 @@ var steps = [
           ],
           classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
           copyStyles: false,
+          highlightClass: 'highlight',
           scrollTo: false,
           showCancelLink: true,
           title: 'Welcome to Ember-Shepherd!',
@@ -150,6 +151,8 @@ A lot of the options are the same as Shepherd options, but I will go through eac
   - **builtInButtons**: These are the standard button types supported by Shepherd. Just set type to next, back or cancel, then set the text, and classes as normal.
   - **classes**: Extra classes to apply to the step, for styling purposes and such.
   - **copyStyles**: This is a boolean, and when set to ```true``` it will fully clone the element and styles, rather than just increasing the element's z-index. This should only be used if the element does not pop out and highlight like it should, when using modal functionality.
+  - **highlightClass**: This is an extra class to apply to the attachTo element, when it is highlighted. It can be 
+  any string. Just style that class name in your css.
   - **scrollTo**: This sets whether the screen should be scrolled to get to the element or not, when the step is active.
   - **showCancelLink**: When true, an x will appear in the top right of the popup, for canceling the tour.
   - **title**: The step's title. It becomes an h3 at the top of the step.

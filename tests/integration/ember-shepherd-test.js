@@ -78,7 +78,54 @@ test("Non-modal tour start", function(assert) {
     });
     click('.toggleHelpNonmodal');
     andThen(function() {
-      assert.equal(find('#shepherdOverlay', 'body').length, 0, "#shepherdOverlay exists, since modal");
+      assert.equal(find('#shepherdOverlay', 'body').length, 0, "#shepherdOverlay does not exist, since non-modal");
     });
+  });
+});
+
+test("Highlight applied", function(assert) {
+  var appController = controller('application');
+  var steps = [{
+    id: 'test-highlight',
+    options: {
+      attachTo: '.first-element bottom',
+      builtInButtons: [
+        {
+          classes: 'shepherd-button-secondary cancel-button',
+          text: 'Exit',
+          type: 'cancel'
+        },
+        {
+          classes: 'shepherd-button-primary next-button',
+          text: 'Next',
+          type: 'next'
+        }
+      ],
+      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+      copyStyles: false,
+      highlightClass: 'highlight',
+      title: 'Welcome to Ember-Shepherd!',
+      text: ['Testing highlight']
+    }
+  }];
+  appController.set('steps', steps);
+  appController.set('showHelp', false);
+  assert.expect(2);
+  visit('/').then(function() {
+    Ember.run(function() {
+      $('.shepherd-enabled .cancel-button')[0].dispatchEvent(clickEvent);
+    });
+    Ember.run(function() {
+      appController.set('showHelp', false);
+      appController.set('steps', steps);
+      appController.set('showHelp', true);
+    });
+    Ember.run(function() {
+      assert.equal(find('.highlight', 'body').length, 1, "currentElement highlighted");
+    });
+    Ember.run(function() {
+      $('.shepherd-enabled .cancel-button')[0].dispatchEvent(clickEvent);
+    });
+    assert.equal(find('.highlight', 'body').length, 0, "highlightClass removed on cancel");
   });
 });

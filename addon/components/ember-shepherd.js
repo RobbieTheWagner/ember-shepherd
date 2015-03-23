@@ -39,8 +39,12 @@ export default Ember.Component.extend({
             }.bind(this));
             currentStep.on('hide', function() {
               //Remove element copy, if it was cloned
+              var currentElement = this.getCurrentElement(currentStep);
+              if (currentStep.options.highlightClass) {
+                $(currentElement).removeClass(currentStep.options.highlightClass);
+              }
               $('#highlightOverlay').remove();
-            });
+            }.bind(this));
           }.bind(this));
         } else {
           var errorMessageOptions =
@@ -145,7 +149,7 @@ export default Ember.Component.extend({
    */
   createHighlightOverlay: function(step) {
     $('#highlightOverlay').remove();
-    var currentElement = $(step.options.attachTo.split(' ')[0])[0];
+    var currentElement = this.getCurrentElement(step);
     var elementPosition = this._getElementPosition(currentElement);
     var highlightElement = $(currentElement).clone();
     highlightElement.attr('id', 'highlightOverlay');
@@ -167,6 +171,17 @@ export default Ember.Component.extend({
     highlightElement.css('z-index', '10002');
   },
   /**
+   * Gets a reference to the element referenced by attachTo
+   * @param step The current step shown
+   * @returns {*}
+   */
+  getCurrentElement: function(step) {
+    var attachTo = step.options.attachTo.split(' ');
+    attachTo.pop();
+    var selector = attachTo.join(' ');
+    return $(selector)[0];
+  },
+  /**
    * A built-in button wrapper to move to the next step
    */
   nextStep: function() {
@@ -183,8 +198,11 @@ export default Ember.Component.extend({
    */
   popoutElement: function(step) {
     $('.shepherd-modal').removeClass('shepherd-modal');
-    var currentElement = $(step.options.attachTo.split(' ')[0])[0];
+    var currentElement = this.getCurrentElement(step);
     $(currentElement).addClass('shepherd-modal');
+    if (step.options.highlightClass) {
+      $(currentElement).addClass(step.options.highlightClass);
+    }
   },
   /**
    * A built-in button wrapper to move to the previous step

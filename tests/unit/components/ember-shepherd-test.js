@@ -23,7 +23,6 @@ test('it renders', function(assert) {
   assert.equal(component._state, 'inDOM');
 });
 
-
 test('tour starts', function(assert) {
   assert.expect(3);
   var component = this.subject({
@@ -74,5 +73,4 @@ test('tour starts', function(assert) {
   assert.equal($('body').hasClass('shepherd-active'), true);
   assert.equal(this.$().children().hasClass('shepherd-enabled'), true);
   assert.equal(show, true);
-  //$('.shepherd-button.shepherd-button-secondary')[0].click();
 });
