@@ -56,3 +56,29 @@ test("Tour next, back, and cancel builtInButtons work", function(assert) {
     assert.equal($('[class^=shepherd-button]:visible').length, 0, "Ensure that all buttons are gone, after exit");
   });
 });
+
+test("Modal tour start", function(assert) {
+  assert.expect(1);
+  visit('/').then(function() {
+    Ember.run(function() {
+      $('.shepherd-enabled .cancel-button')[0].dispatchEvent(clickEvent);
+    });
+    click('.toggleHelpModal');
+    andThen(function() {
+      assert.equal(find('#shepherdOverlay', 'body').length, 1, "#shepherdOverlay exists, since modal");
+    });
+  });
+});
+
+test("Non-modal tour start", function(assert) {
+  assert.expect(1);
+  visit('/').then(function() {
+    Ember.run(function() {
+      $('.shepherd-enabled .cancel-button')[0].dispatchEvent(clickEvent);
+    });
+    click('.toggleHelpNonmodal');
+    andThen(function() {
+      assert.equal(find('#shepherdOverlay', 'body').length, 0, "#shepherdOverlay exists, since modal");
+    });
+  });
+});
