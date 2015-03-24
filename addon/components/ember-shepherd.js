@@ -12,13 +12,12 @@ export default Ember.Component.extend({
         var tour = new Shepherd.Tour({
           defaults: this.get('defaults') ? this.get('defaults') : {}
         });
-        if (this.get('requiredElementsPresent')) {
+        if (this.requiredElementsPresent()) {
           this.get('steps').forEach(function(step, index) {
             var shepherdStepOptions = {buttons: []};
             for (var option in step.options) {
               if (option === 'builtInButtons') {
                 this.addBuiltInButtons(step, shepherdStepOptions);
-              } else if (option === 'customButtons') {
               } else {
                 shepherdStepOptions[option] = step.options[option];
               }
@@ -31,8 +30,7 @@ export default Ember.Component.extend({
                 $(currentStep.options.attachTo.split(' ')[0])[0].style.pointerEvents = 'none';
                 if (currentStep.options.copyStyles) {
                   this.createHighlightOverlay(currentStep);
-                }
-                else {
+                } else {
                   this.popoutElement(currentStep);
                 }
               }
@@ -134,6 +132,7 @@ export default Ember.Component.extend({
   cleanupModalLeftovers: function() {
     if (this.get('modal')) {
       if (this.get('tour') &&
+        this.get('tour').getCurrentStep() &&
         this.get('tour').getCurrentStep().options.attachTo &&
         $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0]) {
         $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0].style.pointerEvents = 'auto';
@@ -170,11 +169,6 @@ export default Ember.Component.extend({
     highlightElement.css('height', elementPosition.height);
     highlightElement.css('z-index', '10002');
   },
-  /**
-   * Gets a reference to the element referenced by attachTo
-   * @param step The current step shown
-   * @returns {*}
-   */
   getCurrentElement: function(step) {
     var attachTo = step.options.attachTo.split(' ');
     attachTo.pop();
@@ -223,14 +217,14 @@ export default Ember.Component.extend({
     var allElementsPresent = true;
     if (this.get('requiredElements')) {
       this.get('requiredElements').forEach(function(element) {
-        if (allElementsPresent && (!$(element.selector)[0] || !$(element.selector).is(":visible"))) {
+        if (allElementsPresent && (!$(element.selector)[0] || !$(element.selector).is(':visible'))) {
           allElementsPresent = false;
           this.set('messageForUser', element.message);
         }
       }.bind(this));
     }
     return allElementsPresent;
-  }.property('requiredElements'),
+  },
   /**
    * Cancel the tour, if a route change occurs
    */
