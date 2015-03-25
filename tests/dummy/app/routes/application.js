@@ -183,11 +183,13 @@ export default Ember.Route.extend({
     controller.set('requiredElements', [
       {
         selector: '.first-element',
-        message: 'First element not found'
+        message: 'First element not found',
+        title: 'Error'
       },
       {
         selector: '.install-element',
-        message: 'Install element not found'
+        message: 'Install element not found',
+        title: 'Error'
       }
     ]);
 

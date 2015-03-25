@@ -63,11 +63,13 @@ You'll want to do something like this:
 controllerFor('application').set('requiredElements', [
       {
         selector: '.search-result-element',
-        message: 'No search results found. Please execute another search, and try to start the tour again.'
+        message: 'No search results found. Please execute another search, and try to start the tour again.',
+        title: 'No results'
       },
       {
         selector: '.username-element',
-        message: 'User not logged in, please log in to start this tour.'
+        message: 'User not logged in, please log in to start this tour.',
+        title: 'Please login'
       },
     ]);
 

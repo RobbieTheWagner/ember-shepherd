@@ -55,7 +55,7 @@ export default Ember.Component.extend({
             ],
             classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
             copyStyles: false,
-            title: 'Error: required element not found',
+            title: this.get('errorTitle'),
             text: [this.get('messageForUser')]
           };
           tour.addStep('error', errorMessageOptions);
@@ -219,6 +219,7 @@ export default Ember.Component.extend({
       this.get('requiredElements').forEach(function(element) {
         if (allElementsPresent && (!$(element.selector)[0] || !$(element.selector).is(':visible'))) {
           allElementsPresent = false;
+          this.set('errorTitle', element.title);
           this.set('messageForUser', element.message);
         }
       }.bind(this));
