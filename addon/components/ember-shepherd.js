@@ -25,7 +25,7 @@ export default Ember.Component.extend({
             tour.addStep(step.id, shepherdStepOptions);
 
             var currentStep = tour.steps[index];
-            currentStep.on('show', function() {
+            currentStep.on('before-show', function() {
               if (this.get('modal')) {
                 $(currentStep.options.attachTo.split(' ')[0])[0].style.pointerEvents = 'none';
                 if (currentStep.options.copyStyles) {
