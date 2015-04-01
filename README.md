@@ -24,6 +24,7 @@ After installing, you'll need to include the tour component in the template for 
 {{ember-shepherd 
 currentPath=currentPath 
 defaults=shepherdDefaults 
+disableScroll=true
 modal=isModal 
 requiredElements=requiredElements
 start=showHelp 
@@ -48,6 +49,11 @@ var shepherdDefaults =
   showCancelLink: true
 };
 ```
+
+### disableScroll
+**disableScroll** is a boolean, that when set to true, will keep the user from scrolling with the scrollbar, 
+mousewheel, arrow keys, etc. You may want to use this to ensure you are driving the scroll position with the tour. 
+Thanks to [jquery-disablescroll](https://github.com/ultrapasty/jquery-disablescroll) for this functionality.
 
 ### modal
 **modal** is a boolean, that should be set to true, if you would like the rest of the screen, other than the current element, greyed out, and the current element highlighted. If you do not need modal functionality, you can remove this option or set it to false.

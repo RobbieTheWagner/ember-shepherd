@@ -64,14 +64,23 @@ export default Ember.Component.extend({
           if (this.get('modal')) {
             $('body').append('<div id="shepherdOverlay"> </div>');
           }
+          if (this.get('disableScroll')) {
+            $(window).disablescroll();
+          }
         }.bind(this));
         tour.on('complete', function() {
           this.cleanupModalLeftovers();
           this.set('start', false);
+          if (this.get('disableScroll')) {
+            $(window).disablescroll('undo');
+          }
         }.bind(this));
         tour.on('cancel', function() {
           this.cleanupModalLeftovers();
           this.set('start', false);
+          if (this.get('disableScroll')) {
+            $(window).disablescroll('undo');
+          }
         }.bind(this));
         this.set('tour', tour);
       }

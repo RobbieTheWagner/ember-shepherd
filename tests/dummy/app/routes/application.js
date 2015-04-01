@@ -177,6 +177,29 @@ export default Ember.Route.extend({
           'these actions on your tour automatically. To use them, simply include in the builtInButtons array in ' +
           'each step.']
         }
+      },
+      {
+        id: 'disableScroll',
+        options: {
+          attachTo: '.disable-scroll-element top',
+          builtInButtons: [
+            {
+              classes: 'shepherd-button-secondary cancel-button',
+              text: 'Exit',
+              type: 'cancel'
+            },
+            {
+              classes: 'shepherd-button-primary back-button',
+              text: 'Back',
+              type: 'back'
+            }
+          ],
+          classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+          copyStyles: false,
+          text: ['When navigating the user through a tour, you may want to disable scrolling, so they cannot mess up ' +
+          'your carefully planned out, amazing tour. This is now easily achieved with disableScroll=true. Try ' +
+          'scrolling right now, then exit the tour and see that you can again!']
+        }
       }
     ];
 
@@ -198,6 +221,7 @@ export default Ember.Route.extend({
     controller.set('usage', '{{ember-shepherd ' + '\n' +
     'currentPath=currentPath ' + '\n' +
     'defaults=shepherdDefaults ' + '\n' +
+    'disableScroll=true ' + '\n' +
     'modal=isModal ' + '\n' +
     'requiredElements=requiredElements ' + '\n' +
     'start=showHelp ' + '\n' +

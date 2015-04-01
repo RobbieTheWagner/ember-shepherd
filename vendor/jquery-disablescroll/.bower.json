@@ -1,0 +1,14 @@
+{
+  "name": "jquery-disablescroll",
+  "homepage": "https://github.com/ultrapasty/jquery-disablescroll",
+  "_release": "620d1ca5e9",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "620d1ca5e9cb7a2df8eb48c1440a4423245fa5f0"
+  },
+  "_source": "git://github.com/ultrapasty/jquery-disablescroll.git",
+  "_target": "*",
+  "_originalSource": "ultrapasty/jquery-disablescroll",
+  "_direct": true
+}

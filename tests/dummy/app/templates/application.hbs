@@ -24,14 +24,17 @@
   <div class="medium-8 columns medium-centered text-center usage-element">
     <h5>Additional Features</h5>
 
-    <div class="medium-4 columns panel modal-element">
+    <div class="medium-3 columns panel modal-element">
       Modal
     </div>
-    <div class="medium-4 columns panel style-copy-element">
+    <div class="medium-3 columns panel style-copy-element">
       Style Copy
     </div>
-    <div class="medium-4 columns panel built-in-buttons-element">
+    <div class="medium-3 columns panel built-in-buttons-element">
       Built-in Buttons
+    </div>
+    <div class="medium-3 columns panel disable-scroll-element">
+      Disable Scroll
     </div>
   </div>
 </div>
@@ -112,5 +115,6 @@
   </div>
 </div>
 
-{{ember-shepherd currentPath=currentPath defaults=shepherdDefaults modal=isModal requiredElements=requiredElements
+{{ember-shepherd currentPath=currentPath defaults=shepherdDefaults disableScroll=true modal=isModal
+requiredElements=requiredElements
 start=showHelp steps=steps}}
