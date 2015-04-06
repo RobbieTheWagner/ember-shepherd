@@ -1,6 +1,6 @@
 {
   "name": "ember-shepherd",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "An Ember wrapper for the site tour library Shepherd.",
   "homepage": "http://rwwagner90.github.io/ember-shepherd/",
   "directories": {
@@ -25,7 +25,7 @@
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.0",
     "broccoli-clean-css": "1.0.0",
-    "ember-cli": "0.2.0",
+    "ember-cli": "0.2.2",
     "ember-cli-app-version": "0.3.2",
     "ember-cli-babel": "^4.0.0",
     "ember-cli-blanket": "0.3.2",
