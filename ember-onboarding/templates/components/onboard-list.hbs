@@ -1,0 +1,23 @@
+<p class="{{titleClass}}">
+  {{title}}
+</p>
+
+<p class="{{introClass}}">
+  {{intro}}
+</p>
+
+{{#if currentListTours}}
+  <ul class="{{ulClass}}">
+
+    {{#each tour in currentListTours}}
+      <li class="{{liClass}}" {{action 'setTour' tour}}>
+        {{tour}}
+      </li>
+    {{/each}}
+
+  </ul>
+{{else}}
+  {{textForNullList}}
+{{/if}}
+
+{{yield}}
