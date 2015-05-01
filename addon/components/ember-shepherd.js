@@ -199,10 +199,46 @@ export default Ember.Component.extend({
    * @returns {Element} the element for this step
    */
   _getElementForStep: function(step) {
-    var attachTo = step.options.attachTo.split(' ');
+    const attachTo = step.options.attachTo;
+    const type = typeof attachTo;
+    var element;
+    switch(type) {
+      case "string":
+        element = this._getElementFromString(attachTo);
+        break;
+      default:
+        element = this._getElementFromObject(attachTo);
+        break;
+    }
+    return element;
+  },
+
+
+  /**
+   * Get the element from an option string
+   *
+   * @method _getElementFromString
+   * @param string element the string in the step configuration
+   * @returns {Element} the element from the string
+   */
+  _getElementFromString: function(element) {
+    var attachTo = element.split(' ');
     attachTo.pop();
     var selector = attachTo.join(' ');
     return $(selector)[0];
+  },
+
+
+  /**
+   * Get the element from an option object
+   *
+   * @method _getElementFromObject
+   * @param Object attachTo
+   * @returns {Element}
+   */
+  _getElementFromObject: function(attachTo) {
+    const op = attachTo.element;
+    return $(op)[0];
   },
 
 
