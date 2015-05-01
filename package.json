@@ -22,6 +22,9 @@
     "url": "https://github.com/rwwagner90"
   },
   "license": "MIT",
+  "dependencies": {
+    "ember-cli-babel": "^4.0.0"
+  },
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.0",
     "broccoli-clean-css": "1.0.0",
