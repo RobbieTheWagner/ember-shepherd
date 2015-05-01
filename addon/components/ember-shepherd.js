@@ -3,6 +3,7 @@ import Ember from 'ember';
 import $ from 'jquery';
 
 export default Ember.Component.extend({
+
   /**
    * Initializes a new tour, whenever a new set of steps is passed to the component
    */
@@ -86,6 +87,8 @@ export default Ember.Component.extend({
       }
     });
   }.on('didInsertElement').observes('steps', 'requiredElements'),
+
+
   /**
    * Checks the builtInButtons array for the step and adds a button with the correct action for the type
    * @param step The step to add the buttons to
@@ -120,6 +123,8 @@ export default Ember.Component.extend({
       }
     }.bind(this));
   },
+
+
   /**
    * Function to call from the built in cancel button, to cancel the tour
    */
@@ -130,11 +135,15 @@ export default Ember.Component.extend({
       this.set('cancel', false);
     }
   }.observes('cancel'),
+
+
   willDestroyElement: function() {
     if (this.get('tour')) {
       this.get('tour').cancel();
     }
   },
+
+
   /**
    * Removes overlays and classes associated with modal functionality
    */
@@ -151,6 +160,8 @@ export default Ember.Component.extend({
       $('.shepherd-modal').removeClass('shepherd-modal');
     }
   },
+
+
   /**
    * Creates an overlay element clone of the element you want to highlight and copies all the styles.
    * @param step The step object that points to the element to highlight
@@ -178,12 +189,16 @@ export default Ember.Component.extend({
     highlightElement.css('height', elementPosition.height);
     highlightElement.css('z-index', '10002');
   },
+
+
   getCurrentElement: function(step) {
     var attachTo = step.options.attachTo.split(' ');
     attachTo.pop();
     var selector = attachTo.join(' ');
     return $(selector)[0];
   },
+
+
   /**
    * A built-in button wrapper to move to the next step
    */
@@ -195,6 +210,8 @@ export default Ember.Component.extend({
       this.set('next', false);
     }
   }.observes('next'),
+
+
   /**
    * Increases the z-index of the element, to pop it out above the overlay and highlight it
    * @param step The step object that attaches to the element
@@ -207,6 +224,8 @@ export default Ember.Component.extend({
       $(currentElement).addClass(step.options.highlightClass);
     }
   },
+
+
   /**
    * A built-in button wrapper to move to the previous step
    */
@@ -218,6 +237,8 @@ export default Ember.Component.extend({
       this.set('back', false);
     }
   }.observes('back'),
+
+
   /**
    * Observes the array of requiredElements, which are the elements that must be present at the start of the tour,
    * and determines if they exist, and are visible, if either is false, it will stop the tour from executing.
@@ -235,6 +256,8 @@ export default Ember.Component.extend({
     }
     return allElementsPresent;
   },
+
+
   /**
    * Cancel the tour, if a route change occurs
    */
@@ -244,6 +267,8 @@ export default Ember.Component.extend({
       this.set('tour', null);
     }
   }.observes('currentPath'),
+
+
   /**
    * Observes start, and starts the tour whenever start becomes true
    */
@@ -254,6 +279,8 @@ export default Ember.Component.extend({
       }
     });
   }.observes('start'),
+
+
   /**
    * Taken from introjs https://github.com/usablica/intro.js/blob/master/intro.js#L1092-1124
    * Get an element position on the page
