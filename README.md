@@ -14,6 +14,13 @@ http://rwwagner90.github.io/ember-shepherd/
 ## Getting started
 
 To start, if you are using Ember CLI, simply run:
+
+0.2.3+
+```bash
+ember install ember-shepherd
+```
+
+0.2.2 and below:
 ```bash
 ember install:addon ember-shepherd
 ```
