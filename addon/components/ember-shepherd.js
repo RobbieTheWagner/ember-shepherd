@@ -28,7 +28,7 @@ export default Ember.Component.extend({
             var currentStep = tour.steps[index];
             currentStep.on('before-show', function() {
               if (this.get('modal')) {
-                $(currentStep.options.attachTo.split(' ')[0])[0].style.pointerEvents = 'none';
+                this._getElementForStep(currentStep).style.pointerEvents = 'none';
                 if (currentStep.options.copyStyles) {
                   this.createHighlightOverlay(currentStep);
                 } else {
@@ -38,7 +38,7 @@ export default Ember.Component.extend({
             }.bind(this));
             currentStep.on('hide', function() {
               //Remove element copy, if it was cloned
-              var currentElement = this.getCurrentElement(currentStep);
+              var currentElement = this._getElementForStep(currentStep);
               if (currentStep.options.highlightClass) {
                 $(currentElement).removeClass(currentStep.options.highlightClass);
               }
@@ -152,8 +152,8 @@ export default Ember.Component.extend({
       if (this.get('tour') &&
         this.get('tour').getCurrentStep() &&
         this.get('tour').getCurrentStep().options.attachTo &&
-        $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0]) {
-        $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0].style.pointerEvents = 'auto';
+        this._getElementForStep(this.get('tour').getCurrentStep())) {
+        this._getElementForStep(this.get('tour').getCurrentStep()).style.pointerEvents = 'auto';
       }
       $('#shepherdOverlay').remove();
       $('#highlightOverlay').remove();
@@ -168,7 +168,7 @@ export default Ember.Component.extend({
    */
   createHighlightOverlay: function(step) {
     $('#highlightOverlay').remove();
-    var currentElement = this.getCurrentElement(step);
+    var currentElement = this._getElementForStep(step);
     var elementPosition = this._getElementPosition(currentElement);
     var highlightElement = $(currentElement).clone();
     highlightElement.attr('id', 'highlightOverlay');
@@ -191,11 +191,30 @@ export default Ember.Component.extend({
   },
 
 
-  getCurrentElement: function(step) {
+  /**
+   * Return the element for a step
+   *
+   * @method _getElementForStep
+   * @param step step the step to get an element for
+   * @returns {Element} the element for this step
+   */
+  _getElementForStep: function(step) {
     var attachTo = step.options.attachTo.split(' ');
     attachTo.pop();
     var selector = attachTo.join(' ');
     return $(selector)[0];
+  },
+
+
+  /**
+   * Return the element for the current step
+   *
+   * @method _getElementForCurrentStep
+   * @returns {Element} the element for the current step
+   */
+  _getElementForCurrentStep: function() {
+    var currentStep = this.get('tour').getCurrentStep();
+    return this._getElementForStep(currentStep);
   },
 
 
@@ -205,7 +224,7 @@ export default Ember.Component.extend({
   nextStep: function() {
     if (this.get('next')) {
       //Re-enable clicking on the element
-      $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0].style.pointerEvents = 'auto';
+      this._getElementForCurrentStep().style.pointerEvents = 'auto';
       this.get('tour').next();
       this.set('next', false);
     }
@@ -218,7 +237,7 @@ export default Ember.Component.extend({
    */
   popoutElement: function(step) {
     $('.shepherd-modal').removeClass('shepherd-modal');
-    var currentElement = this.getCurrentElement(step);
+    var currentElement = this._getElementForStep(step);
     $(currentElement).addClass('shepherd-modal');
     if (step.options.highlightClass) {
       $(currentElement).addClass(step.options.highlightClass);
@@ -232,7 +251,7 @@ export default Ember.Component.extend({
   previousStep: function() {
     if (this.get('back')) {
       //Re-enable clicking on the element
-      $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0].style.pointerEvents = 'auto';
+      this._getElementForCurrentStep().style.pointerEvents = 'auto';
       this.get('tour').back();
       this.set('back', false);
     }
