@@ -1,14 +1,51 @@
 import Ember from 'ember';
 import $ from 'jquery';
-
 import {
   moduleForComponent,
   test
-  } from 'ember-qunit';
+} from 'ember-qunit';
+
+
+var show = false;
+var stepsTemplate = [
+  {
+    id: 'intro',
+    options: {
+      attachTo: '.test-element bottom',
+      builtInButtons: [
+        {
+          classes: 'shepherd-button-secondary',
+          text: 'Exit',
+          type: 'cancel'
+        },
+        {
+          classes: 'shepherd-button-primary',
+          text: 'Next',
+          type: 'next'
+        }
+      ],
+      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+      copyStyles: false,
+      title: 'Welcome to Ember-Shepherd!',
+      text: ['Test text'],
+      when: {
+        show: function() {
+          show = true;
+        }.bind(this),
+        hide: function() {
+          console.log('hide step');
+        }.bind(this)
+      }
+    }
+  }
+];
 
 moduleForComponent('ember-shepherd', {
   // specify the other units that are required for this test
   // needs: ['component:foo', 'helper:bar']
+  afterEach: function() {
+    show = false;
+  }
 });
 
 test('it renders', function(assert) {
@@ -30,47 +67,65 @@ test('tour starts', function(assert) {
   });
 
   this.render();
-  var show = false;
+  var steps = stepsTemplate;
 
-  var steps = [
-    {
-      id: 'intro',
-      options: {
-        attachTo: '.test-element bottom',
-        builtInButtons: [
-          {
-            classes: 'shepherd-button-secondary',
-            text: 'Exit',
-            type: 'cancel'
-          },
-          {
-            classes: 'shepherd-button-primary',
-            text: 'Next',
-            type: 'next'
-          }
-        ],
-        classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
-        copyStyles: false,
-        title: 'Welcome to Ember-Shepherd!',
-        text: ['Test text'],
-        when: {
-          show: function() {
-            show = true;
-          }.bind(this),
-          hide: function() {
-            console.log('hide step');
-          }.bind(this)
-        }
-      }
-    }
-  ];
   Ember.run(function() {
     component.set('steps', steps);
     component.set('start', true);
-
   });
 
   assert.equal($('body').hasClass('shepherd-active'), true);
   assert.equal(this.$().children().hasClass('shepherd-enabled'), true);
   assert.equal(show, true);
 });
+
+test('attachTo works with object when element is string', function(assert) {
+  assert.expect(3);
+
+  var component = this.subject({
+    template: Ember.Handlebars.compile('<div class="test-element"></div>')
+  });
+
+  this.render();
+  var steps = stepsTemplate;
+  stepsTemplate.options.attachTo = {
+    element: '.test-element',
+    on: 'bottom'
+  };
+
+  Ember.run(function() {
+    component.set('steps', steps);
+    component.set('start', true);
+  });
+
+  assert.equal($('body').hasClass('shepherd-active'), true);
+  assert.equal(this.$().children().hasClass('shepherd-enabled'), true);
+  assert.equal(show, true);
+});
+
+test('attachTo works with object when element is jQuery object', function(assert) {
+  assert.expect(3);
+
+  var component = this.subject({
+    template: Ember.Handlebars.compile('<div class="test-element"></div>')
+  });
+
+  const element = $('.test-elemebt');
+
+  this.render();
+  var steps = stepsTemplate;
+  stepsTemplate.options.attachTo = {
+    element: element,
+    on: 'bottom'
+  };
+
+  Ember.run(function() {
+    component.set('steps', steps);
+    component.set('start', true);
+  });
+
+  assert.equal($('body').hasClass('shepherd-active'), true);
+  assert.equal(this.$().children().hasClass('shepherd-enabled'), true);
+  assert.equal(show, true);
+});
+
