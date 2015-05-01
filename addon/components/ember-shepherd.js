@@ -3,6 +3,7 @@ import Ember from 'ember';
 import $ from 'jquery';
 
 export default Ember.Component.extend({
+
   /**
    * Initializes a new tour, whenever a new set of steps is passed to the component
    */
@@ -27,7 +28,7 @@ export default Ember.Component.extend({
             var currentStep = tour.steps[index];
             currentStep.on('before-show', function() {
               if (this.get('modal')) {
-                $(currentStep.options.attachTo.split(' ')[0])[0].style.pointerEvents = 'none';
+                this._getElementForStep(currentStep).style.pointerEvents = 'none';
                 if (currentStep.options.copyStyles) {
                   this.createHighlightOverlay(currentStep);
                 } else {
@@ -37,7 +38,7 @@ export default Ember.Component.extend({
             }.bind(this));
             currentStep.on('hide', function() {
               //Remove element copy, if it was cloned
-              var currentElement = this.getCurrentElement(currentStep);
+              var currentElement = this._getElementForStep(currentStep);
               if (currentStep.options.highlightClass) {
                 $(currentElement).removeClass(currentStep.options.highlightClass);
               }
@@ -86,6 +87,8 @@ export default Ember.Component.extend({
       }
     });
   }.on('didInsertElement').observes('steps', 'requiredElements'),
+
+
   /**
    * Checks the builtInButtons array for the step and adds a button with the correct action for the type
    * @param step The step to add the buttons to
@@ -120,6 +123,8 @@ export default Ember.Component.extend({
       }
     }.bind(this));
   },
+
+
   /**
    * Function to call from the built in cancel button, to cancel the tour
    */
@@ -130,11 +135,15 @@ export default Ember.Component.extend({
       this.set('cancel', false);
     }
   }.observes('cancel'),
+
+
   willDestroyElement: function() {
     if (this.get('tour')) {
       this.get('tour').cancel();
     }
   },
+
+
   /**
    * Removes overlays and classes associated with modal functionality
    */
@@ -143,21 +152,23 @@ export default Ember.Component.extend({
       if (this.get('tour') &&
         this.get('tour').getCurrentStep() &&
         this.get('tour').getCurrentStep().options.attachTo &&
-        $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0]) {
-        $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0].style.pointerEvents = 'auto';
+        this._getElementForStep(this.get('tour').getCurrentStep())) {
+        this._getElementForStep(this.get('tour').getCurrentStep()).style.pointerEvents = 'auto';
       }
       $('#shepherdOverlay').remove();
       $('#highlightOverlay').remove();
       $('.shepherd-modal').removeClass('shepherd-modal');
     }
   },
+
+
   /**
    * Creates an overlay element clone of the element you want to highlight and copies all the styles.
    * @param step The step object that points to the element to highlight
    */
   createHighlightOverlay: function(step) {
     $('#highlightOverlay').remove();
-    var currentElement = this.getCurrentElement(step);
+    var currentElement = this._getElementForStep(step);
     var elementPosition = this._getElementPosition(currentElement);
     var highlightElement = $(currentElement).clone();
     highlightElement.attr('id', 'highlightOverlay');
@@ -178,46 +189,111 @@ export default Ember.Component.extend({
     highlightElement.css('height', elementPosition.height);
     highlightElement.css('z-index', '10002');
   },
-  getCurrentElement: function(step) {
-    var attachTo = step.options.attachTo.split(' ');
+
+
+  /**
+   * Return the element for a step
+   *
+   * @method _getElementForStep
+   * @param step step the step to get an element for
+   * @returns {Element} the element for this step
+   */
+  _getElementForStep: function(step) {
+    const attachTo = step.options.attachTo;
+    const type = typeof attachTo;
+    var element;
+    switch(type) {
+      case "string":
+        element = this._getElementFromString(attachTo);
+        break;
+      default:
+        element = this._getElementFromObject(attachTo);
+        break;
+    }
+    return element;
+  },
+
+
+  /**
+   * Get the element from an option string
+   *
+   * @method _getElementFromString
+   * @param string element the string in the step configuration
+   * @returns {Element} the element from the string
+   */
+  _getElementFromString: function(element) {
+    var attachTo = element.split(' ');
     attachTo.pop();
     var selector = attachTo.join(' ');
     return $(selector)[0];
   },
+
+
+  /**
+   * Get the element from an option object
+   *
+   * @method _getElementFromObject
+   * @param Object attachTo
+   * @returns {Element}
+   */
+  _getElementFromObject: function(attachTo) {
+    const op = attachTo.element;
+    return $(op)[0];
+  },
+
+
+  /**
+   * Return the element for the current step
+   *
+   * @method _getElementForCurrentStep
+   * @returns {Element} the element for the current step
+   */
+  _getElementForCurrentStep: function() {
+    var currentStep = this.get('tour').getCurrentStep();
+    return this._getElementForStep(currentStep);
+  },
+
+
   /**
    * A built-in button wrapper to move to the next step
    */
   nextStep: function() {
     if (this.get('next')) {
       //Re-enable clicking on the element
-      $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0].style.pointerEvents = 'auto';
+      this._getElementForCurrentStep().style.pointerEvents = 'auto';
       this.get('tour').next();
       this.set('next', false);
     }
   }.observes('next'),
+
+
   /**
    * Increases the z-index of the element, to pop it out above the overlay and highlight it
    * @param step The step object that attaches to the element
    */
   popoutElement: function(step) {
     $('.shepherd-modal').removeClass('shepherd-modal');
-    var currentElement = this.getCurrentElement(step);
+    var currentElement = this._getElementForStep(step);
     $(currentElement).addClass('shepherd-modal');
     if (step.options.highlightClass) {
       $(currentElement).addClass(step.options.highlightClass);
     }
   },
+
+
   /**
    * A built-in button wrapper to move to the previous step
    */
   previousStep: function() {
     if (this.get('back')) {
       //Re-enable clicking on the element
-      $(this.get('tour').getCurrentStep().options.attachTo.split(' ')[0])[0].style.pointerEvents = 'auto';
+      this._getElementForCurrentStep().style.pointerEvents = 'auto';
       this.get('tour').back();
       this.set('back', false);
     }
   }.observes('back'),
+
+
   /**
    * Observes the array of requiredElements, which are the elements that must be present at the start of the tour,
    * and determines if they exist, and are visible, if either is false, it will stop the tour from executing.
@@ -235,6 +311,8 @@ export default Ember.Component.extend({
     }
     return allElementsPresent;
   },
+
+
   /**
    * Cancel the tour, if a route change occurs
    */
@@ -244,6 +322,8 @@ export default Ember.Component.extend({
       this.set('tour', null);
     }
   }.observes('currentPath'),
+
+
   /**
    * Observes start, and starts the tour whenever start becomes true
    */
@@ -254,6 +334,8 @@ export default Ember.Component.extend({
       }
     });
   }.observes('start'),
+
+
   /**
    * Taken from introjs https://github.com/usablica/intro.js/blob/master/intro.js#L1092-1124
    * Get an element position on the page
