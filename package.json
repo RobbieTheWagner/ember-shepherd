@@ -28,7 +28,7 @@
     "ember-cli": "0.2.3",
     "ember-cli-app-version": "0.3.2",
     "ember-cli-babel": "^4.0.0",
-    "ember-cli-blanket": "0.3.2",
+    "ember-cli-blanket": "0.5.1",
     "ember-cli-content-security-policy": "0.3.0",
     "ember-cli-dependency-checker": "0.0.8",
     "ember-cli-es5-shim": "^0.1.0",
