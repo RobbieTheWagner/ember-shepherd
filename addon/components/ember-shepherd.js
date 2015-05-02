@@ -14,7 +14,7 @@ export default Ember.Component.extend({
           defaults: this.get('defaults') ? this.get('defaults') : {}
         });
         if (this.requiredElementsPresent()) {
-          this.get('tourService.steps').forEach(function(step, index) {
+          this.get('tourService.steps').forEach((step, index) => {
             var shepherdStepOptions = {buttons: []};
             for (var option in step.options) {
               if (option === 'builtInButtons') {
@@ -26,7 +26,7 @@ export default Ember.Component.extend({
             tour.addStep(step.id, shepherdStepOptions);
 
             var currentStep = tour.steps[index];
-            currentStep.on('before-show', function() {
+            currentStep.on('before-show', () => {
               if (this.get('modal')) {
                 this._getElementForStep(currentStep).style.pointerEvents = 'none';
                 if (currentStep.options.copyStyles) {
@@ -35,16 +35,16 @@ export default Ember.Component.extend({
                   this.popoutElement(currentStep);
                 }
               }
-            }.bind(this));
-            currentStep.on('hide', function() {
+            });
+            currentStep.on('hide', () => {
               //Remove element copy, if it was cloned
               var currentElement = this._getElementForStep(currentStep);
               if (currentStep.options.highlightClass) {
                 $(currentElement).removeClass(currentStep.options.highlightClass);
               }
               $('#highlightOverlay').remove();
-            }.bind(this));
-          }.bind(this));
+            });
+          });
         } else {
           var errorMessageOptions =
           {
@@ -61,28 +61,28 @@ export default Ember.Component.extend({
           };
           tour.addStep('error', errorMessageOptions);
         }
-        tour.on('start', function() {
+        tour.on('start', () => {
           if (this.get('modal')) {
             $('body').append('<div id="shepherdOverlay"> </div>');
           }
           if (this.get('disableScroll')) {
             $(window).disablescroll();
           }
-        }.bind(this));
-        tour.on('complete', function() {
+        });
+        tour.on('complete', () => {
           this.cleanupModalLeftovers();
           this.set('start', false);
           if (this.get('disableScroll')) {
             $(window).disablescroll('undo');
           }
-        }.bind(this));
-        tour.on('cancel', function() {
+        });
+        tour.on('cancel', () => {
           this.cleanupModalLeftovers();
           this.set('start', false);
           if (this.get('disableScroll')) {
             $(window).disablescroll('undo');
           }
-        }.bind(this));
+        });
         this.set('tour', tour);
       }
     });
@@ -94,33 +94,33 @@ export default Ember.Component.extend({
    * @param shepherdStepOptions The options array to modify
    */
   addBuiltInButtons: function(step, shepherdStepOptions) {
-    step.options.builtInButtons.forEach(function(button) {
+    step.options.builtInButtons.forEach((button) => {
       if (button.type === 'next') {
         shepherdStepOptions.buttons.push({
           classes: button.classes,
           text: button.text,
-          action: function() {
+          action: () => {
             this.set('next', true);
-          }.bind(this)
+          }
         });
       } else if (button.type === 'back') {
         shepherdStepOptions.buttons.push({
           classes: button.classes,
           text: button.text,
-          action: function() {
+          action: () => {
             this.set('back', true);
-          }.bind(this)
+          }
         });
       } else if (button.type === 'cancel') {
         shepherdStepOptions.buttons.push({
           classes: button.classes,
           text: button.text,
-          action: function() {
+          action: () => {
             this.set('cancel', true);
-          }.bind(this)
+          }
         });
       }
-    }.bind(this));
+    });
   },
 
   /**
@@ -288,13 +288,13 @@ export default Ember.Component.extend({
   requiredElementsPresent: function() {
     var allElementsPresent = true;
     if (this.get('tourService.requiredElements')) {
-      this.get('tourService.requiredElements').forEach(function(element) {
+      this.get('tourService.requiredElements').forEach((element) => {
         if (allElementsPresent && (!$(element.selector)[0] || !$(element.selector).is(':visible'))) {
           allElementsPresent = false;
           this.set('errorTitle', element.title);
           this.set('messageForUser', element.message);
         }
-      }.bind(this));
+      });
     }
     return allElementsPresent;
   },

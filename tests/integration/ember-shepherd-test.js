@@ -108,7 +108,7 @@ test("Highlight applied", function(assert) {
       text: ['Testing highlight']
     }
   }];
-  appController.set('steps', steps);
+  appController.set('tour.steps', steps);
   appController.set('showHelp', false);
   assert.expect(2);
   visit('/').then(function() {
@@ -117,7 +117,7 @@ test("Highlight applied", function(assert) {
     });
     Ember.run(function() {
       appController.set('showHelp', false);
-      appController.set('steps', steps);
+      appController.set('tour.steps', steps);
       appController.set('showHelp', true);
     });
     Ember.run(function() {

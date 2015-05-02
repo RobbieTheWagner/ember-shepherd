@@ -33,9 +33,7 @@ currentPath=currentPath
 defaults=shepherdDefaults 
 disableScroll=true
 modal=isModal 
-requiredElements=requiredElements
-start=showHelp 
-steps=steps}}
+start=showHelp}}
 ```
 
 ### currentPath
@@ -108,7 +106,7 @@ actions: {
 
 ### steps
 
-You will need to define a steps object to pass into your component of the following form:
+You will need to define a steps object to set on the tour service of the following form:
 
 ```js
 var steps = [
@@ -155,12 +153,12 @@ var steps = [
           'position all of its steps.', 'Tether makes sure your steps never end up off screen or cropped by an ' +
           'overflow. Try resizing your browser to see what we mean.'],
           when: {
-            show: function() {
+            show: () => {
               console.log('show step');
-            }.bind(this),
-            hide: function(){
+            },
+            hide: () => {
               console.log('hide step')
-            }.bind(this)
+            }
           }
         }
       },
@@ -187,6 +185,11 @@ A lot of the options are the same as Shepherd options, but I will go through eac
   - **text**: A string of text content to display in the tour popup
   - **when**: An object that contains function to be executed when events occur on the step. Supported events are 
   **before-show, show, before-hide, hide, complete, cancel, and destroy**.
+  
+The tour service is automatically injected in all routes and controllers, so to set the steps simply do the following
+ inside a route or controller:
+ 
+```this.tour.set('steps', steps);```
 
 ## Contributing
 Please feel free to post any issues you encounter or feature requests on the issues in this repo. Pull requests welcome as well!
