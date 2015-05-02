@@ -3,18 +3,18 @@ import Ember from 'ember';
 import $ from 'jquery';
 
 export default Ember.Component.extend({
-
+  tourService: Ember.inject.service('tour'),
   /**
    * Initializes a new tour, whenever a new set of steps is passed to the component
    */
   initialize: function() {
     Ember.run.scheduleOnce('afterRender', this, function() {
-      if (this.get('steps')) {
+      if (this.get('tourService.steps')) {
         var tour = new Shepherd.Tour({
           defaults: this.get('defaults') ? this.get('defaults') : {}
         });
         if (this.requiredElementsPresent()) {
-          this.get('steps').forEach(function(step, index) {
+          this.get('tourService.steps').forEach(function(step, index) {
             var shepherdStepOptions = {buttons: []};
             for (var option in step.options) {
               if (option === 'builtInButtons') {
@@ -86,8 +86,7 @@ export default Ember.Component.extend({
         this.set('tour', tour);
       }
     });
-  }.on('didInsertElement').observes('steps', 'requiredElements'),
-
+  }.on('didInsertElement').observes('tourService.steps', 'tourService.requiredElements'),
 
   /**
    * Checks the builtInButtons array for the step and adds a button with the correct action for the type
@@ -124,7 +123,6 @@ export default Ember.Component.extend({
     }.bind(this));
   },
 
-
   /**
    * Function to call from the built in cancel button, to cancel the tour
    */
@@ -136,13 +134,11 @@ export default Ember.Component.extend({
     }
   }.observes('cancel'),
 
-
   willDestroyElement: function() {
     if (this.get('tour')) {
       this.get('tour').cancel();
     }
   },
-
 
   /**
    * Removes overlays and classes associated with modal functionality
@@ -160,7 +156,6 @@ export default Ember.Component.extend({
       $('.shepherd-modal').removeClass('shepherd-modal');
     }
   },
-
 
   /**
    * Creates an overlay element clone of the element you want to highlight and copies all the styles.
@@ -190,7 +185,6 @@ export default Ember.Component.extend({
     highlightElement.css('z-index', '10002');
   },
 
-
   /**
    * Return the element for a step
    *
@@ -202,7 +196,7 @@ export default Ember.Component.extend({
     const attachTo = step.options.attachTo;
     const type = typeof attachTo;
     var element;
-    switch(type) {
+    switch (type) {
       case "string":
         element = this._getElementFromString(attachTo);
         break;
@@ -212,7 +206,6 @@ export default Ember.Component.extend({
     }
     return element;
   },
-
 
   /**
    * Get the element from an option string
@@ -228,7 +221,6 @@ export default Ember.Component.extend({
     return $(selector)[0];
   },
 
-
   /**
    * Get the element from an option object
    *
@@ -241,7 +233,6 @@ export default Ember.Component.extend({
     return $(op)[0];
   },
 
-
   /**
    * Return the element for the current step
    *
@@ -252,7 +243,6 @@ export default Ember.Component.extend({
     var currentStep = this.get('tour').getCurrentStep();
     return this._getElementForStep(currentStep);
   },
-
 
   /**
    * A built-in button wrapper to move to the next step
@@ -265,7 +255,6 @@ export default Ember.Component.extend({
       this.set('next', false);
     }
   }.observes('next'),
-
 
   /**
    * Increases the z-index of the element, to pop it out above the overlay and highlight it
@@ -280,7 +269,6 @@ export default Ember.Component.extend({
     }
   },
 
-
   /**
    * A built-in button wrapper to move to the previous step
    */
@@ -293,15 +281,14 @@ export default Ember.Component.extend({
     }
   }.observes('back'),
 
-
   /**
    * Observes the array of requiredElements, which are the elements that must be present at the start of the tour,
    * and determines if they exist, and are visible, if either is false, it will stop the tour from executing.
    */
   requiredElementsPresent: function() {
     var allElementsPresent = true;
-    if (this.get('requiredElements')) {
-      this.get('requiredElements').forEach(function(element) {
+    if (this.get('tourService.requiredElements')) {
+      this.get('tourService.requiredElements').forEach(function(element) {
         if (allElementsPresent && (!$(element.selector)[0] || !$(element.selector).is(':visible'))) {
           allElementsPresent = false;
           this.set('errorTitle', element.title);
@@ -311,7 +298,6 @@ export default Ember.Component.extend({
     }
     return allElementsPresent;
   },
-
 
   /**
    * Cancel the tour, if a route change occurs
@@ -323,7 +309,6 @@ export default Ember.Component.extend({
     }
   }.observes('currentPath'),
 
-
   /**
    * Observes start, and starts the tour whenever start becomes true
    */
@@ -334,7 +319,6 @@ export default Ember.Component.extend({
       }
     });
   }.observes('start'),
-
 
   /**
    * Taken from introjs https://github.com/usablica/intro.js/blob/master/intro.js#L1092-1124

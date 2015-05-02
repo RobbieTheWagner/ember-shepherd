@@ -203,7 +203,7 @@ export default Ember.Route.extend({
       }
     ];
 
-    controller.set('requiredElements', [
+    this.tour.set('requiredElements', [
       {
         selector: '.first-element',
         message: 'First element not found',
@@ -216,16 +216,15 @@ export default Ember.Route.extend({
       }
     ]);
 
-    controller.set('steps', steps);
+    this.tour.set('steps', steps);
 
     controller.set('usage', '{{ember-shepherd ' + '\n' +
-    'currentPath=currentPath ' + '\n' +
-    'defaults=shepherdDefaults ' + '\n' +
-    'disableScroll=true ' + '\n' +
-    'modal=isModal ' + '\n' +
-    'requiredElements=requiredElements ' + '\n' +
-    'start=showHelp ' + '\n' +
-    'steps=steps}}');
+      'currentPath=currentPath ' + '\n' +
+      'defaults=shepherdDefaults ' + '\n' +
+      'disableScroll=true ' + '\n' +
+      'modal=isModal ' + '\n' +
+      'requiredElements=requiredElements ' + '\n' +
+      'start=showHelp}}');
 
     controller.set('shepherdDefaults', {
       classes: 'shepherd-element shepherd-open shepherd-theme-arrows',

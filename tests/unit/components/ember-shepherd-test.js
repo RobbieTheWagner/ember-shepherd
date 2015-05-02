@@ -3,7 +3,7 @@ import $ from 'jquery';
 import {
   moduleForComponent,
   test
-} from 'ember-qunit';
+  } from 'ember-qunit';
 
 moduleForComponent('ember-shepherd', {
   // specify the other units that are required for this test
@@ -25,6 +25,10 @@ test('it renders', function(assert) {
 test('tour starts', function(assert) {
   assert.expect(3);
   var component = this.subject({
+    tourService: {
+      requiredElements: null,
+      steps: Ember.A([])
+    },
     template: Ember.Handlebars.compile('<div class="test-element"></div>')
   });
 
@@ -61,7 +65,7 @@ test('tour starts', function(assert) {
   ];
 
   Ember.run(function() {
-    component.set('steps', steps);
+    component.set('tourService.steps', steps);
     component.set('start', true);
   });
 
@@ -74,6 +78,10 @@ test('attachTo works with object when element is string', function(assert) {
   assert.expect(3);
 
   var component = this.subject({
+    tourService: {
+      requiredElements: null,
+      steps: Ember.A([])
+    },
     template: Ember.Handlebars.compile('<div class="test-element"></div>')
   });
 
@@ -113,7 +121,7 @@ test('attachTo works with object when element is string', function(assert) {
   ];
 
   Ember.run(function() {
-    component.set('steps', steps);
+    component.set('tourService.steps', steps);
     component.set('start', true);
   });
 
@@ -126,6 +134,10 @@ test('attachTo works with object when element is jQuery object', function(assert
   assert.expect(3);
 
   var component = this.subject({
+    tourService: {
+      requiredElements: null,
+      steps: Ember.A([])
+    },
     template: Ember.Handlebars.compile('<div class="test-element"></div>')
   });
 
@@ -166,7 +178,7 @@ test('attachTo works with object when element is jQuery object', function(assert
   ];
 
   Ember.run(function() {
-    component.set('steps', steps);
+    component.set('tourService.steps', steps);
     component.set('start', true);
   });
 
