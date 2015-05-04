@@ -1,5 +1,7 @@
 # Ember-shepherd
 
+[![Join the chat at https://gitter.im/rwwagner90/ember-shepherd](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/rwwagner90/ember-shepherd?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![npm version](https://badge.fury.io/js/ember-shepherd.svg)](http://badge.fury.io/js/ember-shepherd)
 [![npm](https://img.shields.io/npm/dm/ember-shepherd.svg)]()
 [![Ember Observer Score](http://emberobserver.com/badges/ember-shepherd.svg)](http://emberobserver.com/addons/ember-shepherd)
