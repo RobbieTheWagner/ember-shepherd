@@ -1,6 +1,5 @@
 /* globals Shepherd */
 import Ember from 'ember';
-import $ from 'jquery';
 
 export default Ember.Component.extend({
 
@@ -52,9 +51,9 @@ export default Ember.Component.extend({
               //Remove element copy, if it was cloned
               var currentElement = this._getElementForStep(currentStep);
               if (currentStep.options.highlightClass) {
-                $(currentElement).removeClass(currentStep.options.highlightClass);
+                Ember.$(currentElement).removeClass(currentStep.options.highlightClass);
               }
-              $('#highlightOverlay').remove();
+              Ember.$('#highlightOverlay').remove();
             });
           });
         } else {
@@ -75,24 +74,24 @@ export default Ember.Component.extend({
         }
         tour.on('start', () => {
           if (this.get('modal')) {
-            $('body').append('<div id="shepherdOverlay"> </div>');
+            Ember.$('body').append('<div id="shepherdOverlay"> </div>');
           }
           if (this.get('disableScroll')) {
-            $(window).disablescroll();
+            Ember.$(window).disablescroll();
           }
         });
         tour.on('complete', () => {
           this.cleanupModalLeftovers();
           this.set('start', false);
           if (this.get('disableScroll')) {
-            $(window).disablescroll('undo');
+            Ember.$(window).disablescroll('undo');
           }
         });
         tour.on('cancel', () => {
           this.cleanupModalLeftovers();
           this.set('start', false);
           if (this.get('disableScroll')) {
-            $(window).disablescroll('undo');
+            Ember.$(window).disablescroll('undo');
           }
         });
         this.set('tour', tour);
@@ -163,9 +162,9 @@ export default Ember.Component.extend({
         this._getElementForStep(this.get('tour').getCurrentStep())) {
         this._getElementForStep(this.get('tour').getCurrentStep()).style.pointerEvents = 'auto';
       }
-      $('#shepherdOverlay').remove();
-      $('#highlightOverlay').remove();
-      $('.shepherd-modal').removeClass('shepherd-modal');
+      Ember.$('#shepherdOverlay').remove();
+      Ember.$('#highlightOverlay').remove();
+      Ember.$('.shepherd-modal').removeClass('shepherd-modal');
     }
   },
 
@@ -174,21 +173,20 @@ export default Ember.Component.extend({
    * @param step The step object that points to the element to highlight
    */
   _createHighlightOverlay: function(step) {
-    $('#highlightOverlay').remove();
+    Ember.$('#highlightOverlay').remove();
     var currentElement = this._getElementForStep(step);
     var elementPosition = this._getElementPosition(currentElement);
-    var highlightElement = $(currentElement).clone();
+    var highlightElement = Ember.$(currentElement).clone();
     highlightElement.attr('id', 'highlightOverlay');
-    $('body').append(highlightElement);
+    Ember.$('body').append(highlightElement);
     var computedStyle = window.getComputedStyle(currentElement).cssText;
     highlightElement[0].style.cssText = computedStyle;
     //Style all internal elements as well
-    var children = $(currentElement).children();
+    var children = Ember.$(currentElement).children();
     var clonedChildren = highlightElement.children();
     for (var i = 0; i < children.length; i++) {
       clonedChildren[i].style.cssText = window.getComputedStyle(children[i]).cssText;
     }
-    //$('#highlightOverlay').html($(currentElement).html());
     highlightElement.css('position', 'absolute');
     highlightElement.css('left', elementPosition.left);
     highlightElement.css('top', elementPosition.top);
@@ -230,7 +228,7 @@ export default Ember.Component.extend({
     var attachTo = element.split(' ');
     attachTo.pop();
     var selector = attachTo.join(' ');
-    return $(selector)[0];
+    return Ember.$(selector)[0];
   },
 
   /**
@@ -242,7 +240,7 @@ export default Ember.Component.extend({
    */
   _getElementFromObject: function(attachTo) {
     const op = attachTo.element;
-    return $(op)[0];
+    return Ember.$(op)[0];
   },
 
   /**
@@ -273,11 +271,11 @@ export default Ember.Component.extend({
    * @param step The step object that attaches to the element
    */
   _popoutElement: function(step) {
-    $('.shepherd-modal').removeClass('shepherd-modal');
+    Ember.$('.shepherd-modal').removeClass('shepherd-modal');
     var currentElement = this._getElementForStep(step);
-    $(currentElement).addClass('shepherd-modal');
+    Ember.$(currentElement).addClass('shepherd-modal');
     if (step.options.highlightClass) {
-      $(currentElement).addClass(step.options.highlightClass);
+      Ember.$(currentElement).addClass(step.options.highlightClass);
     }
   },
 
@@ -299,9 +297,9 @@ export default Ember.Component.extend({
    */
   requiredElementsPresent: function() {
     var allElementsPresent = true;
-        if (allElementsPresent && (!$(element.selector)[0] || !$(element.selector).is(':visible'))) {
     if (this.get('requiredElements')) {
       this.get('requiredElements').forEach((element) => {
+        if (allElementsPresent && (!Ember.$(element.selector)[0] || !Ember.$(element.selector).is(':visible'))) {
           allElementsPresent = false;
           this.set('errorTitle', element.title);
           this.set('messageForUser', element.message);
