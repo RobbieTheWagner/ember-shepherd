@@ -29,7 +29,7 @@ export default Ember.Component.extend({
             var shepherdStepOptions = {buttons: []};
             for (var option in step.options) {
               if (option === 'builtInButtons') {
-                this.addBuiltInButtons(step, shepherdStepOptions);
+                this._addBuiltInButtons(step, shepherdStepOptions);
               } else {
                 shepherdStepOptions[option] = step.options[option];
               }
@@ -104,7 +104,7 @@ export default Ember.Component.extend({
    * @param step The step to add the buttons to
    * @param shepherdStepOptions The options array to modify
    */
-  addBuiltInButtons: function(step, shepherdStepOptions) {
+  _addBuiltInButtons: function(step, shepherdStepOptions) {
     step.options.builtInButtons.forEach((button) => {
       if (button.type === 'next') {
         shepherdStepOptions.buttons.push({
