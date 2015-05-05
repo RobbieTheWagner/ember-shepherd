@@ -3,21 +3,30 @@ import Ember from 'ember';
 import $ from 'jquery';
 
 export default Ember.Component.extend({
+
   tourService: Ember.inject.service('tour'),
 
+  // Get configuration from service
   start: Ember.computed.alias('tourService.start'),
+  defaults: Ember.computed.alias('tourService.defaults'),
+  steps: Ember.computed.alias('tourService.steps'),
+  requiredElements: Ember.computed.alias('tourService.requiredElements'),
+
+  // Save tour back to service after completion
+  tour: Ember.computed.alias('tourService._tourObject'),
+
 
   /**
    * Initializes a new tour, whenever a new set of steps is passed to the component
    */
   initialize: function() {
     Ember.run.scheduleOnce('afterRender', this, function() {
-      if (this.get('tourService.steps')) {
+      if (this.get('steps')) {
         var tour = new Shepherd.Tour({
-          defaults: this.get('defaults') ? this.get('defaults') : {}
+          defaults: this.get('defaults')
         });
         if (this.requiredElementsPresent()) {
-          this.get('tourService.steps').forEach((step, index) => {
+          this.get('steps').forEach((step, index) => {
             var shepherdStepOptions = {buttons: []};
             for (var option in step.options) {
               if (option === 'builtInButtons') {
@@ -89,7 +98,7 @@ export default Ember.Component.extend({
         this.set('tour', tour);
       }
     });
-  }.on('didInsertElement').observes('tourService.steps', 'tourService.requiredElements'),
+  }.on('didInsertElement').observes('steps', 'requiredElements'),
 
   /**
    * Checks the builtInButtons array for the step and adds a button with the correct action for the type
@@ -290,9 +299,9 @@ export default Ember.Component.extend({
    */
   requiredElementsPresent: function() {
     var allElementsPresent = true;
-    if (this.get('tourService.requiredElements')) {
-      this.get('tourService.requiredElements').forEach((element) => {
         if (allElementsPresent && (!$(element.selector)[0] || !$(element.selector).is(':visible'))) {
+    if (this.get('requiredElements')) {
+      this.get('requiredElements').forEach((element) => {
           allElementsPresent = false;
           this.set('errorTitle', element.title);
           this.set('messageForUser', element.message);

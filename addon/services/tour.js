@@ -1,8 +1,14 @@
 import Ember from 'ember';
 
 export default Ember.Service.extend(Ember.Evented, {
-  start: false,
 
-  requiredElements: null,
-  steps: Ember.A([])
+  // Configuration Options
+  start: false,
+  defaults: {},
+  requiredElements: Ember.A([]),
+  steps: Ember.A([]),
+
+  // Save the raw Tour object
+  _tourObject: null
+
 });
