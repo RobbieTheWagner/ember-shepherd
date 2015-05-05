@@ -4,6 +4,9 @@ import $ from 'jquery';
 
 export default Ember.Component.extend({
   tourService: Ember.inject.service('tour'),
+
+  start: Ember.computed.alias('tourService.start'),
+
   /**
    * Initializes a new tour, whenever a new set of steps is passed to the component
    */
