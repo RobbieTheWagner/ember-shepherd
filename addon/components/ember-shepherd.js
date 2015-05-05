@@ -33,9 +33,9 @@ export default Ember.Component.extend({
               if (this.get('modal')) {
                 this._getElementForStep(currentStep).style.pointerEvents = 'none';
                 if (currentStep.options.copyStyles) {
-                  this.createHighlightOverlay(currentStep);
+                  this._createHighlightOverlay(currentStep);
                 } else {
-                  this.popoutElement(currentStep);
+                  this._popoutElement(currentStep);
                 }
               }
             });
@@ -164,7 +164,7 @@ export default Ember.Component.extend({
    * Creates an overlay element clone of the element you want to highlight and copies all the styles.
    * @param step The step object that points to the element to highlight
    */
-  createHighlightOverlay: function(step) {
+  _createHighlightOverlay: function(step) {
     $('#highlightOverlay').remove();
     var currentElement = this._getElementForStep(step);
     var elementPosition = this._getElementPosition(currentElement);
@@ -263,7 +263,7 @@ export default Ember.Component.extend({
    * Increases the z-index of the element, to pop it out above the overlay and highlight it
    * @param step The step object that attaches to the element
    */
-  popoutElement: function(step) {
+  _popoutElement: function(step) {
     $('.shepherd-modal').removeClass('shepherd-modal');
     var currentElement = this._getElementForStep(step);
     $(currentElement).addClass('shepherd-modal');
