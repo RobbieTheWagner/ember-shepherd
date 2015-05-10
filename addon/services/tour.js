@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Service.extend(Ember.Evented, {
 
   // Get current path
-  _applicationController: Ember.inject.controller('application'),
+  _applicationController: null,
   currentPath: Ember.computed.oneWay('_applicationController.currentPath'),
 
   // Configuration Options
