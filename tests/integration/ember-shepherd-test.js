@@ -17,6 +17,7 @@ module('Tour functionality tests', {
     //Remove all Shepherd stuff, to start fresh each time.
     $('.shepherd-active').removeClass('shepherd-active');
     $('[class^=shepherd]').remove();
+    $('#shepherdOverlay').remove();
     Ember.run(App, App.destroy);
   }
 });
