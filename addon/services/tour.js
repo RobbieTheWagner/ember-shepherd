@@ -143,9 +143,11 @@ export default Ember.Service.extend(Ember.Evented, {
         this._getElementForStep(this.get('tour').getCurrentStep())) {
         this._getElementForStep(this.get('tour').getCurrentStep()).style.pointerEvents = 'auto';
       }
-      Ember.$('#shepherdOverlay').remove();
-      Ember.$('#highlightOverlay').remove();
-      Ember.$('.shepherd-modal').removeClass('shepherd-modal');
+      Ember.run('afterRender', function() {
+        Ember.$('#shepherdOverlay').remove();
+        Ember.$('#highlightOverlay').remove();
+        Ember.$('.shepherd-modal').removeClass('shepherd-modal');
+      });
     }
   },
 

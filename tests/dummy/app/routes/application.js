@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
+  initialModalValue: true,
+
   tour: Ember.inject.service(),
 
   setupController: function(controller, model) {
@@ -225,7 +227,7 @@ export default Ember.Route.extend({
       scrollTo: false,
       showCancelLink: true
     });
-    tour.set('modal', true);
+    tour.set('modal', this.get('initialModalValue'));
     tour.trigger('start');
   }
 });

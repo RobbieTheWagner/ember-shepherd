@@ -4,13 +4,16 @@ import $ from 'jquery';
 import { module, test } from 'qunit';
 import startApp from '../helpers/start-app';
 import '../helpers/controller';
-var App;
+
+var App, container;
 
 module('Tour functionality tests', {
   beforeEach: function() {
     App = startApp();
+    container = App.__container__;
   },
   afterEach: function() {
+    container = null;
     //Remove all Shepherd stuff, to start fresh each time.
     $('.shepherd-active').removeClass('shepherd-active');
     $('[class^=shepherd]').remove();
@@ -24,7 +27,8 @@ clickEvent.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, fal
 
 test("Modal page contents", function(assert) {
   assert.expect(3);
-  visit('/').then(function() {
+  visit('/');
+  andThen(function() {
     assert.equal(find('body.shepherd-active', 'html').length, 1, "Body gets class of shepherd-active, when shepherd becomes active");
     assert.equal(find('.shepherd-enabled', 'body').length, 2, "attachTo element and tour have shepherd-enabled class");
     assert.equal(find('#shepherdOverlay', 'body').length, 1, "#shepherdOverlay exists, since modal");
@@ -32,10 +36,13 @@ test("Modal page contents", function(assert) {
 });
 
 test("Non-modal page contents", function(assert) {
-  var appController = controller('application');
-  appController.set('isModal', false);
   assert.expect(3);
-  visit('/').then(function() {
+
+  container.lookup('route:application').set('initialModalValue', false);
+
+  visit('/');
+
+  andThen(function() {
     assert.equal(find('body.shepherd-active', 'html').length, 1, "Body gets class of shepherd-active, when shepherd becomes active");
     assert.equal(find('.shepherd-enabled', 'body').length, 2, "attachTo element and tour get shepherd-enabled class");
     assert.equal(find('#shepherdOverlay', 'body').length, 0, "#shepherdOverlay should not exist, since non-modal");
