@@ -1,7 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+
+  tour: Ember.inject.service(),
+
   setupController: function(controller, model) {
+    const tour = this.get('tour');
+
     var steps = [
       {
         id: 'intro',
@@ -202,8 +207,8 @@ export default Ember.Route.extend({
         }
       }
     ];
-    this.tour.set('steps', steps);
-    this.tour.set('requiredElements', [
+    tour.set('steps', steps);
+    tour.set('requiredElements', [
       {
         selector: '.first-element',
         message: 'First element not found',
@@ -215,12 +220,12 @@ export default Ember.Route.extend({
         title: 'Error'
       }
     ]);
-    this.tour.set('defaults', {
+    tour.set('defaults', {
       classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
       scrollTo: false,
       showCancelLink: true
     });
-    this.tour.set('modal', true);
-    this.tour.trigger('start');
+    tour.set('modal', true);
+    tour.trigger('start');
   }
 });

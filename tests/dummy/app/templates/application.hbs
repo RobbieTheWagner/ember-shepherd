@@ -18,18 +18,18 @@
   <div class="medium-8 columns medium-centered text-center usage-element">
     <h5>Usage</h5>
     <pre><code class="language-javascript">
-// From any Controller or Route
-this.tour.set('defaults', shepherdDefaults);
-this.tour.set('disabledScroll', true);
-this.tour.set('modal', true);
-this.tour.set('requiredElements', requiredElements);
-this.tour.set('steps', steps);
+// After injecting the tour service...
+this.get('tour').set('defaults', shepherdDefaults);
+this.get('tour').set('disabledScroll', true);
+this.get('tour').set('modal', true);
+this.get('tour').set('requiredElements', requiredElements);
+this.get('tour').set('steps', steps);
 
 // Trigger actions to control the tour
-this.tour.trigger('start');
-this.tour.trigger('next');
-this.tour.trigger('back');
-this.tour.trigger('cancel');</code></pre>
+this.get('tour').trigger('start');
+this.get('tour').trigger('next');
+this.get('tour').trigger('back');
+this.get('tour').trigger('cancel');</code></pre>
   </div>
 </div>
 <div class="row">
