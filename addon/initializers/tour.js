@@ -6,7 +6,7 @@ export function initialize(container, application) {
   service.set('_applicationController', appController);
 
   // Inject the tour service into all controllers and routes
-  application.inject('route', 'tour', 'service:tour');
+  application.inject('route',      'tour', 'service:tour');
   application.inject('controller', 'tour', 'service:tour');
 }
 

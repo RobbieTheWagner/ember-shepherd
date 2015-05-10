@@ -17,7 +17,19 @@
 <div class="row">
   <div class="medium-8 columns medium-centered text-center usage-element">
     <h5>Usage</h5>
-    <pre><code class="language-handlebars">{{usage}}</code></pre>
+    <pre><code class="language-javascript">
+// From any Controller or Route
+this.tour.set('defaults', shepherdDefaults);
+this.tour.set('disabledScroll', true);
+this.tour.set('modal', true);
+this.tour.set('requiredElements', requiredElements);
+this.tour.set('steps', steps);
+
+// Trigger actions to control the tour
+this.tour.trigger('start');
+this.tour.trigger('next');
+this.tour.trigger('back');
+this.tour.trigger('cancel');</code></pre>
   </div>
 </div>
 <div class="row">

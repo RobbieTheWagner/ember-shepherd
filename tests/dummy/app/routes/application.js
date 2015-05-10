@@ -222,13 +222,5 @@ export default Ember.Route.extend({
     });
     this.tour.set('modal', true);
     this.tour.trigger('start');
-
-    controller.set('usage', '{{ember-shepherd ' + '\n' +
-      'currentPath=currentPath ' + '\n' +
-      'defaults=shepherdDefaults ' + '\n' +
-      'disableScroll=true ' + '\n' +
-      'modal=isModal ' + '\n' +
-      'requiredElements=requiredElements ' + '\n' +
-      'start=showHelp}}');
   }
 });
