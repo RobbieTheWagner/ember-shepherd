@@ -118,17 +118,18 @@ export default Ember.Service.extend(Ember.Evented, {
       // What else has to be run on completion?
     });
     this.on('cancel', () => {
-      // What else has to be run on cancelation?
+      this._cleanupModalLeftovers();
+      this.get('_tourObject').cancel();
     });
     this.on('next', () => {
       //Re-enable clicking on the element
       this._getElementForCurrentStep().style.pointerEvents = 'auto';
-      this.get('tour').next();
+      this.get('_tourObject').next();
     });
     this.on('back', () => {
       //Re-enable clicking on the element
       this._getElementForCurrentStep().style.pointerEvents = 'auto';
-      this.get('tour').back();
+      this.get('_tourObject').back();
     });
   },
 
@@ -179,7 +180,7 @@ export default Ember.Service.extend(Ember.Evented, {
           classes: button.classes,
           text: button.text,
           action: () => {
-            this.set('next', true);
+            this.trigger('next');
           }
         });
       } else if (button.type === 'back') {
@@ -187,7 +188,7 @@ export default Ember.Service.extend(Ember.Evented, {
           classes: button.classes,
           text: button.text,
           action: () => {
-            this.set('back', true);
+            this.trigger('back');
           }
         });
       } else if (button.type === 'cancel') {
@@ -195,7 +196,7 @@ export default Ember.Service.extend(Ember.Evented, {
           classes: button.classes,
           text: button.text,
           action: () => {
-            this.set('cancel', true);
+            this.trigger('cancel');
           }
         });
       }
