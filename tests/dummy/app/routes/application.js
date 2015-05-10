@@ -202,7 +202,7 @@ export default Ember.Route.extend({
         }
       }
     ];
-
+    this.tour.set('steps', steps);
     this.tour.set('requiredElements', [
       {
         selector: '.first-element',
@@ -215,8 +215,13 @@ export default Ember.Route.extend({
         title: 'Error'
       }
     ]);
-
-    this.tour.set('steps', steps);
+    this.tour.set('defaults', {
+      classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
+      scrollTo: false,
+      showCancelLink: true
+    });
+    this.tour.set('modal', true);
+    this.tour.trigger('start');
 
     controller.set('usage', '{{ember-shepherd ' + '\n' +
       'currentPath=currentPath ' + '\n' +
@@ -225,11 +230,5 @@ export default Ember.Route.extend({
       'modal=isModal ' + '\n' +
       'requiredElements=requiredElements ' + '\n' +
       'start=showHelp}}');
-
-    controller.set('shepherdDefaults', {
-      classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
-      scrollTo: false,
-      showCancelLink: true
-    });
   }
 });
