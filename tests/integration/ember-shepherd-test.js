@@ -92,7 +92,9 @@ test("Non-modal tour start", function(assert) {
 });
 
 test("Highlight applied", function(assert) {
-  var appController = controller('application');
+  assert.expect(2);
+
+  // Override default behavior
   var steps = [{
     id: 'test-highlight',
     options: {
@@ -116,17 +118,13 @@ test("Highlight applied", function(assert) {
       text: ['Testing highlight']
     }
   }];
-  appController.set('tour.steps', steps);
-  appController.set('showHelp', false);
-  assert.expect(2);
-  visit('/').then(function() {
+  container.lookup('route:application').set('initialSteps', steps);
+  container.lookup('route:application').set('shouldStartTourImmediately', false);
+
+  visit('/');
+  andThen(function() {
     Ember.run(function() {
-      $('.shepherd-enabled .cancel-button')[0].dispatchEvent(clickEvent);
-    });
-    Ember.run(function() {
-      appController.set('showHelp', false);
-      appController.set('tour.steps', steps);
-      appController.set('showHelp', true);
+      container.lookup('service:tour').trigger('start');
     });
     Ember.run(function() {
       assert.equal(find('.highlight', 'body').length, 1, "currentElement highlighted");
