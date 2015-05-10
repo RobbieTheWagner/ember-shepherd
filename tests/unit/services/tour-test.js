@@ -40,7 +40,7 @@ moduleFor('service:tour', {
 });
 
 // Replace this with your real tests.
-test('it starts the tour when all required properties are available', function(assert) {
+test('it starts the tour when the `start` event is triggered', function(assert) {
   assert.expect(1);
 
   mockTourObject.on('start', function() {
