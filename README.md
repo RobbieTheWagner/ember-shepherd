@@ -102,7 +102,7 @@ this.tour.set('requiredElements', [
 > **default value:** `[]`
 
 
-### steps _REQUIRED_
+### steps
 
 You will need to define a steps object to set on the tour service of the following form:
 
@@ -161,50 +161,71 @@ this.tour.set('steps', [
 
 A lot of the options are the same as Shepherd options, but I will go through each of them for reference.
 
-id
-: The name to give this step of the tour
+#### id
 
-options
-: an object with all of the options for the step
+The name to give this step of the tour
 
-attachTo
-: The selector and position for the tour popup to attach to, of the format 'selector position'.
-: Position options are: top, bottom, left, and right.
+#### options
 
-beforeShowPromise
-: A function that returns a promise. When the promise resolves, the rest of the `show` code for the step will execute. This is a good place to schedule things in the Ember.run loop that you need to ensure happen before show.
+An object with all of the options for the step
 
-builtInButtons
-: These are the standard button types supported by Shepherd. Just set type to next, back or cancel, then set the text, and classes as normal.
+##### attachTo
 
-classes
-: Extra classes to apply to the step, for styling purposes and such.
+The selector and position for the tour popup to attach to, of the format 'selector position'. Position options are: top, bottom, left, and right.
+Can also be an object formatted like
 
-copyStyles
-: This is a boolean, and when set to `true` it will fully clone the element and styles, rather than just increasing the element's z-index. This should only be used if the element does not pop out and highlight like it should, when using modal functionality.
+```js
+{
+  element: '.myElement',
+  on: 'top'
+}
+```
 
-highlightClass
-: This is an extra class to apply to the attachTo element, when it is highlighted. It can be any string. Just style that class name in your css.
+Where `.myElement` is any valid jQuery selector.
 
-scrollTo
-: This sets whether the screen should be scrolled to get to the element or not, when the step is active.
+##### beforeShowPromise
 
-showCancelLink
-: When true, an x will appear in the top right of the popup, for canceling the tour.
+A function that returns a promise. When the promise resolves, the rest of the `show` code for the step will execute. This is a good place to schedule things in the Ember.run loop that you need to ensure happen before show.
 
-title
-: The step's title. It becomes an h3 at the top of the step.
+##### builtInButtons
 
-tetherOptions
-: Extra options to pass to tether
+These are the standard button types supported by Shepherd. Just set type to next, back or cancel, then set the text, and classes as normal.
 
-text
-: A string of text content to display in the tour popup
+##### classes
 
-when
-: An object that contains function to be executed when events occur on the step.
-:Supported events are `before-show`, `show`, `before-hide`, `hide`, `complete`, `cancel`, and `destroy`.
+Extra classes to apply to the step, for styling purposes and such.
 
+##### copyStyles
+
+This is a boolean, and when set to `true` it will fully clone the element and styles, rather than just increasing the element's z-index. This should only be used if the element does not pop out and highlight like it should, when using modal functionality.
+
+##### highlightClass
+
+This is an extra class to apply to the attachTo element, when it is highlighted. It can be any string. Just style that class name in your css.
+
+##### scrollTo
+
+This sets whether the screen should be scrolled to get to the element or not, when the step is active.
+
+##### showCancelLink
+
+When true, an x will appear in the top right of the popup, for canceling the tour.
+
+##### title
+
+The step's title. It becomes an h3 at the top of the step.
+
+##### tetherOptions
+
+Extra options to pass to tether
+
+##### text
+
+A string of text content to display in the tour popup
+
+##### when
+
+An object that contains function to be executed when events occur on the step.  Supported events are `before-show`, `show`, `before-hide`, `hide`, `complete`, `cancel`, and `destroy`.
 
 ## Interacting with `ember-shepherd`
 
