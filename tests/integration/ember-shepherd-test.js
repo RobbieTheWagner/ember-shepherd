@@ -135,3 +135,80 @@ test("Highlight applied", function(assert) {
     assert.equal(find('.highlight', 'body').length, 0, "highlightClass removed on cancel");
   });
 });
+
+test('configuration works with attachTo object when element is a simple string', function(assert) {
+  assert.expect(1);
+
+  // Override default behavior
+  var steps = [{
+    id: 'test-highlight',
+    options: {
+      attachTo: {
+        element: '.first-element',
+        on: 'bottom'
+      },
+      builtInButtons: [
+        {
+          classes: 'shepherd-button-secondary cancel-button',
+          text: 'Exit',
+          type: 'cancel'
+        },
+        {
+          classes: 'shepherd-button-primary next-button',
+          text: 'Next',
+          type: 'next'
+        }
+      ],
+      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+      copyStyles: false,
+      highlightClass: 'highlight',
+      title: 'Welcome to Ember-Shepherd!',
+      text: ['Testing highlight']
+    }
+  }];
+  container.lookup('route:application').set('initialSteps', steps);
+
+  visit('/');
+  andThen(function() {
+    assert.ok(find('.shepherd-step', 'body').length, "tour is visible");
+  });
+});
+
+test('configuration works with attachTo object when element is a string with pseudoselector', function(assert) {
+  assert.expect(1);
+
+  // Override default behavior
+  var steps = [{
+    id: 'test-highlight',
+    options: {
+      attachTo: {
+        element: '.medium-8:first',
+        on: 'bottom'
+      },
+      builtInButtons: [
+        {
+          classes: 'shepherd-button-secondary cancel-button',
+          text: 'Exit',
+          type: 'cancel'
+        },
+        {
+          classes: 'shepherd-button-primary next-button',
+          text: 'Next',
+          type: 'next'
+        }
+      ],
+      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+      copyStyles: false,
+      highlightClass: 'highlight',
+      title: 'Welcome to Ember-Shepherd!',
+      text: ['Testing highlight']
+    }
+  }];
+  container.lookup('route:application').set('initialSteps', steps);
+
+  visit('/');
+  andThen(function() {
+    assert.ok(find('.shepherd-step', 'body').length, "tour is visible");
+  });
+});
+

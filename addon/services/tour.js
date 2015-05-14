@@ -41,6 +41,8 @@ export default Ember.Service.extend(Ember.Evented, {
         for (var option in step.options) {
           if (option === 'builtInButtons') {
             this._addBuiltInButtons(step, shepherdStepOptions);
+          } else if (option === 'attachTo') {
+            shepherdStepOptions[option] = this._exchangeForAttachmentConfig(step.options[option]);
           } else {
             shepherdStepOptions[option] = step.options[option];
           }
@@ -238,6 +240,40 @@ export default Ember.Service.extend(Ember.Evented, {
   },
 
   /**
+   * Exchanges the given attachment configuration for the object equivalent with
+   * the DOM element passed in directly.
+   *
+   * Allows for use of pseudoselectors, because it uses jQuery's selector engine
+   * instead of the built-in one
+   *
+   * @param {Object} attachTo The given "attachTo" configuration
+   * @return {Object} The optimized configuration
+   */
+  _exchangeForAttachmentConfig: function(attachTo) {
+    const type = typeof attachTo;
+    var config = {
+      element: null,
+      on: null
+    };
+    switch(type) {
+      case "string": {
+        config.element = this._getElementFromString(attachTo);
+        const configArray = attachTo.split(' ');
+        config.on = configArray[configArray.length - 1];
+        break;
+      }
+      case "object": {
+        config.element = this._getElementFromObject(attachTo);
+        config.on = attachTo.on;
+        break;
+      }
+      default:
+        config = null;
+    }
+    return config;
+  },
+
+  /**
    * Return the element for a step
    *
    * @method _getElementForStep
@@ -270,7 +306,7 @@ export default Ember.Service.extend(Ember.Evented, {
     var attachTo = element.split(' ');
     attachTo.pop();
     var selector = attachTo.join(' ');
-    return Ember.$(selector)[0];
+    return Ember.$(selector).get(0);
   },
 
   /**
@@ -282,7 +318,7 @@ export default Ember.Service.extend(Ember.Evented, {
    */
   _getElementFromObject: function(attachTo) {
     const op = attachTo.element;
-    return Ember.$(op)[0];
+    return Ember.$(op).get(0);
   },
 
   /**
