@@ -249,19 +249,18 @@ this.tour.trigger('back');
 
 ### Q: Woah, events? How does that work with buttons?
 
-A: Don't worry, it's not too bad!  Since the service is available almost everywhere, you can just set up an action to start (or start, or advance, etc.) the tour like so:
+A: Don't worry, it's not too bad!  Since the service is available almost everywhere, you can just set up an action to start (or cancel, or advance, etc.) the tour like so:
 
 ```js
 // app/routes/application.js
 
 export default Ember.Route.extend({
-  ...
+
+  tour: Ember.inject.service(),
 
   actions: {
-    ...
-
     startTour: function() {
-      this.tour.trigger('start');
+      this.get('tour').trigger('start');
     }
   }
 });
