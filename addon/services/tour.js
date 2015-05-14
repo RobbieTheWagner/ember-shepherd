@@ -17,6 +17,9 @@ export default Ember.Service.extend(Ember.Evented, {
   errorTitle: null,
   messageForUser: null,
 
+  // Is the tour currently running?
+  isActive: false,
+
   // Create a tour object based on the current configuration
   _tourObject: function() {
     const steps = this.get('steps');
@@ -92,6 +95,7 @@ export default Ember.Service.extend(Ember.Evented, {
       if (this.get('disableScroll')) {
         Ember.$(window).disablescroll('undo');
       }
+      this.trigger('complete');
     });
     tour.on('cancel', () => {
       this._cleanupModalLeftovers();
@@ -112,14 +116,17 @@ export default Ember.Service.extend(Ember.Evented, {
         if (Ember.isPresent(this.get('_tourObject'))) {
           this.get('_tourObject').start();
         }
+        this.set('isActive', true);
       });
     });
     this.on('complete', () => {
       // What else has to be run on completion?
+      this.set('isActive', false);
     });
     this.on('cancel', () => {
       this._cleanupModalLeftovers();
       this.get('_tourObject').cancel();
+      this.set('isActive', false);
     });
     this.on('next', () => {
       //Re-enable clicking on the element
@@ -132,8 +139,6 @@ export default Ember.Service.extend(Ember.Evented, {
       this.get('_tourObject').back();
     });
   },
-
-
 
   _cleanupModalLeftovers: function() {
     if (this.get('modal')) {
