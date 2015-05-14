@@ -59,28 +59,3 @@ test('it starts the tour when the `start` event is triggered', function(assert) 
 
 });
 
-skip('attachTo works with object when element is string', function(assert) {
-  assert.expect(1);
-
-  // Render some DOM do create an element to find
-  Ember.run(function() {
-    const view = Ember.View.create({
-      template: Ember.Handlebars.compile('<div class=".test-object">test</div>')
-    });
-    view.appendTo('#qunit-fixture');
-  });
-
-  const service = this.subject({});
-  const step = {
-    options: {
-      attachTo: {
-        element: '.text-object'
-      }
-    }
-  };
-  const element = service._getElementForStep(step);
-});
-
-skip('attachTo works with object when element is DOM object', function(assert) {
-
-});
