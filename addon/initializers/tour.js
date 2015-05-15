@@ -1,6 +1,9 @@
-export function initialize(container, application) {
-  application.inject('route', 'tour', 'service:tour');
-  application.inject('controller', 'tour', 'service:tour');
+export function initialize(container) {
+  // Give the Tour service a reference to the Application Controller so it can
+  // get the current path information
+  const service = container.lookup('service:tour');
+  const appController = container.lookup('controller:application');
+  service.set('_applicationController', appController);
 }
 
 export default {
