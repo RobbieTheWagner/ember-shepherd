@@ -11,13 +11,25 @@
 <div class="row">
   <div class="medium-8 columns medium-centered text-center install-element">
     <h5>Installation</h5>
-    <pre><code class="language-bash">ember install:addon ember-shepherd</code></pre>
+    <pre><code class="language-bash">ember install ember-shepherd</code></pre>
   </div>
 </div>
 <div class="row">
   <div class="medium-8 columns medium-centered text-center usage-element">
     <h5>Usage</h5>
-    <pre><code class="language-handlebars">{{usage}}</code></pre>
+    <pre><code class="language-javascript">
+// After injecting the tour service...
+this.get('tour').set('defaults', shepherdDefaults);
+this.get('tour').set('disabledScroll', true);
+this.get('tour').set('modal', true);
+this.get('tour').set('requiredElements', requiredElements);
+this.get('tour').set('steps', steps);
+
+// Trigger actions to control the tour
+this.get('tour').trigger('start');
+this.get('tour').trigger('next');
+this.get('tour').trigger('back');
+this.get('tour').trigger('cancel');</code></pre>
   </div>
 </div>
 <div class="row">
@@ -114,7 +126,3 @@
     </a>
   </div>
 </div>
-
-{{ember-shepherd currentPath=currentPath defaults=shepherdDefaults disableScroll=true modal=isModal
-requiredElements=requiredElements
-start=showHelp steps=steps}}
