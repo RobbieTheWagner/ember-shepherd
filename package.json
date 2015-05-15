@@ -21,6 +21,11 @@
     "email": "rwwagner90@gmail.com",
     "url": "https://github.com/rwwagner90"
   },
+  "contributors": {
+    "name": "Alex LaFroscia",
+    "email": "alex@lafroscia.com",
+    "url": "https://github.com/alexlafroscia"
+  },
   "license": "MIT",
   "dependencies": {
     "ember-cli-babel": "^4.0.0"
