@@ -6,10 +6,12 @@ export default Ember.Controller.extend({
 
   actions: {
     toggleHelpModal: function() {
+      this.get('tour').set('disableScroll', true);
       this.get('tour').set('modal', true);
       this.get('tour').trigger('start');
     },
     toggleHelpNonmodal: function() {
+      this.get('tour').set('disableScroll', false);
       this.get('tour').set('modal', false);
       this.get('tour').trigger('start');
     }

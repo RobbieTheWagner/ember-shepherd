@@ -209,6 +209,7 @@ export default Ember.Route.extend({
       scrollTo: false,
       showCancelLink: true
     });
+    tour.set('disableScroll', true);
     tour.set('modal', this.get('initialModalValue'));
     if (this.get('shouldStartTourImmediately')) {
       tour.trigger('start');
