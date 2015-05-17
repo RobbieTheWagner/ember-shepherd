@@ -1,10 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-
-  shouldStartTourImmediately: true,
-
   initialModalValue: true,
+  shouldStartTourImmediately: true,
 
   initialSteps: [{
     id: 'intro',
@@ -80,7 +78,7 @@ export default Ember.Route.extend({
       ],
       classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
       copyStyles: false,
-      text: ['To instantiate the tour, just put this code in your application template, wherever you would like.'],
+      text: ['The tour service is injected into all routes and controllers, so simply use it like this example.'],
     }
   }, {
     id: 'modal',
@@ -106,7 +104,7 @@ export default Ember.Route.extend({
       classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
       copyStyles: false,
       text: ['We implemented true modal functionality by disabling clicking of the rest of the page. ' +
-      'If you would like to enable modal, simply set modal=true.']
+      'If you would like to enable modal, simply do this.tour.set(\'modal\', true).']
     }
   }, {
     id: 'copyStyle',
@@ -181,15 +179,15 @@ export default Ember.Route.extend({
       classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
       copyStyles: false,
       text: ['When navigating the user through a tour, you may want to disable scrolling, so they cannot mess up ' +
-      'your carefully planned out, amazing tour. This is now easily achieved with disableScroll=true. Try ' +
+      'your carefully planned out, amazing tour. This is now easily achieved with this.tour.set(\'disableScroll\', true). Try ' +
       'scrolling right now, then exit the tour and see that you can again!']
     }
   }],
 
-  tour: Ember.inject.service(),
+
 
   setupController: function(controller, model) {
-    const tour = this.get('tour');
+    let tour = this.tour;
 
     tour.set('steps', this.get('initialSteps'));
     tour.set('requiredElements', [
