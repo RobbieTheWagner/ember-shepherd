@@ -19,5 +19,8 @@
   "devDependencies": {
     "tether-shepherd": "~1.1.3",
     "jquery-disablescroll": "ultrapasty/jquery-disablescroll"
+  },
+  "resolutions": {
+    "tether": "^1.0.1"
   }
 }
