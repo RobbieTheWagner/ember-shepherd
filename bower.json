@@ -1,23 +1,26 @@
 {
   "name": "ember-shepherd",
   "dependencies": {
-    "jquery": "2.1.3",
+    "blanket": "~1.1.5",
     "ember": "1.13.3",
-    "ember-resolver": "~0.1.18",
-    "loader.js": "ember-cli/loader.js#3.2.0",
     "ember-cli-shims": "ember-cli/ember-cli-shims#0.0.3",
     "ember-cli-test-loader": "ember-cli-test-loader#0.1.3",
-    "ember-load-initializers": "ember-cli/ember-load-initializers#0.0.2",
-    "ember-qunit": "0.3.1",
+    "ember-load-initializers": "ember-cli/ember-load-initializers#0.1.5",
+    "ember-qunit": "0.4.6",
     "ember-qunit-notifications": "0.0.7",
-    "qunit": "~1.17.1",
-    "foundation": "~5.5.0",
-    "prism": "gh-pages",
+    "ember-resolver": "~0.1.18",
     "es5-shim": "^4.0.5",
-    "blanket": "~1.1.5"
+    "foundation": "~5.5.0",
+    "jquery": "2.1.3",
+    "loader.js": "ember-cli/loader.js#3.2.0",
+    "prism": "gh-pages",
+    "qunit": "~1.17.1"
   },
   "devDependencies": {
-    "tether-shepherd": "~1.1.3",
-    "jquery-disablescroll": "ultrapasty/jquery-disablescroll"
+    "jquery-disablescroll": "ultrapasty/jquery-disablescroll",
+    "tether-shepherd": "~1.1.3"
+  },
+  "resolutions": {
+    "tether": "^1.0.1"
   }
 }

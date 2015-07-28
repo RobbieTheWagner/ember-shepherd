@@ -1,8 +1,9 @@
 import Ember from 'ember';
 import { moduleFor, test } from 'ember-qunit';
-import { skip } from 'qunit';
 
-var steps = [
+const { run } = Ember;
+
+const steps = [
   {
     id: 'intro',
     options: {
@@ -27,35 +28,27 @@ var steps = [
   }
 ];
 
-var mockTourObject = Ember.Object.createWithMixins(Ember.Evented, {
-  start() {
-    this.trigger('start');
-  }
-});
-
-moduleFor('service:tour', {
-  afterEach() {
-    // Remove start actions
-    mockTourObject.off('start');
-  }
+moduleFor('service:tour', 'Unit | Service | tour', {
+  // Specify the other units that are required for this test.
+  // needs: ['service:foo']
 });
 
 // Replace this with your real tests.
 test('it starts the tour when the `start` event is triggered', function(assert) {
   assert.expect(1);
 
-  mockTourObject.on('start', function() {
-    assert.ok(true, 'This tour was started');
-  });
+  var mockTourObject = Ember.Object.extend({
+    start() {
+      assert.ok(true, 'The tour was started');
+    }
+  }).create();
 
   var service = this.subject({
-    steps: steps,
+    steps,
     _tourObject: mockTourObject
   });
 
-  Ember.run(function() {
+  run(function() {
     service.trigger('start');
   });
-
 });
-

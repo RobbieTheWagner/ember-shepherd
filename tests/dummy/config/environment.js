@@ -7,9 +7,9 @@ module.exports = function(environment) {
     baseURL: '/',
     locationType: 'auto',
     contentSecurityPolicy: {
-      'font-src': "'self' data: fonts.gstatic.com",
+      'font-src': "'self' http://fonts.gstatic.com",
       'script-src': "'self' 'unsafe-inline'",
-      'style-src': "'self' 'unsafe-inline' fonts.googleapis.com"
+      'style-src': "'self' 'unsafe-inline'"
     },
     EmberENV: {
       FEATURES: {
@@ -45,7 +45,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.baseURL = '/ember-shepherd'
+    ENV.baseURL = '/ember-shepherd';
   }
 
   return ENV;
