@@ -1,5 +1,8 @@
 import Ember from 'ember';
 
+const { isPresent, run } = Ember;
+const { scheduleOnce } = run;
+
 export default Ember.Service.extend(Ember.Evented, {
 
   // Get current path
@@ -21,8 +24,8 @@ export default Ember.Service.extend(Ember.Evented, {
     // Set up event bindings
     this.on('start', () => {
       // What else has to be run on start?
-      Ember.run.scheduleOnce('afterRender', this, function() {
-        if (Ember.isPresent(this.get('_tourObject'))) {
+      scheduleOnce('afterRender', this, function() {
+        if (isPresent(this.get('_tourObject'))) {
           this.get('_tourObject').start();
         }
         this.set('isActive', true);
@@ -345,7 +348,7 @@ export default Ember.Service.extend(Ember.Evented, {
   _requiredElementsPresent: function() {
     var allElementsPresent = true;
     const requiredElements = this.get('requiredElements');
-    if (Ember.isPresent(requiredElements)) {
+    if (isPresent(requiredElements)) {
       requiredElements.forEach((element) => {
         if (allElementsPresent && (!Ember.$(element.selector)[0] || !Ember.$(element.selector).is(':visible'))) {
           allElementsPresent = false;
