@@ -17,16 +17,11 @@ http://rwwagner90.github.io/ember-shepherd/
 ## Getting started
 
 To start, if you are using Ember CLI, simply run:
-
-0.2.3+
 ```bash
 ember install ember-shepherd
 ```
 
-0.2.2 and below:
-```bash
-ember install:addon ember-shepherd
-```
+If you are not using Ember CLI, we recommend using [ember-giftwrap](https://github.com/ef4/ember-giftwrap) to install your Ember addons.
 
 ## Usage
 
@@ -76,7 +71,7 @@ Thanks to [jquery-disablescroll](https://github.com/ultrapasty/jquery-disablescr
 
 `modal` is a boolean, that should be set to true, if you would like the rest of the screen, other than the current element, greyed out, and the current element highlighted. If you do not need modal functionality, you can remove this option or set it to false.
 
-> **default value:**: `false`
+> **default value:** `false`
 
 ### requiredElements
 
