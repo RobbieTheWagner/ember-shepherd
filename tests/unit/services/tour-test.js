@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import { moduleFor, test } from 'ember-qunit';
 
-const { run } = Ember;
+const { on, run } = Ember;
 
 const steps = [
   {
@@ -47,6 +47,41 @@ test('it starts the tour when the `start` event is triggered', function(assert) 
     steps,
     _tourObject: mockTourObject
   });
+
+  run(function() {
+    service.trigger('start');
+  });
+});
+
+test('it allows another object to bind to events', function(assert) {
+  assert.expect(2);
+
+  var mockTourObject = Ember.Object.extend({
+    start() {
+      assert.ok(true, 'The tour was started');
+    }
+  }).create();
+
+  var service = this.subject({
+    steps,
+    _tourObject: mockTourObject
+  });
+
+  var someClass = Ember.Object.extend({
+    tour: service,
+
+    testOnInit: on('init', function() {
+      var tour = this.get('tour');
+      tour.on('start', function() {
+        assert.ok(true, 'The `start` event was observed from the init hook');
+      });
+    }),
+
+    tourDidStart: on('tour.start', function() {
+      // TODO: Is it possible to get this kind of event binding to work as well?
+      assert.ok(true, 'The `start` event was observed using the `on` helper');
+    })
+  }).create();
 
   run(function() {
     service.trigger('start');
