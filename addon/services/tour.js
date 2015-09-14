@@ -1,26 +1,35 @@
 import Ember from 'ember';
 
-const { isPresent, run } = Ember;
+const { Evented, Service, computed, isPresent, on, run } = Ember;
 const { scheduleOnce } = run;
+const { oneWay } = computed;
 
-export default Ember.Service.extend(Ember.Evented, {
+export default Service.extend(Evented, {
 
   // Get current path
-  currentPath: Ember.computed.oneWay('_applicationController.currentPath'),
+  currentPath: oneWay('_applicationController.currentPath'),
+
   // Configuration Options
   defaults: {},
+
   disableScroll: false,
+
   errorTitle: null,
+
   // Is the tour currently running?
   isActive: false,
+
   messageForUser: null,
+
   modal: false,
+
   requiredElements: Ember.A([]),
+
   steps: Ember.A([]),
 
   _applicationController: null,
 
-  initialize: function() {
+  initialize: on('init', function() {
     // Set up event bindings
     this.on('start', () => {
       // What else has to be run on start?
@@ -50,7 +59,7 @@ export default Ember.Service.extend(Ember.Evented, {
       this._getElementForCurrentStep().style.pointerEvents = 'auto';
       this.get('_tourObject').back();
     });
-  }.on('init'),
+  }),
 
   /**
    * Checks the builtInButtons array for the step and adds a button with the correct action for the type
@@ -251,7 +260,7 @@ export default Ember.Service.extend(Ember.Evented, {
   /**
    * Create a tour object based on the current configuration
    */
-  _tourObject: function() {
+  _tourObject: computed('steps', 'default', 'requiredElements', function() {
     const steps = this.get('steps');
 
     // Return nothing if there are no steps
@@ -338,7 +347,7 @@ export default Ember.Service.extend(Ember.Evented, {
 
     // Return the created tour object
     return tour;
-  }.property('steps', 'default', 'requiredElements'),
+  }),
 
   /**
    * Observes the array of requiredElements, which are the elements that must be present at the start of the tour,
