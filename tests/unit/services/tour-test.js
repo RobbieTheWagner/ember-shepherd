@@ -45,7 +45,7 @@ test('it starts the tour when the `start` event is triggered', function(assert) 
 
   var service = this.subject({
     steps,
-    _tourObject: mockTourObject
+    tourObject: mockTourObject
   });
 
   run(function() {
@@ -64,7 +64,7 @@ test('it allows another object to bind to events', function(assert) {
 
   var service = this.subject({
     steps,
-    _tourObject: mockTourObject
+    tourObject: mockTourObject
   });
 
   var someClass = Ember.Object.extend({

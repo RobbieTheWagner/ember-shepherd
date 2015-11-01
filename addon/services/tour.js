@@ -5,9 +5,9 @@ const { scheduleOnce } = run;
 const { oneWay } = computed;
 
 export default Service.extend(Evented, {
-
+  applicationController: null,
   // Get current path
-  currentPath: oneWay('_applicationController.currentPath'),
+  currentPath: oneWay('applicationController.currentPath'),
 
   // Configuration Options
   defaults: {},
@@ -27,15 +27,14 @@ export default Service.extend(Evented, {
 
   steps: Ember.A([]),
 
-  _applicationController: null,
 
   initialize: on('init', function() {
     // Set up event bindings
     this.on('start', () => {
       // What else has to be run on start?
       scheduleOnce('afterRender', this, function() {
-        if (isPresent(this.get('_tourObject'))) {
-          this.get('_tourObject').start();
+        if (isPresent(this.get('tourObject'))) {
+          this.get('tourObject').start();
         }
         this.set('isActive', true);
       });
@@ -45,19 +44,19 @@ export default Service.extend(Evented, {
       this.set('isActive', false);
     });
     this.on('cancel', () => {
-      this._cleanupModalLeftovers();
-      this.get('_tourObject').cancel();
+      this.cleanupModalLeftovers();
+      this.get('tourObject').cancel();
       this.set('isActive', false);
     });
     this.on('next', () => {
       //Re-enable clicking on the element
-      this._getElementForCurrentStep().style.pointerEvents = 'auto';
-      this.get('_tourObject').next();
+      this.getElementForCurrentStep().style.pointerEvents = 'auto';
+      this.get('tourObject').next();
     });
     this.on('back', () => {
       //Re-enable clicking on the element
-      this._getElementForCurrentStep().style.pointerEvents = 'auto';
-      this.get('_tourObject').back();
+      this.getElementForCurrentStep().style.pointerEvents = 'auto';
+      this.get('tourObject').back();
     });
   }),
 
@@ -67,7 +66,7 @@ export default Service.extend(Evented, {
    * @param shepherdStepOptions The options array to modify
    * @private
    */
-  _addBuiltInButtons: function(step, shepherdStepOptions) {
+  addBuiltInButtons(step, shepherdStepOptions) {
     step.options.builtInButtons.forEach((button) => {
       if (button.type === 'next') {
         shepherdStepOptions.buttons.push({
@@ -101,13 +100,13 @@ export default Service.extend(Evented, {
    * Cleanup the modal leftovers, like the overlay and highlight, so they don't hang around.
    * @private
    */
-  _cleanupModalLeftovers: function() {
+  cleanupModalLeftovers() {
     if (this.get('modal')) {
       if (this.get('tour') &&
         this.get('tour').getCurrentStep() &&
         this.get('tour').getCurrentStep().options.attachTo &&
-        this._getElementForStep(this.get('tour').getCurrentStep())) {
-        this._getElementForStep(this.get('tour').getCurrentStep()).style.pointerEvents = 'auto';
+        this.getElementForStep(this.get('tour').getCurrentStep())) {
+        this.getElementForStep(this.get('tour').getCurrentStep()).style.pointerEvents = 'auto';
       }
       Ember.run('afterRender', function() {
         Ember.$('#shepherdOverlay').remove();
@@ -121,27 +120,29 @@ export default Service.extend(Evented, {
    * Creates an overlay element clone of the element you want to highlight and copies all the styles.
    * @param step The step object that points to the element to highlight
    */
-  _createHighlightOverlay: function(step) {
+  createHighlightOverlay(step) {
     Ember.$('#highlightOverlay').remove();
-    var currentElement = this._getElementForStep(step);
-    var elementPosition = this._getElementPosition(currentElement);
-    var highlightElement = Ember.$(currentElement).clone();
-    highlightElement.attr('id', 'highlightOverlay');
-    Ember.$('body').append(highlightElement);
-    var computedStyle = window.getComputedStyle(currentElement).cssText;
-    highlightElement[0].style.cssText = computedStyle;
-    //Style all internal elements as well
-    var children = Ember.$(currentElement).children();
-    var clonedChildren = highlightElement.children();
-    for (var i = 0; i < children.length; i++) {
-      clonedChildren[i].style.cssText = window.getComputedStyle(children[i]).cssText;
+    const currentElement = this.getElementForStep(step);
+    if(currentElement) {
+      const elementPosition = this.getElementPosition(currentElement);
+      const highlightElement = Ember.$(currentElement).clone();
+      highlightElement.attr('id', 'highlightOverlay');
+      Ember.$('body').append(highlightElement);
+      const computedStyle = window.getComputedStyle(currentElement).cssText;
+      highlightElement[0].style.cssText = computedStyle;
+      //Style all internal elements as well
+      const children = Ember.$(currentElement).children();
+      const clonedChildren = highlightElement.children();
+      for (let i = 0; i < children.length; i++) {
+        clonedChildren[i].style.cssText = window.getComputedStyle(children[i]).cssText;
+      }
+      highlightElement.css('position', 'absolute');
+      highlightElement.css('left', elementPosition.left);
+      highlightElement.css('top', elementPosition.top);
+      highlightElement.css('width', elementPosition.width);
+      highlightElement.css('height', elementPosition.height);
+      highlightElement.css('z-index', '10002');
     }
-    highlightElement.css('position', 'absolute');
-    highlightElement.css('left', elementPosition.left);
-    highlightElement.css('top', elementPosition.top);
-    highlightElement.css('width', elementPosition.width);
-    highlightElement.css('height', elementPosition.height);
-    highlightElement.css('z-index', '10002');
   },
 
   /**
@@ -155,62 +156,59 @@ export default Service.extend(Evented, {
    * @return {Object} The optimized configuration
    * @private
    */
-  _exchangeForAttachmentConfig: function(attachTo) {
+  exchangeForAttachmentConfig(attachTo) {
     const type = typeof attachTo;
-    var config = {
+    let config = {
       element: null,
       on: null
     };
-    switch (type) {
-      case "string":
-      {
-        config.element = this._getElementFromString(attachTo);
-        const configArray = attachTo.split(' ');
-        config.on = configArray[configArray.length - 1];
-        break;
-      }
-      case "object":
-      {
-        config.element = this._getElementFromObject(attachTo);
-        config.on = attachTo.on;
-        break;
-      }
-      default:
-        config = null;
+    if (type === 'string') {
+      config.element = this.getElementFromString(attachTo);
+      const configArray = attachTo.split(' ');
+      config.on = configArray[configArray.length - 1];
     }
+    else if (attachTo !== null && attachTo !== undefined && type === 'object') {
+      config.element = this.getElementFromObject(attachTo);
+      config.on = attachTo.on;
+    }
+    else {
+      config = null;
+    }
+
     return config;
   },
 
   /**
    * Return the element for the current step
    *
-   * @method _getElementForCurrentStep
+   * @method getElementForCurrentStep
    * @returns {Element} the element for the current step
    */
-  _getElementForCurrentStep: function() {
-    var currentStep = this.get('_tourObject').getCurrentStep();
-    return this._getElementForStep(currentStep);
+  getElementForCurrentStep() {
+    let currentStep = this.get('tourObject').getCurrentStep();
+    return this.getElementForStep(currentStep);
   },
 
   /**
    * Return the element for a step
    *
-   * @method _getElementForStep
+   * @method getElementForStep
    * @param step step the step to get an element for
    * @returns {Element} the element for this step
    * @private
    */
-  _getElementForStep: function(step) {
+  getElementForStep(step) {
     const attachTo = step.options.attachTo;
     const type = typeof attachTo;
-    var element;
-    switch (type) {
-      case "string":
-        element = this._getElementFromString(attachTo);
-        break;
-      default:
-        element = this._getElementFromObject(attachTo);
-        break;
+    let element;
+    if (type === 'string') {
+      element = this.getElementFromString(attachTo);
+    }
+    else if (attachTo !== null && attachTo !== undefined && type === 'object') {
+      element = this.getElementFromObject(attachTo);
+    }
+    else {
+      element = null;
     }
     return element;
   },
@@ -218,12 +216,12 @@ export default Service.extend(Evented, {
   /**
    * Get the element from an option object
    *
-   * @method _getElementFromObject
+   * @method getElementFromObject
    * @param Object attachTo
    * @returns {Element}
    * @private
    */
-  _getElementFromObject: function(attachTo) {
+  getElementFromObject(attachTo) {
     const op = attachTo.element;
     return Ember.$(op).get(0);
   },
@@ -231,15 +229,15 @@ export default Service.extend(Evented, {
   /**
    * Get the element from an option string
    *
-   * @method _getElementFromString
+   * @method getElementFromString
    * @param string element the string in the step configuration
    * @returns {Element} the element from the string
    * @private
    */
-  _getElementFromString: function(element) {
-    var attachTo = element.split(' ');
+  getElementFromString(element) {
+    const attachTo = element.split(' ');
     attachTo.pop();
-    var selector = attachTo.join(' ');
+    const selector = attachTo.join(' ');
     return Ember.$(selector).get(0);
   },
 
@@ -248,19 +246,21 @@ export default Service.extend(Evented, {
    * @param step The step object that attaches to the element
    * @private
    */
-  _popoutElement: function(step) {
+  popoutElement(step) {
     Ember.$('.shepherd-modal').removeClass('shepherd-modal');
-    var currentElement = this._getElementForStep(step);
-    Ember.$(currentElement).addClass('shepherd-modal');
-    if (step.options.highlightClass) {
-      Ember.$(currentElement).addClass(step.options.highlightClass);
+    const currentElement = this.getElementForStep(step);
+    if(currentElement) {
+      Ember.$(currentElement).addClass('shepherd-modal');
+      if (step.options.highlightClass) {
+        Ember.$(currentElement).addClass(step.options.highlightClass);
+      }
     }
   },
 
   /**
    * Create a tour object based on the current configuration
    */
-  _tourObject: computed('steps', 'default', 'requiredElements', function() {
+  tourObject: computed('steps', 'default', 'requiredElements', function() {
     const steps = this.get('steps');
 
     // Return nothing if there are no steps
@@ -269,44 +269,51 @@ export default Service.extend(Evented, {
     }
 
     // Create a new tour object with the new defaults
-    var tour = new Shepherd.Tour({
+    let tour = new Shepherd.Tour({
       defaults: this.get('defaults')
     });
 
     // Check for the required elements and set up the steps on the tour
-    if (this._requiredElementsPresent()) {
+    if (this.requiredElementsPresent()) {
       steps.forEach((step, index) => {
-        var shepherdStepOptions = {buttons: []};
-        for (var option in step.options) {
+        let shepherdStepOptions = {buttons: []};
+        for (let option in step.options) {
           if (option === 'builtInButtons') {
-            this._addBuiltInButtons(step, shepherdStepOptions);
-          } else if (option === 'attachTo') {
-            shepherdStepOptions[option] = this._exchangeForAttachmentConfig(step.options[option]);
-          } else {
+            this.addBuiltInButtons(step, shepherdStepOptions);
+          }
+          else if (option === 'attachTo') {
+            shepherdStepOptions[option] = this.exchangeForAttachmentConfig(step.options[option]);
+          }
+          else {
             shepherdStepOptions[option] = step.options[option];
           }
         }
         tour.addStep(step.id, shepherdStepOptions);
 
         // Step up events for the current step
-        var currentStep = tour.steps[index];
+        let currentStep = tour.steps[index];
         currentStep.on('before-show', () => {
           if (this.get('modal')) {
-            this._getElementForStep(currentStep).style.pointerEvents = 'none';
-            if (currentStep.options.copyStyles) {
-              this._createHighlightOverlay(currentStep);
-            } else {
-              this._popoutElement(currentStep);
+            const currentElement = this.getElementForStep(currentStep);
+            if(currentElement) {
+              currentElement.style.pointerEvents = 'none';
+              if (currentStep.options.copyStyles) {
+                this.createHighlightOverlay(currentStep);
+              } else {
+                this.popoutElement(currentStep);
+              }
             }
           }
         });
         currentStep.on('hide', () => {
           //Remove element copy, if it was cloned
-          var currentElement = this._getElementForStep(currentStep);
-          if (currentStep.options.highlightClass) {
-            Ember.$(currentElement).removeClass(currentStep.options.highlightClass);
+          const currentElement = this.getElementForStep(currentStep);
+          if(currentElement) {
+            if (currentStep.options.highlightClass) {
+              Ember.$(currentElement).removeClass(currentStep.options.highlightClass);
+            }
+            Ember.$('#highlightOverlay').remove();
           }
-          Ember.$('#highlightOverlay').remove();
         });
       });
     } else {
@@ -332,14 +339,14 @@ export default Service.extend(Evented, {
       }
     });
     tour.on('complete', () => {
-      this._cleanupModalLeftovers();
+      this.cleanupModalLeftovers();
       if (this.get('disableScroll')) {
         Ember.$(window).disablescroll('undo');
       }
       this.trigger('complete');
     });
     tour.on('cancel', () => {
-      this._cleanupModalLeftovers();
+      this.cleanupModalLeftovers();
       if (this.get('disableScroll')) {
         Ember.$(window).disablescroll('undo');
       }
@@ -354,8 +361,8 @@ export default Service.extend(Evented, {
    * and determines if they exist, and are visible, if either is false, it will stop the tour from executing.
    * @private
    */
-  _requiredElementsPresent: function() {
-    var allElementsPresent = true;
+  requiredElementsPresent() {
+    let allElementsPresent = true;
     const requiredElements = this.get('requiredElements');
     if (isPresent(requiredElements)) {
       requiredElements.forEach((element) => {
@@ -375,13 +382,13 @@ export default Service.extend(Evented, {
    * Thanks to `meouw`: http://stackoverflow.com/a/442474/375966
    *
    * @api private
-   * @method _getOffset
+   * @method getOffset
    * @param {Object} element
    * @returns {*} Element's position info
    * @private
    */
-  _getElementPosition: function(element) {
-    var elementPosition = {};
+  getElementPosition(element) {
+    let elementPosition = {};
 
     //set width
     elementPosition.width = element.offsetWidth;
@@ -390,17 +397,17 @@ export default Service.extend(Evented, {
     elementPosition.height = element.offsetHeight;
 
     //calculate element top and left
-    var _x = 0;
-    var _y = 0;
+    let x = 0;
+    let y = 0;
     while (element && !isNaN(element.offsetLeft) && !isNaN(element.offsetTop)) {
-      _x += element.offsetLeft;
-      _y += element.offsetTop;
+      x += element.offsetLeft;
+      y += element.offsetTop;
       element = element.offsetParent;
     }
     //set top
-    elementPosition.top = _y;
+    elementPosition.top = y;
     //set left
-    elementPosition.left = _x;
+    elementPosition.left = x;
 
     return elementPosition;
   }
