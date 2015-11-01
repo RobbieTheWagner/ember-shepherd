@@ -27,5 +27,5 @@ skip('it injects the application controller into the tour service', function(ass
   // addon-provided initializers.  See link for more details
   // https://github.com/ember-cli/ember-cli/pull/3891
   initializer.initialize(container, application);
-  assert.equal(mockTourService.get('_applicationController'), mockApplicationController, 'Initializer injects the application controller');
+  assert.equal(mockTourService.get('applicationController'), mockApplicationController, 'Initializer injects the application controller');
 });
