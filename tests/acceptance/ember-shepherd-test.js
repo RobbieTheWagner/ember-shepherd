@@ -212,3 +212,56 @@ test('configuration works with attachTo object when element is a string with pse
   });
 });
 
+
+test('buttons work when type is not specified and passed action is triggered', function(assert) {
+  assert.expect(4);
+
+  var buttonActionCalled = false;
+  var steps = [{
+    id: 'test-highlight',
+    options: {
+      attachTo: {
+        element: '.medium-8:first',
+        on: 'bottom'
+      },
+      builtInButtons: [
+        {
+          classes: 'shepherd-button-secondary button-one',
+          text: 'button one'
+        },
+        {
+          classes: 'shepherd-button-secondary button-two',
+          text: 'button two',
+          action: () => buttonActionCalled = true
+        },
+        {
+          classes: 'shepherd-button-secondary button-three',
+          text: 'button three',
+          action: () => {}
+        }
+      ],
+      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+      copyStyles: false,
+      highlightClass: 'highlight',
+      title: 'Welcome to Ember-Shepherd!',
+      text: ['Testing highlight']
+    }
+  }];
+
+  container.lookup('route:application').set('initialSteps', steps);
+
+  visit('/');
+  andThen(function() {
+    assert.ok(find('.button-one', 'body').length, "tour button one is visible");
+    assert.ok(find('.button-two', 'body').length, "tour button two is visible");
+    assert.ok(find('.button-three', 'body').length, "tour button three is visible");
+  });
+
+  andThen(function() {
+    $('.button-two')[0].dispatchEvent(clickEvent);
+    assert.ok(buttonActionCalled, 'button action triggered');
+  });
+
+});
+
+
