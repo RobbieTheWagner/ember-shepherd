@@ -68,31 +68,18 @@ export default Service.extend(Evented, {
    */
   addBuiltInButtons(step, shepherdStepOptions) {
     step.options.builtInButtons.forEach((button) => {
-      if (button.type === 'next') {
-        shepherdStepOptions.buttons.push({
-          classes: button.classes,
-          text: button.text,
-          action: () => {
-            this.trigger('next');
-          }
-        });
-      } else if (button.type === 'back') {
-        shepherdStepOptions.buttons.push({
-          classes: button.classes,
-          text: button.text,
-          action: () => {
-            this.trigger('back');
-          }
-        });
-      } else if (button.type === 'cancel') {
-        shepherdStepOptions.buttons.push({
-          classes: button.classes,
-          text: button.text,
-          action: () => {
-            this.trigger('cancel');
-          }
-        });
+      let action;
+      if (['back', 'next', 'cancel'].indexOf(button.type) > -1) {
+        action = () => this.trigger(button.type);
+      } else {
+        action = button.action || Ember.K;
       }
+
+      shepherdStepOptions.buttons.push({
+        classes: button.classes,
+        text: button.text,
+        action
+      });
     });
   },
 
