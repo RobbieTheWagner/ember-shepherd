@@ -1,8 +1,33 @@
 import Ember from 'ember';
 
-const { Evented, Service, computed, isPresent, on, run } = Ember;
+const { Evented, Service, computed, isPresent, on, run, $, isEmpty } = Ember;
 const { scheduleOnce } = run;
 const { oneWay } = computed;
+
+/**
+ * Taken from introjs https://github.com/usablica/intro.js/blob/master/intro.js#L1092-1124
+ * Get an element position on the page
+ * Thanks to `meouw`: http://stackoverflow.com/a/442474/375966
+ */
+function getElementPosition(element) {
+  let elementPosition = {};
+  elementPosition.width = element.offsetWidth;
+  elementPosition.height = element.offsetHeight;
+
+  //calculate element top and left
+  let x = 0;
+  let y = 0;
+  while (element && !isNaN(element.offsetLeft) && !isNaN(element.offsetTop)) {
+    x += element.offsetLeft;
+    y += element.offsetTop;
+    element = element.offsetParent;
+  }
+
+  elementPosition.top = y;
+  elementPosition.left = x;
+  return elementPosition;
+}
+
 
 export default Service.extend(Evented, {
   applicationController: null,
@@ -23,10 +48,9 @@ export default Service.extend(Evented, {
 
   modal: false,
 
-  requiredElements: Ember.A([]),
+  requiredElements: Ember.A(),
 
-  steps: Ember.A([]),
-
+  steps: Ember.A(),
 
   initialize: on('init', function() {
     // Set up event bindings
@@ -89,16 +113,20 @@ export default Service.extend(Evented, {
    */
   cleanupModalLeftovers() {
     if (this.get('modal')) {
-      if (this.get('tour') &&
-        this.get('tour').getCurrentStep() &&
-        this.get('tour').getCurrentStep().options.attachTo &&
-        this.getElementForStep(this.get('tour').getCurrentStep())) {
-        this.getElementForStep(this.get('tour').getCurrentStep()).style.pointerEvents = 'auto';
+      let tour = this.get('tour');
+      if (tour) {
+        let currentStep = tour.getCurrentStep();
+        if (currentStep &&
+            currentStep.options.attachTo &&
+            this.getElementForStep(currentStep)
+        ) {
+          this.getElementForStep(currentStep).style.pointerEvents = 'auto';
+        }
       }
-      Ember.run('afterRender', function() {
-        Ember.$('#shepherdOverlay').remove();
-        Ember.$('#highlightOverlay').remove();
-        Ember.$('.shepherd-modal').removeClass('shepherd-modal');
+      run('afterRender', function() {
+        $('#shepherdOverlay').remove();
+        $('#highlightOverlay').remove();
+        $('.shepherd-modal').removeClass('shepherd-modal');
       });
     }
   },
@@ -108,17 +136,17 @@ export default Service.extend(Evented, {
    * @param step The step object that points to the element to highlight
    */
   createHighlightOverlay(step) {
-    Ember.$('#highlightOverlay').remove();
+    $('#highlightOverlay').remove();
     const currentElement = this.getElementForStep(step);
-    if(currentElement) {
-      const elementPosition = this.getElementPosition(currentElement);
-      const highlightElement = Ember.$(currentElement).clone();
+    if (currentElement) {
+      const elementPosition = getElementPosition(currentElement);
+      const highlightElement = $(currentElement).clone();
       highlightElement.attr('id', 'highlightOverlay');
-      Ember.$('body').append(highlightElement);
+      $('body').append(highlightElement);
       const computedStyle = window.getComputedStyle(currentElement).cssText;
       highlightElement[0].style.cssText = computedStyle;
       //Style all internal elements as well
-      const children = Ember.$(currentElement).children();
+      const children = $(currentElement).children();
       const clonedChildren = highlightElement.children();
       for (let i = 0; i < children.length; i++) {
         clonedChildren[i].style.cssText = window.getComputedStyle(children[i]).cssText;
@@ -210,7 +238,7 @@ export default Service.extend(Evented, {
    */
   getElementFromObject(attachTo) {
     const op = attachTo.element;
-    return Ember.$(op).get(0);
+    return $(op).get(0);
   },
 
   /**
@@ -225,7 +253,7 @@ export default Service.extend(Evented, {
     const attachTo = element.split(' ');
     attachTo.pop();
     const selector = attachTo.join(' ');
-    return Ember.$(selector).get(0);
+    return $(selector).get(0);
   },
 
   /**
@@ -234,12 +262,12 @@ export default Service.extend(Evented, {
    * @private
    */
   popoutElement(step) {
-    Ember.$('.shepherd-modal').removeClass('shepherd-modal');
+    $('.shepherd-modal').removeClass('shepherd-modal');
     const currentElement = this.getElementForStep(step);
-    if(currentElement) {
-      Ember.$(currentElement).addClass('shepherd-modal');
+    if (currentElement) {
+      $(currentElement).addClass('shepherd-modal');
       if (step.options.highlightClass) {
-        Ember.$(currentElement).addClass(step.options.highlightClass);
+        $(currentElement).addClass(step.options.highlightClass);
       }
     }
   },
@@ -251,9 +279,7 @@ export default Service.extend(Evented, {
     const steps = this.get('steps');
 
     // Return nothing if there are no steps
-    if (Ember.isEmpty(steps)) {
-      return;
-    }
+    if (isEmpty(steps)) { return; }
 
     // Create a new tour object with the new defaults
     let tour = new Shepherd.Tour({
@@ -295,11 +321,11 @@ export default Service.extend(Evented, {
         currentStep.on('hide', () => {
           //Remove element copy, if it was cloned
           const currentElement = this.getElementForStep(currentStep);
-          if(currentElement) {
+          if (currentElement) {
             if (currentStep.options.highlightClass) {
-              Ember.$(currentElement).removeClass(currentStep.options.highlightClass);
+              $(currentElement).removeClass(currentStep.options.highlightClass);
             }
-            Ember.$('#highlightOverlay').remove();
+            $('#highlightOverlay').remove();
           }
         });
       });
@@ -319,23 +345,24 @@ export default Service.extend(Evented, {
     // Set up tour event bindings
     tour.on('start', () => {
       if (this.get('modal')) {
-        Ember.$('body').append('<div id="shepherdOverlay"> </div>');
+        $('body').append('<div id="shepherdOverlay"> </div>');
       }
       if (this.get('disableScroll')) {
-        Ember.$(window).disablescroll();
+        $(window).disablescroll();
       }
     });
+
     tour.on('complete', () => {
       this.cleanupModalLeftovers();
       if (this.get('disableScroll')) {
-        Ember.$(window).disablescroll('undo');
+        $(window).disablescroll('undo');
       }
       this.trigger('complete');
     });
     tour.on('cancel', () => {
       this.cleanupModalLeftovers();
       if (this.get('disableScroll')) {
-        Ember.$(window).disablescroll('undo');
+        $(window).disablescroll('undo');
       }
     });
 
@@ -353,7 +380,7 @@ export default Service.extend(Evented, {
     const requiredElements = this.get('requiredElements');
     if (isPresent(requiredElements)) {
       requiredElements.forEach((element) => {
-        if (allElementsPresent && (!Ember.$(element.selector)[0] || !Ember.$(element.selector).is(':visible'))) {
+        if (allElementsPresent && (!$(element.selector)[0] || !$(element.selector).is(':visible'))) {
           allElementsPresent = false;
           this.set('errorTitle', element.title);
           this.set('messageForUser', element.message);
@@ -361,42 +388,6 @@ export default Service.extend(Evented, {
       });
     }
     return allElementsPresent;
-  },
-
-  /**
-   * Taken from introjs https://github.com/usablica/intro.js/blob/master/intro.js#L1092-1124
-   * Get an element position on the page
-   * Thanks to `meouw`: http://stackoverflow.com/a/442474/375966
-   *
-   * @api private
-   * @method getOffset
-   * @param {Object} element
-   * @returns {*} Element's position info
-   * @private
-   */
-  getElementPosition(element) {
-    let elementPosition = {};
-
-    //set width
-    elementPosition.width = element.offsetWidth;
-
-    //set height
-    elementPosition.height = element.offsetHeight;
-
-    //calculate element top and left
-    let x = 0;
-    let y = 0;
-    while (element && !isNaN(element.offsetLeft) && !isNaN(element.offsetTop)) {
-      x += element.offsetLeft;
-      y += element.offsetTop;
-      element = element.offsetParent;
-    }
-    //set top
-    elementPosition.top = y;
-    //set left
-    elementPosition.left = x;
-
-    return elementPosition;
   }
 
 });
