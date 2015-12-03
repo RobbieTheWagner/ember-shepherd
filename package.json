@@ -21,11 +21,15 @@
     "email": "rwwagner90@gmail.com",
     "url": "https://github.com/rwwagner90"
   },
-  "contributors": {
+  "contributors": [{
     "name": "Alex LaFroscia",
     "email": "alex@lafroscia.com",
     "url": "https://github.com/alexlafroscia"
-  },
+  }, {
+    "name": "bek",
+    "email": "bekzod@me.com",
+    "url": "https://github.com/bekzod"
+  }],
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.0",
