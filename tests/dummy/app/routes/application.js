@@ -243,5 +243,12 @@ export default Ember.Route.extend({
     if (this.get('shouldStartTourImmediately')) {
       tour.trigger('start');
     }
+
+    //Example of how to get cancel events working for showCancelLink, in response to issue #23
+    Ember.run.scheduleOnce('afterRender', () => {
+      this.tour.get('tourObject').on('cancel', () => {
+        console.log('cancel');
+      })
+    });
   }
 });
