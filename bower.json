@@ -2,11 +2,11 @@
   "name": "ember-shepherd",
   "dependencies": {
     "blanket": "~1.1.5",
-    "ember": "1.13.3",
+    "ember": "2.2.0",
     "ember-cli-shims": "ember-cli/ember-cli-shims#0.0.3",
     "ember-cli-test-loader": "ember-cli-test-loader#0.1.3",
     "ember-load-initializers": "ember-cli/ember-load-initializers#0.1.5",
-    "ember-qunit": "0.4.6",
+    "ember-qunit": "0.4.16",
     "ember-qunit-notifications": "0.0.7",
     "ember-resolver": "~0.1.18",
     "es5-shim": "^4.0.5",
@@ -21,6 +21,7 @@
     "tether-shepherd": "~1.1.3"
   },
   "resolutions": {
-    "tether": "^1.0.1"
+    "tether": "^1.0.1",
+    "ember": "2.2.0"
   }
 }

@@ -21,15 +21,18 @@
     "email": "rwwagner90@gmail.com",
     "url": "https://github.com/rwwagner90"
   },
-  "contributors": [{
-    "name": "Alex LaFroscia",
-    "email": "alex@lafroscia.com",
-    "url": "https://github.com/alexlafroscia"
-  }, {
-    "name": "bek",
-    "email": "bekzod@me.com",
-    "url": "https://github.com/bekzod"
-  }],
+  "contributors": [
+    {
+      "name": "Alex LaFroscia",
+      "email": "alex@lafroscia.com",
+      "url": "https://github.com/alexlafroscia"
+    },
+    {
+      "name": "bek",
+      "email": "bekzod@me.com",
+      "url": "https://github.com/bekzod"
+    }
+  ],
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.0",
@@ -50,6 +53,7 @@
     "ember-cli-uglify": "^1.0.1",
     "ember-disable-proxy-controllers": "^1.0.0",
     "ember-export-application-global": "^1.0.2",
+    "ember-getowner-polyfill": "1.0.0",
     "ember-try": "0.0.6"
   },
   "keywords": [

@@ -248,7 +248,7 @@ export default Ember.Route.extend({
     Ember.run.scheduleOnce('afterRender', () => {
       this.tour.get('tourObject').on('cancel', () => {
         console.log('cancel');
-      })
+      });
     });
   }
 });
