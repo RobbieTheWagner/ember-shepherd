@@ -43,47 +43,29 @@ test('it starts the tour when the `start` event is triggered', function(assert) 
     }
   }).create();
 
-  var service = this.subject({
-    steps,
-    tourObject: mockTourObject
-  });
+  var service = this.subject({ steps });
+  service.set('tourObject', mockTourObject);
 
   run(function() {
-    service.trigger('start');
+    service.start();
   });
 });
 
 test('it allows another object to bind to events', function(assert) {
-  assert.expect(2);
+ assert.expect(1);
 
-  var mockTourObject = Ember.Object.extend({
-    start() {
-      assert.ok(true, 'The tour was started');
-    }
-  }).create();
+ var mockTourObject = Ember.Object.extend({
+   next() {}
+ }).create();
 
-  var service = this.subject({
-    steps,
-    tourObject: mockTourObject
-  });
+ var service = this.subject({ steps });
+ service.set('tourObject', mockTourObject);
 
-  var someClass = Ember.Object.extend({
-    tour: service,
+ service.on('next', function() {
+   assert.ok(true);
+ });
 
-    testOnInit: on('init', function() {
-      var tour = this.get('tour');
-      tour.on('start', function() {
-        assert.ok(true, 'The `start` event was observed from the init hook');
-      });
-    }),
-
-    tourDidStart: on('tour.start', function() {
-      // TODO: Is it possible to get this kind of event binding to work as well?
-      assert.ok(true, 'The `start` event was observed using the `on` helper');
-    })
-  }).create();
-
-  run(function() {
-    service.trigger('start');
-  });
+ run(function() {
+   service.next();
+ });
 });

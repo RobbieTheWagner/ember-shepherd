@@ -1,9 +1,6 @@
 import Ember from 'ember';
 
-const { Evented, Service, computed, isPresent, on, run, $, isEmpty } = Ember;
-const { scheduleOnce } = run;
-const { oneWay } = computed;
-
+const { Evented, Service, isPresent, run, $, isEmpty, observer } = Ember;
 /**
  * Taken from introjs https://github.com/usablica/intro.js/blob/master/intro.js#L1092-1124
  * Get an element position on the page
@@ -30,10 +27,6 @@ function getElementPosition(element) {
 
 
 export default Service.extend(Evented, {
-  applicationController: null,
-  // Get current path
-  currentPath: oneWay('applicationController.currentPath'),
-
   // Configuration Options
   defaults: {},
 
@@ -41,7 +34,6 @@ export default Service.extend(Evented, {
 
   errorTitle: null,
 
-  // Is the tour currently running?
   isActive: false,
 
   messageForUser: null,
@@ -52,81 +44,103 @@ export default Service.extend(Evented, {
 
   steps: Ember.A(),
 
-  initialize: on('init', function() {
-    // Set up event bindings
-    this.on('start', () => {
-      // What else has to be run on start?
-      scheduleOnce('afterRender', this, function() {
-        if (isPresent(this.get('tourObject'))) {
-          this.get('tourObject').start();
-        }
-        this.set('isActive', true);
-      });
-    });
-    this.on('complete', () => {
-      // What else has to be run on completion?
-      this.set('isActive', false);
-    });
-    this.on('cancel', () => {
-      this.cleanupModalLeftovers();
-      this.get('tourObject').cancel();
-      this.set('isActive', false);
-    });
-    this.on('next', () => {
-      //Re-enable clicking on the element
-      const currentStepElement = this.getElementForCurrentStep();
-      if (currentStepElement) {
-        currentStepElement.style.pointerEvents = 'auto';
-      }
-      this.get('tourObject').next();
-    });
-    this.on('back', () => {
-      //Re-enable clicking on the element
-      const currentStepElement = this.getElementForCurrentStep();
-      if (currentStepElement) {
-        currentStepElement.style.pointerEvents = 'auto';
-      }
-      this.get('tourObject').back();
-    });
-  }),
+  start() {
+    this.set('isActive', true);
+    this.get('tourObject').start();
+  },
 
-  /**
-   * Checks the builtInButtons array for the step and adds a button with the correct action for the type
-   * @param step The step to add the buttons to
-   * @param shepherdStepOptions The options array to modify
-   * @private
-   */
-  addBuiltInButtons(step, shepherdStepOptions) {
-    step.options.builtInButtons.forEach((button) => {
-      let action;
-      if (['back', 'next', 'cancel'].indexOf(button.type) > -1) {
-        action = () => this.trigger(button.type);
-      } else {
-        action = button.action || Ember.K;
-      }
+  cancel() {
+    this.get('tourObject').cancel();
+  },
 
-      shepherdStepOptions.buttons.push({
-        classes: button.classes,
-        text: button.text,
-        action
+  _onTourNext() {
+    this.trigger('next');
+  },
+
+  _onTourBack() {
+    this.trigger('back');
+  },
+
+  next() {
+    this.get('tourObject').next();
+    this._onTourNext();
+  },
+
+  back() {
+    this.get('tourObject').back();
+    this._onTourBack();
+  },
+
+  onTourStart() {
+    if (this.get('modal')) {
+      $('body').append('<div id="shepherdOverlay"></div>');
+    }
+    if (this.get('disableScroll')) {
+      $(window).disablescroll();
+    }
+    this.trigger('start');
+  },
+
+  onTourComplete() {
+    this.set('isActive', false);
+    this.cleanup();
+    this.trigger('complete');
+  },
+
+  onTourCancel() {
+    this.set('isActive', false);
+    this.cleanup();
+    this.trigger('cancel');
+  },
+
+  init() {
+    this._super(...arguments);
+
+    let defaults = this.get('defaults');
+    let tourObject = new Shepherd.Tour({ defaults });
+
+    tourObject.on('start', run.bind(this, 'onTourStart'));
+    tourObject.on('complete', run.bind(this, 'onTourComplete'));
+    tourObject.on('cancel', run.bind(this, 'onTourCancel'));
+    this.set('tourObject', tourObject);
+  },
+
+  makeButton({ type, classes, text, action }) {
+    if (type === 'cancel') {
+      action = run.bind(this, function() {
+        this.get('tourObject').cancel();
       });
-    });
+    } else if (type === 'back') {
+      action = run.bind(this, function() {
+        this._onTourBack();
+        this.get('tourObject').back();
+      });
+    } else if (type === 'next') {
+      action = run.bind(this, function() {
+        this._onTourNext();
+        this.get('tourObject').next();
+      });
+    } else {
+      action = action || Ember.K;
+    }
+    return { action, classes, text };
   },
 
   /**
    * Cleanup the modal leftovers, like the overlay and highlight, so they don't hang around.
    * @private
    */
-  cleanupModalLeftovers() {
+  cleanup() {
+    if (this.get('disableScroll')) {
+      $(window).disablescroll('undo');
+    }
     if (this.get('modal')) {
-      let tour = this.get('tour');
+      let tour = this.get('tourObject');
       if (tour) {
         let currentStep = tour.getCurrentStep();
-        if (currentStep &&
-            currentStep.options.attachTo &&
-            this.getElementForStep(currentStep)
-        ) {
-          this.getElementForStep(currentStep).style.pointerEvents = 'auto';
+        let stepElement = this.getElementForStep(currentStep);
+        if (currentStep && currentStep.options.attachTo && stepElement) {
+          stepElement.style.pointerEvents = 'auto';
         }
       }
       run('afterRender', function() {
@@ -154,60 +168,21 @@ export default Service.extend(Evented, {
       //Style all internal elements as well
       const children = $(currentElement).children();
       const clonedChildren = highlightElement.children();
+
       for (let i = 0; i < children.length; i++) {
-        clonedChildren[i].style.cssText = window.getComputedStyle(children[i]).cssText;
+        clonedChildren[i].style.cssText =
+          window.getComputedStyle(children[i]).cssText;
       }
-      highlightElement.css('position', 'absolute');
-      highlightElement.css('left', elementPosition.left);
-      highlightElement.css('top', elementPosition.top);
-      highlightElement.css('width', elementPosition.width);
-      highlightElement.css('height', elementPosition.height);
-      highlightElement.css('z-index', '10002');
-    }
-  },
 
-  /**
-   * Exchanges the given attachment configuration for the object equivalent with
-   * the DOM element passed in directly.
-   *
-   * Allows for use of pseudoselectors, because it uses jQuery's selector engine
-   * instead of the built-in one
-   *
-   * @param {Object} attachTo The given "attachTo" configuration
-   * @return {Object} The optimized configuration
-   * @private
-   */
-  exchangeForAttachmentConfig(attachTo) {
-    const type = typeof attachTo;
-    let config = {
-      element: null,
-      on: null
-    };
-    if (type === 'string') {
-      config.element = this.getElementFromString(attachTo);
-      const configArray = attachTo.split(' ');
-      config.on = configArray[configArray.length - 1];
+      highlightElement.css({
+        'position': 'absolute',
+        'left': elementPosition.left,
+        'top': elementPosition.top,
+        'width': elementPosition.width,
+        'height': elementPosition.height,
+        'z-index': 10002
+      });
     }
-    else if (attachTo !== null && attachTo !== undefined && type === 'object') {
-      config.element = this.getElementFromObject(attachTo);
-      config.on = attachTo.on;
-    }
-    else {
-      config = null;
-    }
-
-    return config;
-  },
-
-  /**
-   * Return the element for the current step
-   *
-   * @method getElementForCurrentStep
-   * @returns {Element} the element for the current step
-   */
-  getElementForCurrentStep() {
-    let currentStep = this.get('tourObject').getCurrentStep();
-    return this.getElementForStep(currentStep);
   },
 
   /**
@@ -281,61 +256,12 @@ export default Service.extend(Evented, {
   /**
    * Create a tour object based on the current configuration
    */
-  tourObject: computed('steps', 'default', 'requiredElements', function() {
+  stepsChange: observer('steps', function() {
     const steps = this.get('steps');
-
+    const tour = this.get('tourObject');
     // Return nothing if there are no steps
     if (isEmpty(steps)) { return; }
-
-    // Create a new tour object with the new defaults
-    let tour = new Shepherd.Tour({
-      defaults: this.get('defaults')
-    });
-
-    // Check for the required elements and set up the steps on the tour
-    if (this.requiredElementsPresent()) {
-      steps.forEach((step, index) => {
-        let shepherdStepOptions = {buttons: []};
-        for (let option in step.options) {
-          if (option === 'builtInButtons') {
-            this.addBuiltInButtons(step, shepherdStepOptions);
-          }
-          else if (option === 'attachTo') {
-            shepherdStepOptions[option] = this.exchangeForAttachmentConfig(step.options[option]);
-          }
-          else {
-            shepherdStepOptions[option] = step.options[option];
-          }
-        }
-        tour.addStep(step.id, shepherdStepOptions);
-
-        // Step up events for the current step
-        let currentStep = tour.steps[index];
-        currentStep.on('before-show', () => {
-          if (this.get('modal')) {
-            const currentElement = this.getElementForStep(currentStep);
-            if(currentElement) {
-              currentElement.style.pointerEvents = 'none';
-              if (currentStep.options.copyStyles) {
-                this.createHighlightOverlay(currentStep);
-              } else {
-                this.popoutElement(currentStep);
-              }
-            }
-          }
-        });
-        currentStep.on('hide', () => {
-          //Remove element copy, if it was cloned
-          const currentElement = this.getElementForStep(currentStep);
-          if (currentElement) {
-            if (currentStep.options.highlightClass) {
-              $(currentElement).removeClass(currentStep.options.highlightClass);
-            }
-            $('#highlightOverlay').remove();
-          }
-        });
-      });
-    } else {
+    if (!this.requiredElementsPresent()) {
       tour.addStep('error', {
         buttons: [{
           text: 'Exit',
@@ -346,34 +272,40 @@ export default Service.extend(Evented, {
         title: this.get('errorTitle'),
         text: [this.get('messageForUser')]
       });
+      return;
     }
 
-    // Set up tour event bindings
-    tour.on('start', () => {
-      if (this.get('modal')) {
-        $('body').append('<div id="shepherdOverlay"> </div>');
-      }
-      if (this.get('disableScroll')) {
-        $(window).disablescroll();
-      }
-    });
+    steps.forEach((step, index) => {
+      let { id, options } = step;
+      options.buttons = options.builtInButtons.map(this.makeButton, this);
+      tour.addStep(id, options);
 
-    tour.on('complete', () => {
-      this.cleanupModalLeftovers();
-      if (this.get('disableScroll')) {
-        $(window).disablescroll('undo');
-      }
-      this.trigger('complete');
+      // Step up events for the current step
+      let currentStep = tour.steps[index];
+      currentStep.on('before-show', () => {
+        if (this.get('modal')) {
+          const currentElement = this.getElementForStep(currentStep);
+          if (currentElement) {
+            currentElement.style.pointerEvents = 'none';
+            if (currentStep.options.copyStyles) {
+              this.createHighlightOverlay(currentStep);
+            } else {
+              this.popoutElement(currentStep);
+            }
+          }
+        }
+      });
+      currentStep.on('hide', () => {
+        //Remove element copy, if it was cloned
+        const currentElement = this.getElementForStep(currentStep);
+        if (currentElement) {
+          if (currentStep.options.highlightClass) {
+            $(currentElement).removeClass(currentStep.options.highlightClass);
+          }
+          $('#highlightOverlay').remove();
+        }
+      });
     });
-    tour.on('cancel', () => {
-      this.cleanupModalLeftovers();
-      if (this.get('disableScroll')) {
-        $(window).disablescroll('undo');
-      }
-    });
-
-    // Return the created tour object
-    return tour;
   }),
 
   /**

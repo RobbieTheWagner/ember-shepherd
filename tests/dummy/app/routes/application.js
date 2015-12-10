@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   initialModalValue: true,
-  shouldStartTourImmediately: true,
+  tour: Ember.inject.service(),
 
   initialSteps: [
     {
@@ -218,7 +218,7 @@ export default Ember.Route.extend({
 
 
   setupController: function(controller, model) {
-    let tour = this.tour;
+    let tour = this.get('tour');
 
     tour.set('steps', this.get('initialSteps'));
     tour.set('requiredElements', [
@@ -240,15 +240,9 @@ export default Ember.Route.extend({
     });
     tour.set('disableScroll', true);
     tour.set('modal', this.get('initialModalValue'));
-    if (this.get('shouldStartTourImmediately')) {
-      tour.trigger('start');
-    }
 
-    //Example of how to get cancel events working for showCancelLink, in response to issue #23
-    Ember.run.scheduleOnce('afterRender', () => {
-      this.tour.get('tourObject').on('cancel', () => {
-        console.log('cancel');
-      });
+    tour.on('cancel', () => {
+      console.log('cancel');
     });
   }
 });
