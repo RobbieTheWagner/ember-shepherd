@@ -74,12 +74,18 @@ export default Service.extend(Evented, {
     });
     this.on('next', () => {
       //Re-enable clicking on the element
-      this.getElementForCurrentStep().style.pointerEvents = 'auto';
+      const currentStepElement = this.getElementForCurrentStep();
+      if (currentStepElement) {
+        currentStepElement.style.pointerEvents = 'auto';
+      }
       this.get('tourObject').next();
     });
     this.on('back', () => {
       //Re-enable clicking on the element
-      this.getElementForCurrentStep().style.pointerEvents = 'auto';
+      const currentStepElement = this.getElementForCurrentStep();
+      if (currentStepElement) {
+        currentStepElement.style.pointerEvents = 'auto';
+      }
       this.get('tourObject').back();
     });
   }),
