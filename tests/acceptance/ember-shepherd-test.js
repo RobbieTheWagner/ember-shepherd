@@ -16,7 +16,7 @@ module('Tour functionality tests', {
   },
   afterEach: function() {
     //Remove all Shepherd stuff, to start fresh each time.
-    find('.shepherd-active', 'body').removeClass('ashepherd-active');
+    find('.shepherd-active', 'body').removeClass('shepherd-active');
     find('[class^=shepherd]', 'body').remove();
     find('#shepherdOverlay', 'body').remove();
     Ember.run(App, App.destroy);
