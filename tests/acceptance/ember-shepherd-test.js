@@ -140,7 +140,7 @@ test('configuration works with attachTo object when element is a simple string',
   });
 });
 
-test('configuration works with attachTo object when element is a string with pseudoselector', function(assert) {
+test('configuration works with attachTo object when element is dom element', function(assert) {
   assert.expect(1);
 
   // Override default behavior
@@ -148,7 +148,7 @@ test('configuration works with attachTo object when element is a string with pse
     id: 'test-highlight',
     options: {
       attachTo: {
-        element: '.medium-8:first',
+        element: $('.medium-8:first')[0],
         on: 'bottom'
       },
       builtInButtons: [
@@ -188,7 +188,7 @@ test('buttons work when type is not specified and passed action is triggered', f
     id: 'test-highlight',
     options: {
       attachTo: {
-        element: '.medium-8:first',
+        element: $('.medium-8:first')[0],
         on: 'bottom'
       },
       builtInButtons: [
