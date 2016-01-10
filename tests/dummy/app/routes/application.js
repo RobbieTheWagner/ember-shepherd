@@ -87,7 +87,10 @@ export default Ember.Route.extend({
     {
       id: 'modal',
       options: {
-        attachTo: '.modal-element top',
+        attachTo: {
+          element: '.modal-element',
+          on: 'top'
+        },
         builtInButtons: [
           {
             classes: 'shepherd-button-secondary cancel-button',
@@ -114,7 +117,10 @@ export default Ember.Route.extend({
     {
       id: 'copyStyle',
       options: {
-        attachTo: '.style-copy-element top',
+        attachTo: {
+          element: '.style-copy-element',
+          on: 'top'
+        },
         builtInButtons: [
           {
             classes: 'shepherd-button-secondary cancel-button',

@@ -195,12 +195,14 @@ export default Service.extend(Evented, {
    */
   getElementForStep(step) {
     const attachTo = step.options.attachTo;
+    if (!attachTo) { return null; }
+
     const type = typeof attachTo;
     let element;
     if (type === 'string') {
       element = this.getElementFromString(attachTo);
     }
-    else if (attachTo !== null && attachTo !== undefined && type === 'object') {
+    else if (type === 'object') {
       element = this.getElementFromObject(attachTo);
     }
     else {
@@ -253,6 +255,14 @@ export default Service.extend(Evented, {
     }
   },
 
+  _normalizeAttachTo(attachTo) {
+    if (attachTo && typeof attachTo.element === 'string' && typeof attachTo.on === 'string') {
+      return attachTo.element + ' ' + attachTo.on;
+    } else {
+      return attachTo;
+    }
+  },
+
   /**
    * Create a tour object based on the current configuration
    */
@@ -278,6 +288,7 @@ export default Service.extend(Evented, {
     steps.forEach((step, index) => {
       let { id, options } = step;
       options.buttons = options.builtInButtons.map(this.makeButton, this);
+      options.attachTo = this._normalizeAttachTo(options.attachTo);
       tour.addStep(id, options);
 
       // Step up events for the current step
