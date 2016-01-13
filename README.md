@@ -50,7 +50,7 @@ The following configuration options can be `set` on the Tour service to control 
 `defaults` is used to set the options that will be applied to each step by default. You can pass in any of the options that you can with Shepherd. It will be an object of a form something like:
 
 ```js
-this.tour.set('defaults', {
+this.get('tour').set('defaults', {
   classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
   scrollTo: false,
   showCancelLink: true
@@ -82,7 +82,7 @@ You can also specify a message, which will tell the user what they need to do to
 
 _Example_
 ```js
-this.tour.set('requiredElements', [
+this.get('tour').set('requiredElements', [
   {
     selector: '.search-result-element',
     message: 'No search results found. Please execute another search, and try to start the tour again.',
@@ -104,7 +104,7 @@ this.tour.set('requiredElements', [
 You will need to define a steps object to set on the tour service of the following form:
 
 ```js
-this.tour.set('steps', [
+this.get('tour').set('steps', [
   {
     id: 'intro',
     options: {
@@ -230,16 +230,16 @@ An object that contains function to be executed when events occur on the step.  
 
 ```js
 // Start the tour
-this.tour.start();
+this.get('tour').start();
 
 // Stop the tour
-this.tour.cancel();
+this.get('tour').cancel();
 
 // Go to the next step
-this.tour.next();
+this.get('tour').next();
 
 // Go to the previous step
-this.tour.back();
+this.get('tour').back();
 ```
 
 ## Q/A
