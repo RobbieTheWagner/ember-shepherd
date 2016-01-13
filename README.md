@@ -25,7 +25,7 @@ If you are not using Ember CLI, we recommend using [ember-giftwrap](https://gith
 
 ## Usage
 
-Interaction with `ember-shepherd` is done entirely through the Tour service, which you can access on all of your controllers and routes using `this.tour`, or from any other object using the `Ember.inject` syntax:
+Interaction with `ember-shepherd` is done entirely through the Tour service, which you can access from any object using the `Ember.inject` syntax:
 
 ```js
 export default Ember.Component.extend({
@@ -230,23 +230,23 @@ An object that contains function to be executed when events occur on the step.  
 
 ```js
 // Start the tour
-this.tour.trigger('start');
+this.tour.start();
 
 // Stop the tour
-this.tour.trigger('cancel');
+this.tour.cancel();
 
 // Go to the next step
-this.tour.trigger('next');
+this.tour.next();
 
 // Go to the previous step
-this.tour.trigger('back');
+this.tour.back();
 ```
 
 ## Q/A
 
 ### Q: Woah, events? How does that work with buttons?
 
-A: Don't worry, it's not too bad!  Since the service is available almost everywhere, you can just set up an action to start (or cancel, or advance, etc.) the tour like so:
+A: Don't worry, it's not too bad!  You can just set up an action to start (or cancel, or advance, etc.) the tour like so:
 
 ```js
 // app/routes/application.js
@@ -257,14 +257,11 @@ export default Ember.Route.extend({
 
   actions: {
     startTour: function() {
-      this.get('tour').trigger('start');
+      this.get('tour').start();
     }
   }
 });
 ```
-
-where `start` is one of the events described above.
-
 
 ## Contributing
 Please feel free to post any issues you encounter or feature requests on the issues in this repo. Pull requests welcome as well!
