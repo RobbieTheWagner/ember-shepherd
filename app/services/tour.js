@@ -1,3 +1,1 @@
-import tour from 'ember-shepherd/services/tour';
-
-export default tour;
+export { default } from 'ember-shepherd/services/tour';
