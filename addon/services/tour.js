@@ -7,9 +7,10 @@ const { Evented, Service, isPresent, run, $, isEmpty, observer } = Ember;
  * Thanks to `meouw`: http://stackoverflow.com/a/442474/375966
  */
 function getElementPosition(element) {
-  let elementPosition = {};
-  elementPosition.width = element.offsetWidth;
-  elementPosition.height = element.offsetHeight;
+  let elementPosition = {
+    height: element.offsetHeight,
+    width: element.offsetWidth
+  };
 
   //calculate element top and left
   let x = 0;
@@ -29,19 +30,12 @@ function getElementPosition(element) {
 export default Service.extend(Evented, {
   // Configuration Options
   defaults: {},
-
   disableScroll: false,
-
   errorTitle: null,
-
   isActive: false,
-
   messageForUser: null,
-
   modal: false,
-
   requiredElements: Ember.A(),
-
   steps: Ember.A(),
 
   start() {
@@ -49,26 +43,21 @@ export default Service.extend(Evented, {
     this.get('tourObject').start();
   },
 
+  /**
+   * Get the tour object and call back
+   */
+  back() {
+    this.get('tourObject').back();
+    this.trigger('back');
+  },
+
   cancel() {
     this.get('tourObject').cancel();
   },
 
-  _onTourNext() {
-    this.trigger('next');
-  },
-
-  _onTourBack() {
-    this.trigger('back');
-  },
-
   next() {
     this.get('tourObject').next();
-    this._onTourNext();
-  },
-
-  back() {
-    this.get('tourObject').back();
-    this._onTourBack();
+    this.trigger('next');
   },
 
   onTourStart() {
@@ -96,34 +85,13 @@ export default Service.extend(Evented, {
   init() {
     this._super(...arguments);
 
-    let defaults = this.get('defaults');
-    let tourObject = new Shepherd.Tour({ defaults });
+    const defaults = this.get('defaults');
+    const tourObject = new Shepherd.Tour({defaults});
 
     tourObject.on('start', run.bind(this, 'onTourStart'));
     tourObject.on('complete', run.bind(this, 'onTourComplete'));
     tourObject.on('cancel', run.bind(this, 'onTourCancel'));
     this.set('tourObject', tourObject);
-  },
-
-  makeButton({ type, classes, text, action }) {
-    if (type === 'cancel') {
-      action = run.bind(this, function() {
-        this.get('tourObject').cancel();
-      });
-    } else if (type === 'back') {
-      action = run.bind(this, function() {
-        this._onTourBack();
-        this.get('tourObject').back();
-      });
-    } else if (type === 'next') {
-      action = run.bind(this, function() {
-        this._onTourNext();
-        this.get('tourObject').next();
-      });
-    } else {
-      action = action || Ember.K;
-    }
-    return { action, classes, text };
   },
 
   /**
@@ -143,7 +111,7 @@ export default Service.extend(Evented, {
           stepElement.style.pointerEvents = 'auto';
         }
       }
-      run('afterRender', function() {
+      run('afterRender', function () {
         $('#shepherdOverlay').remove();
         $('#highlightOverlay').remove();
         $('.shepherd-modal').removeClass('shepherd-modal');
@@ -163,8 +131,7 @@ export default Service.extend(Evented, {
       const highlightElement = $(currentElement).clone();
       highlightElement.attr('id', 'highlightOverlay');
       $('body').append(highlightElement);
-      const computedStyle = window.getComputedStyle(currentElement).cssText;
-      highlightElement[0].style.cssText = computedStyle;
+      highlightElement[0].style.cssText = window.getComputedStyle(currentElement).cssText;
       //Style all internal elements as well
       const children = $(currentElement).children();
       const clonedChildren = highlightElement.children();
@@ -195,7 +162,9 @@ export default Service.extend(Evented, {
    */
   getElementForStep(step) {
     const attachTo = step.options.attachTo;
-    if (!attachTo) { return null; }
+    if (!attachTo) {
+      return null;
+    }
 
     const type = typeof attachTo;
     let element;
@@ -228,7 +197,7 @@ export default Service.extend(Evented, {
    * Get the element from an option string
    *
    * @method getElementFromString
-   * @param string element the string in the step configuration
+   * @param element the string in the step configuration
    * @returns {Element} the element from the string
    * @private
    */
@@ -240,7 +209,52 @@ export default Service.extend(Evented, {
   },
 
   /**
+   * Creates a button of the specified type, with the given classes and text
+   *
+   * @param type The type of button cancel, back, or next
+   * @param classes Classes to apply to the button
+   * @param text The text for the button
+   * @param action The action to call
+   * @returns {{action: *, classes: *, text: *}}
+   */
+  makeButton({ type, classes, text, action }) {
+    if (type === 'cancel') {
+      action = run.bind(this, function () {
+        this.cancel();
+      });
+    } else if (type === 'back') {
+      action = run.bind(this, function () {
+        this.back();
+      });
+    } else if (type === 'next') {
+      action = run.bind(this, function () {
+        this.next();
+      });
+    } else {
+      action = action || Ember.K;
+    }
+    return {action, classes, text};
+  },
+
+  /**
+   * Check if attachTo is an object, if it is, put element and on into a string,
+   * if it is already a string, just return that string
+   *
+   * @param attachTo
+   * @returns {*}
+   * @private
+   */
+  normalizeAttachTo(attachTo) {
+    if (attachTo && typeof attachTo.element === 'string' && typeof attachTo.on === 'string') {
+      return attachTo.element + ' ' + attachTo.on;
+    } else {
+      return attachTo;
+    }
+  },
+
+  /**
    * Increases the z-index of the element, to pop it out above the overlay and highlight it
+   *
    * @param step The step object that attaches to the element
    * @private
    */
@@ -255,22 +269,36 @@ export default Service.extend(Evented, {
     }
   },
 
-  _normalizeAttachTo(attachTo) {
-    if (attachTo && typeof attachTo.element === 'string' && typeof attachTo.on === 'string') {
-      return attachTo.element + ' ' + attachTo.on;
-    } else {
-      return attachTo;
+  /**
+   * Observes the array of requiredElements, which are the elements that must be present at the start of the tour,
+   * and determines if they exist, and are visible, if either is false, it will stop the tour from executing.
+   * @private
+   */
+  requiredElementsPresent() {
+    let allElementsPresent = true;
+    const requiredElements = this.get('requiredElements');
+    if (isPresent(requiredElements)) {
+      requiredElements.forEach((element) => {
+        if (allElementsPresent && (!$(element.selector)[0] || !$(element.selector).is(':visible'))) {
+          allElementsPresent = false;
+          this.set('errorTitle', element.title);
+          this.set('messageForUser', element.message);
+        }
+      });
     }
+    return allElementsPresent;
   },
 
   /**
    * Create a tour object based on the current configuration
    */
-  stepsChange: observer('steps', function() {
+  stepsChange: observer('steps', function () {
     const steps = this.get('steps');
     const tour = this.get('tourObject');
     // Return nothing if there are no steps
-    if (isEmpty(steps)) { return; }
+    if (isEmpty(steps)) {
+      return;
+    }
     if (!this.requiredElementsPresent()) {
       tour.addStep('error', {
         buttons: [{
@@ -288,7 +316,7 @@ export default Service.extend(Evented, {
     steps.forEach((step, index) => {
       let { id, options } = step;
       options.buttons = options.builtInButtons.map(this.makeButton, this);
-      options.attachTo = this._normalizeAttachTo(options.attachTo);
+      options.attachTo = this.normalizeAttachTo(options.attachTo);
       tour.addStep(id, options);
 
       // Step up events for the current step
@@ -317,26 +345,5 @@ export default Service.extend(Evented, {
         }
       });
     });
-  }),
-
-  /**
-   * Observes the array of requiredElements, which are the elements that must be present at the start of the tour,
-   * and determines if they exist, and are visible, if either is false, it will stop the tour from executing.
-   * @private
-   */
-  requiredElementsPresent() {
-    let allElementsPresent = true;
-    const requiredElements = this.get('requiredElements');
-    if (isPresent(requiredElements)) {
-      requiredElements.forEach((element) => {
-        if (allElementsPresent && (!$(element.selector)[0] || !$(element.selector).is(':visible'))) {
-          allElementsPresent = false;
-          this.set('errorTitle', element.title);
-          this.set('messageForUser', element.message);
-        }
-      });
-    }
-    return allElementsPresent;
-  }
-
+  })
 });
