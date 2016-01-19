@@ -47,7 +47,12 @@ The following configuration options can be `set` on the Tour service to control 
 
 ### defaults
 
-`defaults` is used to set the options that will be applied to each step by default. You can pass in any of the options that you can with Shepherd. It will be an object of a form something like:
+`defaults` is used to set the options that will be applied to each step by default. 
+You can pass in any of the options that you can with Shepherd. 
+
+## You must set defaults *BEFORE* setting steps
+
+It will be an object of a form something like:
 
 ```js
 this.get('tour').set('defaults', {

@@ -82,18 +82,6 @@ export default Service.extend(Evented, {
     this.trigger('cancel');
   },
 
-  init() {
-    this._super(...arguments);
-
-    const defaults = this.get('defaults');
-    const tourObject = new Shepherd.Tour({defaults});
-
-    tourObject.on('start', run.bind(this, 'onTourStart'));
-    tourObject.on('complete', run.bind(this, 'onTourComplete'));
-    tourObject.on('cancel', run.bind(this, 'onTourCancel'));
-    this.set('tourObject', tourObject);
-  },
-
   /**
    * Cleanup the modal leftovers, like the overlay and highlight, so they don't hang around.
    * @private
@@ -208,6 +196,16 @@ export default Service.extend(Evented, {
     return $(selector).get(0);
   },
 
+  initialize() {
+    const defaults = this.get('defaults');
+    const tourObject = new Shepherd.Tour({defaults});
+
+    tourObject.on('start', run.bind(this, 'onTourStart'));
+    tourObject.on('complete', run.bind(this, 'onTourComplete'));
+    tourObject.on('cancel', run.bind(this, 'onTourCancel'));
+    this.set('tourObject', tourObject);
+  },
+
   /**
    * Creates a button of the specified type, with the given classes and text
    *
@@ -293,6 +291,7 @@ export default Service.extend(Evented, {
    * Create a tour object based on the current configuration
    */
   stepsChange: observer('steps', function () {
+    this.initialize();
     const steps = this.get('steps');
     const tour = this.get('tourObject');
     // Return nothing if there are no steps
