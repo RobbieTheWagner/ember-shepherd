@@ -3,7 +3,11 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   initialModalValue: true,
   tour: Ember.inject.service(),
-
+  defaults: {
+    classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
+    scrollTo: false,
+    showCancelLink: true
+  },
   initialSteps: [
     {
       id: 'intro',
@@ -111,7 +115,7 @@ export default Ember.Route.extend({
         classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
         copyStyles: false,
         text: ['We implemented true modal functionality by disabling clicking of the rest of the page. ' +
-        'If you would like to enable modal, simply do this.tour.set(\'modal\', true).']
+        'If you would like to enable modal, simply do this.get(\'tour\').set(\'modal\', true).']
       }
     },
     {
@@ -197,7 +201,7 @@ export default Ember.Route.extend({
         classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
         copyStyles: false,
         text: ['When navigating the user through a tour, you may want to disable scrolling, so they cannot mess up ' +
-        'your carefully planned out, amazing tour. This is now easily achieved with this.tour.set(\'disableScroll\', true). Try ' +
+        'your carefully planned out, amazing tour. This is now easily achieved with this.get(\'tour\').set(\'disableScroll\', true). Try ' +
         'scrolling right now, then exit the tour and see that you can again!']
       }
     },
@@ -223,9 +227,9 @@ export default Ember.Route.extend({
     }],
 
 
-  setupController: function(controller, model) {
+  setupController: function (controller, model) {
     let tour = this.get('tour');
-
+    tour.set('defaults', this.get('defaults'));
     tour.set('steps', this.get('initialSteps'));
     tour.set('requiredElements', [
       {
@@ -239,11 +243,7 @@ export default Ember.Route.extend({
         title: 'Error'
       }
     ]);
-    tour.set('defaults', {
-      classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
-      scrollTo: false,
-      showCancelLink: true
-    });
+
     tour.set('disableScroll', true);
     tour.set('modal', this.get('initialModalValue'));
 

@@ -101,6 +101,50 @@ test("Highlight applied", function(assert) {
   });
 });
 
+test("Defaults applied", function(assert) {
+  assert.expect(1);
+
+  var defaults = {
+    classes: 'shepherd-element shepherd-open shepherd-theme-arrows test-defaults',
+    scrollTo: false,
+    showCancelLink: true
+  };
+
+  var steps = [{
+    id: 'test-defaults-classes',
+    options: {
+      attachTo: '.first-element bottom',
+      builtInButtons: [
+        {
+          classes: 'shepherd-button-secondary cancel-button',
+          text: 'Exit',
+          type: 'cancel'
+        },
+        {
+          classes: 'shepherd-button-primary next-button',
+          text: 'Next',
+          type: 'next'
+        }
+      ],
+      copyStyles: false,
+      highlightClass: 'highlight',
+      title: 'Welcome to Ember-Shepherd!',
+      text: ['Testing defaults']
+    }
+  }];
+
+  container.lookup('route:application').set('defaults', defaults);
+  container.lookup('route:application').set('initialSteps', steps);
+
+  visit('/');
+  click(':contains(Modal Demo)');
+
+  andThen(function() {
+    assert.equal(find('.test-defaults', 'body').length, 1, "defaults class applied");
+    patchClick('.shepherd-content a:contains(Exit)', 'body');
+  });
+});
+
 test('configuration works with attachTo object when element is a simple string', function(assert) {
   assert.expect(1);
 

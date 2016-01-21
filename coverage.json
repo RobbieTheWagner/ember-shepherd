@@ -1,0 +1,26 @@
+{
+  "stats": {
+    "suites": 13,
+    "tests": 20,
+    "passes": 20,
+    "pending": 0,
+    "failures": 0,
+    "start": "2016-01-13T23:22:07.496Z",
+    "end": "2016-01-13T23:22:08.588Z"
+  },
+  "coverage": {
+    "total": {
+      "statementsTotal": 159,
+      "statementsCovered": 11,
+      "percentage": 6.92
+    },
+    "files": [
+      {
+        "name": "ember-shepherd/services/tour",
+        "statementsTotal": 159,
+        "statementsCovered": 11,
+        "percentage": 6.92
+      }
+    ]
+  }
+}

@@ -18,20 +18,18 @@
   <div class="medium-8 columns medium-centered text-center usage-element">
     <h5>Usage</h5>
     <pre><code class="language-javascript">
-// The tour service is injected into all controllers and routes,
-// so simply access it at this.tour
-let tour = this.tour;
+let tour = this.get('tour');
 tour.set('defaults', shepherdDefaults);
 tour.set('disableScroll', true);
 tour.set('modal', true);
 tour.set('requiredElements', requiredElements);
 tour.set('steps', steps);
 
-// Trigger actions to control the tour
-tour.trigger('start');
-tour.trigger('next');
-tour.trigger('back');
-tour.trigger('cancel');</code></pre>
+// Methods to control the tour
+tour.start();
+tour.next();
+tour.back();
+tour.cancel();</code></pre>
   </div>
 </div>
 <div class="row">

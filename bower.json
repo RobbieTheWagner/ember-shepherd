@@ -16,6 +16,7 @@
     "tether-shepherd": "~1.5.0"
   },
   "devDependencies": {
-    "jquery-disablescroll": "ultrapasty/jquery-disablescroll"
+    "jquery-disablescroll": "ultrapasty/jquery-disablescroll",
+    "blanket": "~1.1.5"
   }
 }
