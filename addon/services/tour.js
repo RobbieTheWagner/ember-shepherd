@@ -93,11 +93,13 @@ export default Service.extend(Evented, {
     if (this.get('modal')) {
       let tour = this.get('tourObject');
       if (tour) {
-        let currentStep = tour.getCurrentStep();
-        let stepElement = this.getElementForStep(currentStep);
-        if (currentStep && currentStep.options.attachTo && stepElement) {
-          stepElement.style.pointerEvents = 'auto';
-        }
+        let steps = tour.steps;
+        steps.map((step) => {
+          let stepElement = this.getElementForStep(step);
+          if (step && step.options.attachTo && stepElement) {
+            stepElement.style.pointerEvents = 'auto';
+          }
+        });
       }
       run('afterRender', function () {
         $('#shepherdOverlay').remove();
