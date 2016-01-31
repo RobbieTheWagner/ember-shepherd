@@ -1,6 +1,18 @@
 We will list changes, especially breaking changes, between versions here.
 
-**1.1.0**
+###**2.0.2**
+
+* Update Ember-CLI to version 2.3.0-beta.1 and make changes necessary for that
+
+###**2.0.1**
+
+* Merged https://github.com/rwwagner90/ember-shepherd/pull/33 to set pointer-events back to `'auto'` on cancel or exit
+
+###**2.0.0**
+
+* Fixed an issue with defaults not actually being applied because they were undefined at the time `init` was called
+
+###**1.1.0**
 
 * Must now use `tour.start()` instead of `tour.trigger('start')`
 * tour now emits events, instead of the tour object
