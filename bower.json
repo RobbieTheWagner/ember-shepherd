@@ -1,7 +1,30 @@
 {
   "name": "ember-shepherd",
+  "description": "An Ember wrapper for the site tour library Shepherd.",
+  "homepage": "http://rwwagner90.github.io/ember-shepherd/",
+  "authors":[
+    {
+      "name": "Robert Wagner",
+      "email": "rwwagner90@gmail.com",
+      "homepage": "https://github.com/rwwagner90"
+    },
+    {
+      "name": "Alex LaFroscia",
+      "email": "alex@lafroscia.com",
+      "homepage": "https://github.com/alexlafroscia"
+    },
+    {
+      "name": "bek",
+      "email": "bekzod@me.com",
+      "homepage": "https://github.com/bekzod"
+    },
+    {
+      "name": "Craig Sketchley",
+      "homepage": "https://github.com/craigsketchley"
+    }
+  ],
   "dependencies": {
-    "ember": "components/ember#1.13",
+    "ember": "2.3.0",
     "ember-cli-shims": "0.1.0",
     "ember-cli-test-loader": "0.2.2",
     "ember-load-initializers": "0.1.7",
@@ -15,7 +38,9 @@
   "devDependencies": {
     "jquery-disablescroll": "ultrapasty/jquery-disablescroll"
   },
-  "resolutions": {
-    "ember": "1.13"
-  }
+  "keywords": [
+    "tour"
+    "shepherd",
+    "tether"
+  ]
 }
