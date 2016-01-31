@@ -2,7 +2,7 @@
   "name": "ember-shepherd",
   "description": "An Ember wrapper for the site tour library Shepherd.",
   "homepage": "http://rwwagner90.github.io/ember-shepherd/",
-  "authors":[
+  "authors": [
     {
       "name": "Robert Wagner",
       "email": "rwwagner90@gmail.com",
@@ -39,7 +39,7 @@
     "jquery-disablescroll": "ultrapasty/jquery-disablescroll"
   },
   "keywords": [
-    "tour"
+    "tour",
     "shepherd",
     "tether"
   ]
