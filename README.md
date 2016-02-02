@@ -11,7 +11,7 @@ This is an Ember wrapper for the [Shepherd](https://github.com/HubSpot/Shepherd)
 
 ## Demo
 
-[![Guide your users through a tour of your app](http://i.imgur.com/yOw7GrM.png)](http://rwwagner90.github.io/ember-shepherd/)
+[![Guide your users through a tour of your app](http://i.imgur.com/dz9HwVV.png)](http://rwwagner90.github.io/ember-shepherd/)
 http://rwwagner90.github.io/ember-shepherd/
 
 ## Getting started
