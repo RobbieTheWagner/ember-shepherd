@@ -1,5 +1,19 @@
+@import "./prism-ghcolors";
 @import "./settings";
 @import "./foundation";
+@import url("//hello.myfonts.net/count/3045c9");
+
+@font-face {
+  font-family: 'ThirstySoftLight';
+  src: url('webfonts/3045C9_0_0.eot');
+  src: url('webfonts/3045C9_0_0.eot?#iefix') format('embedded-opentype'), url('webfonts/3045C9_0_0.woff2') format('woff2'), url('webfonts/3045C9_0_0.woff') format('woff'), url('webfonts/3045C9_0_0.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'ThirstySoftRegular';
+  src: url('webfonts/3045C9_1_0.eot');
+  src: url('webfonts/3045C9_1_0.eot?#iefix') format('embedded-opentype'), url('webfonts/3045C9_1_0.woff2') format('woff2'), url('webfonts/3045C9_1_0.woff') format('woff'), url('webfonts/3045C9_1_0.ttf') format('truetype');
+}
 
 @font-face {
   font-family: 'Roboto Condensed';
@@ -15,31 +29,35 @@
   src: local('Lobster Two'), local('LobsterTwo'), url(http://fonts.gstatic.com/s/lobstertwo/v7/Law3VVulBOoxyKPkrNsAaCwlidHJgAgmTjOEEzwu1L8.ttf) format('truetype');
 }
 
+$background1: #323040;
+$lightColor: #AAA3D9;
+
 html, body {
   height: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: white;
+  color: #F2E6B6;
   font-family: "Roboto Condensed", sans-serif;
 }
 
 body {
   margin: 0;
-  background-color: #62c462;
-  background-image: -webkit-linear-gradient(-45deg, #62c462, #75beaa);
-  background-image: -moz-linear-gradient(-45deg, #62c462, #75beaa);
-  background-image: -o-linear-gradient(-45deg, #62c462, #75beaa);
-  background-image: linear-gradient(-45deg, #62c462, #75beaa);
-  background-attachment:fixed;
+  background-color: $background1;
+  /*background-image: -webkit-linear-gradient(-45deg, $background1, #01A2A6);
+  background-image: -moz-linear-gradient(-45deg, $background1, #01A2A6);
+  background-image: -o-linear-gradient(-45deg, $background1, #01A2A6);
+  background-image: linear-gradient(-45deg, $background1, #01A2A6);*/
+  background-attachment: fixed;
   font-family: "Roboto Condensed", sans-serif;
 }
+
 a {
   &.bottomButton {
     background-color: transparent;
     display: inline-block;
-    border: 2px solid white;
-    color: white;
+    border: 2px solid $lightColor;
+    color: $lightColor;
     padding: 1em 1.25em;
     font-weight: 500;
     text-transform: uppercase;
@@ -49,15 +67,15 @@ a {
     width: 140px;
     font-size: 0.8em;
     line-height: 1.3em;
-    &:hover{
-      color: #258a5e;
-      border: 2px solid #258a5e;
+    &:hover {
+      color: #292929;
+      border: 2px solid #292929;
     }
   }
 }
 
 .button.dark {
-  background: white;
+  background: $lightColor;
   color: #75beaa;
 }
 
@@ -70,7 +88,7 @@ a {
 
 .shepherd-element.shepherd-theme-arrows.shepherd-transparent-text .shepherd-text {
   color: #3b744f;
-  a{
+  a {
     color: #218897;
   }
 }
@@ -85,7 +103,7 @@ a {
 }
 
 .shepherd-element.shepherd-theme-arrows .shepherd-content footer .shepherd-buttons li .shepherd-button {
-  background: #55a892;
+  background: $background1;
 }
 
 pre {
@@ -94,6 +112,7 @@ pre {
 }
 
 .pageTitle {
-  color: white;
-  font-family: 'Lobster Two', cursive;
+  color: $lightColor;
+  font-family: 'ThirstySoftRegular', cursive;
+  font-size: 45pt;
 }
