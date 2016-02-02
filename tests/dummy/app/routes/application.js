@@ -85,7 +85,7 @@ export default Ember.Route.extend({
         ],
         classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
         copyStyles: false,
-        text: ['The tour service is injected into all routes and controllers, so simply use it like this example.'],
+        text: ['To use the tour service, simply inject it into your application and use it like this example.']
       }
     },
     {

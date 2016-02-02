@@ -7,9 +7,9 @@ module.exports = function(environment) {
     baseURL: '/',
     locationType: 'auto',
     contentSecurityPolicy: {
-      'font-src': "'self' http://fonts.gstatic.com http://hello.myfonts.net",
+      'font-src': "'self' 'http://fonts.gstatic.com' 'http://hello.myfonts.net'",
       'script-src': "'self' 'unsafe-inline'",
-      'style-src': "'self' 'unsafe-inline' http://hello.myfonts.net"
+      'style-src': "'self' 'unsafe-inline' 'http://hello.myfonts.net' 'https://fonts.googleapis.com'"
     },
     EmberENV: {
       FEATURES: {

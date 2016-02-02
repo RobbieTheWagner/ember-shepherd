@@ -2,20 +2,26 @@
  * GHColors theme by Avi Aryan (http://aviaryan.in)
  * Inspired by Github syntax coloring
  */
+@import url(https://fonts.googleapis.com/css?family=Inconsolata);
 
 $color1: #6E698C;
+$commentColor: #C8C7D5;
+$textColor: #493F8C;
+$brightText: #01A2A6;
+$altText: #CFCEF2;
+$darkPurple: #323040;
 
 code[class*="language-"],
 pre[class*="language-"] {
-  color: #393A34;
-  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+  color: $textColor;
+  font-family: 'Inconsolata', monospace;
   direction: ltr;
   text-align: left;
   text-shadow: none;
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
-  font-size: 1em;
+  font-size: 14pt;
   line-height: 1.2em;
 
   -moz-tab-size: 4;
@@ -62,7 +68,7 @@ pre[class*="language-"] {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  color: #999988;
+  color: $commentColor;
   font-style: italic;
 }
 
@@ -72,12 +78,13 @@ pre[class*="language-"] {
 
 .token.string,
 .token.attr-value {
-  color: #e3116c;
+  color: $altText;
 }
 
 .token.punctuation,
 .token.operator {
-  color: #393A34; /* no highlight */
+  color: $textColor;
+  background-color: $color1;
 }
 
 .token.entity,
@@ -90,20 +97,20 @@ pre[class*="language-"] {
 .token.property,
 .token.regex,
 .token.inserted {
-  color: #36acaa;
+  color: $brightText;
 }
 
 .token.atrule,
 .token.keyword,
 .token.attr-name,
 .language-autohotkey .token.selector {
-  color: #00a4db;
+  color: $brightText;
 }
 
 .token.function,
 .token.deleted,
 .language-autohotkey .token.tag {
-  color: #9a050f;
+  color: $darkPurple;
 }
 
 .token.tag,

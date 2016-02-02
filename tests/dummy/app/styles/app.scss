@@ -30,25 +30,23 @@
 }
 
 $background1: #323040;
+$background2: #2E2859;
 $lightColor: #AAA3D9;
+$altLightColor: #6E698C;
+$whiteish: #C8C7D5;
 
 html, body {
   height: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #F2E6B6;
+  color: $whiteish;
   font-family: "Roboto Condensed", sans-serif;
 }
 
 body {
   margin: 0;
   background-color: $background1;
-  /*background-image: -webkit-linear-gradient(-45deg, $background1, #01A2A6);
-  background-image: -moz-linear-gradient(-45deg, $background1, #01A2A6);
-  background-image: -o-linear-gradient(-45deg, $background1, #01A2A6);
-  background-image: linear-gradient(-45deg, $background1, #01A2A6);*/
-  background-attachment: fixed;
   font-family: "Roboto Condensed", sans-serif;
 }
 
@@ -68,10 +66,15 @@ a {
     font-size: 0.8em;
     line-height: 1.3em;
     &:hover {
-      color: #292929;
-      border: 2px solid #292929;
+      color: $whiteish;
+      border: 2px solid $whiteish;
     }
   }
+}
+
+.panel {
+  background-color: $whiteish;
+  color: $background1;
 }
 
 .button.dark {
@@ -86,10 +89,37 @@ a {
   }
 }
 
-.shepherd-element.shepherd-theme-arrows.shepherd-transparent-text .shepherd-text {
-  color: #3b744f;
-  a {
-    color: #218897;
+.shepherd-element {
+  &.shepherd-theme-arrows {
+   &.shepherd-element-attached-bottom  {
+      &.shepherd-element-attached-center {
+        .shepherd-content:before {
+          bottom: 100%;
+          left: 50%;
+          margin-left: -16px;
+          border-top-color: $background1;
+        }
+      }
+    }
+    &.shepherd-element-attached-top  {
+      &.shepherd-element-attached-center {
+        .shepherd-content:before {
+          bottom: 100%;
+          left: 50%;
+          margin-left: -16px;
+          border-bottom-color: $background1;
+        }
+      }
+    }
+    .shepherd-content {
+      background-color: $background1;
+      .shepherd-text {
+        color: $whiteish;
+        a {
+          color: $altLightColor;
+        }
+      }
+    }
   }
 }
 
@@ -103,7 +133,7 @@ a {
 }
 
 .shepherd-element.shepherd-theme-arrows .shepherd-content footer .shepherd-buttons li .shepherd-button {
-  background: $background1;
+  background: $background2;
 }
 
 pre {
@@ -114,5 +144,5 @@ pre {
 .pageTitle {
   color: $lightColor;
   font-family: 'ThirstySoftRegular', cursive;
-  font-size: 45pt;
+  font-size: 50pt;
 }
