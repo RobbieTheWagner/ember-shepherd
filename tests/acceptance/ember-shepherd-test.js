@@ -13,6 +13,7 @@ module('Tour functionality tests', {
   beforeEach: function() {
     App = startApp();
     container = App.__container__;
+    container.lookup('route:application').set('initialModalValue', false);
   },
   afterEach: function() {
     //Remove all Shepherd stuff, to start fresh each time.
@@ -38,7 +39,6 @@ test("Modal page contents", function(assert) {
 
 test("Non-modal page contents", function(assert) {
   assert.expect(3);
-
   visit('/');
   click(':contains(Non-modal)');
   andThen(function() {
