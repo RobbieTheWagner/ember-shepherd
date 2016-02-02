@@ -91,7 +91,7 @@ a {
 
 .shepherd-element {
   &.shepherd-theme-arrows {
-   &.shepherd-element-attached-bottom  {
+    &.shepherd-element-attached-bottom {
       &.shepherd-element-attached-center {
         .shepherd-content:before {
           bottom: 100%;
@@ -101,13 +101,22 @@ a {
         }
       }
     }
-    &.shepherd-element-attached-top  {
+    &.shepherd-element-attached-top {
       &.shepherd-element-attached-center {
         .shepherd-content:before {
           bottom: 100%;
           left: 50%;
           margin-left: -16px;
           border-bottom-color: $background1;
+        }
+      }
+    }
+    &.shepherd-has-title {
+      header {
+        background-color: $whiteish;
+        color: $background1;
+        h1, h2, h3, h4, h5, h6 {
+          color: $background1;
         }
       }
     }

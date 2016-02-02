@@ -29,6 +29,7 @@ function getElementPosition(element) {
 
 export default Service.extend(Evented, {
   // Configuration Options
+  autoStart: false,
   defaults: {},
   disableScroll: false,
   errorTitle: null,
@@ -346,5 +347,10 @@ export default Service.extend(Evented, {
         }
       });
     });
+    if (this.get('autoStart')) {
+      Ember.run.later(()=> {
+        this.start();
+      });
+    }
   })
 });
