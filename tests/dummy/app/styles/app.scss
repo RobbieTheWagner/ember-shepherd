@@ -1,5 +1,19 @@
+@import "./prism-ghcolors";
 @import "./settings";
 @import "./foundation";
+@import url("//hello.myfonts.net/count/3045c9");
+
+@font-face {
+  font-family: 'ThirstySoftLight';
+  src: url('webfonts/3045C9_0_0.eot');
+  src: url('webfonts/3045C9_0_0.eot?#iefix') format('embedded-opentype'), url('webfonts/3045C9_0_0.woff2') format('woff2'), url('webfonts/3045C9_0_0.woff') format('woff'), url('webfonts/3045C9_0_0.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'ThirstySoftRegular';
+  src: url('webfonts/3045C9_1_0.eot');
+  src: url('webfonts/3045C9_1_0.eot?#iefix') format('embedded-opentype'), url('webfonts/3045C9_1_0.woff2') format('woff2'), url('webfonts/3045C9_1_0.woff') format('woff'), url('webfonts/3045C9_1_0.ttf') format('truetype');
+}
 
 @font-face {
   font-family: 'Roboto Condensed';
@@ -15,31 +29,33 @@
   src: local('Lobster Two'), local('LobsterTwo'), url(http://fonts.gstatic.com/s/lobstertwo/v7/Law3VVulBOoxyKPkrNsAaCwlidHJgAgmTjOEEzwu1L8.ttf) format('truetype');
 }
 
+$background1: #323040;
+$background2: #2E2859;
+$lightColor: #AAA3D9;
+$altLightColor: #6E698C;
+$whiteish: #C8C7D5;
+
 html, body {
   height: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: white;
+  color: $whiteish;
   font-family: "Roboto Condensed", sans-serif;
 }
 
 body {
   margin: 0;
-  background-color: #62c462;
-  background-image: -webkit-linear-gradient(-45deg, #62c462, #75beaa);
-  background-image: -moz-linear-gradient(-45deg, #62c462, #75beaa);
-  background-image: -o-linear-gradient(-45deg, #62c462, #75beaa);
-  background-image: linear-gradient(-45deg, #62c462, #75beaa);
-  background-attachment:fixed;
+  background-color: $background1;
   font-family: "Roboto Condensed", sans-serif;
 }
+
 a {
   &.bottomButton {
     background-color: transparent;
     display: inline-block;
-    border: 2px solid white;
-    color: white;
+    border: 2px solid $lightColor;
+    color: $lightColor;
     padding: 1em 1.25em;
     font-weight: 500;
     text-transform: uppercase;
@@ -49,15 +65,20 @@ a {
     width: 140px;
     font-size: 0.8em;
     line-height: 1.3em;
-    &:hover{
-      color: #258a5e;
-      border: 2px solid #258a5e;
+    &:hover {
+      color: $whiteish;
+      border: 2px solid $whiteish;
     }
   }
 }
 
+.panel {
+  background-color: $whiteish;
+  color: $background1;
+}
+
 .button.dark {
-  background: white;
+  background: $lightColor;
   color: #75beaa;
 }
 
@@ -68,10 +89,37 @@ a {
   }
 }
 
-.shepherd-element.shepherd-theme-arrows.shepherd-transparent-text .shepherd-text {
-  color: #3b744f;
-  a{
-    color: #218897;
+.shepherd-element {
+  &.shepherd-theme-arrows {
+   &.shepherd-element-attached-bottom  {
+      &.shepherd-element-attached-center {
+        .shepherd-content:before {
+          bottom: 100%;
+          left: 50%;
+          margin-left: -16px;
+          border-top-color: $background1;
+        }
+      }
+    }
+    &.shepherd-element-attached-top  {
+      &.shepherd-element-attached-center {
+        .shepherd-content:before {
+          bottom: 100%;
+          left: 50%;
+          margin-left: -16px;
+          border-bottom-color: $background1;
+        }
+      }
+    }
+    .shepherd-content {
+      background-color: $background1;
+      .shepherd-text {
+        color: $whiteish;
+        a {
+          color: $altLightColor;
+        }
+      }
+    }
   }
 }
 
@@ -85,7 +133,7 @@ a {
 }
 
 .shepherd-element.shepherd-theme-arrows .shepherd-content footer .shepherd-buttons li .shepherd-button {
-  background: #55a892;
+  background: $background2;
 }
 
 pre {
@@ -94,6 +142,7 @@ pre {
 }
 
 .pageTitle {
-  color: white;
-  font-family: 'Lobster Two', cursive;
+  color: $lightColor;
+  font-family: 'ThirstySoftRegular', cursive;
+  font-size: 50pt;
 }
