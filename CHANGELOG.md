@@ -1,5 +1,9 @@
 We will list changes, especially breaking changes, between versions here.
 
+###**2.0.3**
+
+* Add `autoStart` so you can set the tour to automatically start after you set `steps`
+
 ###**2.0.2**
 
 * Update Ember-CLI to version 2.3.0-beta.1 and make changes necessary for that
