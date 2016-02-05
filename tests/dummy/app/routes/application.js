@@ -3,9 +3,10 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   initialModalValue: true,
   tour: Ember.inject.service(),
+  disableScroll: false,
   defaults: {
     classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
-    scrollTo: true,
+    scrollTo: false,
     showCancelLink: true
   },
   initialSteps: [
@@ -245,7 +246,7 @@ export default Ember.Route.extend({
       }
     ]);
 
-    tour.set('disableScroll', false);
+    tour.set('disableScroll', this.get('disableScroll'));
     tour.set('modal', this.get('initialModalValue'));
 
     tour.on('cancel', () => {

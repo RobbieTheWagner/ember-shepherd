@@ -346,6 +346,22 @@ export default Service.extend(Evented, {
           $('#highlightOverlay').remove();
         }
       });
+
+      let $window = $(window);
+
+      // Allow scrollbar scrolling so scrollTo works.
+      currentStep.options.scrollToHandler = (elem) => {
+        $window.disablescroll({
+          handleScrollbar: false
+        });
+
+        if (typeof elem !== 'undefined') {
+          elem.scrollIntoView();
+        }
+
+        $window.disablescroll(this.get('disableScroll') ? undefined : 'undo');
+      };
+
     });
     if (this.get('autoStart')) {
       Ember.run.later(()=> {
