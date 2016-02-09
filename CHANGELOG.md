@@ -1,5 +1,10 @@
 We will list changes, especially breaking changes, between versions here.
 
+###**2.0.4**
+
+* Added @craigsketchley 's email to bower.json and package.json
+* Update README
+
 ###**2.0.3**
 
 * Add `autoStart` so you can set the tour to automatically start after you set `steps`
