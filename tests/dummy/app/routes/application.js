@@ -4,6 +4,7 @@ export default Ember.Route.extend({
   initialModalValue: true,
   tour: Ember.inject.service(),
   disableScroll: false,
+  autoStart: false,
   defaults: {
     classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
     scrollTo: false,
@@ -230,7 +231,7 @@ export default Ember.Route.extend({
 
   setupController: function (controller, model) {
     let tour = this.get('tour');
-    tour.set('autoStart', true);
+    tour.set('autoStart', this.get('autoStart'));
     tour.set('defaults', this.get('defaults'));
     tour.set('steps', this.get('initialSteps'));
     tour.set('requiredElements', [

@@ -307,3 +307,48 @@ test("`pointer-events` is set to `auto` for any step element on clean up", funct
     });
   });
 });
+
+test("scrollTo works with disableScroll on", function(assert) {
+  // Setup controller tour settings
+  container.lookup('route:application').set('autoStart', false);
+  container.lookup('route:application').set('disableScroll', false);
+  container.lookup('route:application').set('scrollTo', true);
+
+  // Visit route
+  visit('/');
+
+  var elemPositionY;
+  var doc, top;
+
+  // Both doc and window height are the same for me
+  console.log("document height:", $(document).height());
+  console.log("window height:", $(window).height());
+
+  // Get scroll position of .first-element
+  andThen(() => {
+    let elem = find('.first-element');
+
+    // Get element vertical position
+    elemPositionY = elem.position().top;
+    console.log("first element position:", elemPositionY);
+
+    // Get currently viewport scroll position
+    doc = document.documentElement;
+    top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+    console.log("viewport scroll position before tour start:", top);
+  });
+
+  andThen(() => {
+    // Start the tour, and it should scroll to the first element...
+    click(':contains(Modal Demo)');
+  });
+
+  andThen(() => {
+    // Check the scroll position is in line with the first element
+    top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+    console.log("viewport scroll position after tour start:", top);
+
+    // Failing
+    assert.equal(top, elemPositionY);
+  });
+});
