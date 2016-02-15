@@ -3,11 +3,11 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   initialModalValue: true,
   tour: Ember.inject.service(),
-  disableScroll: false,
-  autoStart: false,
+  disableScroll: true,
+  autoStart: true,
   defaults: {
     classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
-    scrollTo: false,
+    scrollTo: true,
     showCancelLink: true
   },
   initialSteps: [
