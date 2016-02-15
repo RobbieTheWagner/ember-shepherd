@@ -1,5 +1,9 @@
 We will list changes, especially breaking changes, between versions here.
 
+###**2.0.5**
+* Added support for `scrollTo:true` and `disableScroll:true`, so the elements will still scroll into view, but the user is not able to manually scroll.
+* Update Ember-CLI to version 2.3.0-beta.2 and run ember init for other necessary changes
+
 ###**2.0.4**
 
 * Added @craigsketchley 's email to bower.json and package.json
