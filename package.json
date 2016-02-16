@@ -42,6 +42,7 @@
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
     "broccoli-clean-css": "^1.1.0",
+    "codeclimate-test-reporter": "^0.3.1",
     "ember-ajax": "0.7.1",
     "ember-cli": "^2.3.0-beta.2",
     "ember-cli-app-version": "^1.0.0",

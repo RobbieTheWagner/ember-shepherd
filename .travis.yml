@@ -44,4 +44,5 @@ after_script:
 
 addons:
     code_climate:
-        repo_token: e828d44adc2e8d5c5dc5d6ba644356da6733fbfa440aaad0cd16f72ba5f0c73e
+        repo_token:
+            secure: "mt4PbRaa75atNQ4yw8XGNidBAI24w1pf3eCuzjblm2V6QTQso+crmWR/k9laYsgea3kDxtXnbkHI9SSmgfimF2KRz9I8zsVR76Sn91x9Fp5ICJLrymvnNwCcoZgqgyTh1R7o7QbbKzhVAYI/R3SPyxDXC9pclewZDBgg3Nv+L/0="
