@@ -8,7 +8,14 @@ var options = {
   enableCoverage: true,
   cliOptions: {
     reporters: ['lcov'],
-    autostart: true
+    autostart: true,
+    lcovOptions: {
+      outputFile: 'lcov.dat',
+      renamer: function (moduleName) {
+        var expression = /^ember-shepherd/;
+        return moduleName.replace(expression, 'addon') + '.js';
+      }
+    }
   }
 };
 if (typeof exports === 'undefined') {
