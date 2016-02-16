@@ -38,3 +38,10 @@ install:
 
 script:
   - ember try $EMBER_TRY_SCENARIO test
+
+after_script:
+  - codeclimate-test-reporter < lcov.dat
+
+addons:
+    code_climate:
+        repo_token: e828d44adc2e8d5c5dc5d6ba644356da6733fbfa440aaad0cd16f72ba5f0c73e
