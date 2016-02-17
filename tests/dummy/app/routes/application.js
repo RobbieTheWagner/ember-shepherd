@@ -229,7 +229,7 @@ export default Ember.Route.extend({
     }],
 
 
-  setupController: function (controller, model) {
+  setupController: function () {
     let tour = this.get('tour');
     tour.set('autoStart', this.get('autoStart'));
     tour.set('defaults', this.get('defaults'));
