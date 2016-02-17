@@ -1,19 +1,19 @@
 # Ember-shepherd
 
-[![Join the chat at https://gitter.im/rwwagner90/ember-shepherd](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/rwwagner90/ember-shepherd?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/shipshapecode/ember-shepherd](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/shipshapecode/ember-shepherd?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![npm version](https://badge.fury.io/js/ember-shepherd.svg)](http://badge.fury.io/js/ember-shepherd)
 [![npm](https://img.shields.io/npm/dm/ember-shepherd.svg)]()
 [![Ember Observer Score](http://emberobserver.com/badges/ember-shepherd.svg)](http://emberobserver.com/addons/ember-shepherd)
-[![Build Status](https://travis-ci.org/rwwagner90/ember-shepherd.svg)](https://travis-ci.org/rwwagner90/ember-shepherd)
-[![Code Climate](https://codeclimate.com/github/rwwagner90/ember-shepherd/badges/gpa.svg)](https://codeclimate.com/github/rwwagner90/ember-shepherd)
+[![Build Status](https://travis-ci.org/shipshapecode/ember-shepherd.svg)](https://travis-ci.org/shipshapecode/ember-shepherd)
+[![Code Climate](https://codeclimate.com/github/shipshapecode/ember-shepherd/badges/gpa.svg)](https://codeclimate.com/github/shipshapecode/ember-shepherd)
 
 This is an Ember wrapper for the [Shepherd](https://github.com/HubSpot/Shepherd), site tour, library. It provides additional functionality, on top of Shepherd, as well.
 
 ## Demo
 
-[![Guide your users through a tour of your app](http://i.imgur.com/dz9HwVV.png)](http://rwwagner90.github.io/ember-shepherd/)
-http://rwwagner90.github.io/ember-shepherd/
+[![Guide your users through a tour of your app](http://i.imgur.com/dz9HwVV.png)](http://shipshapecode.github.io/ember-shepherd/)
+http://shipshapecode.github.io/ember-shepherd/
 
 ## Getting started
 
