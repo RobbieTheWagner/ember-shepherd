@@ -1,7 +1,7 @@
 {
   "name": "ember-shepherd",
   "description": "An Ember wrapper for the site tour library Shepherd.",
-  "homepage": "http://rwwagner90.github.io/ember-shepherd/",
+  "homepage": "http://shipshapecode.github.io/ember-shepherd/",
   "authors": [
     {
       "name": "Robert Wagner",
