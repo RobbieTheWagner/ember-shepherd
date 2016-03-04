@@ -25,7 +25,7 @@
     }
   ],
   "dependencies": {
-    "ember": "~2.3.1",
+    "ember": "~2.4.1",
     "ember-cli-shims": "0.1.0",
     "ember-cli-test-loader": "0.2.2",
     "foundation": "~5.5.0",

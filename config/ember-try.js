@@ -4,7 +4,18 @@ module.exports = {
     {
       name: 'default',
       bower: {
-        dependencies: {}
+        dependencies: { }
+      }
+    },
+    {
+      name: 'ember-1-13',
+      bower: {
+        dependencies: {
+          'ember': '~1.13.0'
+        },
+        resolutions: {
+          'ember': '~1.13.0'
+        }
       }
     },
     {
@@ -37,17 +48,6 @@ module.exports = {
         },
         resolutions: {
           'ember': 'canary'
-        }
-      }
-    },
-    {
-      name: 'ember-1.13',
-      bower: {
-        dependencies: {
-          'ember': 'components/ember#1.13'
-        },
-        resolutions: {
-          'ember': '1.13'
         }
       }
     }
