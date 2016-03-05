@@ -33,7 +33,8 @@
     "tether-shepherd": "~1.5.0"
   },
   "devDependencies": {
-    "jquery-disablescroll": "ultrapasty/jquery-disablescroll"
+    "jquery-disablescroll": "ultrapasty/jquery-disablescroll",
+    "blanket": "5e94fc30f2e694bb5c3718ddcbf60d467f4b4d26"
   },
   "keywords": [
     "tour",
