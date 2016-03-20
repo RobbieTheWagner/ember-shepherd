@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { Evented, Service, isPresent, run, $, isEmpty, observer } = Ember;
+const {A, Evented, K, Service, isPresent, run, $, isEmpty, observer} = Ember;
 /**
  * Taken from introjs https://github.com/usablica/intro.js/blob/master/intro.js#L1092-1124
  * Get an element position on the page
@@ -36,8 +36,8 @@ export default Service.extend(Evented, {
   isActive: false,
   messageForUser: null,
   modal: false,
-  requiredElements: Ember.A(),
-  steps: Ember.A(),
+  requiredElements: A(),
+  steps: A(),
 
   start() {
     this.set('isActive', true);
@@ -232,7 +232,7 @@ export default Service.extend(Evented, {
         this.next();
       });
     } else {
-      action = action || Ember.K;
+      action = action || K;
     }
     return {action, classes, text};
   },
@@ -364,7 +364,7 @@ export default Service.extend(Evented, {
 
     });
     if (this.get('autoStart')) {
-      Ember.run.later(()=> {
+      run.later(()=> {
         this.start();
       });
     }
