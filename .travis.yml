@@ -1,7 +1,7 @@
 ---
 language: node_js
 node_js:
-- "5.7.1"
+  - "4"
 
 sudo: true
 dist: trusty
@@ -27,16 +27,18 @@ before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - export PATH=/usr/local/phantomjs-2.0.0/bin:$PATH
-  - "npm config set spin false"
-  - "npm install -g npm@^3"
+  - npm config set spin false
+  - npm install -g bower
+  - npm install phantomjs-prebuilt
 
 install:
-  - npm install -g bower
   - npm install
   - bower install
 
 script:
-  - ember try $EMBER_TRY_SCENARIO test
+  # Usually, it's ok to finish the test scenario without reverting
+  #  to the addon's original dependency state, skipping "cleanup".
+  - ember try $EMBER_TRY_SCENARIO test --skip-cleanup
 
 after_script:
   - codeclimate-test-reporter < lcov.dat
