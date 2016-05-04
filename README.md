@@ -155,13 +155,13 @@ this.get('tour').set('steps', [
       scrollTo: false,
       showCancelLink: true,
       title: 'Welcome to Ember-Shepherd!',
-      text: ['Ember-Shepherd is a javascript library for guiding users through your Ember app.']
+      text: ['Ember-Shepherd is a javascript library for guiding users through your Ember app.'],
       when: {
         show: () => {
           console.log('show step');
         },
         hide: () => {
-          console.log('hide step')
+          console.log('hide step');
         }
       }
     }
