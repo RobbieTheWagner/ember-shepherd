@@ -1,29 +1,26 @@
-import Ember from "ember";
 import $ from 'jquery';
-import { module, test } from 'qunit';
-import startApp from '../helpers/start-app';
+import {test} from 'qunit';
+import moduleForAcceptance from '../helpers/module-for-acceptance';
 
-var App, container;
+let container, service;
 
 function patchClick(sel, container) {
   find(sel, container)[0].click();
 }
 
-module('Tour functionality tests', {
+moduleForAcceptance('Tour functionality tests', {
   beforeEach: function () {
-    App = startApp();
-    container = App.__container__;
-    container.lookup('route:application').set('initialModalValue', false);
+    container = this.application.__container__;
+    service = container.lookup('service:tour');
+    service.set('modal', false);
   },
   afterEach: function () {
     //Remove all Shepherd stuff, to start fresh each time.
     find('.shepherd-active', 'body').removeClass('shepherd-active');
     find('[class^=shepherd]', 'body').remove();
-    find('#shepherdOverlay', 'body').remove();
-    Ember.run(App, App.destroy);
+    service.cleanup();
   }
 });
-
 
 test("Modal page contents", function (assert) {
   assert.expect(3);
@@ -39,6 +36,9 @@ test("Modal page contents", function (assert) {
 
 test("Non-modal page contents", function (assert) {
   assert.expect(3);
+  container.lookup('route:application').set('initialModalValue', false);
+  service.set('modal', false);
+  service.set('autoStart', false);
   visit('/');
   click(':contains(Non-modal)');
   andThen(function () {
@@ -50,6 +50,7 @@ test("Non-modal page contents", function (assert) {
 
 test("Tour next, back, and cancel builtInButtons work", function (assert) {
   assert.expect(3);
+  service.set('autoStart', false);
   visit('/');
   click(':contains(Modal Demo)');
   andThen(function () {
@@ -175,7 +176,7 @@ test('configuration works with attachTo object when element is a simple string',
       text: ['Testing highlight']
     }
   }];
-  container.lookup('route:application').set('initialSteps', steps);
+  service.set('steps', steps);
 
   visit('/');
   click(':contains(Modal Demo)');
@@ -214,7 +215,7 @@ test('configuration works with attachTo object when element is dom element', fun
       text: ['Testing highlight']
     }
   }];
-  container.lookup('route:application').set('initialSteps', steps);
+  service.set('steps', steps);
 
   visit('/');
   click(':contains(Modal Demo)');
@@ -312,9 +313,9 @@ test("`pointer-events` is set to `auto` for any step element on clean up", funct
 test("scrollTo works with disableScroll on", (assert) => {
   assert.expect(2);
   // Setup controller tour settings
-  container.lookup('route:application').set('autoStart', false);
-  container.lookup('route:application').set('disableScroll', true);
-  container.lookup('route:application').set('scrollTo', true);
+  service.set('autoStart', false);
+  service.set('disableScroll', true);
+  service.set('scrollTo', true);
 
   // Visit route
   visit('/');

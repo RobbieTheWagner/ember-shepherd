@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import { moduleFor, test } from 'ember-qunit';
+import {moduleFor, test} from 'ember-qunit';
 
-const { run } = Ember;
+const {run} = Ember;
 
 const steps = [
   {
@@ -33,8 +33,7 @@ moduleFor('service:tour', 'Unit | Service | tour', {
   // needs: ['service:foo']
 });
 
-// Replace this with your real tests.
-test('it starts the tour when the `start` event is triggered', function(assert) {
+test('it starts the tour when the `start` event is triggered', function (assert) {
   assert.expect(1);
 
   var mockTourObject = Ember.Object.extend({
@@ -43,29 +42,30 @@ test('it starts the tour when the `start` event is triggered', function(assert) 
     }
   }).create();
 
-  var service = this.subject({ steps });
+  var service = this.subject({steps});
   service.set('tourObject', mockTourObject);
 
-  run(function() {
+  run(function () {
     service.start();
   });
 });
 
-test('it allows another object to bind to events', function(assert) {
- assert.expect(1);
+test('it allows another object to bind to events', function (assert) {
+  assert.expect(1);
 
- var mockTourObject = Ember.Object.extend({
-   next() {}
- }).create();
+  var mockTourObject = Ember.Object.extend({
+    next() {
+    }
+  }).create();
 
- var service = this.subject({ steps });
- service.set('tourObject', mockTourObject);
+  var service = this.subject({steps});
+  service.set('tourObject', mockTourObject);
 
- service.on('next', function() {
-   assert.ok(true);
- });
+  service.on('next', function () {
+    assert.ok(true);
+  });
 
- run(function() {
-   service.next();
- });
+  run(function () {
+    service.next();
+  });
 });
