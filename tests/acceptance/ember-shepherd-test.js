@@ -313,17 +313,20 @@ test("`pointer-events` is set to `auto` for any step element on clean up", funct
 test("scrollTo works with disableScroll on", (assert) => {
   assert.expect(2);
   // Setup controller tour settings
-  service.set('autoStart', false);
-  service.set('disableScroll', true);
+  container.lookup('route:application').set('disableScroll', true);
   service.set('scrollTo', true);
 
   // Visit route
   visit('/');
+  assert.equal($(window).scrollTop(), 0, 'Scroll is initially 0');
+  andThen(()=> {
 
-  assert.equal($('#ember-testing-container')[0].scrollTop, 0, 'Scroll is initially 0');
-  click(':contains(Modal Demo)');
-
-  andThen(() => {
-    assert.ok($('#ember-testing-container')[0].scrollTop > 0, 'Scrolled down correctly');
+    patchClick('.shepherd-content a:contains(Next)', 'body');
+    andThen(()=> {
+      patchClick('.shepherd-content a:contains(Next)', 'body');
+    });
+    andThen(()=> {
+      assert.ok($(window).scrollTop() > 0, 'Scrolled down correctly');
+    });
   });
 });
