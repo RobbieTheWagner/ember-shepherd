@@ -318,6 +318,7 @@ test("scrollTo works with disableScroll on", (assert) => {
 
   // Visit route
   visit('/');
+  $(window).scrollTop(0);
   assert.equal($(window).scrollTop(), 0, 'Scroll is initially 0');
   andThen(()=> {
 
