@@ -4,13 +4,8 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'dummy',
     environment: environment,
-    baseURL: '/',
+    rootURL: '/',
     locationType: 'auto',
-    contentSecurityPolicy: {
-      'font-src': "'self' http://fonts.gstatic.com https://fonts.gstatic.com http://hello.myfonts.net",
-      'script-src': "'self' 'unsafe-inline'",
-      'style-src': "'self' 'unsafe-inline' http://hello.myfonts.net https://fonts.googleapis.com"
-    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -34,7 +29,6 @@ module.exports = function(environment) {
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.baseURL = '/';
     ENV.locationType = 'none';
 
     // keep test console output quieter
@@ -45,7 +39,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.baseURL = '/ember-shepherd';
+
   }
 
   return ENV;

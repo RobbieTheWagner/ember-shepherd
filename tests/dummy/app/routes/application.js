@@ -1,6 +1,7 @@
 import Ember from 'ember';
+const {Logger, Route} = Ember;
 
-export default Ember.Route.extend({
+export default Route.extend({
   initialModalValue: true,
   tour: Ember.inject.service(),
   disableScroll: true,
@@ -251,7 +252,7 @@ export default Ember.Route.extend({
     tour.set('modal', this.get('initialModalValue'));
 
     tour.on('cancel', () => {
-      console.log('cancel');
+      Logger.log('cancel');
     });
   }
 });
