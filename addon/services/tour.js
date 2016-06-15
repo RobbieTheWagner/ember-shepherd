@@ -120,16 +120,18 @@ export default Service.extend(Evented, {
     if (currentElement) {
       const elementPosition = getElementPosition(currentElement);
       const highlightElement = $(currentElement).clone();
+
       highlightElement.attr('id', 'highlightOverlay');
       $('body').append(highlightElement);
-      highlightElement[0].style.cssText = window.getComputedStyle(currentElement).cssText;
-      //Style all internal elements as well
+
+      this.setComputedStylesOnClonedElement(currentElement, highlightElement);
+
+      // Style all internal elements as well
       const children = $(currentElement).children();
       const clonedChildren = highlightElement.children();
 
       for (let i = 0; i < children.length; i++) {
-        clonedChildren[i].style.cssText =
-          window.getComputedStyle(children[i]).cssText;
+        this.setComputedStylesOnClonedElement(children[0], clonedChildren);
       }
 
       highlightElement.css({
@@ -140,6 +142,23 @@ export default Service.extend(Evented, {
         'height': elementPosition.height,
         'z-index': 10002
       });
+    }
+  },
+
+  /**
+   * Set computed styles on the cloned element
+   *
+   * @method setComputedStylesOnClonedElement
+   * @param element element we want to copy
+   * @param clonedElement cloned element above the overlay
+   * @private
+   */
+  setComputedStylesOnClonedElement(element, clonedElement) {
+    const computedStyle = window.getComputedStyle(element, null);
+
+    for (let i = 0; i < computedStyle.length; i++) {
+      const propertyName = computedStyle[i];
+      clonedElement[0].style[propertyName] = computedStyle.getPropertyValue(propertyName);
     }
   },
 
