@@ -12,21 +12,25 @@ moduleForAcceptance('Tour functionality tests', {
   beforeEach: function () {
     container = this.application.__container__;
     service = container.lookup('service:tour');
+    container.lookup('route:application').set('autoStart', false);
+    container.lookup('route:application').set('initialModalValue', false);
+    service.set('autoStart', false);
     service.set('modal', false);
   },
   afterEach: function () {
     //Remove all Shepherd stuff, to start fresh each time.
     find('.shepherd-active', 'body').removeClass('shepherd-active');
     find('[class^=shepherd]', 'body').remove();
+    find('[id^=shepherd]', 'body').remove();
     service.cleanup();
   }
 });
 
 test("Modal page contents", function (assert) {
   assert.expect(3);
-  visit('/');
 
-  click(':contains(Modal Demo)');
+  visit('/');
+  click('.toggleHelpModal');
   andThen(function () {
     assert.equal(find('.shepherd-active', 'html').length, 1, "Body gets class of shepherd-active, when shepherd becomes active");
     assert.equal(find('.shepherd-enabled', 'body').length, 2, "attachTo element and tour have shepherd-enabled class");
@@ -36,12 +40,10 @@ test("Modal page contents", function (assert) {
 
 test("Non-modal page contents", function (assert) {
   assert.expect(3);
-  container.lookup('route:application').set('initialModalValue', false);
-  service.set('modal', false);
-  service.set('autoStart', false);
+
   visit('/');
-  click(':contains(Non-modal)');
-  andThen(function () {
+  click('.toggleHelpNonmodal');
+  andThen(() => {
     assert.equal(find('body.shepherd-active', 'html').length, 1, "Body gets class of shepherd-active, when shepherd becomes active");
     assert.equal(find('.shepherd-enabled', 'body').length, 2, "attachTo element and tour get shepherd-enabled class");
     assert.equal(find('#shepherdOverlay', 'body').length, 0, "#shepherdOverlay should not exist, since non-modal");
@@ -50,9 +52,9 @@ test("Non-modal page contents", function (assert) {
 
 test("Tour next, back, and cancel builtInButtons work", function (assert) {
   assert.expect(3);
-  service.set('autoStart', false);
+
   visit('/');
-  click(':contains(Modal Demo)');
+  click('.toggleHelpModal');
   andThen(function () {
     patchClick('.shepherd-content a:contains(Next)', 'body');
     assert.equal(find('.back-button', '.shepherd-enabled', 'body').length, 1, "Ensure that the back button appears");
@@ -93,7 +95,7 @@ test("Highlight applied", function (assert) {
   container.lookup('route:application').set('initialSteps', steps);
 
   visit('/');
-  click(':contains(Modal Demo)');
+  click('.toggleHelpModal');
 
   andThen(function () {
     assert.equal(find('.highlight', 'body').length, 1, "currentElement highlighted");
@@ -138,7 +140,7 @@ test("Defaults applied", function (assert) {
   container.lookup('route:application').set('initialSteps', steps);
 
   visit('/');
-  click(':contains(Modal Demo)');
+  click('.toggleHelpModal');
 
   andThen(function () {
     assert.equal(find('.test-defaults', 'body').length, 1, "defaults class applied");
@@ -179,7 +181,7 @@ test('configuration works with attachTo object when element is a simple string',
   service.set('steps', steps);
 
   visit('/');
-  click(':contains(Modal Demo)');
+  click('.toggleHelpModal');
   andThen(function () {
     assert.ok(find('.shepherd-step', 'body').length, "tour is visible");
   });
@@ -218,7 +220,7 @@ test('configuration works with attachTo object when element is dom element', fun
   service.set('steps', steps);
 
   visit('/');
-  click(':contains(Modal Demo)');
+  click('.toggleHelpModal');
   andThen(function () {
     assert.ok(find('.shepherd-step', 'body').length, "tour is visible");
   });
@@ -264,7 +266,7 @@ test('buttons work when type is not specified and passed action is triggered', f
   container.lookup('route:application').set('initialSteps', steps);
 
   visit('/');
-  click(':contains(Modal Demo)');
+  click('.toggleHelpModal');
   andThen(function () {
     assert.ok(find('.button-one', 'body').length, "tour button one is visible");
     assert.ok(find('.button-two', 'body').length, "tour button two is visible");
@@ -282,8 +284,7 @@ test("`pointer-events` is set to `auto` for any step element on clean up", funct
   assert.expect(4);
   visit('/');
 
-  click(':contains(Modal Demo)');
-
+  click('.toggleHelpModal');
 
   // Go through a step of the tour...
   andThen(() => {
@@ -320,8 +321,10 @@ test("scrollTo works with disableScroll on", (assert) => {
   visit('/');
   $(window).scrollTop(0);
   assert.equal($(window).scrollTop(), 0, 'Scroll is initially 0');
-  andThen(()=> {
 
+  click('.toggleHelpModal');
+  
+  andThen(()=> {
     patchClick('.shepherd-content a:contains(Next)', 'body');
     andThen(()=> {
       patchClick('.shepherd-content a:contains(Next)', 'body');
