@@ -1,6 +1,6 @@
 {
   "name": "ember-shepherd",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "An Ember wrapper for the site tour library Shepherd.",
   "homepage": "http://shipshapecode.github.io/ember-shepherd/",
   "directories": {
