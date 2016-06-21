@@ -1,5 +1,9 @@
 We will list changes, especially breaking changes, between versions here.
 
+###**2.0.9**
+* Merged https://github.com/shipshapecode/ember-shepherd/pull/45 which enabled recalculating of the positioning of the `highlightElement`, created by `copyStyles`.
+* Merged https://github.com/shipshapecode/ember-shepherd/pull/46 which replaced the use of `.cssText` with some more cross browser friendly methods.
+
 ###**2.0.5**
 * Merged https://github.com/rwwagner90/ember-shepherd/pull/37 which added support for `scrollTo:true` and `disableScroll:true`, so the elements will still scroll into view, but the user is not able to manually scroll.
 * Update Ember-CLI to version 2.3.0-beta.2 and run ember init for other necessary changes
