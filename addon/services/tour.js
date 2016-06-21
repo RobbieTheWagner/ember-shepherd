@@ -118,7 +118,6 @@ export default Service.extend(Evented, {
     $('#highlightOverlay').remove();
     const currentElement = this.getElementForStep(step);
     if (currentElement) {
-      const elementPosition = getElementPosition(currentElement);
       const highlightElement = $(currentElement).clone();
 
       highlightElement.attr('id', 'highlightOverlay');
@@ -134,13 +133,10 @@ export default Service.extend(Evented, {
         this.setComputedStylesOnClonedElement(children[0], clonedChildren);
       }
 
-      highlightElement.css({
-        'position': 'absolute',
-        'left': elementPosition.left,
-        'top': elementPosition.top,
-        'width': elementPosition.width,
-        'height': elementPosition.height,
-        'z-index': 10002
+      this.setPositionForHighlightElement({currentElement, highlightElement});
+
+      Ember.$(window).on('resize', () => {
+        run.debounce(this, 'setPositionForHighlightElement', {currentElement, highlightElement}, 50);
       });
     }
   },
@@ -307,6 +303,26 @@ export default Service.extend(Evented, {
       });
     }
     return allElementsPresent;
+  },
+
+  /**
+   * Set position of the highlighted element
+   *
+   * @param currentElement The element that belongs to the step
+   * @param highlightElement The cloned element that is above the overlay
+   * @private
+   */
+  setPositionForHighlightElement({currentElement, highlightElement}) {
+    const elementPosition = getElementPosition(currentElement);
+
+    highlightElement.css({
+      'position': 'absolute',
+      'left': elementPosition.left,
+      'top': elementPosition.top,
+      'width': elementPosition.width,
+      'height': elementPosition.height,
+      'z-index': 10002
+    });
   },
 
   /**
