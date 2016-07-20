@@ -1,45 +1,11 @@
 {
   "name": "ember-shepherd",
-  "description": "An Ember wrapper for the site tour library Shepherd.",
-  "homepage": "http://shipshapecode.github.io/ember-shepherd/",
-  "authors": [
-    {
-      "name": "Robert Wagner",
-      "email": "rwwagner90@gmail.com",
-      "homepage": "https://github.com/rwwagner90"
-    },
-    {
-      "name": "Alex LaFroscia",
-      "email": "alex@lafroscia.com",
-      "homepage": "https://github.com/alexlafroscia"
-    },
-    {
-      "name": "bek",
-      "email": "bekzod@me.com",
-      "homepage": "https://github.com/bekzod"
-    },
-    {
-      "name": "Craig Sketchley",
-      "email": "craigsketchley@gmail.com",
-      "homepage": "https://github.com/craigsketchley"
-    }
-  ],
   "dependencies": {
-    "ember": "~2.7.0-beta.1",
+    "ember": "~2.7.0-beta.4",
     "ember-cli-shims": "0.1.1",
+    "ember-qunit-notifications": "0.1.0",
     "foundation": "~5.5.0",
     "prism": "gh-pages",
     "tether-shepherd": "~1.5.0"
-  },
-  "devDependencies": {
-    "jquery-disablescroll": "ultrapasty/jquery-disablescroll"
-  },
-  "keywords": [
-    "tour",
-    "shepherd",
-    "tether"
-  ],
-  "resolutions": {
-    "ember-qunit-notifications": "0.1.0"
   }
 }
