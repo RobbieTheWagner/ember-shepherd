@@ -1,6 +1,6 @@
 {
   "name": "ember-shepherd",
-  "version": "2.0.9",
+  "version": "2.1.0",
   "description": "An Ember wrapper for the site tour library Shepherd.",
   "homepage": "http://shipshapecode.github.io/ember-shepherd/",
   "directories": {
@@ -21,19 +21,23 @@
     "email": "rwwagner90@gmail.com",
     "url": "https://github.com/rwwagner90"
   },
-  "contributors": [{
-    "name": "Alex LaFroscia",
-    "email": "alex@lafroscia.com",
-    "url": "https://github.com/alexlafroscia"
-  }, {
-    "name": "bek",
-    "email": "bekzod@me.com",
-    "url": "https://github.com/bekzod"
-  }, {
-    "name": "Craig Sketchley",
-    "email": "craigsketchley@gmail.com",
-    "url": "https://github.com/craigsketchley"
-  }],
+  "contributors": [
+    {
+      "name": "Alex LaFroscia",
+      "email": "alex@lafroscia.com",
+      "url": "https://github.com/alexlafroscia"
+    },
+    {
+      "name": "bek",
+      "email": "bekzod@me.com",
+      "url": "https://github.com/bekzod"
+    },
+    {
+      "name": "Craig Sketchley",
+      "email": "craigsketchley@gmail.com",
+      "url": "https://github.com/craigsketchley"
+    }
+  ],
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
