@@ -21,19 +21,23 @@
     "email": "rwwagner90@gmail.com",
     "url": "https://github.com/rwwagner90"
   },
-  "contributors": [{
-    "name": "Alex LaFroscia",
-    "email": "alex@lafroscia.com",
-    "url": "https://github.com/alexlafroscia"
-  }, {
-    "name": "bek",
-    "email": "bekzod@me.com",
-    "url": "https://github.com/bekzod"
-  }, {
-    "name": "Craig Sketchley",
-    "email": "craigsketchley@gmail.com",
-    "url": "https://github.com/craigsketchley"
-  }],
+  "contributors": [
+    {
+      "name": "Alex LaFroscia",
+      "email": "alex@lafroscia.com",
+      "url": "https://github.com/alexlafroscia"
+    },
+    {
+      "name": "bek",
+      "email": "bekzod@me.com",
+      "url": "https://github.com/bekzod"
+    },
+    {
+      "name": "Craig Sketchley",
+      "email": "craigsketchley@gmail.com",
+      "url": "https://github.com/craigsketchley"
+    }
+  ],
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
@@ -59,6 +63,7 @@
     "ember-getowner-polyfill": "1.0.1",
     "ember-load-initializers": "^0.5.1",
     "ember-resolver": "^2.0.3",
+    "eslint-plugin-ember-suave": "^0.1.0",
     "loader.js": "^4.0.1"
   },
   "keywords": [

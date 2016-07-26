@@ -2,32 +2,23 @@
 @import "./settings";
 @import "./foundation";
 @import url("//hello.myfonts.net/count/3045c9");
-
 @font-face {
   font-family: 'ThirstySoftLight';
   src: url('webfonts/3045C9_0_0.eot');
   src: url('webfonts/3045C9_0_0.eot?#iefix') format('embedded-opentype'), url('webfonts/3045C9_0_0.woff2') format('woff2'), url('webfonts/3045C9_0_0.woff') format('woff'), url('webfonts/3045C9_0_0.ttf') format('truetype');
 }
-
 @font-face {
   font-family: 'ThirstySoftRegular';
   src: url('webfonts/3045C9_1_0.eot');
   src: url('webfonts/3045C9_1_0.eot?#iefix') format('embedded-opentype'), url('webfonts/3045C9_1_0.woff2') format('woff2'), url('webfonts/3045C9_1_0.woff') format('woff'), url('webfonts/3045C9_1_0.ttf') format('truetype');
 }
-
 @font-face {
   font-family: 'Roboto Condensed';
   font-style: normal;
   font-weight: 400;
-  src: local('Roboto Condensed'), local('RobotoCondensed-Regular'), url(http://fonts.gstatic.com/s/robotocondensed/v13/Zd2E9abXLFGSr9G3YK2MsMEHkXu385rSv8spHqOuvSI.ttf) format('truetype');
+  src: local('Roboto Condensed'), local('RobotoCondensed-Regular'), url('http://fonts.gstatic.com/s/robotocondensed/v13/Zd2E9abXLFGSr9G3YK2MsMEHkXu385rSv8spHqOuvSI.ttf') format('truetype');
 }
-
-@font-face {
-  font-family: 'Lobster Two';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Lobster Two'), local('LobsterTwo'), url(http://fonts.gstatic.com/s/lobstertwo/v7/Law3VVulBOoxyKPkrNsAaCwlidHJgAgmTjOEEzwu1L8.ttf) format('truetype');
-}
+@import url(https://fonts.googleapis.com/css?family=Signika|Pacifico);
 
 $background1: #323040;
 $background2: #2E2859;
@@ -35,19 +26,25 @@ $lightColor: #AAA3D9;
 $altLightColor: #6E698C;
 $whiteish: #C8C7D5;
 
-html, body {
+body,
+html {
   height: 100%;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: $whiteish;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 body {
   margin: 0;
   background-color: $background1;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 a {
@@ -81,7 +78,6 @@ a {
   background: $lightColor;
   color: #75beaa;
 }
-
 @media (max-width: 568px) {
   .button {
     display: block;
@@ -115,7 +111,12 @@ a {
       header {
         background-color: $whiteish;
         color: $background1;
-        h1, h2, h3, h4, h5, h6 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
           color: $background1;
         }
       }
@@ -154,4 +155,7 @@ pre {
   color: $lightColor;
   font-family: 'ThirstySoftRegular', cursive;
   font-size: 50pt;
+  .ember-title {
+    font-family: 'Pacifico';
+  }
 }

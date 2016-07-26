@@ -1,7 +1,8 @@
 import Ember from 'ember';
+const {Controller, inject} = Ember;
 
-export default Ember.Controller.extend({
-  tour: Ember.inject.service(),
+export default Controller.extend({
+  tour: inject.service(),
 
   actions: {
     toggleHelpModal() {
