@@ -1,5 +1,3 @@
 module.exports = {
-  env: {
-    'embertest': true
-  }
+  extends: '../node_modules/ember-cli-eslint/coding-standard/ember-testing.js'
 };
