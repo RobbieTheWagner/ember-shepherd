@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import { moduleFor, test } from 'ember-qunit';
 
-const {Object: EmberObject, run} = Ember;
+const { Object: EmberObject, run } = Ember;
 
 const steps = [
   {
@@ -23,7 +23,7 @@ const steps = [
       classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
       copyStyles: false,
       title: 'Welcome to Ember-Shepherd!',
-      text: [ 'Test text' ]
+      text: ['Test text']
     }
   }
 ];

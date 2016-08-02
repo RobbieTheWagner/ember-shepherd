@@ -1,5 +1,5 @@
 import Ember from 'ember';
-const {inject, Logger, Route} = Ember;
+const { inject, Logger, Route } = Ember;
 
 export default Route.extend({
   initialModalValue: true,
@@ -64,7 +64,7 @@ export default Route.extend({
         ],
         classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
         copyStyles: false,
-        text: [ 'Installation is simple, if you are using Ember-CLI, just install like any other addon.' ]
+        text: ['Installation is simple, if you are using Ember-CLI, just install like any other addon.']
       }
     },
     {
@@ -90,7 +90,7 @@ export default Route.extend({
         ],
         classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
         copyStyles: false,
-        text: [ 'To use the tour service, simply inject it into your application and use it like this example.' ]
+        text: ['To use the tour service, simply inject it into your application and use it like this example.']
       }
     },
     {
@@ -215,7 +215,7 @@ export default Route.extend({
           `When navigating the user through a tour, you may want to disable scrolling, so they
           cannot mess up your carefully planned out, amazing tour. This is now easily achieved
           with this.get('tour').set('disableScroll', true).`,
-          'Try scrolling right now, then exit the tour and see that you can again!' ]
+          'Try scrolling right now, then exit the tour and see that you can again!']
       }
     },
     {
@@ -235,10 +235,9 @@ export default Route.extend({
         ],
         classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
         copyStyles: false,
-        text: [ 'If no attachTo is specified, the modal will appear in the center of the screen, as per the Shepherd docs.' ]
+        text: ['If no attachTo is specified, the modal will appear in the center of the screen, as per the Shepherd docs.']
       }
-    } ],
-
+    }],
 
   setupController() {
     let tour = this.get('tour');

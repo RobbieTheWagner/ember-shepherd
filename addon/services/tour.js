@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const {Evented, K, Service, isPresent, run, $, isEmpty, observer} = Ember;
+const { Evented, K, Service, isPresent, run, $, isEmpty, observer } = Ember;
 
 /**
  * Taken from introjs https://github.com/usablica/intro.js/blob/master/intro.js#L1092-1124
@@ -28,7 +28,6 @@ function getElementPosition(element) {
   elementPosition.left = x;
   return elementPosition;
 }
-
 
 export default Service.extend(Evented, {
   // Configuration Options
@@ -99,7 +98,7 @@ export default Service.extend(Evented, {
       let tour = this.get('tourObject');
 
       if (tour) {
-        let steps = tour.steps;
+        let { steps } = tour;
 
         steps.map((step) => {
           let stepElement = this.getElementForStep(step);
@@ -184,7 +183,7 @@ export default Service.extend(Evented, {
    * @private
    */
   getElementForStep(step) {
-    let attachTo = step.options.attachTo;
+    let { options: { attachTo } } = step;
 
     if (!attachTo) {
       return null;
@@ -258,7 +257,7 @@ export default Service.extend(Evented, {
    * @returns {{action: *, classes: *, text: *}}
    * @private
    */
-  makeButton({type, classes, text, action}) {
+  makeButton({ type, classes, text, action }) {
     if (type === 'cancel') {
       action = run.bind(this, function() {
         this.cancel();
@@ -344,7 +343,7 @@ export default Service.extend(Evented, {
    * @param highlightElement The cloned element that is above the overlay
    * @private
    */
-  setPositionForHighlightElement({currentElement, highlightElement}) {
+  setPositionForHighlightElement({ currentElement, highlightElement }) {
     let elementPosition = getElementPosition(currentElement);
 
     highlightElement.css({
@@ -373,20 +372,20 @@ export default Service.extend(Evented, {
     }
     if (!this.requiredElementsPresent()) {
       tour.addStep('error', {
-        buttons: [ {
+        buttons: [{
           text: 'Exit',
           action: tour.cancel
-        } ],
+        }],
         classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
         copyStyles: false,
         title: this.get('errorTitle'),
-        text: [ this.get('messageForUser') ]
+        text: [this.get('messageForUser')]
       });
       return;
     }
 
     steps.forEach((step, index) => {
-      let {id, options} = step;
+      let { id, options } = step;
 
       options.buttons = options.builtInButtons.map(this.makeButton, this);
       options.attachTo = this.normalizeAttachTo(options.attachTo);

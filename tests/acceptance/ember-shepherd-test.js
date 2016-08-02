@@ -69,7 +69,7 @@ test('Tour next, back, and cancel builtInButtons work', function(assert) {
 test('Highlight applied', function(assert) {
   assert.expect(2);
 
-  let steps = [ {
+  let steps = [{
     id: 'test-highlight',
     options: {
       attachTo: '.first-element bottom',
@@ -89,9 +89,9 @@ test('Highlight applied', function(assert) {
       copyStyles: false,
       highlightClass: 'highlight',
       title: 'Welcome to Ember-Shepherd!',
-      text: [ 'Testing highlight' ]
+      text: ['Testing highlight']
     }
-  } ];
+  }];
 
   container.lookup('route:application').set('initialSteps', steps);
 
@@ -114,7 +114,7 @@ test('Defaults applied', function(assert) {
     showCancelLink: true
   };
 
-  let steps = [ {
+  let steps = [{
     id: 'test-defaults-classes',
     options: {
       attachTo: '.first-element bottom',
@@ -133,9 +133,9 @@ test('Defaults applied', function(assert) {
       copyStyles: false,
       highlightClass: 'highlight',
       title: 'Welcome to Ember-Shepherd!',
-      text: [ 'Testing defaults' ]
+      text: ['Testing defaults']
     }
-  } ];
+  }];
 
   container.lookup('route:application').set('defaults', defaults);
   container.lookup('route:application').set('initialSteps', steps);
@@ -153,7 +153,7 @@ test('configuration works with attachTo object when element is a simple string',
   assert.expect(1);
 
   // Override default behavior
-  let steps = [ {
+  let steps = [{
     id: 'test-highlight',
     options: {
       attachTo: {
@@ -176,9 +176,9 @@ test('configuration works with attachTo object when element is a simple string',
       copyStyles: false,
       highlightClass: 'highlight',
       title: 'Welcome to Ember-Shepherd!',
-      text: [ 'Testing highlight' ]
+      text: ['Testing highlight']
     }
-  } ];
+  }];
 
   service.set('steps', steps);
 
@@ -193,7 +193,7 @@ test('configuration works with attachTo object when element is dom element', fun
   assert.expect(1);
 
   // Override default behavior
-  let steps = [ {
+  let steps = [{
     id: 'test-highlight',
     options: {
       attachTo: {
@@ -216,9 +216,9 @@ test('configuration works with attachTo object when element is dom element', fun
       copyStyles: false,
       highlightClass: 'highlight',
       title: 'Welcome to Ember-Shepherd!',
-      text: [ 'Testing highlight' ]
+      text: ['Testing highlight']
     }
-  } ];
+  }];
 
   service.set('steps', steps);
 
@@ -229,12 +229,11 @@ test('configuration works with attachTo object when element is dom element', fun
   });
 });
 
-
 test('buttons work when type is not specified and passed action is triggered', function(assert) {
   assert.expect(4);
   let buttonActionCalled = false;
 
-  let steps = [ {
+  let steps = [{
     id: 'test-highlight',
     options: {
       attachTo: {
@@ -262,9 +261,9 @@ test('buttons work when type is not specified and passed action is triggered', f
       copyStyles: false,
       highlightClass: 'highlight',
       title: 'Welcome to Ember-Shepherd!',
-      text: [ 'Testing highlight' ]
+      text: ['Testing highlight']
     }
-  } ];
+  }];
 
   container.lookup('route:application').set('initialSteps', steps);
 
