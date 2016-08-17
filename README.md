@@ -51,15 +51,25 @@ The following configuration options can be `set` on the Tour service to control 
 
 ### autoStart
 
-`autoStart` is a boolean flag you can set to `true` or `false` to go ahead and automatically 
+`autoStart` is a boolean flag you can set to `true` or `false` to go ahead and automatically
 start the tour after you have added steps to the tour.
 
 > **default value:** `false`
 
+### confirmCancel
+
+`confirmCancel` is a boolean flag, when set to `true` it will pop up a native browser
+confirm window on cancel, to ensure you want to cancel.
+
+### confirmCancelMessage
+
+`confirmCancelMessage` is a string to display in the confirm dialog when `confirmCancel`
+is set to true.
+
 ### defaults
 
-`defaults` is used to set the options that will be applied to each step by default. 
-You can pass in any of the options that you can with Shepherd. 
+`defaults` is used to set the options that will be applied to each step by default.
+You can pass in any of the options that you can with Shepherd.
 
 ## You must set defaults *BEFORE* setting steps
 

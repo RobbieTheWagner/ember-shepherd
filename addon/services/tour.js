@@ -32,6 +32,8 @@ function getElementPosition(element) {
 export default Service.extend(Evented, {
   // Configuration Options
   autoStart: false,
+  confirmCancel: false,
+  confirmCancelMessage: null,
   defaults: {},
   disableScroll: false,
   errorTitle: null,
@@ -56,7 +58,15 @@ export default Service.extend(Evented, {
   },
 
   cancel() {
-    this.get('tourObject').cancel();
+    if (!this.get('confirmCancel')) {
+      this.get('tourObject').cancel();
+    } else {
+      let cancelMessage = this.get('confirmCancelMessage')
+        || 'Are you sure you want to stop the tour?';
+      if (confirm(cancelMessage)) {
+        this.get('tourObject').cancel();
+      }
+    }
   },
 
   next() {
