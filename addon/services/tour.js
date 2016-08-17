@@ -41,6 +41,9 @@ export default Service.extend(Evented, {
   requiredElements: [],
   steps: [],
 
+  confirmCancel: false,
+  confirmCancelMessage: null,
+
   start() {
     this.set('isActive', true);
     this.get('tourObject').start();
@@ -240,6 +243,21 @@ export default Service.extend(Evented, {
     let tourObject = new Shepherd.Tour({
       defaults
     });
+
+    if (this.get('confirmCancel')) {
+      let basicCancel = tourObject.cancel;
+      let cancelMessage = this.get('confirmCancelMessage');
+      cancelMessage = cancelMessage || 'Are you sure you want to stop the tour?';
+
+      let newCancel = function() {
+        let stopTour = confirm(cancelMessage);
+        if (stopTour) {
+          basicCancel();
+        }
+      };
+
+      tourObject.cancel = newCancel;
+    }
 
     tourObject.on('start', run.bind(this, 'onTourStart'));
     tourObject.on('complete', run.bind(this, 'onTourComplete'));
