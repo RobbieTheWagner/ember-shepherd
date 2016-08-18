@@ -1,5 +1,8 @@
 We will list changes, especially breaking changes, between versions here.
 
+###**2.2.0**
+* Added `confirmCancel` and `confirmCancelMessage` which use native dialogs to confirm you want to exit the tour. Thanks to @djsegal for this feature!
+
 ###**2.0.9**
 * Merged https://github.com/shipshapecode/ember-shepherd/pull/45 which enabled recalculating of the positioning of the `highlightElement`, created by `copyStyles`.
 * Merged https://github.com/shipshapecode/ember-shepherd/pull/46 which replaced the use of `.cssText` with some more cross browser friendly methods.
