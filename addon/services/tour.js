@@ -1,5 +1,4 @@
 import Ember from 'ember';
-
 const { Evented, K, Service, isPresent, run, $, isEmpty, observer } = Ember;
 
 /**
@@ -58,15 +57,7 @@ export default Service.extend(Evented, {
   },
 
   cancel() {
-    if (!this.get('confirmCancel')) {
-      this.get('tourObject').cancel();
-    } else {
-      let cancelMessage = this.get('confirmCancelMessage')
-        || 'Are you sure you want to stop the tour?';
-      if (confirm(cancelMessage)) {
-        this.get('tourObject').cancel();
-      }
-    }
+    this.get('tourObject').cancel();
   },
 
   next() {
@@ -167,24 +158,6 @@ export default Service.extend(Evented, {
   },
 
   /**
-   * Set computed styles on the cloned element
-   *
-   * @method setComputedStylesOnClonedElement
-   * @param element element we want to copy
-   * @param clonedElement cloned element above the overlay
-   * @private
-   */
-  setComputedStylesOnClonedElement(element, clonedElement) {
-    let computedStyle = window.getComputedStyle(element, null);
-
-    for (let i = 0; i < computedStyle.length; i++) {
-      let propertyName = computedStyle[i];
-
-      clonedElement[0].style[propertyName] = computedStyle.getPropertyValue(propertyName);
-    }
-  },
-
-  /**
    * Return the element for a step
    *
    * @method getElementForStep
@@ -211,6 +184,46 @@ export default Service.extend(Evented, {
       element = null;
     }
     return element;
+  },
+
+  /**
+   * Set computed styles on the cloned element
+   *
+   * @method setComputedStylesOnClonedElement
+   * @param element element we want to copy
+   * @param clonedElement cloned element above the overlay
+   * @private
+   */
+  setComputedStylesOnClonedElement(element, clonedElement) {
+    let computedStyle = window.getComputedStyle(element, null);
+
+    for (let i = 0; i < computedStyle.length; i++) {
+      let propertyName = computedStyle[i];
+
+      clonedElement[0].style[propertyName] = computedStyle.getPropertyValue(propertyName);
+    }
+  },
+
+  /**
+   * This wraps the cancel function in a confirm dialog
+   * @param  {boolean} confirmCancel Whether to show the dialog or not
+   * @param  {string} confirmCancelMessage The message to display
+   * @param  {object} tourObject The tour object
+   * @private
+   */
+  wrapCancelFunction(confirmCancel, confirmCancelMessage, tourObject) {
+    let cancelFunction = tourObject.cancel;
+    if (confirmCancel) {
+      let cancelMessage = confirmCancelMessage || 'Are you sure you want to stop the tour?';
+
+      let newCancelFunction = function() {
+        let stopTour = confirm(cancelMessage);
+        if (stopTour) {
+          cancelFunction();
+        }
+      };
+      tourObject.cancel = newCancelFunction;
+    }
   },
 
   /**
@@ -250,6 +263,9 @@ export default Service.extend(Evented, {
     let tourObject = new Shepherd.Tour({
       defaults
     });
+
+    // Allow for confirm cancel dialog
+    this.wrapCancelFunction(this.get('confirmCancel'), this.get('confirmCancelMessage'), tourObject);
 
     tourObject.on('start', run.bind(this, 'onTourStart'));
     tourObject.on('complete', run.bind(this, 'onTourComplete'));

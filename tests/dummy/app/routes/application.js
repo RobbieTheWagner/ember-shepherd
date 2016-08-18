@@ -243,7 +243,9 @@ export default Route.extend({
     let tour = this.get('tour');
 
     tour.set('autoStart', this.get('autoStart'));
+    tour.set('confirmCancel', false);
     tour.set('defaults', this.get('defaults'));
+    tour.set('showCancelLink', true);
     tour.set('steps', this.get('initialSteps'));
     tour.set('requiredElements', [
       {
