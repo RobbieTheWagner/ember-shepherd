@@ -5,6 +5,7 @@
 [![Join the chat at https://gitter.im/shipshapecode/ember-shepherd](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/shipshapecode/ember-shepherd?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![npm version](https://badge.fury.io/js/ember-shepherd.svg)](http://badge.fury.io/js/ember-shepherd)
+![Download count all time](https://img.shields.io/npm/dt/ember-shepherd.svg)
 [![npm](https://img.shields.io/npm/dm/ember-shepherd.svg)]()
 [![Ember Observer Score](http://emberobserver.com/badges/ember-shepherd.svg)](http://emberobserver.com/addons/ember-shepherd)
 [![Build Status](https://travis-ci.org/shipshapecode/ember-shepherd.svg)](https://travis-ci.org/shipshapecode/ember-shepherd)
