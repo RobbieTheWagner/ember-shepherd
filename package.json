@@ -40,6 +40,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "babel-eslint": "^6.1.2",
     "broccoli-asset-rev": "^2.4.2",
     "codeclimate-test-reporter": "^0.3.1",
     "ember-ajax": "^2.0.1",
@@ -47,7 +48,7 @@
     "ember-cli-app-version": "^1.0.0",
     "ember-cli-blanket": "0.9.8",
     "ember-cli-dependency-checker": "^1.2.0",
-    "ember-cli-eslint": "1.8.0",
+    "ember-cli-eslint": "3.0.0",
     "ember-cli-foundation-sass": "^2.0.0",
     "ember-cli-github-pages": "0.1.2",
     "ember-cli-htmlbars": "^1.0.3",
