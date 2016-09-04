@@ -449,6 +449,20 @@ export default Service.extend(Evented, {
       let $window = $(window);
 
       // Allow scrollbar scrolling so scrollTo works.
+      if (currentStep.options.scrollToHandler === 'undefined') {
+        currentStep.options.scrollToHandler = (elem) => {
+          $window.disablescroll({
+            handleScrollbar: false
+          });
+
+          if (typeof elem !== 'undefined') {
+            elem.scrollIntoView();
+          }
+
+          $window.disablescroll(this.get('disableScroll') ? undefined : 'undo');
+        };
+      }
+
       currentStep.options.scrollToHandler = (elem) => {
         $window.disablescroll({
           handleScrollbar: false
