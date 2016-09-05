@@ -23,7 +23,11 @@ const steps = [
       classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
       copyStyles: false,
       title: 'Welcome to Ember-Shepherd!',
-      text: ['Test text']
+      text: ['Test text'],
+      scrollTo: true,
+      scrollToHandler() {
+        return 'custom scrollToHandler';
+      }
     }
   }
 ];
@@ -72,5 +76,25 @@ test('it allows another object to bind to events', function(assert) {
 
   run(function() {
     service.next();
+  });
+});
+
+test('it passes through a custom scrollToHandler option', function(assert) {
+  assert.expect(1);
+
+  let mockTourObject = EmberObject.extend({
+    start() {
+      assert.equal(steps[0].options.scrollToHandler(), 'custom scrollToHandler', 'The handler was passed through as an option on the step');
+    }
+  }).create();
+
+  let service = this.subject({
+    steps
+  });
+
+  service.set('tourObject', mockTourObject);
+
+  run(function() {
+    service.start();
   });
 });
