@@ -46,7 +46,7 @@
     "ember-ajax": "^2.0.1",
     "ember-cli": "2.7.0",
     "ember-cli-app-version": "^1.0.0",
-    "ember-cli-blanket": "0.9.8",
+    "ember-cli-blanket": "0.9.9",
     "ember-cli-dependency-checker": "^1.2.0",
     "ember-cli-eslint": "3.0.0",
     "ember-cli-foundation-sass": "^2.0.0",
