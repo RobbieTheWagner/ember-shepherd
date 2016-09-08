@@ -1,5 +1,9 @@
 We will list changes, especially breaking changes, between versions here.
 
+###**2.2.1**
+* Added ability to pass a `scrollToHandler`, to adjust animations and do any logic you want on scroll.
+Thanks to @sirvine for this feature!
+
 ###**2.2.0**
 * Added `confirmCancel` and `confirmCancelMessage` which use native dialogs to confirm you want to exit the tour. Thanks to @djsegal for this feature!
 
