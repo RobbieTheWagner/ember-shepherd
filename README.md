@@ -231,6 +231,34 @@ This is an extra class to apply to the attachTo element, when it is highlighted.
 
 This sets whether the screen should be scrolled to get to the element or not, when the step is active.
 
+##### scrollToHandler
+
+For custom scrolling actions, pass a function to this option. For example:
+
+``` javascript
+
+  let scrollHandler = (el) => {
+    let winHeight = Ember.$(window).height();
+    // Target vertical middle scroll position
+    let targetPos = (Ember.$(el).offset().top + Ember.$(el).position().top) - (winHeight / 2);
+    // Animate scrolling with Velocity.js, for example.
+    Ember.$('#main-scroll-container').velocity({ top: targetPos }, 1000, "swing");
+  };
+
+  let steps = [
+    {id: 'intro',
+     options: {
+        attachTo: '#first-item left',
+        title: 'Welcome!',
+        text: ["Have we met before?"],
+        scrollTo: true,
+        scrollToHandler: scrollHandler
+      }
+    }
+  ];
+
+```
+
 ##### showCancelLink
 
 When true, an x will appear in the top right of the popup, for canceling the tour.
