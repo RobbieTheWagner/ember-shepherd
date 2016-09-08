@@ -336,3 +336,69 @@ test('scrollTo works with disableScroll on', (assert) => {
     });
   });
 });
+
+test('scrollTo works with a custom scrollToHandler', (assert) => {
+  assert.expect(2);
+  // Override default behavior
+  let steps = [{
+    id: 'intro',
+    options: {
+      attachTo: '.first-element bottom',
+      builtInButtons: [
+        {
+          classes: 'shepherd-button-secondary cancel-button',
+          text: 'Exit',
+          type: 'cancel'
+        },
+        {
+          classes: 'shepherd-button-primary next-button',
+          text: 'Next',
+          type: 'next'
+        }
+      ],
+      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+      copyStyles: false,
+      title: 'Welcome to Ember Shepherd!',
+      text: ['A field that has rested gives a bountiful crop.'],
+      scrollTo: true,
+      scrollToHandler() {
+        return $(window).scrollTop(120);
+      }
+    }
+  }];
+
+  container.lookup('route:application').set('initialSteps', steps);
+
+  // Visit route
+  visit('/');
+  $(window).scrollTop(0);
+  assert.equal($(window).scrollTop(), 0, 'Scroll is initially 0');
+
+  click('.toggleHelpModal');
+
+  andThen(() => {
+    patchClick('.shepherd-content a:contains(Next)', 'body');
+    assert.ok($(window).scrollTop() === 120, 'Scrolled correctly');
+  });
+});
+
+test('scrollTo works without a custom scrollToHandler', (assert) => {
+  assert.expect(2);
+  // Setup controller tour settings
+  service.set('scrollTo', true);
+
+  // Visit route
+  visit('/');
+  $(window).scrollTop(0);
+  assert.equal($(window).scrollTop(), 0, 'Scroll is initially 0');
+
+  click('.toggleHelpModal');
+
+  andThen(() => {
+    patchClick('.shepherd-content a:contains(Next)', 'body');
+    andThen(() => {
+      assert.ok($(window).scrollTop() > 0, 'Scrolled correctly');
+    });
+  });
+});
+
