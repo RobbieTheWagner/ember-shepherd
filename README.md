@@ -273,7 +273,13 @@ Extra options to pass to tether
 
 ##### text
 
-A string of text content to display in the tour popup
+The text content to display in the tour popup. Can be:
++ a string
++ an array of strings
++ an HTML element
++ a function returning any of the above
+
+Currently does ***not*** accept htmlbars input (PR welcome).
 
 ##### when
 
