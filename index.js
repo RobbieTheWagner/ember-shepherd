@@ -1,4 +1,4 @@
-/* jshint node: true */
+/* eslint-disable */
 'use strict';
 
 module.exports = {
@@ -12,6 +12,6 @@ module.exports = {
 
     if (!process.env.EMBER_CLI_FASTBOOT) {
       this.app.import('vendor/jquery-disablescroll/jquery.disablescroll.js');
-    }    
+    }
   }
 };
