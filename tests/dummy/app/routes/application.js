@@ -2,10 +2,8 @@ import Ember from 'ember';
 const { inject, Logger, Route } = Ember;
 
 export default Route.extend({
-  initialModalValue: true,
   tour: inject.service(),
   disableScroll: true,
-  autoStart: true,
   defaults: {
     classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
     scrollTo: true,
@@ -239,12 +237,14 @@ export default Route.extend({
       }
     }],
 
-  setupController() {
+  beforeModel() {
     let tour = this.get('tour');
 
-    tour.set('autoStart', this.get('autoStart'));
+    tour.set('autoStart', true);
     tour.set('confirmCancel', false);
     tour.set('defaults', this.get('defaults'));
+    tour.set('disableScroll', this.get('disableScroll'));
+    tour.set('modal', true);
     tour.set('showCancelLink', true);
     tour.set('steps', this.get('initialSteps'));
     tour.set('requiredElements', [
@@ -259,9 +259,6 @@ export default Route.extend({
         title: 'Error'
       }
     ]);
-
-    tour.set('disableScroll', this.get('disableScroll'));
-    tour.set('modal', this.get('initialModalValue'));
 
     tour.on('cancel', () => {
       Logger.log('cancel');
