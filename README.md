@@ -43,6 +43,18 @@ export default Ember.Component.extend({
 })
 ```
 
+## Themes
+
+Shepherd has several built in themes. By default, we include the `'arrows'` theme. You can specify which theme to include in `ember-cli-build.js` like so:
+
+```js
+var app = new EmberApp(defaults, {
+  shepherd: {
+    theme: 'dark'
+  }
+});
+```
+
 From here, you can set the desired configuration, as detailed below.
 
 
