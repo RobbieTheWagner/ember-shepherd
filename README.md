@@ -55,9 +55,6 @@ var app = new EmberApp(defaults, {
 });
 ```
 
-From here, you can set the desired configuration, as detailed below.
-
-
 ## Configuration
 
 The following configuration options can be `set` on the Tour service to control the way that Shepherd is used.  The only required option is `steps`, which you can read more about below.
