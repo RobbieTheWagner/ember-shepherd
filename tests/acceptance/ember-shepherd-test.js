@@ -335,8 +335,10 @@ test('scrollTo works with disableScroll on', (assert) => {
 
   // Visit route
   visit('/');
-  $(window).scrollTop(0);
-  assert.equal($(window).scrollTop(), 0, 'Scroll is initially 0');
+
+  $('#ember-testing-container').scrollTop(0);
+
+  assert.equal($('#ember-testing-container').scrollTop(), 0, 'Scroll is initially 0');
 
   click('.toggleHelpModal');
 
@@ -346,7 +348,7 @@ test('scrollTo works with disableScroll on', (assert) => {
       patchClick('.shepherd-content a:contains(Next)', 'body');
     });
     andThen(() => {
-      assert.ok($(window).scrollTop() > 0, 'Scrolled down correctly');
+      assert.ok($('#ember-testing-container').scrollTop() > 0, 'Scrolled down correctly');
     });
   });
 });
@@ -376,7 +378,7 @@ test('scrollTo works with a custom scrollToHandler', (assert) => {
       text: ['A field that has rested gives a bountiful crop.'],
       scrollTo: true,
       scrollToHandler() {
-        return $(window).scrollTop(120);
+        return $('#ember-testing-container').scrollTop(120);
       }
     }
   }];
@@ -387,14 +389,14 @@ test('scrollTo works with a custom scrollToHandler', (assert) => {
   andThen(function() {
     tour.set('steps', steps);
 
-    $(window).scrollTop(0);
-    assert.equal($(window).scrollTop(), 0, 'Scroll is initially 0');
+    $('#ember-testing-container').scrollTop(0);
+    assert.equal($('#ember-testing-container').scrollTop(), 0, 'Scroll is initially 0');
 
     click('.toggleHelpModal');
 
     andThen(() => {
       patchClick('.shepherd-content a:contains(Next)', 'body');
-      assert.ok($(window).scrollTop() === 120, 'Scrolled correctly');
+      assert.ok($('#ember-testing-container').scrollTop() === 120, 'Scrolled correctly');
     });
   });
 });
@@ -406,15 +408,17 @@ test('scrollTo works without a custom scrollToHandler', (assert) => {
 
   // Visit route
   visit('/');
-  $(window).scrollTop(0);
-  assert.equal($(window).scrollTop(), 0, 'Scroll is initially 0');
+
+  $('#ember-testing-container').scrollTop(0);
+
+  assert.equal($('#ember-testing-container').scrollTop(), 0, 'Scroll is initially 0');
 
   click('.toggleHelpModal');
 
   andThen(() => {
     patchClick('.shepherd-content a:contains(Next)', 'body');
     andThen(() => {
-      assert.ok($(window).scrollTop() > 0, 'Scrolled correctly');
+      assert.ok($('#ember-testing-container').scrollTop() > 0, 'Scrolled correctly');
     });
   });
 });
