@@ -1,5 +1,8 @@
 We will list changes, especially breaking changes, between versions here.
 
+###**2.3.0**
+* Added ability to choose which theme to include
+
 ###**2.2.1**
 * Added ability to pass a `scrollToHandler`, to adjust animations and do any logic you want on scroll.
 Thanks to @sirvine for this feature!
