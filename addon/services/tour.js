@@ -65,6 +65,10 @@ export default Service.extend(Evented, {
     this.trigger('next');
   },
 
+  show(id){
+    this.get('tourObject').show(id);
+  },
+
   onTourStart() {
     if (this.get('modal')) {
       $('body').append('<div id="shepherdOverlay"></div>');
