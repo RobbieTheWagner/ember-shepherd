@@ -73,6 +73,11 @@ export default Service.extend(Evented, {
     this.trigger('next');
   },
 
+  /**
+   * Show a specific step, by passing its id
+   * @param id The id of the step you want to show
+   * @public
+   */
   show(id) {
     this.get('tourObject').show(id);
   },

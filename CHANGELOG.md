@@ -1,4 +1,6 @@
 We will list changes, especially breaking changes, between versions here.
+###**2.3.2**
+* Added the `show` function, which allows you to pick a specific step to show by id
 
 ###**2.3.0**
 * Added ability to choose which theme to include
