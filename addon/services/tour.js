@@ -56,16 +56,24 @@ export default Service.extend(Evented, {
     this.trigger('back');
   },
 
+  /**
+   * Cancel the tour
+   * @public
+   */
   cancel() {
     this.get('tourObject').cancel();
   },
 
+  /**
+   * Advance the tour to the next step and trigger next
+   * @public
+   */
   next() {
     this.get('tourObject').next();
     this.trigger('next');
   },
 
-  show(id){
+  show(id) {
     this.get('tourObject').show(id);
   },
 
