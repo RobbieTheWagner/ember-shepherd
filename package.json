@@ -44,6 +44,7 @@
   "dependencies": {
     "ember-cli-babel": "^5.1.7",
     "ember-cli-node-assets": "0.1.6",
+    "ember-tether": "0.3.1",
     "tether-shepherd": "1.8.1"
   },
   "devDependencies": {
@@ -81,7 +82,10 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "http://shipshapecode.github.io/ember-shepherd/"
+    "demoURL": "http://shipshapecode.github.io/ember-shepherd/",
+    "after": [
+      "ember-tether"
+    ]
   },
   "greenkeeper": {
     "ignore": [

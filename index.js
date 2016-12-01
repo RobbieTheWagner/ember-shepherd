@@ -27,7 +27,6 @@ module.exports = {
           return {
             srcDir: 'dist',
             import: [
-              'js/tether.js',
               'js/shepherd.js',
               this.theme
             ],
