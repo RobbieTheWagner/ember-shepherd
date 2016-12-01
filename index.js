@@ -4,7 +4,7 @@
 module.exports = {
   name: 'ember-shepherd',
   included: function(app) {
-    let theme = 'bower_components/tether-shepherd/dist/css/shepherd-theme-';
+    let theme = 'css/shepherd-theme-';
     if(app.options && app.options.shepherd && app.options.shepherd.theme) {
       theme += app.options.shepherd.theme;
     } else {
@@ -12,14 +12,28 @@ module.exports = {
     }
     theme += '.css';
 
-    this.app.import(theme);
-    this.app.import('bower_components/tether/dist/js/tether.js');
-    this.app.import('bower_components/tether-shepherd/dist/js/shepherd.js');
+    this.theme = theme;
 
     if (!process.env.EMBER_CLI_FASTBOOT) {
       this.app.import('vendor/jquery-disablescroll/jquery.disablescroll.js');
     }
 
     this._super.included.apply(this, arguments);
+  },
+  options: {
+    nodeAssets: {
+      'tether-shepherd': function() {
+        if (!process.env.EMBER_CLI_FASTBOOT) {
+          return {
+            srcDir: 'dist',
+            import: [
+              'js/tether.js',
+              'js/shepherd.js',
+              this.theme
+            ],
+          };
+        }
+      }
+    }
   }
 };

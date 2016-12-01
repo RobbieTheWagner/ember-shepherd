@@ -42,7 +42,9 @@
     "test": "ember try:each"
   },
   "dependencies": {
-    "ember-cli-babel": "^5.1.7"
+    "ember-cli-babel": "^5.1.7",
+    "ember-cli-node-assets": "0.1.6",
+    "tether-shepherd": "1.8.1"
   },
   "devDependencies": {
     "babel-eslint": "^7.0.0",
