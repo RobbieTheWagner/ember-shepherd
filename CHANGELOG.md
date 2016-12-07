@@ -1,4 +1,8 @@
 We will list changes, especially breaking changes, between versions here.
+###**2.4.2**
+* Fix ember-cli-node-assets fastboot issues
+* Make ember-tether a peer dep
+
 ###**2.4.0**
 * Move tether-shepherd to npm, instead of bower, depend on ember-tether, rather than pulling in tether separately, to avoid pulling it in twice and possible mismatches, when people also use ember-tether in their app. 
 

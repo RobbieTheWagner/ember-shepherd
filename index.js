@@ -5,7 +5,7 @@ module.exports = {
   name: 'ember-shepherd',
   included: function(app) {
     let theme = 'css/shepherd-theme-';
-    if(app.options && app.options.shepherd && app.options.shepherd.theme) {
+    if (app.options && app.options.shepherd && app.options.shepherd.theme) {
       theme += app.options.shepherd.theme;
     } else {
       theme += 'arrows'
@@ -23,15 +23,14 @@ module.exports = {
   options: {
     nodeAssets: {
       'tether-shepherd': function() {
-        if (!process.env.EMBER_CLI_FASTBOOT) {
-          return {
-            srcDir: 'dist',
-            import: [
-              'js/shepherd.js',
-              this.theme
-            ],
-          };
-        }
+        return {
+          enabled: !process.env.EMBER_CLI_FASTBOOT,
+          srcDir: 'dist',
+          import: [
+            'js/shepherd.js',
+            this.theme
+          ],
+        };
       }
     }
   }
