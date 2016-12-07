@@ -1,4 +1,7 @@
 We will list changes, especially breaking changes, between versions here.
+###**2.4.3**
+* Add a blueprint, so we make sure ember-tether is pulled in
+
 ###**2.4.2**
 * Fix ember-cli-node-assets fastboot issues
 * Make ember-tether a peer dep
