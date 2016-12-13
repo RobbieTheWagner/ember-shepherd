@@ -69,7 +69,7 @@
     "ember-cli-uglify": "^1.2.0",
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^1.0.5",
-    "ember-getowner-polyfill": "1.1.0",
+    "ember-getowner-polyfill": "1.1.1",
     "ember-load-initializers": "^0.6.0",
     "ember-prism": "0.0.8",
     "ember-resolver": "^2.0.3",
