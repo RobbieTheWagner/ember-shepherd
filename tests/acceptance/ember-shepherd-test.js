@@ -25,6 +25,71 @@ moduleForAcceptance('Tour functionality tests', {
   }
 });
 
+test('Shows cancel link', function(assert) {
+  visit('/');
+  click('.toggleHelpModal');
+  andThen(() => {
+    let cancelLink = find('.shepherd-cancel-link', 'body');
+    assert.ok(cancelLink);
+  });
+});
+
+test('Hides cancel link', function(assert) {
+  let defaults = {
+    classes: 'shepherd-element shepherd-open shepherd-theme-arrows test-defaults',
+    showCancelLink: false
+  };
+
+  let steps = [{
+    id: 'test-highlight',
+    options: {
+      attachTo: '.first-element bottom',
+      builtInButtons: [
+        {
+          classes: 'shepherd-button-secondary cancel-button',
+          text: 'Exit',
+          type: 'cancel'
+        },
+        {
+          classes: 'shepherd-button-primary next-button',
+          text: 'Next',
+          type: 'next'
+        }
+      ],
+      showCancelLink: false,
+      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+      copyStyles: false,
+      highlightClass: 'highlight',
+      title: 'Welcome to Ember-Shepherd!',
+      text: ['Testing highlight']
+    }
+  }];
+
+  visit('/');
+
+  andThen(() => {
+    tour.set('defaults', defaults);
+    tour.set('steps', steps);
+    click('.toggleHelpModal');
+    andThen(() => {
+      assert.equal(find('.shepherd-cancel-link', 'body').length, 0);
+    });
+  });
+});
+
+test('Cancel link cancels the tour', function(assert) {
+  visit('/');
+  click('.toggleHelpModal');
+
+  andThen(() => {
+    assert.equal(find('.shepherd-active', 'html').length, 1, 'Body has class of shepherd-active, when shepherd becomes active');
+    click('a.shepherd-cancel-link', 'body');
+    andThen(function() {
+      assert.equal(find('.shepherd-active', 'html').length, 0, 'Body does not have class of shepherd-active, when shepherd becomes inactive');
+    });
+  });
+});
+
 test('Modal page contents', function(assert) {
   assert.expect(3);
 
