@@ -1,5 +1,13 @@
 import Ember from 'ember';
-const { Evented, K, Service, isPresent, run, $, isEmpty, observer } = Ember;
+const {
+  Evented,
+  Service,
+  isPresent,
+  run,
+  $,
+  isEmpty,
+  observer
+} = Ember;
 
 /**
  * Taken from introjs https://github.com/usablica/intro.js/blob/master/intro.js#L1092-1124
