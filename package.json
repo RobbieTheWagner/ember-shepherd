@@ -78,7 +78,7 @@
     "loader.js": "^4.0.10"
   },
   "peerDependencies": {
-    "ember-tether": "0.3.1"
+    "ember-tether": "0.4.0"
   },
   "engines": {
     "node": ">= 0.12.0"
