@@ -40,13 +40,13 @@ moduleFor('service:tour', 'Unit | Service | tour', {
 test('it starts the tour when the `start` event is triggered', function(assert) {
   assert.expect(1);
 
-  let mockTourObject = EmberObject.extend({
+  const mockTourObject = EmberObject.extend({
     start() {
       assert.ok(true, 'The tour was started');
     }
   }).create();
 
-  let service = this.subject({
+  const service = this.subject({
     steps
   });
 
@@ -60,11 +60,11 @@ test('it starts the tour when the `start` event is triggered', function(assert) 
 test('it allows another object to bind to events', function(assert) {
   assert.expect(1);
 
-  let mockTourObject = EmberObject.extend({
+  const mockTourObject = EmberObject.extend({
     next() {}
   }).create();
 
-  let service = this.subject({
+  const service = this.subject({
     steps
   });
 
@@ -82,13 +82,13 @@ test('it allows another object to bind to events', function(assert) {
 test('it passes through a custom scrollToHandler option', function(assert) {
   assert.expect(1);
 
-  let mockTourObject = EmberObject.extend({
+  const mockTourObject = EmberObject.extend({
     start() {
       assert.equal(steps[0].options.scrollToHandler(), 'custom scrollToHandler', 'The handler was passed through as an option on the step');
     }
   }).create();
 
-  let service = this.subject({
+  const service = this.subject({
     steps
   });
 

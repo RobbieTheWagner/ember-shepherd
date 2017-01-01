@@ -238,7 +238,7 @@ export default Route.extend({
     }],
 
   beforeModel() {
-    let tour = this.get('tour');
+    const tour = this.get('tour');
 
     tour.set('autoStart', true);
     tour.set('confirmCancel', false);

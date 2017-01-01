@@ -8,7 +8,7 @@ const { Evented, K, Service, isPresent, run, $, isEmpty, observer } = Ember;
  * @private
  */
 function getElementPosition(element) {
-  let elementPosition = {
+  const elementPosition = {
     height: element.offsetHeight,
     width: element.offsetWidth
   };
@@ -113,13 +113,13 @@ export default Service.extend(Evented, {
       $(window).disablescroll('undo');
     }
     if (this.get('modal')) {
-      let tour = this.get('tourObject');
+      const tour = this.get('tourObject');
 
       if (tour) {
-        let { steps } = tour;
+        const { steps } = tour;
 
         steps.map((step) => {
-          let stepElement = this.getElementForStep(step);
+          const stepElement = this.getElementForStep(step);
 
           if (step && step.options.attachTo && stepElement) {
             stepElement.style.pointerEvents = 'auto';
@@ -141,10 +141,10 @@ export default Service.extend(Evented, {
    */
   createHighlightOverlay(step) {
     $('#highlightOverlay').remove();
-    let currentElement = this.getElementForStep(step);
+    const currentElement = this.getElementForStep(step);
 
     if (currentElement) {
-      let highlightElement = $(currentElement).clone();
+      const highlightElement = $(currentElement).clone();
 
       highlightElement.attr('id', 'highlightOverlay');
       $('body').append(highlightElement);
@@ -152,9 +152,9 @@ export default Service.extend(Evented, {
       this.setComputedStylesOnClonedElement(currentElement, highlightElement);
 
       // Style all internal elements as well
-      let children = $(currentElement).children();
+      const children = $(currentElement).children();
 
-      let clonedChildren = highlightElement.children();
+      const clonedChildren = highlightElement.children();
 
       for (let i = 0; i < children.length; i++) {
         this.setComputedStylesOnClonedElement(children[0], clonedChildren);
@@ -183,13 +183,13 @@ export default Service.extend(Evented, {
    * @private
    */
   getElementForStep(step) {
-    let { options: { attachTo } } = step;
+    const { options: { attachTo } } = step;
 
     if (!attachTo) {
       return null;
     }
 
-    let type = typeof attachTo;
+    const type = typeof attachTo;
 
     let element;
 
@@ -212,10 +212,10 @@ export default Service.extend(Evented, {
    * @private
    */
   setComputedStylesOnClonedElement(element, clonedElement) {
-    let computedStyle = window.getComputedStyle(element, null);
+    const computedStyle = window.getComputedStyle(element, null);
 
     for (let i = 0; i < computedStyle.length; i++) {
-      let propertyName = computedStyle[i];
+      const propertyName = computedStyle[i];
 
       clonedElement[0].style[propertyName] = computedStyle.getPropertyValue(propertyName);
     }
@@ -229,12 +229,12 @@ export default Service.extend(Evented, {
    * @private
    */
   wrapCancelFunction(confirmCancel, confirmCancelMessage, tourObject) {
-    let cancelFunction = tourObject.cancel;
+    const cancelFunction = tourObject.cancel;
     if (confirmCancel) {
-      let cancelMessage = confirmCancelMessage || 'Are you sure you want to stop the tour?';
+      const cancelMessage = confirmCancelMessage || 'Are you sure you want to stop the tour?';
 
-      let newCancelFunction = function() {
-        let stopTour = confirm(cancelMessage);
+      const newCancelFunction = function() {
+        const stopTour = confirm(cancelMessage);
         if (stopTour) {
           cancelFunction();
         }
@@ -252,7 +252,7 @@ export default Service.extend(Evented, {
    * @private
    */
   getElementFromObject(attachTo) {
-    let op = attachTo.element;
+    const op = attachTo.element;
 
     return $(op).get(0);
   },
@@ -266,18 +266,18 @@ export default Service.extend(Evented, {
    * @private
    */
   getElementFromString(element) {
-    let attachTo = element.split(' ');
+    const attachTo = element.split(' ');
 
     attachTo.pop();
-    let selector = attachTo.join(' ');
+    const selector = attachTo.join(' ');
 
     return $(selector).get(0);
   },
 
   initialize() {
-    let defaults = this.get('defaults');
+    const defaults = this.get('defaults');
 
-    let tourObject = new Shepherd.Tour({
+    const tourObject = new Shepherd.Tour({
       defaults
     });
 
@@ -347,7 +347,7 @@ export default Service.extend(Evented, {
    */
   popoutElement(step) {
     $('.shepherd-modal').removeClass('shepherd-modal');
-    let currentElement = this.getElementForStep(step);
+    const currentElement = this.getElementForStep(step);
 
     if (currentElement) {
       $(currentElement).addClass('shepherd-modal');
@@ -365,7 +365,7 @@ export default Service.extend(Evented, {
   requiredElementsPresent() {
     let allElementsPresent = true;
 
-    let requiredElements = this.get('requiredElements');
+    const requiredElements = this.get('requiredElements');
 
     if (isPresent(requiredElements)) {
       requiredElements.forEach((element) => {
@@ -387,7 +387,7 @@ export default Service.extend(Evented, {
    * @private
    */
   setPositionForHighlightElement({ currentElement, highlightElement }) {
-    let elementPosition = getElementPosition(currentElement);
+    const elementPosition = getElementPosition(currentElement);
 
     highlightElement.css({
       'position': 'absolute',
@@ -405,9 +405,9 @@ export default Service.extend(Evented, {
    */
   stepsChange: observer('steps', function() {
     this.initialize();
-    let steps = this.get('steps');
+    const steps = this.get('steps');
 
-    let tour = this.get('tourObject');
+    const tour = this.get('tourObject');
 
     // Return nothing if there are no steps
     if (isEmpty(steps)) {
@@ -428,18 +428,18 @@ export default Service.extend(Evented, {
     }
 
     steps.forEach((step, index) => {
-      let { id, options } = step;
+      const { id, options } = step;
 
       options.buttons = options.builtInButtons.map(this.makeButton, this);
       options.attachTo = this.normalizeAttachTo(options.attachTo);
       tour.addStep(id, options);
 
       // Step up events for the current step
-      let currentStep = tour.steps[index];
+      const currentStep = tour.steps[index];
 
       currentStep.on('before-show', () => {
         if (this.get('modal')) {
-          let currentElement = this.getElementForStep(currentStep);
+          const currentElement = this.getElementForStep(currentStep);
 
           if (currentElement) {
             currentElement.style.pointerEvents = 'none';
@@ -453,7 +453,7 @@ export default Service.extend(Evented, {
       });
       currentStep.on('hide', () => {
         // Remove element copy, if it was cloned
-        let currentElement = this.getElementForStep(currentStep);
+        const currentElement = this.getElementForStep(currentStep);
 
         if (currentElement) {
           if (currentStep.options.highlightClass) {
@@ -463,7 +463,7 @@ export default Service.extend(Evented, {
         }
       });
 
-      let $window = $(window);
+      const $window = $(window);
 
       if (!currentStep.options.scrollToHandler) {
         // Allow scrollbar scrolling so scrollTo works.

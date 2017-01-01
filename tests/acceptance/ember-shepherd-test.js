@@ -76,7 +76,7 @@ test('Tour next, back, and cancel builtInButtons work', function(assert) {
 test('Highlight applied', function(assert) {
   assert.expect(2);
 
-  let steps = [{
+  const steps = [{
     id: 'test-highlight',
     options: {
       attachTo: '.first-element bottom',
@@ -118,13 +118,13 @@ test('Highlight applied', function(assert) {
 test('Defaults applied', function(assert) {
   assert.expect(1);
 
-  let defaults = {
+  const defaults = {
     classes: 'shepherd-element shepherd-open shepherd-theme-arrows test-defaults',
     scrollTo: false,
     showCancelLink: true
   };
 
-  let steps = [{
+  const steps = [{
     id: 'test-defaults-classes',
     options: {
       attachTo: '.first-element bottom',
@@ -164,7 +164,7 @@ test('configuration works with attachTo object when element is a simple string',
   assert.expect(1);
 
   // Override default behavior
-  let steps = [{
+  const steps = [{
     id: 'test-highlight',
     options: {
       attachTo: {
@@ -204,7 +204,7 @@ test('configuration works with attachTo object when element is dom element', fun
   assert.expect(1);
 
   // Override default behavior
-  let steps = [{
+  const steps = [{
     id: 'test-highlight',
     options: {
       attachTo: {
@@ -244,7 +244,7 @@ test('buttons work when type is not specified and passed action is triggered', f
   assert.expect(4);
   let buttonActionCalled = false;
 
-  let steps = [{
+  const steps = [{
     id: 'test-highlight',
     options: {
       attachTo: {
@@ -356,7 +356,7 @@ test('scrollTo works with disableScroll on', (assert) => {
 test('scrollTo works with a custom scrollToHandler', (assert) => {
   assert.expect(2);
   // Override default behavior
-  let steps = [{
+  const steps = [{
     id: 'intro',
     options: {
       attachTo: '.first-element bottom',
