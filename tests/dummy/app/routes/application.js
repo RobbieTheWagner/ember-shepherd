@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import config from './../config/environment';
 const { inject, Logger, Route } = Ember;
 
 export default Route.extend({

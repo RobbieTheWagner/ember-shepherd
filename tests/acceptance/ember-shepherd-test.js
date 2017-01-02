@@ -68,11 +68,13 @@ test('Hides cancel link', function(assert) {
   visit('/');
 
   andThen(() => {
+    tour.cancel();
     tour.set('defaults', defaults);
     tour.set('steps', steps);
+    tour.set('autoStart', false);
     click('.toggleHelpModal');
     andThen(() => {
-      assert.equal(find('.shepherd-cancel-link', 'body').length, 0);
+      assert.equal(find('.shepherd-open a.shepherd-cancel-link', 'body').length, 0);
     });
   });
 });
@@ -83,7 +85,7 @@ test('Cancel link cancels the tour', function(assert) {
 
   andThen(() => {
     assert.equal(find('.shepherd-active', 'html').length, 1, 'Body has class of shepherd-active, when shepherd becomes active');
-    click('a.shepherd-cancel-link', 'body');
+    patchClick('.shepherd-content a.shepherd-cancel-link', 'body');
     andThen(function() {
       assert.equal(find('.shepherd-active', 'html').length, 0, 'Body does not have class of shepherd-active, when shepherd becomes inactive');
     });
