@@ -29,18 +29,18 @@ test('Shows cancel link', function(assert) {
   visit('/');
   click('.toggleHelpModal');
   andThen(() => {
-    let cancelLink = find('.shepherd-cancel-link', 'body');
+    const cancelLink = find('.shepherd-cancel-link', 'body');
     assert.ok(cancelLink);
   });
 });
 
 test('Hides cancel link', function(assert) {
-  let defaults = {
+  const defaults = {
     classes: 'shepherd-element shepherd-open shepherd-theme-arrows test-defaults',
     showCancelLink: false
   };
 
-  let steps = [{
+  const steps = [{
     id: 'test-highlight',
     options: {
       attachTo: '.first-element bottom',
