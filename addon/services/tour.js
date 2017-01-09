@@ -1,12 +1,14 @@
+/* eslint-disable ship-shape/no-observers */
+
 import Ember from 'ember';
 const {
-  Evented,
-  Service,
-  isPresent,
-  run,
   $,
+  Evented,
   isEmpty,
-  observer
+  isPresent,
+  observer,
+  run,
+  Service
 } = Ember;
 
 /**
@@ -407,6 +409,7 @@ export default Service.extend(Evented, {
     });
   },
 
+  // TODO: Figure out how to use a computed instead of an observer here
   /**
    * Create a tour object based on the current configuration
    * @private
