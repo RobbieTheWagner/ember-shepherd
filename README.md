@@ -12,6 +12,8 @@
 [![Code Climate](https://codeclimate.com/github/shipshapecode/ember-shepherd/badges/gpa.svg)](https://codeclimate.com/github/shipshapecode/ember-shepherd)
 [![Test Coverage](https://codeclimate.com/github/shipshapecode/ember-shepherd/badges/coverage.svg)](https://codeclimate.com/github/shipshapecode/ember-shepherd/coverage)
 
+![Ember Version](https://embadge.io/v1/badge.svg?start=1.13.13)
+
 This is an Ember wrapper for the [Shepherd](https://github.com/HubSpot/Shepherd), site tour, library. It provides additional functionality, on top of Shepherd, as well.
 
 ## Demo
