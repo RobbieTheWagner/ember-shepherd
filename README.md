@@ -304,6 +304,9 @@ An object that contains function to be executed when events occur on the step.  
 // Start the tour
 this.get('tour').start();
 
+//Show a specific step
+this.get('tour').show(id);
+
 // Stop the tour
 this.get('tour').cancel();
 
