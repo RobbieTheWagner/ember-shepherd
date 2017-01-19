@@ -99,6 +99,7 @@
       "ember-cli-babel",
       "ember-cli-htmlbars",
       "ember-cli-htmlbars-inline-precompile",
+      "ember-cli-inject-live-reload",
       "ember-cli-qunit",
       "ember-cli-sri",
       "ember-cli-test-loader",
