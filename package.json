@@ -50,7 +50,7 @@
     "babel-eslint": "^7.1.1",
     "broccoli-asset-rev": "^2.4.5",
     "codeclimate-test-reporter": "0.4.0",
-    "ember-assign-polyfill": "1.0.0",
+    "ember-assign-polyfill": "2.0.0",
     "ember-cli": "2.10.0",
     "ember-cli-app-version": "^2.0.0",
     "ember-cli-code-coverage": "0.3.11",
