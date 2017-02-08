@@ -1,4 +1,7 @@
 We will list changes, especially breaking changes, between versions here.
+###**2.4.5**
+* Update a bunch of dependencies
+
 ###**2.4.3**
 * Add a blueprint, so we make sure ember-tether is pulled in
 
