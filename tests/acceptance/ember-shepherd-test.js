@@ -182,6 +182,47 @@ test('Highlight applied', function(assert) {
   });
 });
 
+test('Highlight applied when `tour.modal == false`', function(assert) {
+  assert.expect(2);
+
+  const steps = [{
+    id: 'test-highlight',
+    options: {
+      attachTo: '.first-element bottom',
+      builtInButtons: [
+        {
+          classes: 'shepherd-button-secondary cancel-button',
+          text: 'Exit',
+          type: 'cancel'
+        },
+        {
+          classes: 'shepherd-button-primary next-button',
+          text: 'Next',
+          type: 'next'
+        }
+      ],
+      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+      copyStyles: false,
+      highlightClass: 'highlight',
+      title: 'Welcome to Ember-Shepherd!',
+      text: ['Testing highlight']
+    }
+  }];
+
+  visit('/');
+
+  andThen(function() {
+    tour.set('steps', steps);
+    click('.toggleHelpNonmodal');
+
+    andThen(function() {
+      assert.equal(find('.highlight', 'body').length, 1, 'currentElement highlighted');
+      patchClick('.shepherd-content a:contains(Exit)', 'body');
+      assert.equal(find('.highlight', 'body').length, 0, 'highlightClass removed on cancel');
+    });
+  });
+});
+
 test('Defaults applied', function(assert) {
   assert.expect(1);
 
