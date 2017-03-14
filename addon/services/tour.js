@@ -449,15 +449,18 @@ export default Service.extend(Evented, {
       const currentStep = tour.steps[index];
 
       currentStep.on('before-show', () => {
-        if (this.get('modal')) {
-          const currentElement = this.getElementForStep(currentStep);
-
-          if (currentElement) {
+        const currentElement = this.getElementForStep(currentStep);
+        if (currentElement) {
+          if (this.get('modal')) {
             currentElement.style.pointerEvents = 'none';
             if (currentStep.options.copyStyles) {
               this.createHighlightOverlay(currentStep);
             } else {
               this.popoutElement(currentStep);
+            }
+          } else {
+            if (currentStep.options.highlightClass) {
+              $(currentElement).addClass(step.options.highlightClass);
             }
           }
         }
