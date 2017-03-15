@@ -350,19 +350,28 @@ export default Service.extend(Evented, {
   },
 
   /**
-   * Increases the z-index of the element, to pop it out above the overlay and highlight it
+   * Modulates the styles of the passed step's target element, based on the step's options and
+   * the tour's `modal` option, to visually emphasize the element
    *
    * @param step The step object that attaches to the element
    * @private
    */
   popoutElement(step) {
-    $('.shepherd-modal').removeClass('shepherd-modal');
     const currentElement = this.getElementForStep(step);
 
     if (currentElement) {
-      $(currentElement).addClass('shepherd-modal');
       if (step.options.highlightClass) {
         $(currentElement).addClass(step.options.highlightClass);
+      }
+
+      if (this.get('modal')) {
+        currentElement.style.pointerEvents = 'none';
+        $('.shepherd-modal').removeClass('shepherd-modal');
+        $(currentElement).addClass('shepherd-modal');
+      }
+
+      if (step.options.copyStyles) {
+        this.createHighlightOverlay(step);
       }
     }
   },
@@ -449,21 +458,7 @@ export default Service.extend(Evented, {
       const currentStep = tour.steps[index];
 
       currentStep.on('before-show', () => {
-        const currentElement = this.getElementForStep(currentStep);
-        if (currentElement) {
-          if (this.get('modal')) {
-            currentElement.style.pointerEvents = 'none';
-            if (currentStep.options.copyStyles) {
-              this.createHighlightOverlay(currentStep);
-            } else {
-              this.popoutElement(currentStep);
-            }
-          } else {
-            if (currentStep.options.highlightClass) {
-              $(currentElement).addClass(step.options.highlightClass);
-            }
-          }
-        }
+        this.popoutElement(currentStep);
       });
       currentStep.on('hide', () => {
         // Remove element copy, if it was cloned
