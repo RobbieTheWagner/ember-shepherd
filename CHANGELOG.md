@@ -1,4 +1,7 @@
 We will list changes, especially breaking changes, between versions here.
+###**2.5.0**
+* Apply `highlightClass`, if supplied, all the time, not just when modal
+
 ###**2.4.5**
 * Update a bunch of dependencies
 
