@@ -366,12 +366,13 @@ export default Service.extend(Evented, {
 
       if (this.get('modal')) {
         currentElement.style.pointerEvents = 'none';
-        $('.shepherd-modal').removeClass('shepherd-modal');
-        $(currentElement).addClass('shepherd-modal');
-      }
 
-      if (step.options.copyStyles) {
-        this.createHighlightOverlay(step);
+        if (step.options.copyStyles) {
+          this.createHighlightOverlay(step);
+        } else {
+          $('.shepherd-modal').removeClass('shepherd-modal');
+          $(currentElement).addClass('shepherd-modal');
+        }
       }
     }
   },
