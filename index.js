@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-env node */
 'use strict';
 
 module.exports = {
