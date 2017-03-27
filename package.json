@@ -42,26 +42,26 @@
     "test": "ember try:each"
   },
   "dependencies": {
-    "ember-cli-babel": "^5.1.7",
+    "ember-cli-babel": "^6.0.0-beta.9",
     "ember-cli-node-assets": "0.2.0-beta.2",
     "tether-shepherd": "1.8.1"
   },
   "devDependencies": {
-    "babel-eslint": "^7.1.1",
+    "babel-eslint": "^7.2.1",
     "broccoli-asset-rev": "^2.4.5",
     "codeclimate-test-reporter": "0.4.1",
     "ember-assign-polyfill": "2.0.1",
-    "ember-cli": "2.12.1",
+    "ember-cli": "2.13.0-beta.2",
     "ember-cli-code-coverage": "0.3.11",
     "ember-cli-dependency-checker": "^1.3.0",
     "ember-cli-eslint": "^3.0.0",
     "ember-cli-foundation-sass": "^2.0.0",
     "ember-cli-github-pages": "0.1.2",
     "ember-cli-htmlbars": "^1.1.1",
-    "ember-cli-htmlbars-inline-precompile": "^0.3.6",
+    "ember-cli-htmlbars-inline-precompile": "^0.4.0-beta.2",
     "ember-cli-inject-live-reload": "^1.4.1",
-    "ember-cli-qunit": "^3.1.0",
-    "ember-cli-sass": "^6.1.1",
+    "ember-cli-qunit": "^3.1.2",
+    "ember-cli-sass": "^6.1.2",
     "ember-cli-shims": "^1.0.2",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^1.2.0",
@@ -71,8 +71,8 @@
     "ember-getowner-polyfill": "1.2.2",
     "ember-load-initializers": "^0.6.0",
     "ember-prism": "0.0.8",
-    "ember-resolver": "^2.0.3",
-    "ember-source": "~2.12.0",
+    "ember-resolver": "^3.0.0",
+    "ember-source": "~2.13.0-beta.1",
     "ember-tether": "0.4.1",
     "eslint-plugin-ship-shape": "0.4.0",
     "loader.js": "^4.2.3"
@@ -93,14 +93,12 @@
   "greenkeeper": {
     "ignore": [
       "broccoli-asset-rev",
-      "ember-cli-app-version",
       "ember-cli-babel",
       "ember-cli-htmlbars",
       "ember-cli-htmlbars-inline-precompile",
       "ember-cli-inject-live-reload",
       "ember-cli-qunit",
       "ember-cli-sri",
-      "ember-cli-test-loader",
       "ember-export-application-global",
       "ember-resolver",
       "loader.js"
