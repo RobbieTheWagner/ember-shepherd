@@ -1,5 +1,8 @@
 We will list changes, especially breaking changes, between versions here.
 
+### **2.6.0**
+* Update `ember-tether` and remove from `peerDependencies`
+
 ### **2.5.0**
 * Apply `highlightClass`, if supplied, all the time, not just when modal
 
