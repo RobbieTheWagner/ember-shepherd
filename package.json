@@ -44,6 +44,7 @@
   "dependencies": {
     "ember-cli-babel": "^6.0.0-beta.9",
     "ember-cli-node-assets": "0.2.0-beta.2",
+    "ember-tether": "1.0.0-beta.0",
     "tether-shepherd": "1.8.1"
   },
   "devDependencies": {
@@ -73,7 +74,6 @@
     "ember-prism": "0.0.8",
     "ember-resolver": "^3.0.0",
     "ember-source": "~2.13.0-beta.1",
-    "ember-tether": "1.0.0-beta.0",
     "eslint-plugin-ship-shape": "0.4.0",
     "loader.js": "^4.2.3"
   },
