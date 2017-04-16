@@ -1,0 +1,116 @@
+.sticky-wrapper {
+  color: #333333;
+  height: 83px;
+  max-width: 300px;
+  position: absolute;
+  right: 0px;
+  top: 54px;
+  width: 300px;
+  z-index: 9999;
+  -webkit-align-self: stretch;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
+  -webkit-perspective-origin: 150px 41.5px;
+  perspective-origin: 150px 41.5px;
+  -webkit-transform-origin: 150px 41.5px;
+  -ms-transform-origin: 150px 41.5px;
+  transform-origin: 150px 41.5px;
+  border: 0px none #333333;
+  outline: #333333 none 0px;
+}
+
+.sticky-pane {
+  box-shadow: rgba(0, 0, 0, 0.29804) 0px 4px 16px 2px;
+  box-sizing: border-box;
+  color: #333333;
+  height: auto;
+  width: auto;
+  -webkit-perspective-origin: 50% 50%;
+  perspective-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  background: white none repeat scroll 0% 0%/auto padding-box border-box;
+  border: 1px solid #cccccc;
+  margin: 0px 20px 20px;
+  outline: #333333 none 0px;
+  padding: 20px 12px;
+}
+
+.sticky-close {
+  cursor: pointer;
+  display: block;
+  float: right;
+  height: 20px;
+  min-height: 0px;
+  opacity: 0.200000002980232;
+  text-shadow: white 0px 1px 0px;
+  vertical-align: middle;
+  width: 12px;
+  z-index: 0;
+  -webkit-perspective-origin: 6px 10px;
+  perspective-origin: 6px 10px;
+  -webkit-transform-origin: 6px 10px;
+  -ms-transform-origin: 6px 10px;
+  transform-origin: 6px 10px;
+  background: transparent none repeat scroll 0% 0%/auto padding-box border-box;
+  border: 0px none black;
+  font: normal normal bold normal 20px/20px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin: -12px 0px 0px;
+  padding: 0px;
+}
+
+.sticky-button-wrapper {
+  bottom: 20px;
+  color: #3e413b;
+  height: 48px;
+  orphans: 2;
+  position: fixed;
+  right: 20px;
+  widows: 2;
+  width: 48px;
+  z-index: 2147483000;
+  -webkit-perspective-origin: 24px 24px;
+  perspective-origin: 24px 24px;
+  -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
+  -ms-transform: matrix(1, 0, 0, 1, 0, 0);
+  transform: matrix(1, 0, 0, 1, 0, 0);
+  -webkit-transform-origin: 24px 24px;
+  -ms-transform-origin: 24px 24px;
+  transform-origin: 24px 24px;
+  alignment-baseline: baseline;
+  border: 0px none transparent;
+  outline: transparent none 0px;
+}
+
+.sticky-button {
+  background-position: 50% 50%;
+  bottom: 0px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px;
+  color: #3e413b;
+  cursor: pointer;
+  height: 48px;
+  orphans: 2;
+  position: absolute;
+  right: 0px;
+  widows: 2;
+  width: 48px;
+  -webkit-align-self: stretch;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
+  -webkit-perspective-origin: 25px 25px;
+  perspective-origin: 25px 25px;
+  -webkit-transform-origin: 25px 25px;
+  -ms-transform-origin: 25px 25px;
+  transform-origin: 25px 25px;
+  alignment-baseline: baseline;
+  background: url('/images/icon-help-circled.svg') no-repeat scroll 50% 50%/56px;
+  border: 1px solid #0b0b0b;
+  border-radius: 50% 50% 50% 50%;
+  outline: transparent none 0px;
+}
+
+.sticky-hidden {
+  visibility: hidden !important;
+  display: none !important;
+}

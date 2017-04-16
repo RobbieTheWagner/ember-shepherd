@@ -1,0 +1,23 @@
+{{#if isOpen}}
+  <div class="sticky-wrapper">
+
+    <div class="sticky-pane">
+
+      <button class="sticky-close" {{action 'toggleOpen'}}>
+        ×
+      </button>
+
+      {{yield}}
+
+    </div>
+
+  </div>
+{{/if}}
+
+{{#unless isOpen}}
+  <div class="sticky-button-wrapper">
+    <div class="sticky-button" {{action 'toggleOpen'}}>
+    </div>
+  </div>
+{{/unless}}
+
