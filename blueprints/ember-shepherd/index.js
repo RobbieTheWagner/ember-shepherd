@@ -6,7 +6,7 @@ module.exports = {
   afterInstall: function(options) {
     return this.addAddonsToProject({
       packages: [
-        {name: 'ember-tether'}
+        { name: 'ember-tether', target: '0.3.1' }
       ]
     })
   }
