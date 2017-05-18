@@ -3,7 +3,7 @@
 
 module.exports = {
   name: 'ember-shepherd',
-  included: function(app) {
+  included(app) {
     let theme = 'css/shepherd-theme-';
     if (app.options && app.options.shepherd && app.options.shepherd.theme) {
       theme += app.options.shepherd.theme;
@@ -29,7 +29,7 @@ module.exports = {
           import: [
             'js/shepherd.js',
             this.theme
-          ],
+          ]
         };
       }
     }
