@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   parser: 'babel-eslint',
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 2017,
     sourceType: 'module'
   },
   extends: [
@@ -10,10 +10,10 @@ module.exports = {
     'plugin:ship-shape/recommended'
   ],
   env: {
-    'browser': true
+    browser: true
   },
   globals: {
-    'Shepherd': false
+    Shepherd: false
   },
   rules: {
   }

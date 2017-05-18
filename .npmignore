@@ -1,10 +1,9 @@
+/.idea
 /bower_components
 /config/ember-try.js
 /dist
 /tests
 /tmp
-.idea/
-
 **/.gitkeep
 .bowerrc
 .editorconfig
