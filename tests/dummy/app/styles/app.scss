@@ -3,11 +3,11 @@
 @import "./foundation";
 @import "./fonts";
 
-$background1: #3D2F53;
-$background2: #624B86;
-$lightColor: #C1B5D3;
-$altLightColor: #7B7486;
-$whiteish: #C8C7D5;
+$background1: #3d2f53;
+$background2: #624b86;
+$lightColor: #c1b503;
+$altLightColor: #7b7486;
+$whiteish: #c8c7d5;
 
 body,
 html {
@@ -21,34 +21,34 @@ h4,
 h5,
 h6 {
   color: $whiteish;
-  font-family: 'Pier Sans', sans-serif;
+  font-family: $f-primary;
 }
 
 body {
-  margin: 0;
   background-color: $background1;
-  font-family: 'Pier Sans', sans-serif;
+  font-family: $f-primary;
+  margin: 0;
 }
 
 a {
   &.bottomButton {
     background-color: transparent;
-    display: inline-block;
     border: 2px solid $lightColor;
     color: $lightColor;
-    padding: 1.25em 1.25em 1em 1em;
+    cursor: pointer;
+    display: inline-block;
     font-size: 0.7em;
     font-weight: 500;
-    line-height: 0.7em;
-    text-transform: uppercase;
     letter-spacing: 3px;
-    text-decoration: none;
-    cursor: pointer;
-    width: 150px;
     line-height: 1.3em;
+    padding: 1.25em 1.25em 1em 1em;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 150px;
+
     &:hover {
-      color: $whiteish;
       border: 2px solid $whiteish;
+      color: $whiteish;
     }
   }
 }
@@ -63,6 +63,7 @@ a {
   background: $lightColor;
   color: #75beaa;
 }
+
 @media (max-width: 568px) {
   .button {
     display: block;
@@ -75,27 +76,30 @@ a {
     &.shepherd-element-attached-bottom {
       &.shepherd-element-attached-center {
         .shepherd-content:before {
+          border-top-color: $background1;
           bottom: 100%;
           left: 50%;
           margin-left: -16px;
-          border-top-color: $background1;
         }
       }
     }
+
     &.shepherd-element-attached-top {
       &.shepherd-element-attached-center {
         .shepherd-content:before {
+          border-bottom-color: $background1;
           bottom: 100%;
           left: 50%;
           margin-left: -16px;
-          border-bottom-color: $background1;
         }
       }
     }
+
     &.shepherd-has-title {
       header {
         background-color: $whiteish;
         color: $background1;
+
         h1,
         h2,
         h3,
@@ -106,10 +110,13 @@ a {
         }
       }
     }
+
     .shepherd-content {
       background-color: $background1;
+
       .shepherd-text {
         color: $whiteish;
+
         a {
           color: $altLightColor;
         }
@@ -119,8 +126,8 @@ a {
 }
 
 .shepherd-element.shepherd-theme-arrows .shepherd-content {
-  width: 400px;
   max-width: 100%;
+  width: 400px;
 }
 
 .shepherd-element.shepherd-theme-arrows .shepherd-content a {
@@ -129,20 +136,21 @@ a {
 
 .shepherd-element.shepherd-theme-arrows .shepherd-content footer .shepherd-buttons li .shepherd-button {
   background: $background2;
-  padding-top: 1em;
   font-size: 0.75em;
   line-height: 0.75em;
+  padding-top: 1em;
 }
 
 pre {
-  line-height: 1.4em;
   border: 1px solid rgba(0, 0, 0, 0.15);
+  line-height: 1.4em;
 }
 
 .pageTitle {
   color: $lightColor;
   font-size: 50pt;
+
   .ember-title {
-    font-family: 'Pacifico';
+    font-family: $f-pacifico;
   }
 }

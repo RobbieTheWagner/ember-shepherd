@@ -1,13 +1,15 @@
 /* eslint-disable ship-shape/no-observers */
 
+import { get, set } from '@ember/object';
+import $ from 'jquery';
+import { run } from '@ember/runloop';
+
 import Ember from 'ember';
 const {
-  $,
   Evented,
   isEmpty,
   isPresent,
   observer,
-  run,
   Service
 } = Ember;
 
@@ -53,8 +55,8 @@ export default Service.extend(Evented, {
   steps: [],
 
   start() {
-    this.set('isActive', true);
-    this.get('tourObject').start();
+    set(this, 'isActive', true);
+    get(this, 'tourObject').start();
   },
 
   /**
@@ -62,7 +64,7 @@ export default Service.extend(Evented, {
    * @public
    */
   back() {
-    this.get('tourObject').back();
+    get(this, 'tourObject').back();
     this.trigger('back');
   },
 
@@ -71,7 +73,7 @@ export default Service.extend(Evented, {
    * @public
    */
   cancel() {
-    this.get('tourObject').cancel();
+    get(this, 'tourObject').cancel();
   },
 
   /**
@@ -79,7 +81,7 @@ export default Service.extend(Evented, {
    * @public
    */
   next() {
-    this.get('tourObject').next();
+    get(this, 'tourObject').next();
     this.trigger('next');
   },
 
@@ -89,27 +91,27 @@ export default Service.extend(Evented, {
    * @public
    */
   show(id) {
-    this.get('tourObject').show(id);
+    get(this, 'tourObject').show(id);
   },
 
   onTourStart() {
-    if (this.get('modal')) {
+    if (get(this, 'modal')) {
       $('body').append('<div id="shepherdOverlay"></div>');
     }
-    if (this.get('disableScroll')) {
+    if (get(this, 'disableScroll')) {
       $(window).disablescroll();
     }
     this.trigger('start');
   },
 
   onTourComplete() {
-    this.set('isActive', false);
+    set(this, 'isActive', false);
     this.cleanup();
     this.trigger('complete');
   },
 
   onTourCancel() {
-    this.set('isActive', false);
+    set(this, 'isActive', false);
     this.cleanup();
     this.trigger('cancel');
   },
@@ -119,11 +121,11 @@ export default Service.extend(Evented, {
    * @private
    */
   cleanup() {
-    if (this.get('disableScroll')) {
+    if (get(this, 'disableScroll')) {
       $(window).disablescroll('undo');
     }
-    if (this.get('modal')) {
-      const tour = this.get('tourObject');
+    if (get(this, 'modal')) {
+      const tour = get(this, 'tourObject');
 
       if (tour) {
         const { steps } = tour;
@@ -285,19 +287,19 @@ export default Service.extend(Evented, {
   },
 
   initialize() {
-    const defaults = this.get('defaults');
+    const defaults = get(this, 'defaults');
 
     const tourObject = new Shepherd.Tour({
       defaults
     });
 
     // Allow for confirm cancel dialog
-    this.wrapCancelFunction(this.get('confirmCancel'), this.get('confirmCancelMessage'), tourObject);
+    this.wrapCancelFunction(get(this, 'confirmCancel'), get(this, 'confirmCancelMessage'), tourObject);
 
     tourObject.on('start', run.bind(this, 'onTourStart'));
     tourObject.on('complete', run.bind(this, 'onTourComplete'));
     tourObject.on('cancel', run.bind(this, 'onTourCancel'));
-    this.set('tourObject', tourObject);
+    set(this, 'tourObject', tourObject);
   },
 
   /**
@@ -364,7 +366,7 @@ export default Service.extend(Evented, {
         $(currentElement).addClass(step.options.highlightClass);
       }
 
-      if (this.get('modal')) {
+      if (get(this, 'modal')) {
         currentElement.style.pointerEvents = 'none';
 
         if (step.options.copyStyles) {
@@ -385,14 +387,14 @@ export default Service.extend(Evented, {
   requiredElementsPresent() {
     let allElementsPresent = true;
 
-    const requiredElements = this.get('requiredElements');
+    const requiredElements = get(this, 'requiredElements');
 
     if (isPresent(requiredElements)) {
       requiredElements.forEach((element) => {
         if (allElementsPresent && (!$(element.selector)[0] || !$(element.selector).is(':visible'))) {
           allElementsPresent = false;
-          this.set('errorTitle', element.title);
-          this.set('messageForUser', element.message);
+          set(this, 'errorTitle', element.title);
+          set(this, 'messageForUser', element.message);
         }
       });
     }
@@ -426,9 +428,9 @@ export default Service.extend(Evented, {
    */
   stepsChange: observer('steps', function() {
     this.initialize();
-    const steps = this.get('steps');
+    const steps = get(this, 'steps');
 
-    const tour = this.get('tourObject');
+    const tour = get(this, 'tourObject');
 
     // Return nothing if there are no steps
     if (isEmpty(steps)) {
@@ -442,8 +444,8 @@ export default Service.extend(Evented, {
         }],
         classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
         copyStyles: false,
-        title: this.get('errorTitle'),
-        text: [this.get('messageForUser')]
+        title: get(this, 'errorTitle'),
+        text: [get(this, 'messageForUser')]
       });
       return;
     }
@@ -486,12 +488,12 @@ export default Service.extend(Evented, {
             elem.scrollIntoView();
           }
 
-          $window.disablescroll(this.get('disableScroll') ? undefined : 'undo');
+          $window.disablescroll(get(this, 'disableScroll') ? undefined : 'undo');
         };
       }
 
     });
-    if (this.get('autoStart')) {
+    if (get(this, 'autoStart')) {
       run.later(() => {
         this.start();
       });

@@ -4,64 +4,60 @@
  */
 @import url(https://fonts.googleapis.com/css?family=Inconsolata);
 
-$color1: #6E698C;
-$commentColor: #C8C7D5;
-$textColor: #493F8C;
-$brightText: #01A2A6;
-$altText: #CFCEF2;
+$color1: #6e698c;
+$commentColor: #c8c7d5;
+$textColor: #493f8c;
+$brightText: #01a2a6;
+$altText: #cfcef2;
 $darkPurple: #323040;
 
 code[class*="language-"],
 pre[class*="language-"] {
   color: $textColor;
-  font-family: 'Inconsolata', monospace;
   direction: ltr;
-  text-align: left;
-  text-shadow: none;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
+  font-family: 'Inconsolata', monospace;
   font-size: 14pt;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  -webkit-hyphens: none;
+  hyphens: none;
   line-height: 1.2em;
-
   -moz-tab-size: 4;
   -o-tab-size: 4;
   tab-size: 4;
-
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
+  text-align: left;
+  text-shadow: none;
+  white-space: pre;
+  word-break: normal;
+  word-spacing: normal;
 }
 
-pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
-code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection {
   background: #b3d4fc;
 }
 
-pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
-code[class*="language-"]::selection, code[class*="language-"] ::selection {
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection {
   background: #b3d4fc;
 }
 
 /* Code blocks */
 pre[class*="language-"] {
-  padding: 1em;
-  margin: .5em 0;
-  overflow: auto;
   background-color: $color1;
-}
-
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
+  margin: 0.5em 0;
+  overflow: auto;
+  padding: 1em;
 }
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
-  padding: .2em;
-  padding-top: 1px;
-  padding-bottom: 1px;
   background: $color1;
+  padding: 1px 0.2em;
 }
 
 .token.comment,
@@ -73,7 +69,7 @@ pre[class*="language-"] {
 }
 
 .token.namespace {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .token.string,
@@ -83,8 +79,8 @@ pre[class*="language-"] {
 
 .token.punctuation,
 .token.operator {
-  color: $textColor;
   background-color: $color1;
+  color: $textColor;
 }
 
 .token.entity,
