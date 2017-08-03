@@ -1,17 +1,11 @@
-/* eslint-disable ship-shape/no-observers */
+/* eslint-disable ember/no-observers */
 
-import { get, set } from '@ember/object';
+import { get, observer, set } from '@ember/object';
+import { isEmpty, isPresent } from '@ember/utils';
 import $ from 'jquery';
+import Evented from '@ember/object/evented';
+import Service from '@ember/service';
 import { run } from '@ember/runloop';
-
-import Ember from 'ember';
-const {
-  Evented,
-  isEmpty,
-  isPresent,
-  observer,
-  Service
-} = Ember;
 
 /**
  * Taken from introjs https://github.com/usablica/intro.js/blob/master/intro.js#L1092-1124
@@ -266,7 +260,7 @@ export default Service.extend(Evented, {
   getElementFromObject(attachTo) {
     const op = attachTo.element;
 
-    return $(op).get(0);
+    return $(op)[0];
   },
 
   /**
@@ -283,7 +277,7 @@ export default Service.extend(Evented, {
     attachTo.pop();
     const selector = attachTo.join(' ');
 
-    return $(selector).get(0);
+    return $(selector)[0];
   },
 
   initialize() {
