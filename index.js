@@ -53,7 +53,10 @@ module.exports = {
           import: [
             'js/shepherd.js',
             this.theme
-          ]
+          ],
+          processTree(tree) {
+            return fastbootTransform(tree);
+          }
         };
       }
     }
