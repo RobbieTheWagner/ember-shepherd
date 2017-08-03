@@ -1,8 +1,36 @@
 /* eslint-env node */
 'use strict';
 
+const Funnel = require('broccoli-funnel');
+const Merge = require('broccoli-merge-trees');
+const path = require('path');
+const existsSync = require('exists-sync');
+const fastbootTransform = require('fastboot-transform');
+
 module.exports = {
   name: 'ember-shepherd',
+
+  treeForVendor(tree) {
+    let trees = [];
+
+    if (tree) {
+      trees.push(tree);
+    }
+
+    const app = this._findHost();
+    let assetDir = path.join(this.project.root, 'vendor', 'jquery-disablescroll');
+    console.log(assetDir);
+
+    if (existsSync(assetDir)) {
+      const browserTrees = fastbootTransform(new Funnel(assetDir, {
+        files: ['jquery.disablescroll.js'],
+      }));
+      trees.push(browserTrees);
+    }
+
+    return new Merge(trees);
+  },
+
   included(app) {
     let theme = 'css/shepherd-theme-';
     if (app.options && app.options.shepherd && app.options.shepherd.theme) {
@@ -14,17 +42,15 @@ module.exports = {
 
     this.theme = theme;
 
-    if (!process.env.EMBER_CLI_FASTBOOT) {
-      this.app.import('vendor/jquery-disablescroll/jquery.disablescroll.js');
-    }
+    this.app.import('vendor/jquery.disablescroll.js');
 
     this._super.included.apply(this, arguments);
   },
+
   options: {
     nodeAssets: {
       'tether-shepherd': function() {
         return {
-          enabled: !process.env.EMBER_CLI_FASTBOOT,
           srcDir: 'dist',
           import: [
             'js/shepherd.js',
