@@ -1,7 +1,6 @@
-import Ember from 'ember';
 import { moduleFor, test } from 'ember-qunit';
-
-const { Object: EmberObject, run } = Ember;
+import EmberObject from '@ember/object';
+import { run } from '@ember/runloop';
 
 const steps = [
   {

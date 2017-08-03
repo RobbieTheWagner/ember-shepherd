@@ -1,8 +1,8 @@
-import Ember from 'ember';
-const { inject, Logger, Route } = Ember;
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 export default Route.extend({
-  tour: inject.service(),
+  tour: service(),
   disableScroll: true,
   defaults: {
     classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
@@ -261,7 +261,7 @@ export default Route.extend({
     ]);
 
     tour.on('cancel', () => {
-      Logger.log('cancel');
+      console.log('cancel');
     });
   }
 });
