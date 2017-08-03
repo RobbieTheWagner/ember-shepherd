@@ -17,13 +17,11 @@ module.exports = {
       trees.push(tree);
     }
 
-    const app = this._findHost();
-    let assetDir = path.join(this.project.root, 'vendor', 'jquery-disablescroll');
-    console.log(assetDir);
+    let assetDir = path.join(this.treePaths.vendor, 'jquery-disablescroll');
 
     if (existsSync(assetDir)) {
       const browserTrees = fastbootTransform(new Funnel(assetDir, {
-        files: ['jquery.disablescroll.js'],
+        files: ['jquery.disablescroll.js']
       }));
       trees.push(browserTrees);
     }
