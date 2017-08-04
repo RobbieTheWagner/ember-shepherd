@@ -1,6 +1,8 @@
 /* eslint-env node */
 'use strict';
 
+const fastbootTransform = require('fastboot-transform');
+
 module.exports = {
   name: 'ember-shepherd',
   included(app) {
@@ -8,28 +10,41 @@ module.exports = {
     if (app.options && app.options.shepherd && app.options.shepherd.theme) {
       theme += app.options.shepherd.theme;
     } else {
-      theme += 'arrows'
+      theme += 'arrows';
     }
     theme += '.css';
 
     this.theme = theme;
 
-    if (!process.env.EMBER_CLI_FASTBOOT) {
-      this.app.import('vendor/jquery-disablescroll/jquery.disablescroll.js');
-    }
-
     this._super.included.apply(this, arguments);
   },
   options: {
     nodeAssets: {
-      'tether-shepherd': function() {
+      'disable-scroll'() {
         return {
-          enabled: !process.env.EMBER_CLI_FASTBOOT,
           srcDir: 'dist',
-          import: [
-            'js/shepherd.js',
-            this.theme
-          ]
+          import: {
+            include: [
+              'disable-scroll.js'
+            ],
+            processTree(tree) {
+              return fastbootTransform(tree);
+            }
+          }
+        };
+      },
+      'tether-shepherd'() {
+        return {
+          srcDir: 'dist',
+          import: {
+            include: [
+              'js/shepherd.js',
+              this.theme
+            ],
+            processTree(tree) {
+              return fastbootTransform(tree);
+            }
+          }
         };
       }
     }

@@ -13,6 +13,7 @@ module.exports = {
     browser: true
   },
   globals: {
+    disableScroll: false,
     Shepherd: false
   },
   rules: {

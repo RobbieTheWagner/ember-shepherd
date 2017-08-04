@@ -42,9 +42,11 @@
     "test": "ember try:each"
   },
   "dependencies": {
+    "disable-scroll": "^0.3.0",
     "ember-cli-babel": "^6.6.0",
     "ember-cli-node-assets": "0.2.2",
     "ember-tether": "1.0.0-beta.0",
+    "fastboot-transform": "^0.1.2",
     "tether-shepherd": "1.8.1"
   },
   "devDependencies": {

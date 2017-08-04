@@ -93,7 +93,7 @@ export default Service.extend(Evented, {
       $('body').append('<div id="shepherdOverlay"></div>');
     }
     if (get(this, 'disableScroll')) {
-      $(window).disablescroll();
+      disableScroll.on(window);
     }
     this.trigger('start');
   },
@@ -116,7 +116,7 @@ export default Service.extend(Evented, {
    */
   cleanup() {
     if (get(this, 'disableScroll')) {
-      $(window).disablescroll('undo');
+      disableScroll.off(window);
     }
     if (get(this, 'modal')) {
       const tour = get(this, 'tourObject');
@@ -469,20 +469,18 @@ export default Service.extend(Evented, {
         }
       });
 
-      const $window = $(window);
-
       if (!currentStep.options.scrollToHandler) {
-        // Allow scrollbar scrolling so scrollTo works.
         currentStep.options.scrollToHandler = (elem) => {
-          $window.disablescroll({
-            handleScrollbar: false
-          });
+          // Allow scrolling so scrollTo works.
+          disableScroll.off(window);
 
           if (typeof elem !== 'undefined') {
             elem.scrollIntoView();
           }
 
-          $window.disablescroll(get(this, 'disableScroll') ? undefined : 'undo');
+          run.later(() => {
+            disableScroll.on(window);
+          }, 50);
         };
       }
 
