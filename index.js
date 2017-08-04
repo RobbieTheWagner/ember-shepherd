@@ -21,7 +21,8 @@ module.exports = {
 
     if (existsSync(assetDir)) {
       const browserTrees = fastbootTransform(new Funnel(assetDir, {
-        files: ['jquery.disablescroll.js']
+        files: ['jquery.disablescroll.js'],
+        desDir: 'jquery'
       }));
       trees.push(browserTrees);
     }
@@ -30,19 +31,19 @@ module.exports = {
   },
 
   included(app) {
-    let theme = 'css/shepherd-theme-';
+    let theme = '';
     if (app.options && app.options.shepherd && app.options.shepherd.theme) {
       theme += app.options.shepherd.theme;
     } else {
       theme += 'arrows'
     }
-    theme += '.css';
 
     this.theme = theme;
 
     this.app.import('vendor/jquery.disablescroll.js');
 
     this._super.included.apply(this, arguments);
+
   },
 
   options: {
@@ -50,14 +51,16 @@ module.exports = {
       'tether-shepherd': function() {
         return {
           srcDir: 'dist',
-          import: [
-            'js/shepherd.js',
-            this.theme
-          ],
-          processTree(tree) {
-            return fastbootTransform(tree);
+          import: ['js/shepherd.js', `css/shepherd-theme-${this.theme}.css`],
+          vendor: {
+            include: [
+              'jquery/jquery.disablescroll.js'
+            ],
+            processTree(tree) {
+              return fastbootTransform(tree);
+            }
           }
-        };
+        }
       }
     }
   }
