@@ -13,23 +13,19 @@
     "email": "rwwagner90@gmail.com",
     "url": "https://github.com/rwwagner90"
   },
-  "contributors": [
-    {
-      "name": "Alex LaFroscia",
-      "email": "alex@lafroscia.com",
-      "url": "https://github.com/alexlafroscia"
-    },
-    {
-      "name": "bek",
-      "email": "bekzod@me.com",
-      "url": "https://github.com/bekzod"
-    },
-    {
-      "name": "Craig Sketchley",
-      "email": "craigsketchley@gmail.com",
-      "url": "https://github.com/craigsketchley"
-    }
-  ],
+  "contributors": [{
+    "name": "Alex LaFroscia",
+    "email": "alex@lafroscia.com",
+    "url": "https://github.com/alexlafroscia"
+  }, {
+    "name": "bek",
+    "email": "bekzod@me.com",
+    "url": "https://github.com/bekzod"
+  }, {
+    "name": "Craig Sketchley",
+    "email": "craigsketchley@gmail.com",
+    "url": "https://github.com/craigsketchley"
+  }],
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -45,7 +41,11 @@
     "ember-cli-babel": "^6.6.0",
     "ember-cli-node-assets": "0.2.2",
     "ember-tether": "1.0.0-beta.0",
-    "tether-shepherd": "1.8.1"
+    "tether-shepherd": "1.8.1",
+    "fastboot-transform": "^0.1.2",
+    "broccoli-funnel": "^1.2.0",
+    "broccoli-merge-trees": "^2.0.0",
+    "exists-sync": "^0.0.4"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
