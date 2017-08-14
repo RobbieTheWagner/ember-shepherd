@@ -12,6 +12,8 @@
 
 ![Ember Version](https://embadge.io/v1/badge.svg?start=1.13.13)
 
+[![Sponsor](https://app.codesponsor.io/embed/bnfiyuC9jfaRVvE6NRbanWqE/shipshapecode/ember-shepherd.svg)](https://app.codesponsor.io/link/bnfiyuC9jfaRVvE6NRbanWqE/shipshapecode/ember-shepherd)
+
 This is an Ember wrapper for the [Shepherd](https://github.com/HubSpot/Shepherd), site tour, library. It provides additional functionality, on top of Shepherd, as well.
 
 ## Demo
