@@ -68,7 +68,6 @@
     "ember-cli-qunit": "^4.0.0",
     "ember-cli-sass": "^7.0.0",
     "ember-cli-shims": "^1.1.0",
-    "ember-cli-sri": "^2.1.0",
     "ember-cli-stylelint": "^0.15.0",
     "ember-cli-template-lint": "^0.7.1",
     "ember-cli-uglify": "^1.2.0",
