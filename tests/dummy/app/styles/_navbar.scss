@@ -1,0 +1,64 @@
+$c-cream: #f5f0e1;
+$c-primary: #3D2F53;
+$c-navBar: darken($c-primary, 5%);
+
+$ember-3d-nav: (
+  'is-fixed-nav-bg': #624B86,
+  'nav-bg': $c-navBar,
+  'nav-items': 3,
+  'nav-item-hover': darken(#3D2F53, 10%),
+  'nav-item-selected': darken(#3D2F53, 10%),
+  'nav-text-color': #f5f0e1,
+  'nav-trigger-color': #f5f0e1
+);
+
+$c-color-1: #DA4843;
+$c-color-2: #c96aa4;
+$c-color-3: #d6915e;
+$c-color-4: #5397c7;
+$c-color-5: #77cd91;
+
+// Import Addon SCSS
+@import 'ember-3d-nav';
+
+.ember-3d-nav {
+  a {
+    font-size: 13px;
+    text-decoration: none;
+  }
+
+  centered {
+    &:first-of-type a::before {
+      background-image: url(../img/docs.svg);
+    }
+
+    &:nth-of-type(2) a::before {
+      background-image: url(../img/github.svg);
+    }
+
+    &:nth-of-type(3) a::before {
+      background-image: url(../img/boat.svg);
+    }
+  }
+}
+
+.logo {
+  float: left;
+
+  img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .logoText {
+    color: $c-cream;
+    float: right;
+    font-size: 30px;
+    height: 35px;
+    margin-top: 14px;
+  }
+}
+
+.nav-trigger {
+  margin-top: 5px;
+}

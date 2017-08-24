@@ -2,6 +2,7 @@
 @import "./settings";
 @import "./foundation";
 @import "./fonts";
+@import "navbar";
 
 $background1: #3d2f53;
 $background2: #624b86;
@@ -144,6 +145,7 @@ a {
 pre {
   border: 1px solid rgba(0, 0, 0, 0.15);
   line-height: 1.4em;
+  width: 100%;
 }
 
 .pageTitle {
