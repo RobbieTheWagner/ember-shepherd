@@ -2491,13 +2491,6 @@ ember-cli-eslint@^4.0.0:
     rsvp "^3.2.1"
     walk-sync "^0.3.0"
 
-ember-cli-foundation-sass@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-foundation-sass/-/ember-cli-foundation-sass-2.0.0.tgz#7fddf6eb4c8ede0e59e57623876dcf0c96810ab7"
-  dependencies:
-    ember-cli-babel "^5.1.6"
-    semver "^4.2.0"
-
 ember-cli-get-component-path-option@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ember-cli-get-component-path-option/-/ember-cli-get-component-path-option-1.0.0.tgz#0d7b595559e2f9050abed804f1d8eff1b08bc771"
@@ -6211,10 +6204,6 @@ select@^1.1.2:
 "semver@2 || 3 || 4 || 5", semver@^5.1.0, semver@^5.1.1, semver@^5.3.0:
   version "5.4.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.4.1.tgz#e059c09d8571f0540823733433505d3a2f00b18e"
-
-semver@^4.2.0:
-  version "4.3.6"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-4.3.6.tgz#300bc6e0e86374f7ba61068b5b1ecd57fc6532da"
 
 semver@~5.3.0:
   version "5.3.0"

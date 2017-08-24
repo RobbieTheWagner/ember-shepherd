@@ -26,18 +26,18 @@
       </centered>
       <centered class="usage-element">
         {{~#code-block language='javascript'~}}//Inject the service: tour: Ember.inject.service()
-          let tour = this.get('tour');
-          tour.set('defaults', shepherdDefaults);
-          tour.set('disableScroll', true);
-          tour.set('modal', true);
-          tour.set('requiredElements', requiredElements);
-          tour.set('steps', steps);
+ let tour = this.get('tour');
+ tour.set('defaults', shepherdDefaults);
+ tour.set('disableScroll', true);
+ tour.set('modal', true);
+ tour.set('requiredElements', requiredElements);
+ tour.set('steps', steps);
 
-          // Methods to control the tour
-          tour.start();
-          tour.next();
-          tour.back();
-          tour.cancel();
+ // Methods to control the tour
+ tour.start();
+ tour.next();
+ tour.back();
+ tour.cancel();
         {{~/code-block~}}
       </centered>
       <centered>
