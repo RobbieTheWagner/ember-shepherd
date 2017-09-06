@@ -83,7 +83,7 @@
     "eslint-plugin-ember-suave": "^1.0.0",
     "eslint-plugin-ship-shape": "0.4.0",
     "loader.js": "^4.2.3",
-    "stylelint-config-ship-shape": "^0.0.5",
+    "stylelint-config-ship-shape": "^0.1.0",
     "stylelint-config-standard": "^17.0.0"
   },
   "engines": {
