@@ -76,7 +76,7 @@
     "ember-export-application-global": "^2.0.0",
     "ember-getowner-polyfill": "2.0.1",
     "ember-load-initializers": "^1.0.0",
-    "ember-prism": "0.1.0",
+    "ember-prism": "0.1.1",
     "ember-resolver": "^4.0.0",
     "ember-source": "~2.15.0-beta.2",
     "eslint-plugin-ember": "^4.1.3",
