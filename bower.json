@@ -1,6 +1,5 @@
 {
   "name": "ember-shepherd",
   "dependencies": {
-    "foundation": "~5.5.0"
   }
 }

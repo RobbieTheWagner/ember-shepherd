@@ -237,6 +237,28 @@ export default Route.extend({
       }
     }],
 
+  model() {
+    return {
+      links: [
+        {
+          href: 'https://github.com/shipshapecode/ember-shepherd',
+          text: 'Docs',
+          type: 'href'
+        },
+        {
+          href: 'https://github.com/shipshapecode/ember-shepherd',
+          text: 'GitHub',
+          type: 'href'
+        },
+        {
+          href: 'https://shipshape.io',
+          text: 'Ship Shape',
+          type: 'href'
+        }
+      ]
+    };
+  },
+
   beforeModel() {
     const tour = this.get('tour');
 

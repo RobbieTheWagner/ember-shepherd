@@ -1,6 +1,4 @@
 @import "./prism-ghcolors";
-@import "./settings";
-@import "./foundation";
 @import "./fonts";
 
 $background1: #3d2f53;
@@ -55,8 +53,13 @@ a {
 
 .panel {
   background-color: $whiteish;
+  border-color: #d8d8d8;
+  border-style: solid;
+  border-width: 1px;
   color: $background1;
   font-size: 0.75em;
+  margin-bottom: 1.25rem;
+  padding: 1.25rem;
 }
 
 .button.dark {
@@ -141,9 +144,21 @@ a {
   padding-top: 1em;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  margin-top: 0.2rem;
+}
+
 pre {
   border: 1px solid rgba(0, 0, 0, 0.15);
   line-height: 1.4em;
+  width: 100%;
 }
 
 .pageTitle {
@@ -152,5 +167,40 @@ pre {
 
   .ember-title {
     font-family: $f-pacifico;
+  }
+}
+
+@media only screen and (min-width: 40.0625em) {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.4;
+  }
+
+  h1 {
+    font-size: 2.75rem;
+  }
+
+  h2 {
+    font-size: 2.3125rem;
+  }
+
+  h3 {
+    font-size: 1.6875rem;
+  }
+
+  h4 {
+    font-size: 1.4375rem;
+  }
+
+  h5 {
+    font-size: 1.125rem;
+  }
+
+  h6 {
+    font-size: 1rem;
   }
 }
