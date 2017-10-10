@@ -58,7 +58,7 @@
     "broccoli-asset-rev": "^2.4.5",
     "codeclimate-test-reporter": "^0.5.0",
     "ember-assign-polyfill": "2.0.2",
-    "ember-cli": "~2.15.0-beta.1",
+    "ember-cli": "~2.16.0",
     "ember-cli-code-coverage": "0.4.1",
     "ember-cli-dependency-checker": "^2.0.0",
     "ember-cli-deploy": "^1.0.0",
