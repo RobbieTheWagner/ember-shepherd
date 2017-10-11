@@ -6,10 +6,19 @@ node_js:
 sudo: false
 dist: trusty
 
+addons:
+  chrome: stable
+  code_climate:
+    repo_token:
+      secure: "Ilc67FyHl9y9v0e86T9+foBEhWapwwLfqH2T+sc9T8LeaXP+yaE6gf8RjvEALnmcYLWmF3/ZlJsAhpMBJV2I9CV48LPT8qUL7B3AM7EBeLk7GA5q0pEBU90eAW04vNWH9rMXRTaQ6t/me9UvpoFHNghC+Y+J8N/l6g4xF1qjiBA="
+
 cache:
   yarn: true
 
 env:
+  global:
+    # See https://git.io/vdao3 for details.
+    - JOBS=1
   # we recommend new addons test the current and previous LTS
   # as well as latest stable release (bonus points to beta/canary)
   - EMBER_TRY_SCENARIO=ember-1.13
@@ -29,22 +38,14 @@ matrix:
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH=$HOME/.yarn/bin:$PATH
-  - yarn global add bower
-  - bower --version
 
 install:
-  - yarn install --force
-  - bower install
+  - yarn install --no-lockfile --non-interactive
 
 script:
   # Usually, it's ok to finish the test scenario without reverting
   #  to the addon's original dependency state, skipping "cleanup".
-  - COVERAGE=true node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO test --skip-cleanup
+  - COVERAGE=true node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO --skip-cleanup
 
 after_script:
   - codeclimate-test-reporter < coverage/lcov.info
-
-addons:
-    code_climate:
-        repo_token:
-            secure: "Ilc67FyHl9y9v0e86T9+foBEhWapwwLfqH2T+sc9T8LeaXP+yaE6gf8RjvEALnmcYLWmF3/ZlJsAhpMBJV2I9CV48LPT8qUL7B3AM7EBeLk7GA5q0pEBU90eAW04vNWH9rMXRTaQ6t/me9UvpoFHNghC+Y+J8N/l6g4xF1qjiBA="
