@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { click, visit } from 'ember-native-dom-helpers';
 import { test } from 'qunit';
 import moduleForAcceptance from '../helpers/module-for-acceptance';
 
@@ -25,16 +26,16 @@ moduleForAcceptance('Tour functionality tests', {
   }
 });
 
-test('Shows cancel link', function(assert) {
-  visit('/');
-  click('.toggleHelpModal');
-  andThen(() => {
-    const cancelLink = find('.shepherd-cancel-link', 'body');
-    assert.ok(cancelLink);
-  });
+test('Shows cancel link', async function(assert) {
+  await visit('/');
+
+  await click('.toggleHelpModal');
+
+  const cancelLink = find('.shepherd-cancel-link', 'body');
+  assert.ok(cancelLink);
 });
 
-test('Hides cancel link', function(assert) {
+test('Hides cancel link', async function(assert) {
   const defaults = {
     classes: 'shepherd-element shepherd-open shepherd-theme-arrows test-defaults',
     showCancelLink: false
@@ -65,82 +66,72 @@ test('Hides cancel link', function(assert) {
     }
   }];
 
-  visit('/');
+  await visit('/');
 
-  andThen(() => {
-    tour.cancel();
-    tour.set('defaults', defaults);
-    tour.set('steps', steps);
-    tour.set('autoStart', false);
-    click('.toggleHelpModal');
-    andThen(() => {
-      assert.equal(find('.shepherd-open a.shepherd-cancel-link', 'body').length, 0);
-    });
+  tour.cancel();
+  tour.set('defaults', defaults);
+  tour.set('steps', steps);
+  tour.set('autoStart', false);
+
+  await click('.toggleHelpModal');
+
+  assert.equal(find('.shepherd-open a.shepherd-cancel-link', 'body').length, 0);
+});
+
+test('Cancel link cancels the tour', async function(assert) {
+  await visit('/');
+
+  await click('.toggleHelpModal');
+
+  assert.equal(find('.shepherd-active', 'html').length, 1, 'Body has class of shepherd-active, when shepherd becomes active');
+  patchClick('.shepherd-content a.shepherd-cancel-link', 'body');
+  andThen(function() {
+    assert.equal(find('.shepherd-active', 'html').length, 0, 'Body does not have class of shepherd-active, when shepherd becomes inactive');
   });
 });
 
-test('Cancel link cancels the tour', function(assert) {
-  visit('/');
-  click('.toggleHelpModal');
-
-  andThen(() => {
-    assert.equal(find('.shepherd-active', 'html').length, 1, 'Body has class of shepherd-active, when shepherd becomes active');
-    patchClick('.shepherd-content a.shepherd-cancel-link', 'body');
-    andThen(function() {
-      assert.equal(find('.shepherd-active', 'html').length, 0, 'Body does not have class of shepherd-active, when shepherd becomes inactive');
-    });
-  });
-});
-
-test('Modal page contents', function(assert) {
+test('Modal page contents', async function(assert) {
   assert.expect(3);
 
-  visit('/');
+  await visit('/');
 
-  click('.toggleHelpModal');
+  await click('.toggleHelpModal');
 
-  andThen(function() {
-    assert.equal(find('.shepherd-active', 'html').length, 1, 'Body gets class of shepherd-active, when shepherd becomes active');
-    assert.equal(find('.shepherd-enabled', 'body').length, 2, 'attachTo element and tour have shepherd-enabled class');
-    assert.equal(find('#shepherdOverlay', 'body').length, 1, '#shepherdOverlay exists, since modal');
-  });
+  assert.equal(find('.shepherd-active', 'html').length, 1, 'Body gets class of shepherd-active, when shepherd becomes active');
+  assert.equal(find('.shepherd-enabled', 'body').length, 2, 'attachTo element and tour have shepherd-enabled class');
+  assert.equal(find('#shepherdOverlay', 'body').length, 1, '#shepherdOverlay exists, since modal');
 });
 
-test('Non-modal page contents', function(assert) {
+test('Non-modal page contents', async function(assert) {
   assert.expect(3);
 
-  visit('/');
-  andThen(function() {
-    tour.cancel();
+  await visit('/');
 
-    click('.toggleHelpNonmodal');
+  tour.cancel();
 
-    andThen(() => {
-      assert.equal(find('body.shepherd-active', 'html').length, 1, 'Body gets class of shepherd-active, when shepherd becomes active');
-      assert.equal(find('.shepherd-enabled', 'body').length, 2, 'attachTo element and tour get shepherd-enabled class');
-      assert.equal(find('#shepherdOverlay', 'body').length, 0, '#shepherdOverlay should not exist, since non-modal');
-    });
-  });
+  await click('.toggleHelpNonmodal');
+
+  assert.equal(find('body.shepherd-active', 'html').length, 1, 'Body gets class of shepherd-active, when shepherd becomes active');
+  assert.equal(find('.shepherd-enabled', 'body').length, 2, 'attachTo element and tour get shepherd-enabled class');
+  assert.equal(find('#shepherdOverlay', 'body').length, 0, '#shepherdOverlay should not exist, since non-modal');
 });
 
-test('Tour next, back, and cancel builtInButtons work', function(assert) {
+test('Tour next, back, and cancel builtInButtons work', async function(assert) {
   assert.expect(3);
 
-  visit('/');
+  await visit('/');
 
-  click('.toggleHelpModal');
+  await click('.toggleHelpModal');
 
-  andThen(function() {
-    patchClick('.shepherd-content a:contains(Next)', 'body');
-    assert.equal(find('.back-button', '.shepherd-enabled', 'body').length, 1, 'Ensure that the back button appears');
-    patchClick('.shepherd-content a:contains(Back)', 'body');
-    assert.equal(find('.back-button', '.shepherd-enabled', 'body').length, 0, 'Ensure that the back button disappears');
-    patchClick('.shepherd-content a:contains(Exit)', 'body');
-    assert.equal(find('[class^=shepherd-button]:visible', 'body').length, 0, 'Ensure that all buttons are gone, after exit');
-  });
+  patchClick('.shepherd-content a:contains(Next)', 'body');
+  assert.equal(find('.back-button', '.shepherd-enabled', 'body').length, 1, 'Ensure that the back button appears');
+  patchClick('.shepherd-content a:contains(Back)', 'body');
+  assert.equal(find('.back-button', '.shepherd-enabled', 'body').length, 0, 'Ensure that the back button disappears');
+  patchClick('.shepherd-content a:contains(Exit)', 'body');
+  assert.equal(find('[class^=shepherd-button]:visible', 'body').length, 0, 'Ensure that all buttons are gone, after exit');
 });
 
-test('Highlight applied', function(assert) {
+test('Highlight applied', async function(assert) {
   assert.expect(2);
 
   const steps = [{
@@ -167,22 +158,19 @@ test('Highlight applied', function(assert) {
     }
   }];
 
-  visit('/');
+  await visit('/');
 
-  andThen(function() {
-    tour.set('steps', steps);
-    tour.set('modal', true);
-    click('.toggleHelpModal');
+  tour.set('steps', steps);
+  tour.set('modal', true);
 
-    andThen(function() {
-      assert.equal(find('.highlight', 'body').length, 1, 'currentElement highlighted');
-      patchClick('.shepherd-content a:contains(Exit)', 'body');
-      assert.equal(find('.highlight', 'body').length, 0, 'highlightClass removed on cancel');
-    });
-  });
+  await click('.toggleHelpModal');
+
+  assert.equal(find('.highlight', 'body').length, 1, 'currentElement highlighted');
+  patchClick('.shepherd-content a:contains(Exit)', 'body');
+  assert.equal(find('.highlight', 'body').length, 0, 'highlightClass removed on cancel');
 });
 
-test('Highlight applied when `tour.modal == false`', function(assert) {
+test('Highlight applied when `tour.modal == false`', async function(assert) {
   assert.expect(2);
 
   const steps = [{
@@ -209,21 +197,18 @@ test('Highlight applied when `tour.modal == false`', function(assert) {
     }
   }];
 
-  visit('/');
+  await visit('/');
 
-  andThen(function() {
-    tour.set('steps', steps);
-    click('.toggleHelpNonmodal');
+  tour.set('steps', steps);
 
-    andThen(function() {
-      assert.equal(find('.highlight', 'body').length, 1, 'currentElement highlighted');
-      patchClick('.shepherd-content a:contains(Exit)', 'body');
-      assert.equal(find('.highlight', 'body').length, 0, 'highlightClass removed on cancel');
-    });
-  });
+  await click('.toggleHelpNonmodal');
+
+  assert.equal(find('.highlight', 'body').length, 1, 'currentElement highlighted');
+  patchClick('.shepherd-content a:contains(Exit)', 'body');
+  assert.equal(find('.highlight', 'body').length, 0, 'highlightClass removed on cancel');
 });
 
-test('Defaults applied', function(assert) {
+test('Defaults applied', async function(assert) {
   assert.expect(1);
 
   const defaults = {
@@ -255,20 +240,18 @@ test('Defaults applied', function(assert) {
     }
   }];
 
-  visit('/');
-  andThen(function() {
-    tour.set('defaults', defaults);
-    tour.set('steps', steps);
-    click('.toggleHelpModal');
+  await visit('/');
 
-    andThen(function() {
-      assert.equal(find('.test-defaults', 'body').length, 1, 'defaults class applied');
-      patchClick('.shepherd-content a:contains(Exit)', 'body');
-    });
-  });
+  tour.set('defaults', defaults);
+  tour.set('steps', steps);
+
+  await click('.toggleHelpModal');
+
+  assert.equal(find('.test-defaults', 'body').length, 1, 'defaults class applied');
+  patchClick('.shepherd-content a:contains(Exit)', 'body');
 });
 
-test('configuration works with attachTo object when element is a simple string', function(assert) {
+test('configuration works with attachTo object when element is a simple string', async function(assert) {
   assert.expect(1);
 
   // Override default behavior
@@ -301,14 +284,14 @@ test('configuration works with attachTo object when element is a simple string',
 
   tour.set('steps', steps);
 
-  visit('/');
-  click('.toggleHelpModal');
-  andThen(function() {
-    assert.ok(find('.shepherd-step', 'body').length, 'tour is visible');
-  });
+  await visit('/');
+
+  await click('.toggleHelpModal');
+
+  assert.ok(find('.shepherd-step', 'body').length, 'tour is visible');
 });
 
-test('configuration works with attachTo object when element is dom element', function(assert) {
+test('configuration works with attachTo object when element is dom element', async function(assert) {
   assert.expect(1);
 
   // Override default behavior
@@ -341,14 +324,14 @@ test('configuration works with attachTo object when element is dom element', fun
 
   tour.set('steps', steps);
 
-  visit('/');
-  click('.toggleHelpModal');
-  andThen(function() {
-    assert.ok(find('.shepherd-step', 'body').length, 'tour is visible');
-  });
+  await visit('/');
+
+  await click('.toggleHelpModal');
+
+  assert.ok(find('.shepherd-step', 'body').length, 'tour is visible');
 });
 
-test('buttons work when type is not specified and passed action is triggered', function(assert) {
+test('buttons work when type is not specified and passed action is triggered', async function(assert) {
   assert.expect(4);
   let buttonActionCalled = false;
 
@@ -384,36 +367,31 @@ test('buttons work when type is not specified and passed action is triggered', f
     }
   }];
 
-  visit('/');
+  await visit('/');
+
+  tour.set('steps', steps);
+
+  await click('.toggleHelpModal');
+
+  assert.ok(find('.button-one', 'body').length, 'tour button one is visible');
+  assert.ok(find('.button-two', 'body').length, 'tour button two is visible');
+  assert.ok(find('.button-three', 'body').length, 'tour button three is visible');
+  patchClick('.button-two', 'body');
 
   andThen(function() {
-    tour.set('steps', steps);
-
-    click('.toggleHelpModal');
-
-    andThen(function() {
-      assert.ok(find('.button-one', 'body').length, 'tour button one is visible');
-      assert.ok(find('.button-two', 'body').length, 'tour button two is visible');
-      assert.ok(find('.button-three', 'body').length, 'tour button three is visible');
-      patchClick('.button-two', 'body');
-    });
-
-    andThen(function() {
-      assert.ok(buttonActionCalled, 'button action triggered');
-    });
+    assert.ok(buttonActionCalled, 'button action triggered');
   });
 });
 
-test('`pointer-events` is set to `auto` for any step element on clean up', function(assert) {
+test('`pointer-events` is set to `auto` for any step element on clean up', async function(assert) {
   assert.expect(4);
-  visit('/');
 
-  click('.toggleHelpModal');
+  await visit('/');
+
+  await click('.toggleHelpModal');
 
   // Go through a step of the tour...
-  andThen(() => {
-    patchClick('.next-button', '[data-id="intro"]');
-  });
+  patchClick('.next-button', '[data-id="intro"]');
 
   // Check the target elements have pointer-events = 'none'
   andThen(() => {
@@ -435,33 +413,31 @@ test('`pointer-events` is set to `auto` for any step element on clean up', funct
   });
 });
 
-test('scrollTo works with disableScroll on', (assert) => {
+test('scrollTo works with disableScroll on', async function(assert) {
   assert.expect(2);
   // Setup controller tour settings
   tour.set('disableScroll', true);
   tour.set('scrollTo', true);
 
   // Visit route
-  visit('/');
+  await visit('/');
 
   $('#ember-testing-container').scrollTop(0);
 
   assert.equal($('#ember-testing-container').scrollTop(), 0, 'Scroll is initially 0');
 
-  click('.toggleHelpModal');
+  await click('.toggleHelpModal');
 
+  patchClick('.shepherd-content a:contains(Next)', 'body');
   andThen(() => {
     patchClick('.shepherd-content a:contains(Next)', 'body');
-    andThen(() => {
-      patchClick('.shepherd-content a:contains(Next)', 'body');
-    });
-    andThen(() => {
-      assert.ok($('#ember-testing-container').scrollTop() > 0, 'Scrolled down correctly');
-    });
+  });
+  andThen(() => {
+    assert.ok($('#ember-testing-container').scrollTop() > 0, 'Scrolled down correctly');
   });
 });
 
-test('scrollTo works with a custom scrollToHandler', (assert) => {
+test('scrollTo works with a custom scrollToHandler', async function(assert) {
   assert.expect(2);
   // Override default behavior
   const steps = [{
@@ -492,41 +468,35 @@ test('scrollTo works with a custom scrollToHandler', (assert) => {
   }];
 
   // Visit route
-  visit('/');
+  await visit('/');
 
-  andThen(function() {
-    tour.set('steps', steps);
+  tour.set('steps', steps);
 
-    $('#ember-testing-container').scrollTop(0);
-    assert.equal($('#ember-testing-container').scrollTop(), 0, 'Scroll is initially 0');
+  $('#ember-testing-container').scrollTop(0);
+  assert.equal($('#ember-testing-container').scrollTop(), 0, 'Scroll is initially 0');
 
-    click('.toggleHelpModal');
+  await click('.toggleHelpModal');
 
-    andThen(() => {
-      patchClick('.shepherd-content a:contains(Next)', 'body');
-      assert.ok($('#ember-testing-container').scrollTop() === 120, 'Scrolled correctly');
-    });
-  });
+  patchClick('.shepherd-content a:contains(Next)', 'body');
+  assert.ok($('#ember-testing-container').scrollTop() === 120, 'Scrolled correctly');
 });
 
-test('scrollTo works without a custom scrollToHandler', (assert) => {
+test('scrollTo works without a custom scrollToHandler', async function(assert) {
   assert.expect(2);
   // Setup controller tour settings
   tour.set('scrollTo', true);
 
   // Visit route
-  visit('/');
+  await visit('/');
 
   $('#ember-testing-container').scrollTop(0);
 
   assert.equal($('#ember-testing-container').scrollTop(), 0, 'Scroll is initially 0');
 
-  click('.toggleHelpModal');
+  await click('.toggleHelpModal');
 
+  patchClick('.shepherd-content a:contains(Next)', 'body');
   andThen(() => {
-    patchClick('.shepherd-content a:contains(Next)', 'body');
-    andThen(() => {
-      assert.ok($('#ember-testing-container').scrollTop() > 0, 'Scrolled correctly');
-    });
+    assert.ok($('#ember-testing-container').scrollTop() > 0, 'Scrolled correctly');
   });
 });
