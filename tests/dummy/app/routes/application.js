@@ -1,5 +1,7 @@
 import Route from '@ember/routing/route';
+import config from '../config/environment';
 import { inject as service } from '@ember/service';
+import steps from '../data';
 
 export default Route.extend({
   tour: service(),
@@ -18,6 +20,12 @@ export default Route.extend({
     tour.set('defaults', this.get('defaults'));
     tour.set('disableScroll', this.get('disableScroll'));
     tour.set('modal', true);
+
+    // We need to check env, and only set steps if not testing because otherwise tests are jacked
+    if (config.environment !== 'testing') {
+      tour.set('steps', steps);
+    }
+
     tour.set('requiredElements', [
       {
         selector: '.first-element',

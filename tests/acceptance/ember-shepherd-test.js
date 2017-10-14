@@ -383,9 +383,10 @@ test('buttons work when type is not specified and passed action is triggered', a
     }
   }];
 
+  await visit('/');
+
   tour.set('steps', steps);
 
-  await visit('/');
   await click('.toggleHelpModal');
 
   assert.ok(find('.button-one', document.body), 'tour button one is visible');
