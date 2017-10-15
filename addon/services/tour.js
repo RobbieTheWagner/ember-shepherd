@@ -7,33 +7,6 @@ import Evented from '@ember/object/evented';
 import Service from '@ember/service';
 import { run } from '@ember/runloop';
 
-/**
- * Taken from introjs https://github.com/usablica/intro.js/blob/master/intro.js#L1092-1124
- * Get an element position on the page
- * Thanks to `meouw`: http://stackoverflow.com/a/442474/375966
- * @private
- */
-function getElementPosition(element) {
-  const elementPosition = {
-    height: element.offsetHeight,
-    width: element.offsetWidth
-  };
-
-  // calculate element top and left
-  let x = 0;
-  let y = 0;
-
-  while (element && !isNaN(element.offsetLeft) && !isNaN(element.offsetTop)) {
-    x += element.offsetLeft;
-    y += element.offsetTop;
-    element = element.offsetParent;
-  }
-
-  elementPosition.top = y;
-  elementPosition.left = x;
-  return elementPosition;
-}
-
 export default Service.extend(Evented, {
   // Configuration Options
   autoStart: false,
@@ -403,7 +376,7 @@ export default Service.extend(Evented, {
    * @private
    */
   setPositionForHighlightElement({ currentElement, highlightElement }) {
-    const elementPosition = getElementPosition(currentElement);
+    const elementPosition = this._getElementPosition(currentElement);
 
     highlightElement.css({
       'position': 'absolute',
@@ -490,5 +463,32 @@ export default Service.extend(Evented, {
         this.start();
       });
     }
-  })
+  }),
+
+  /**
+   * Taken from introjs https://github.com/usablica/intro.js/blob/master/intro.js#L1092-1124
+   * Get an element position on the page
+   * Thanks to `meouw`: http://stackoverflow.com/a/442474/375966
+   * @private
+   */
+  _getElementPosition(element) {
+    const elementPosition = {
+      height: element.offsetHeight,
+      width: element.offsetWidth
+    };
+
+    // calculate element top and left
+    let x = 0;
+    let y = 0;
+
+    while (element && !isNaN(element.offsetLeft) && !isNaN(element.offsetTop)) {
+      x += element.offsetLeft;
+      y += element.offsetTop;
+      element = element.offsetParent;
+    }
+
+    elementPosition.top = y;
+    elementPosition.left = x;
+    return elementPosition;
+  }
 });

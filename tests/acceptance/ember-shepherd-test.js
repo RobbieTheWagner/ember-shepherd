@@ -507,3 +507,13 @@ test('scrollTo works without a custom scrollToHandler', async function(assert) {
 
   assert.ok($('#ember-testing-container').scrollTop() > 0, 'Scrolled correctly');
 });
+
+test('Shows by id works', async function(assert) {
+  await visit('/');
+
+  tour.show('usage');
+
+  assert.equal(find('.shepherd-enabled.shepherd-open .shepherd-text', document.documentElement).textContent,
+    'To use the tour service, simply inject it into your application and use it like this example.',
+    'Usage step shown');
+});

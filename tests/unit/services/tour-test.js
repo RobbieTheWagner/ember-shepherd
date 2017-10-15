@@ -97,3 +97,17 @@ test('it passes through a custom scrollToHandler option', function(assert) {
     service.start();
   });
 });
+
+test('it correctly calculates element position from getElementPosition', function(assert) {
+  assert.expect(2);
+
+  const service = this.subject({
+    steps
+  });
+
+  const mockElement = { offsetHeight: 500, offsetLeft: 200, offsetTop: 100, offsetWidth: 250 };
+  const position = service._getElementPosition(mockElement);
+
+  assert.equal(position.top, '100', 'Top is correctly calculated');
+  assert.equal(position.left, '200', 'Left is correctly calculated');
+});
