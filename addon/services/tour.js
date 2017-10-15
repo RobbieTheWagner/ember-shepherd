@@ -63,7 +63,9 @@ export default Service.extend(Evented, {
 
   onTourStart() {
     if (get(this, 'modal')) {
-      $('body').append('<div id="shepherdOverlay"></div>');
+      const shepherdOverlay = document.createElement('div');
+      shepherdOverlay.id = 'shepherdOverlay';
+      document.body.appendChild(shepherdOverlay);
     }
     if (get(this, 'disableScroll')) {
       disableScroll.on(window);
@@ -105,7 +107,7 @@ export default Service.extend(Evented, {
           }
         });
       }
-      run('afterRender', function() {
+      run('afterRender', () => {
         $('#shepherdOverlay').remove();
         $('#highlightOverlay').remove();
         $('.shepherd-modal').removeClass('shepherd-modal');

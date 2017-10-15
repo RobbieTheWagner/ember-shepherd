@@ -517,3 +517,39 @@ test('Shows by id works', async function(assert) {
     'To use the tour service, simply inject it into your application and use it like this example.',
     'Usage step shown');
 });
+
+test('copyStyles copies the element correctly', async function(assert) {
+  assert.expect(1);
+
+  const steps = [{
+    id: 'intro',
+    options: {
+      attachTo: '.first-element bottom',
+      builtInButtons: [
+        {
+          classes: 'shepherd-button-secondary cancel-button',
+          text: 'Exit',
+          type: 'cancel'
+        },
+        {
+          classes: 'shepherd-button-primary next-button',
+          text: 'Next',
+          type: 'next'
+        }
+      ],
+      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+      copyStyles: true,
+      title: 'Welcome to Ember Shepherd!',
+      text: ['A field that has rested gives a bountiful crop.'],
+      scrollTo: false
+    }
+  }];
+
+  await visit('/');
+
+  tour.set('steps', steps);
+
+  await click('.toggleHelpModal');
+
+  assert.equal(findAll('.first-element', document.documentElement).length, 2, 'First element is copied with copyStyles');
+});
