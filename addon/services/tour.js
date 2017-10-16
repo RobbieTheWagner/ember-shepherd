@@ -364,6 +364,7 @@ export default Service.extend(Evented, {
     const requiredElements = get(this, 'requiredElements');
 
     if (isPresent(requiredElements)) {
+      /* istanbul ignore next: also can't test this due to things attached to root blowing up tests */
       requiredElements.forEach((element) => {
         if (allElementsPresent && (!$(element.selector)[0] || !$(element.selector).is(':visible'))) {
           allElementsPresent = false;
@@ -410,6 +411,7 @@ export default Service.extend(Evented, {
     if (isEmpty(steps)) {
       return;
     }
+    /* istanbul ignore next: also can't test this due to things attached to root blowing up tests */
     if (!this.requiredElementsPresent()) {
       tour.addStep('error', {
         buttons: [{
