@@ -16,13 +16,13 @@ export default Route.extend({
     const tour = this.get('tour');
 
     tour.set('autoStart', true);
-    tour.set('confirmCancel', false);
     tour.set('defaults', this.get('defaults'));
     tour.set('disableScroll', this.get('disableScroll'));
     tour.set('modal', true);
 
     // We need to check env, and only set steps if not testing because otherwise tests are jacked
-    if (config.environment !== 'testing') {
+    if (config.environment !== 'test') {
+      tour.set('confirmCancel', false);
       tour.set('steps', steps);
     }
 

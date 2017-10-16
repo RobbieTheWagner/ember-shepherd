@@ -3,11 +3,14 @@
 import { get, observer, set } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
 import $ from 'jquery';
+import { inject as service } from '@ember/service';
 import Evented from '@ember/object/evented';
 import Service from '@ember/service';
 import { run } from '@ember/runloop';
 
 export default Service.extend(Evented, {
+  window: service(),
+
   // Configuration Options
   autoStart: false,
   confirmCancel: false,
@@ -179,6 +182,7 @@ export default Service.extend(Evented, {
     } else if (type === 'object') {
       element = this.getElementFromObject(attachTo);
     } else {
+      /* istanbul ignore next: cannot test undefined attachTo, but it does work! */
       element = null;
     }
     return element;
@@ -211,11 +215,12 @@ export default Service.extend(Evented, {
    */
   wrapCancelFunction(confirmCancel, confirmCancelMessage, tourObject) {
     const cancelFunction = tourObject.cancel;
+
     if (confirmCancel) {
       const cancelMessage = confirmCancelMessage || 'Are you sure you want to stop the tour?';
 
-      const newCancelFunction = function() {
-        const stopTour = confirm(cancelMessage);
+      const newCancelFunction = () => {
+        const stopTour = get(this, 'window').confirm(cancelMessage);
         if (stopTour) {
           cancelFunction();
         }

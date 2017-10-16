@@ -1,5 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 import EmberObject from '@ember/object';
+import { mockWindow } from 'ember-window-mock';
 import { run } from '@ember/runloop';
 
 const steps = [
@@ -32,8 +33,9 @@ const steps = [
 ];
 
 moduleFor('service:tour', 'Unit | Service | tour', {
-  // Specify the other units that are required for this test.
-  // needs: ['service:foo']
+  beforeEach() {
+    mockWindow(this);
+  }
 });
 
 test('it starts the tour when the `start` event is triggered', function(assert) {

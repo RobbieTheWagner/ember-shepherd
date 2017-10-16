@@ -1,7 +1,9 @@
 import { click, find, findAll, visit } from 'ember-native-dom-helpers';
 import $ from 'jquery';
 import { test } from 'qunit';
+import { lookupWindow } from 'ember-window-mock';
 import moduleForAcceptance from '../helpers/module-for-acceptance';
+import sinonTest from 'ember-sinon-qunit/test-support/test';
 import steps from '../data';
 
 let container, tour;
@@ -12,7 +14,8 @@ moduleForAcceptance('Tour functionality tests', {
     tour = container.lookup('service:tour');
     tour.setProperties({
       steps,
-      autostart: false,
+      autoStart: false,
+      confirmCancel: false,
       modal: false,
       defaults: {
         classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
@@ -96,6 +99,49 @@ test('Cancel link cancels the tour', async function(assert) {
   await click('.shepherd-content a.shepherd-cancel-link', document.documentElement);
 
   assert.notOk(document.body.classList.contains('shepherd-active'), 'Body does not have class of shepherd-active, when shepherd becomes inactive');
+});
+
+sinonTest('Confirm cancel makes you confirm cancelling the tour', async function(assert) {
+  const steps = [{
+    id: 'intro',
+    options: {
+      attachTo: '.first-element bottom',
+      builtInButtons: [
+        {
+          classes: 'shepherd-button-secondary cancel-button',
+          text: 'Exit',
+          type: 'cancel'
+        },
+        {
+          classes: 'shepherd-button-primary next-button',
+          text: 'Next',
+          type: 'next'
+        }
+      ],
+      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+      copyStyles: false,
+      title: 'Welcome to Ember Shepherd!',
+      text: ['A field that has rested gives a bountiful crop.'],
+      scrollTo: false
+    }
+  }];
+
+  const window = lookupWindow(this);
+  const stub = this.stub(window, 'confirm');
+  stub.returns(true);
+
+  await visit('/');
+
+  tour.set('confirmCancel', true);
+  tour.set('steps', steps);
+
+  await click('.toggleHelpModal');
+
+  assert.ok(document.body.classList.contains('shepherd-active'), 'Body has class of shepherd-active, when shepherd becomes active');
+
+  await click('.shepherd-open a.shepherd-cancel-link', document.documentElement);
+
+  assert.ok(stub.calledOnce);
 });
 
 test('Modal page contents', async function(assert) {
