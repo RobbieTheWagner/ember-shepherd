@@ -2,7 +2,6 @@
 
 import { get, observer, set } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
-import $ from 'jquery';
 import { inject as service } from '@ember/service';
 import Evented from '@ember/object/evented';
 import Service from '@ember/service';
@@ -111,9 +110,14 @@ export default Service.extend(Evented, {
         });
       }
       run('afterRender', () => {
-        $('#shepherdOverlay').remove();
-        $('#highlightOverlay').remove();
-        $('.shepherd-modal').removeClass('shepherd-modal');
+        this._removeElement('#shepherdOverlay');
+        this._removeElement('#highlightOverlay');
+
+        const shepherdModal = document.querySelector('.shepherd-modal');
+
+        if (shepherdModal) {
+          shepherdModal.classList.remove('shepherd-modal');
+        }
       });
     }
   },
@@ -124,24 +128,25 @@ export default Service.extend(Evented, {
    * @private
    */
   createHighlightOverlay(step) {
-    $('#highlightOverlay').remove();
+    this._removeElement('#highlightOverlay');
+
     const currentElement = this.getElementForStep(step);
 
     if (currentElement) {
-      const highlightElement = $(currentElement).clone();
+      const highlightElement = currentElement.cloneNode(true);
 
-      highlightElement.attr('id', 'highlightOverlay');
-      $('body').append(highlightElement);
+      highlightElement.setAttribute('id', 'highlightOverlay');
+      document.body.appendChild(highlightElement);
 
       this.setComputedStylesOnClonedElement(currentElement, highlightElement);
 
       // Style all internal elements as well
-      const children = $(currentElement).children();
+      const { children } = currentElement;
 
-      const clonedChildren = highlightElement.children();
+      const clonedChildren = highlightElement.children;
 
       for (let i = 0; i < children.length; i++) {
-        this.setComputedStylesOnClonedElement(children[0], clonedChildren);
+        this.setComputedStylesOnClonedElement(children[i], clonedChildren[i]);
       }
 
       this.setPositionForHighlightElement({
@@ -149,7 +154,7 @@ export default Service.extend(Evented, {
         highlightElement
       });
 
-      $(window).on('resize', () => {
+      window.addEventListener('resize', () => {
         run.debounce(this, 'setPositionForHighlightElement', {
           currentElement,
           highlightElement
@@ -202,7 +207,7 @@ export default Service.extend(Evented, {
     for (let i = 0; i < computedStyle.length; i++) {
       const propertyName = computedStyle[i];
 
-      clonedElement[0].style[propertyName] = computedStyle.getPropertyValue(propertyName);
+      clonedElement.style[propertyName] = computedStyle.getPropertyValue(propertyName);
     }
   },
 
@@ -240,7 +245,11 @@ export default Service.extend(Evented, {
   getElementFromObject(attachTo) {
     const op = attachTo.element;
 
-    return $(op)[0];
+    if (op instanceof HTMLElement) {
+      return op;
+    }
+
+    return document.querySelector(op);
   },
 
   /**
@@ -257,7 +266,7 @@ export default Service.extend(Evented, {
     attachTo.pop();
     const selector = attachTo.join(' ');
 
-    return $(selector)[0];
+    return document.querySelector(selector);
   },
 
   initialize() {
@@ -337,7 +346,7 @@ export default Service.extend(Evented, {
 
     if (currentElement) {
       if (step.options.highlightClass) {
-        $(currentElement).addClass(step.options.highlightClass);
+        currentElement.classList.add(step.options.highlightClass);
       }
 
       if (get(this, 'modal')) {
@@ -346,8 +355,13 @@ export default Service.extend(Evented, {
         if (step.options.copyStyles) {
           this.createHighlightOverlay(step);
         } else {
-          $('.shepherd-modal').removeClass('shepherd-modal');
-          $(currentElement).addClass('shepherd-modal');
+          const shepherdModal = document.querySelector('.shepherd-modal');
+
+          if (shepherdModal) {
+            shepherdModal.classList.remove('shepherd-modal');
+          }
+
+          currentElement.classList.add('shepherd-modal');
         }
       }
     }
@@ -366,7 +380,9 @@ export default Service.extend(Evented, {
     if (isPresent(requiredElements)) {
       /* istanbul ignore next: also can't test this due to things attached to root blowing up tests */
       requiredElements.forEach((element) => {
-        if (allElementsPresent && (!$(element.selector)[0] || !$(element.selector).is(':visible'))) {
+        const selectedElement = document.querySelector(element.selector);
+
+        if (allElementsPresent && (!selectedElement || this._elementIsHidden(selectedElement))) {
           allElementsPresent = false;
           set(this, 'errorTitle', element.title);
           set(this, 'messageForUser', element.message);
@@ -386,14 +402,12 @@ export default Service.extend(Evented, {
   setPositionForHighlightElement({ currentElement, highlightElement }) {
     const elementPosition = this._getElementPosition(currentElement);
 
-    highlightElement.css({
-      'position': 'absolute',
-      'left': elementPosition.left,
-      'top': elementPosition.top,
-      'width': elementPosition.width,
-      'height': elementPosition.height,
-      'z-index': 10002
-    });
+    highlightElement.style.position = 'absolute';
+    highlightElement.style.left = elementPosition.left;
+    highlightElement.style.top = elementPosition.top;
+    highlightElement.style.width = elementPosition.width;
+    highlightElement.style.height = elementPosition.height;
+    highlightElement.style['z-index'] = 10002;
   },
 
   // TODO: Figure out how to use a computed instead of an observer here
@@ -445,9 +459,10 @@ export default Service.extend(Evented, {
 
         if (currentElement) {
           if (currentStep.options.highlightClass) {
-            $(currentElement).removeClass(currentStep.options.highlightClass);
+            currentElement.classList.remove(currentStep.options.highlightClass);
           }
-          $('#highlightOverlay').remove();
+
+          this._removeElement('#highlightOverlay');
         }
       });
 
@@ -474,6 +489,10 @@ export default Service.extend(Evented, {
     }
   }),
 
+  _elementIsHidden(element) {
+    return element.offsetWidth === 0 && element.offsetHeight === 0;
+  },
+
   /**
    * Taken from introjs https://github.com/usablica/intro.js/blob/master/intro.js#L1092-1124
    * Get an element position on the page
@@ -499,5 +518,13 @@ export default Service.extend(Evented, {
     elementPosition.top = y;
     elementPosition.left = x;
     return elementPosition;
+  },
+
+  _removeElement(selector) {
+    const element = document.querySelector(selector);
+
+    if (element instanceof HTMLElement) {
+      element.parentNode.removeChild(element);
+    }
   }
 });
