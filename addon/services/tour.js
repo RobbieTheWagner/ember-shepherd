@@ -489,6 +489,12 @@ export default Service.extend(Evented, {
     }
   }),
 
+  /**
+   * Helper method to check if element is hidden, since we cannot use :visible without jQuery
+   * @param {HTMLElement} element The element to check for visibility
+   * @returns {boolean} true if element is hidden
+   * @private
+   */
   _elementIsHidden(element) {
     return element.offsetWidth === 0 && element.offsetHeight === 0;
   },
@@ -520,6 +526,11 @@ export default Service.extend(Evented, {
     return elementPosition;
   },
 
+  /**
+   * Helper method to remove an element without jQuery
+   * @param {string} selector The CSS selector for the element to remove
+   * @private
+   */
   _removeElement(selector) {
     const element = document.querySelector(selector);
 
