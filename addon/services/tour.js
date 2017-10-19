@@ -402,28 +402,12 @@ export default Service.extend(Evented, {
   setPositionForHighlightElement({ currentElement, highlightElement }) {
     const elementPosition = this._getElementPosition(currentElement);
 
-    // highlightElement.style.position = 'absolute;';
-    // highlightElement.style.left = `${elementPosition.left}px`;
-    // highlightElement.style.top = `${elementPosition.top}px`;
-    // highlightElement.style.width = `${elementPosition.width}px`;
-    // highlightElement.style.height = `${elementPosition.height}px`;
-    // highlightElement.style['z-index'] = 10002;
-
-    highlightElement.css({
-      'position': 'absolute',
-      'left': elementPosition.left,
-      'top': elementPosition.top,
-      'width': elementPosition.width,
-      'height': elementPosition.height,
-      'z-index': 10002
-    });
-
-    // highlightElement.style.position = 'absolute';
-    // highlightElement.style.left = elementPosition.left;
-    // highlightElement.style.top = elementPosition.top;
-    // highlightElement.style.width = elementPosition.width;
-    // highlightElement.style.height = elementPosition.height;
-    // highlightElement.style['z-index'] = 10002;
+    highlightElement.style.position = 'absolute';
+    highlightElement.style.left = `${elementPosition.left}px`;
+    highlightElement.style.top = `${elementPosition.top}px`;
+    highlightElement.style.width = `${elementPosition.width}px`;
+    highlightElement.style.height = `${elementPosition.height}px`;
+    highlightElement.style['z-index'] = 10002;
   },
 
   // TODO: Figure out how to use a computed instead of an observer here
