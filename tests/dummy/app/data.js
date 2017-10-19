@@ -76,7 +76,7 @@ export default [
         }
       ],
       classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
-      copyStyles: false,
+      copyStyles: true,
       text: ['To use the tour service, simply inject it into your application and use it like this example.']
     }
   },
