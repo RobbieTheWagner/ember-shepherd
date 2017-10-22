@@ -32,6 +32,35 @@ const steps = [
   }
 ];
 
+const copyStylesSteps = [
+  {
+    id: 'intro',
+    options: {
+      attachTo: '.test-element bottom',
+      builtInButtons: [
+        {
+          classes: 'shepherd-button-secondary',
+          text: 'Exit',
+          type: 'cancel'
+        },
+        {
+          classes: 'shepherd-button-primary',
+          text: 'Next',
+          type: 'next'
+        }
+      ],
+      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+      copyStyles: true,
+      title: 'Welcome to Ember-Shepherd!',
+      text: ['Test text'],
+      scrollTo: true,
+      scrollToHandler() {
+        return 'custom scrollToHandler';
+      }
+    }
+  }
+];
+
 moduleFor('service:tour', 'Unit | Service | tour', {
   beforeEach() {
     mockWindow(this);
@@ -112,4 +141,46 @@ test('it correctly calculates element position from getElementPosition', functio
 
   assert.equal(position.top, '100', 'Top is correctly calculated');
   assert.equal(position.left, '200', 'Left is correctly calculated');
+});
+
+test('it correctly sets the highlight element position', function(assert) {
+  assert.expect(4);
+
+  const service = this.subject({
+    copyStylesSteps
+  });
+
+  const currentElement = { offsetHeight: 500, offsetLeft: 200, offsetTop: 100, offsetWidth: 250 };
+  const highlightElement = { style: {} };
+
+  service.setPositionForHighlightElement({
+    currentElement,
+    highlightElement
+  });
+
+  assert.ok(highlightElement.style.left.indexOf(currentElement.offsetLeft) > -1);
+  assert.ok(highlightElement.style.top.indexOf(currentElement.offsetTop) > -1);
+  assert.ok(highlightElement.style.width.indexOf(currentElement.offsetWidth) > -1);
+  assert.ok(highlightElement.style.height.indexOf(currentElement.offsetHeight) > -1);
+});
+
+test('it correctly sets the highlight element position format', function(assert) {
+  assert.expect(4);
+
+  const service = this.subject({
+    copyStylesSteps
+  });
+
+  const currentElement = { offsetHeight: 500, offsetLeft: 200, offsetTop: 100, offsetWidth: 250 };
+  const highlightElement = { style: {} };
+
+  service.setPositionForHighlightElement({
+    currentElement,
+    highlightElement
+  });
+
+  assert.ok(highlightElement.style.left.indexOf('px') > -1);
+  assert.ok(highlightElement.style.top.indexOf('px') > -1);
+  assert.ok(highlightElement.style.width.indexOf('px') > -1);
+  assert.ok(highlightElement.style.height.indexOf('px') > -1);
 });

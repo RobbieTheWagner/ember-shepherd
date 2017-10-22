@@ -403,10 +403,10 @@ export default Service.extend(Evented, {
     const elementPosition = this._getElementPosition(currentElement);
 
     highlightElement.style.position = 'absolute';
-    highlightElement.style.left = elementPosition.left;
-    highlightElement.style.top = elementPosition.top;
-    highlightElement.style.width = elementPosition.width;
-    highlightElement.style.height = elementPosition.height;
+    highlightElement.style.left = `${elementPosition.left}px`;
+    highlightElement.style.top = `${elementPosition.top}px`;
+    highlightElement.style.width = `${elementPosition.width}px`;
+    highlightElement.style.height = `${elementPosition.height}px`;
     highlightElement.style['z-index'] = 10002;
   },
 
