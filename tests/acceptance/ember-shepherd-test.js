@@ -1,5 +1,4 @@
 import { click, find, findAll, visit } from 'ember-native-dom-helpers';
-import $ from 'jquery';
 import { test } from 'qunit';
 import { lookupWindow } from 'ember-window-mock';
 import moduleForAcceptance from '../helpers/module-for-acceptance';
@@ -479,9 +478,9 @@ test('scrollTo works with disableScroll on', async function(assert) {
   // Visit route
   await visit('/');
 
-  $('#ember-testing-container').scrollTop(0);
+  find('#ember-testing-container', document.body).scrollTop = 0;
 
-  assert.equal($('#ember-testing-container').scrollTop(), 0, 'Scroll is initially 0');
+  assert.equal(find('#ember-testing-container', document.body).scrollTop, 0, 'Scroll is initially 0');
 
   await click('.toggleHelpModal');
 
@@ -489,7 +488,7 @@ test('scrollTo works with disableScroll on', async function(assert) {
 
   await click('.shepherd-content .next-button', document.documentElement);
 
-  assert.ok($('#ember-testing-container').scrollTop() > 0, 'Scrolled down correctly');
+  assert.ok(find('#ember-testing-container', document.body).scrollTop > 0, 'Scrolled down correctly');
 });
 
 test('scrollTo works with a custom scrollToHandler', async function(assert) {
@@ -517,7 +516,7 @@ test('scrollTo works with a custom scrollToHandler', async function(assert) {
       text: ['A field that has rested gives a bountiful crop.'],
       scrollTo: true,
       scrollToHandler() {
-        return $('#ember-testing-container').scrollTop(120);
+        return find('#ember-testing-container', document.body).scrollTop = 120;
       }
     }
   }];
@@ -527,13 +526,13 @@ test('scrollTo works with a custom scrollToHandler', async function(assert) {
 
   tour.set('steps', steps);
 
-  $('#ember-testing-container').scrollTop(0);
-  assert.equal($('#ember-testing-container').scrollTop(), 0, 'Scroll is initially 0');
+  find('#ember-testing-container', document.body).scrollTop = 0;
+  assert.equal(find('#ember-testing-container', document.body).scrollTop, 0, 'Scroll is initially 0');
 
   await click('.toggleHelpModal');
   await click('.shepherd-content .next-button', document.documentElement);
 
-  assert.ok($('#ember-testing-container').scrollTop() === 120, 'Scrolled correctly');
+  assert.ok(find('#ember-testing-container', document.body).scrollTop === 120, 'Scrolled correctly');
 });
 
 test('scrollTo works without a custom scrollToHandler', async function(assert) {
@@ -544,14 +543,14 @@ test('scrollTo works without a custom scrollToHandler', async function(assert) {
   // Visit route
   await visit('/');
 
-  $('#ember-testing-container').scrollTop(0);
+  find('#ember-testing-container', document.body).scrollTop = 0;
 
-  assert.equal($('#ember-testing-container').scrollTop(), 0, 'Scroll is initially 0');
+  assert.equal(find('#ember-testing-container', document.body).scrollTop, 0, 'Scroll is initially 0');
 
   await click('.toggleHelpModal');
   await click('.shepherd-content .next-button', document.documentElement);
 
-  assert.ok($('#ember-testing-container').scrollTop() > 0, 'Scrolled correctly');
+  assert.ok(find('#ember-testing-container', document.body).scrollTop > 0, 'Scrolled correctly');
 });
 
 test('Shows by id works', async function(assert) {

@@ -1,13 +1,13 @@
-/*jshint node:true*/
+/* eslint-env node */
 module.exports = {
   description: 'Adds ember-tether to consuming app',
-  normalizeEntityName: function() {
+  normalizeEntityName() {
   },
-  afterInstall: function(options) {
+  afterInstall() {
     return this.addAddonsToProject({
       packages: [
-        {name: 'ember-tether'}
+        { name: 'ember-tether' }
       ]
-    })
+    });
   }
 };
