@@ -1,5 +1,10 @@
 We will list changes, especially breaking changes, between versions here.
 
+### **2.8.0**
+* Remove jQuery
+* Refactor tests
+* 99% test coverage
+
 ### **2.6.0**
 * Update `ember-tether` and remove from `peerDependencies`
 
