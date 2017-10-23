@@ -4,6 +4,7 @@ We will list changes, especially breaking changes, between versions here.
 * Remove jQuery
 * Refactor tests
 * 99% test coverage
+* Merged https://github.com/shipshapecode/ember-shepherd/pull/168 to fix `copyStyles`
 
 ### **2.6.0**
 * Update `ember-tether` and remove from `peerDependencies`
