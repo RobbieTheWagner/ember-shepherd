@@ -4,11 +4,18 @@
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function(defaults) {
-  const app = new EmberAddon(defaults, {
+  const { project } = defaults;
+  const options = {
     shepherd: {
       theme: 'arrows'
     }
-  });
+  };
+
+  if (project.findAddonByName('ember-native-dom-event-dispatcher') && process.env.DEPLOY_TARGET === undefined) {
+    options.vendorFiles = { 'jquery.js': null };
+  }
+
+  const app = new EmberAddon(defaults, options);
 
   /*
     This build file specifies the options for the dummy test app of this
