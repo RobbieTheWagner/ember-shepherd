@@ -10,7 +10,8 @@ module.exports = {
       },
       npm: {
         devDependencies: {
-          'ember-source': null
+          'ember-source': null,
+          'ember-native-dom-event-dispatcher': null
         }
       }
     },
@@ -26,7 +27,8 @@ module.exports = {
       },
       npm: {
         devDependencies: {
-          'ember-source': null
+          'ember-source': null,
+          'ember-native-dom-event-dispatcher': null
         }
       }
     },
@@ -42,7 +44,8 @@ module.exports = {
       },
       npm: {
         devDependencies: {
-          'ember-source': null
+          'ember-source': null,
+          'ember-native-dom-event-dispatcher': null
         }
       }
     },
