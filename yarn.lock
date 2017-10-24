@@ -3099,9 +3099,9 @@ ember-try@^0.2.15:
     rsvp "^3.0.17"
     semver "^5.1.0"
 
-ember-window-mock@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/ember-window-mock/-/ember-window-mock-0.1.0.tgz#34ce8de82e7dfc65a773afd6eddbfd27fae4143b"
+ember-window-mock@rwwagner90/ember-window-mock:
+  version "0.1.1"
+  resolved "https://codeload.github.com/rwwagner90/ember-window-mock/tar.gz/65ffd4537422f275ce8409beac81cba9d8e7e961"
   dependencies:
     ember-cli-babel "^6.8.2"
 

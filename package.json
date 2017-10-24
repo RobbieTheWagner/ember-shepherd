@@ -46,7 +46,7 @@
     "ember-cli-babel": "^6.8.2",
     "ember-cli-node-assets": "0.2.2",
     "ember-tether": "1.0.0-beta.0",
-    "ember-window-mock": "^0.1.0",
+    "ember-window-mock": "rwwagner90/ember-window-mock",
     "fastboot-transform": "^0.1.2",
     "tether-shepherd": "1.8.1"
   },

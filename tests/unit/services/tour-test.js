@@ -1,4 +1,5 @@
-import { moduleFor, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 import EmberObject from '@ember/object';
 import { mockWindow } from 'ember-window-mock';
 import { run } from '@ember/runloop';
@@ -61,126 +62,129 @@ const copyStylesSteps = [
   }
 ];
 
-moduleFor('service:tour', 'Unit | Service | tour', {
-  beforeEach() {
+module('Unit | Service | tour', function(hooks) {
+  setupTest(hooks);
+
+  hooks.beforeEach(() => {
     mockWindow(this);
-  }
-});
-
-test('it starts the tour when the `start` event is triggered', function(assert) {
-  assert.expect(1);
-
-  const mockTourObject = EmberObject.extend({
-    start() {
-      assert.ok(true, 'The tour was started');
-    }
-  }).create();
-
-  const service = this.subject({
-    steps
+    console.log(this.owner);
   });
 
-  service.set('tourObject', mockTourObject);
+  test('it starts the tour when the `start` event is triggered', function(assert) {
+    assert.expect(1);
 
-  run(function() {
-    service.start();
-  });
-});
+    const mockTourObject = EmberObject.extend({
+      start() {
+        assert.ok(true, 'The tour was started');
+      }
+    }).create();
 
-test('it allows another object to bind to events', function(assert) {
-  assert.expect(1);
+    const service = this.owner.factoryFor('service:tour').create({
+      steps
+    });
 
-  const mockTourObject = EmberObject.extend({
-    next() {}
-  }).create();
+    service.set('tourObject', mockTourObject);
 
-  const service = this.subject({
-    steps
-  });
-
-  service.set('tourObject', mockTourObject);
-
-  service.on('next', function() {
-    assert.ok(true);
+    run(function() {
+      service.start();
+    });
   });
 
-  run(function() {
-    service.next();
-  });
-});
+  test('it allows another object to bind to events', function(assert) {
+    assert.expect(1);
 
-test('it passes through a custom scrollToHandler option', function(assert) {
-  assert.expect(1);
+    const mockTourObject = EmberObject.extend({
+      next() {}
+    }).create();
 
-  const mockTourObject = EmberObject.extend({
-    start() {
-      assert.equal(steps[0].options.scrollToHandler(), 'custom scrollToHandler', 'The handler was passed through as an option on the step');
-    }
-  }).create();
+    const service = this.owner.factoryFor('service:tour').create({
+      steps
+    });
 
-  const service = this.subject({
-    steps
-  });
+    service.set('tourObject', mockTourObject);
 
-  service.set('tourObject', mockTourObject);
+    service.on('next', function() {
+      assert.ok(true);
+    });
 
-  run(function() {
-    service.start();
-  });
-});
-
-test('it correctly calculates element position from getElementPosition', function(assert) {
-  assert.expect(2);
-
-  const service = this.subject({
-    steps
+    run(function() {
+      service.next();
+    });
   });
 
-  const mockElement = { offsetHeight: 500, offsetLeft: 200, offsetTop: 100, offsetWidth: 250 };
-  const position = service._getElementPosition(mockElement);
+  test('it passes through a custom scrollToHandler option', function(assert) {
+    assert.expect(1);
 
-  assert.equal(position.top, '100', 'Top is correctly calculated');
-  assert.equal(position.left, '200', 'Left is correctly calculated');
-});
+    const mockTourObject = EmberObject.extend({
+      start() {
+        assert.equal(steps[0].options.scrollToHandler(), 'custom scrollToHandler', 'The handler was passed through as an option on the step');
+      }
+    }).create();
 
-test('it correctly sets the highlight element position', function(assert) {
-  assert.expect(4);
+    const service = this.owner.factoryFor('service:tour').create({
+      steps
+    });
 
-  const service = this.subject({
-    copyStylesSteps
+    service.set('tourObject', mockTourObject);
+
+    run(function() {
+      service.start();
+    });
   });
 
-  const currentElement = { offsetHeight: 500, offsetLeft: 200, offsetTop: 100, offsetWidth: 250 };
-  const highlightElement = { style: {} };
+  test('it correctly calculates element position from getElementPosition', function(assert) {
+    assert.expect(2);
 
-  service.setPositionForHighlightElement({
-    currentElement,
-    highlightElement
+    const service = this.owner.factoryFor('service:tour').create({
+      steps
+    });
+
+    const mockElement = { offsetHeight: 500, offsetLeft: 200, offsetTop: 100, offsetWidth: 250 };
+    const position = service._getElementPosition(mockElement);
+
+    assert.equal(position.top, '100', 'Top is correctly calculated');
+    assert.equal(position.left, '200', 'Left is correctly calculated');
   });
 
-  assert.ok(highlightElement.style.left.indexOf(currentElement.offsetLeft) > -1);
-  assert.ok(highlightElement.style.top.indexOf(currentElement.offsetTop) > -1);
-  assert.ok(highlightElement.style.width.indexOf(currentElement.offsetWidth) > -1);
-  assert.ok(highlightElement.style.height.indexOf(currentElement.offsetHeight) > -1);
-});
+  test('it correctly sets the highlight element position', function(assert) {
+    assert.expect(4);
 
-test('it correctly sets the highlight element position format', function(assert) {
-  assert.expect(4);
+    const service = this.owner.factoryFor('service:tour').create({
+      copyStylesSteps
+    });
 
-  const service = this.subject({
-    copyStylesSteps
+    const currentElement = { offsetHeight: 500, offsetLeft: 200, offsetTop: 100, offsetWidth: 250 };
+    const highlightElement = { style: {} };
+
+    service.setPositionForHighlightElement({
+      currentElement,
+      highlightElement
+    });
+
+    assert.ok(highlightElement.style.left.indexOf(currentElement.offsetLeft) > -1);
+    assert.ok(highlightElement.style.top.indexOf(currentElement.offsetTop) > -1);
+    assert.ok(highlightElement.style.width.indexOf(currentElement.offsetWidth) > -1);
+    assert.ok(highlightElement.style.height.indexOf(currentElement.offsetHeight) > -1);
   });
 
-  const currentElement = { offsetHeight: 500, offsetLeft: 200, offsetTop: 100, offsetWidth: 250 };
-  const highlightElement = { style: {} };
+  test('it correctly sets the highlight element position format', function(assert) {
+    assert.expect(4);
 
-  service.setPositionForHighlightElement({
-    currentElement,
-    highlightElement
+    const service = this.owner.factoryFor('service:tour').create({
+      copyStylesSteps
+    });
+
+    const currentElement = { offsetHeight: 500, offsetLeft: 200, offsetTop: 100, offsetWidth: 250 };
+    const highlightElement = { style: {} };
+
+    service.setPositionForHighlightElement({
+      currentElement,
+      highlightElement
+    });
+
+    assert.ok(highlightElement.style.left.indexOf('px') > -1);
+    assert.ok(highlightElement.style.top.indexOf('px') > -1);
+    assert.ok(highlightElement.style.width.indexOf('px') > -1);
+    assert.ok(highlightElement.style.height.indexOf('px') > -1);
   });
-
-  assert.ok(highlightElement.style.left.indexOf('px') > -1);
-  assert.ok(highlightElement.style.top.indexOf('px') > -1);
-  assert.ok(highlightElement.style.width.indexOf('px') > -1);
-  assert.ok(highlightElement.style.height.indexOf('px') > -1);
 });
