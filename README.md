@@ -37,13 +37,16 @@ If you are not using Ember CLI, we recommend using [ember-giftwrap](https://gith
 Interaction with `ember-shepherd` is done entirely through the Tour service, which you can access from any object using the `Ember.inject` syntax:
 
 ```js
-export default Ember.Component.extend({
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
 
-  tour: Ember.inject.service()
+export default Component.extend({
+
+  tour: service()
 
   // OR
 
-  tourService: Ember.inject.service('tour')
+  tourService: service('tour')
 })
 ```
 
@@ -328,9 +331,12 @@ A: Don't worry, it's not too bad!  You can just set up an action to start (or ca
 ```js
 // app/routes/application.js
 
-export default Ember.Route.extend({
+import Route from "@ember/routing/route";
+import { inject as service } from '@ember/service';
 
-  tour: Ember.inject.service(),
+export default Route.extend({
+
+  tour: service(),
 
   actions: {
     startTour: function() {
