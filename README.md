@@ -38,7 +38,7 @@ Interaction with `ember-shepherd` is done entirely through the Tour service, whi
 
 ```js
 import Component from '@ember/component';
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
 
@@ -332,7 +332,7 @@ A: Don't worry, it's not too bad!  You can just set up an action to start (or ca
 // app/routes/application.js
 
 import Route from "@ember/routing/route";
-import { inject } from "@ember/service";
+import { inject as service } from '@ember/service';
 
 export default Route.extend({
 
