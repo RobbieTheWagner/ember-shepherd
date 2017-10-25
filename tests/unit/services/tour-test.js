@@ -65,9 +65,8 @@ const copyStylesSteps = [
 module('Unit | Service | tour', function(hooks) {
   setupTest(hooks);
 
-  hooks.beforeEach(() => {
+  hooks.beforeEach(function() {
     mockWindow(this);
-    console.log(this.owner);
   });
 
   test('it starts the tour when the `start` event is triggered', function(assert) {
