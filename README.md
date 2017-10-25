@@ -344,5 +344,22 @@ export default Route.extend({
 });
 ```
 
+### Q: How do I make a tour span multiple route transitions?
+
+A : You can use `beforeShowPromise` to ensure you have fully transitioned to the new route before showing
+the step by doing something like this:
+
+```
+beforeShowPromise: function() {
+  return new Promise(function(resolve) {
+    router.transitionTo('myurl').finally(() => {
+      Ember.run.scheduleOnce('afterRender', this, function() {
+        resolve();
+      });
+    });
+  });
+}
+```
+
 ## Contributing
 Please feel free to post any issues you encounter or feature requests on the issues in this repo. Pull requests welcome as well!
