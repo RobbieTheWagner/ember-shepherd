@@ -78,7 +78,7 @@
     "ember-debonair": "^0.4.4",
     "ember-disable-prototype-extensions": "^1.1.2",
     "ember-export-application-global": "^2.0.0",
-    "ember-getowner-polyfill": "2.0.1",
+    "ember-getowner-polyfill": "2.1.0",
     "ember-load-initializers": "^1.0.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-native-dom-event-dispatcher": "^0.6.3",
