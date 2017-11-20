@@ -88,7 +88,7 @@
     "ember-sinon": "^1.0.1",
     "ember-sinon-qunit": "^2.0.0",
     "ember-source": "~2.17.0-beta.1",
-    "eslint-plugin-ember": "^4.5.0",
+    "eslint-plugin-ember": "^5.0.0",
     "eslint-plugin-ember-suave": "^1.0.0",
     "flexi": "^2.0.1",
     "loader.js": "^4.2.3",
