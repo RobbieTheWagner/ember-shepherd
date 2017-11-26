@@ -92,8 +92,7 @@
     "eslint-plugin-ember-suave": "^1.0.0",
     "flexi": "^2.0.1",
     "loader.js": "^4.2.3",
-    "stylelint-config-ship-shape": "^0.1.0",
-    "stylelint-config-standard": "^17.0.0"
+    "stylelint-config-ship-shape": "^0.1.3"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"
