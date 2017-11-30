@@ -3,7 +3,7 @@
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function(defaults) {
-  const { project } = defaults;
+  const project = defaults.project;
   const options = {
     shepherd: {
       theme: 'arrows'
