@@ -4,23 +4,43 @@ module.exports = {
     ecmaVersion: 2017,
     sourceType: 'module'
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:ember/base',
-    'plugin:ember-suave/recommended'
-  ],
+  plugins: ['ember'],
+  extends: ['eslint:recommended', 'plugin:ember/recommended'],
   env: {
     browser: true
   },
   globals: {
-    disableScroll: false,
-    Shepherd: false
+    Shepherd: false,
+    disableScroll: false
   },
-  rules: {
-    'prefer-const': 'error',
+  rules: {},
+  overrides: [
+    // node files
+    {
+      files: [
+        'index.js',
+        'testem.js',
+        'ember-cli-build.js',
+        'config/**/*.js',
+        'tests/dummy/config/**/*.js'
+      ],
+      parserOptions: {
+        sourceType: 'script',
+        ecmaVersion: 2015
+      },
+      env: {
+        browser: false,
+        node: true
+      }
+    },
 
-    'ember/alias-model-in-controller': 'off',
-    'ember/no-old-shims': 'error',
-    'ember-suave/no-const-outside-module-scope': 0
-  }
+    // test files
+    {
+      files: ['tests/**/*.js'],
+      excludedFiles: ['tests/dummy/**/*.js'],
+      env: {
+        embertest: true
+      }
+    }
+  ]
 };
