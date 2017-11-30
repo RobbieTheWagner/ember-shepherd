@@ -14,14 +14,19 @@ export default Service.extend(Evented, {
   autoStart: false,
   confirmCancel: false,
   confirmCancelMessage: null,
-  defaults: {},
   disableScroll: false,
   errorTitle: null,
   isActive: false,
   messageForUser: null,
   modal: false,
-  requiredElements: [],
-  steps: [],
+
+
+  init() {
+    this._super(...arguments);
+    this.defaults = {};
+    this.requiredElements = [];
+    this.steps = [];
+  },
 
   start() {
     set(this, 'isActive', true);
