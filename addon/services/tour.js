@@ -1,4 +1,4 @@
-/* eslint-disable ember/no-observers */
+/* eslint-disable ember/avoid-leaking-state-in-ember-objects, ember/no-observers */
 
 import { get, observer, set } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
@@ -14,19 +14,14 @@ export default Service.extend(Evented, {
   autoStart: false,
   confirmCancel: false,
   confirmCancelMessage: null,
+  defaults: {},
   disableScroll: false,
   errorTitle: null,
   isActive: false,
   messageForUser: null,
   modal: false,
-
-
-  init() {
-    this._super(...arguments);
-    this.defaults = {};
-    this.requiredElements = [];
-    this.steps = [];
-  },
+  requiredElements: [],
+  steps: [],
 
   start() {
     set(this, 'isActive', true);
