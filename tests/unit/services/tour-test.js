@@ -3,6 +3,7 @@ import { setupTest } from 'ember-qunit';
 import EmberObject from '@ember/object';
 import { mockWindow } from 'ember-window-mock';
 import { run } from '@ember/runloop';
+import { getElementPosition, setPositionForHighlightElement } from 'ember-shepherd/utils';
 
 const steps = [
   {
@@ -23,35 +24,6 @@ const steps = [
       ],
       classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
       copyStyles: false,
-      title: 'Welcome to Ember-Shepherd!',
-      text: ['Test text'],
-      scrollTo: true,
-      scrollToHandler() {
-        return 'custom scrollToHandler';
-      }
-    }
-  }
-];
-
-const copyStylesSteps = [
-  {
-    id: 'intro',
-    options: {
-      attachTo: '.test-element bottom',
-      builtInButtons: [
-        {
-          classes: 'shepherd-button-secondary',
-          text: 'Exit',
-          type: 'cancel'
-        },
-        {
-          classes: 'shepherd-button-primary',
-          text: 'Next',
-          type: 'next'
-        }
-      ],
-      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
-      copyStyles: true,
       title: 'Welcome to Ember-Shepherd!',
       text: ['Test text'],
       scrollTo: true,
@@ -134,12 +106,8 @@ module('Unit | Service | tour', function(hooks) {
   test('it correctly calculates element position from getElementPosition', function(assert) {
     assert.expect(2);
 
-    const service = this.owner.factoryFor('service:tour').create({
-      steps
-    });
-
     const mockElement = { offsetHeight: 500, offsetLeft: 200, offsetTop: 100, offsetWidth: 250 };
-    const position = service._getElementPosition(mockElement);
+    const position = getElementPosition(mockElement);
 
     assert.equal(position.top, '100', 'Top is correctly calculated');
     assert.equal(position.left, '200', 'Left is correctly calculated');
@@ -148,14 +116,10 @@ module('Unit | Service | tour', function(hooks) {
   test('it correctly sets the highlight element position', function(assert) {
     assert.expect(4);
 
-    const service = this.owner.factoryFor('service:tour').create({
-      copyStylesSteps
-    });
-
     const currentElement = { offsetHeight: 500, offsetLeft: 200, offsetTop: 100, offsetWidth: 250 };
     const highlightElement = { style: {} };
 
-    service.setPositionForHighlightElement({
+    setPositionForHighlightElement({
       currentElement,
       highlightElement
     });
@@ -169,14 +133,10 @@ module('Unit | Service | tour', function(hooks) {
   test('it correctly sets the highlight element position format', function(assert) {
     assert.expect(4);
 
-    const service = this.owner.factoryFor('service:tour').create({
-      copyStylesSteps
-    });
-
     const currentElement = { offsetHeight: 500, offsetLeft: 200, offsetTop: 100, offsetWidth: 250 };
     const highlightElement = { style: {} };
 
-    service.setPositionForHighlightElement({
+    setPositionForHighlightElement({
       currentElement,
       highlightElement
     });

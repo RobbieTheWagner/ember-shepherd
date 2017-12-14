@@ -6,6 +6,13 @@ import { inject as service } from '@ember/service';
 import Evented from '@ember/object/evented';
 import Service from '@ember/service';
 import { run } from '@ember/runloop';
+import {
+  elementIsHidden,
+  getElementFromObject,
+  getElementFromString,
+  removeElement,
+  setPositionForHighlightElement
+} from '../utils';
 
 export default Service.extend(Evented, {
   window: service(),
@@ -22,11 +29,6 @@ export default Service.extend(Evented, {
   modal: false,
   requiredElements: [],
   steps: [],
-
-  start() {
-    set(this, 'isActive', true);
-    get(this, 'tourObject').start();
-  },
 
   /**
    * Get the tour object and call back
@@ -61,6 +63,11 @@ export default Service.extend(Evented, {
    */
   show(id) {
     get(this, 'tourObject').show(id);
+  },
+
+  start() {
+    set(this, 'isActive', true);
+    get(this, 'tourObject').start();
   },
 
   onTourStart() {
@@ -110,8 +117,8 @@ export default Service.extend(Evented, {
         });
       }
       run('afterRender', () => {
-        this._removeElement('#shepherdOverlay');
-        this._removeElement('#highlightOverlay');
+        removeElement('#shepherdOverlay');
+        removeElement('#highlightOverlay');
 
         const shepherdModal = document.querySelector('.shepherd-modal');
 
@@ -128,7 +135,7 @@ export default Service.extend(Evented, {
    * @private
    */
   createHighlightOverlay(step) {
-    this._removeElement('#highlightOverlay');
+    removeElement('#highlightOverlay');
 
     const currentElement = this.getElementForStep(step);
 
@@ -149,13 +156,13 @@ export default Service.extend(Evented, {
         this.setComputedStylesOnClonedElement(children[i], clonedChildren[i]);
       }
 
-      this.setPositionForHighlightElement({
+      setPositionForHighlightElement({
         currentElement,
         highlightElement
       });
 
       window.addEventListener('resize', () => {
-        run.debounce(this, 'setPositionForHighlightElement', {
+        run.debounce(this, setPositionForHighlightElement, {
           currentElement,
           highlightElement
         }, 50);
@@ -183,9 +190,9 @@ export default Service.extend(Evented, {
     let element;
 
     if (type === 'string') {
-      element = this.getElementFromString(attachTo);
+      element = getElementFromString(attachTo);
     } else if (type === 'object') {
-      element = this.getElementFromObject(attachTo);
+      element = getElementFromObject(attachTo);
     } else {
       /* istanbul ignore next: cannot test undefined attachTo, but it does work! */
       element = null;
@@ -232,41 +239,6 @@ export default Service.extend(Evented, {
       };
       tourObject.cancel = newCancelFunction;
     }
-  },
-
-  /**
-   * Get the element from an option object
-   *
-   * @method getElementFromObject
-   * @param Object attachTo
-   * @returns {Element}
-   * @private
-   */
-  getElementFromObject(attachTo) {
-    const op = attachTo.element;
-
-    if (op instanceof HTMLElement) {
-      return op;
-    }
-
-    return document.querySelector(op);
-  },
-
-  /**
-   * Get the element from an option string
-   *
-   * @method getElementFromString
-   * @param element the string in the step configuration
-   * @returns {Element} the element from the string
-   * @private
-   */
-  getElementFromString(element) {
-    const attachTo = element.split(' ');
-
-    attachTo.pop();
-    const selector = attachTo.join(' ');
-
-    return document.querySelector(selector);
   },
 
   initialize() {
@@ -382,7 +354,7 @@ export default Service.extend(Evented, {
       requiredElements.forEach((element) => {
         const selectedElement = document.querySelector(element.selector);
 
-        if (allElementsPresent && (!selectedElement || this._elementIsHidden(selectedElement))) {
+        if (allElementsPresent && (!selectedElement || elementIsHidden(selectedElement))) {
           allElementsPresent = false;
           set(this, 'errorTitle', element.title);
           set(this, 'messageForUser', element.message);
@@ -390,24 +362,6 @@ export default Service.extend(Evented, {
       });
     }
     return allElementsPresent;
-  },
-
-  /**
-   * Set position of the highlighted element
-   *
-   * @param currentElement The element that belongs to the step
-   * @param highlightElement The cloned element that is above the overlay
-   * @private
-   */
-  setPositionForHighlightElement({ currentElement, highlightElement }) {
-    const elementPosition = this._getElementPosition(currentElement);
-
-    highlightElement.style.position = 'absolute';
-    highlightElement.style.left = `${elementPosition.left}px`;
-    highlightElement.style.top = `${elementPosition.top}px`;
-    highlightElement.style.width = `${elementPosition.width}px`;
-    highlightElement.style.height = `${elementPosition.height}px`;
-    highlightElement.style['z-index'] = 10002;
   },
 
   // TODO: Figure out how to use a computed instead of an observer here
@@ -462,7 +416,7 @@ export default Service.extend(Evented, {
             currentElement.classList.remove(currentStep.options.highlightClass);
           }
 
-          this._removeElement('#highlightOverlay');
+          removeElement('#highlightOverlay');
         }
       });
 
@@ -487,55 +441,5 @@ export default Service.extend(Evented, {
         this.start();
       });
     }
-  }),
-
-  /**
-   * Helper method to check if element is hidden, since we cannot use :visible without jQuery
-   * @param {HTMLElement} element The element to check for visibility
-   * @returns {boolean} true if element is hidden
-   * @private
-   */
-  _elementIsHidden(element) {
-    return element.offsetWidth === 0 && element.offsetHeight === 0;
-  },
-
-  /**
-   * Taken from introjs https://github.com/usablica/intro.js/blob/master/intro.js#L1092-1124
-   * Get an element position on the page
-   * Thanks to `meouw`: http://stackoverflow.com/a/442474/375966
-   * @private
-   */
-  _getElementPosition(element) {
-    const elementPosition = {
-      height: element.offsetHeight,
-      width: element.offsetWidth
-    };
-
-    // calculate element top and left
-    let x = 0;
-    let y = 0;
-
-    while (element && !isNaN(element.offsetLeft) && !isNaN(element.offsetTop)) {
-      x += element.offsetLeft;
-      y += element.offsetTop;
-      element = element.offsetParent;
-    }
-
-    elementPosition.top = y;
-    elementPosition.left = x;
-    return elementPosition;
-  },
-
-  /**
-   * Helper method to remove an element without jQuery
-   * @param {string} selector The CSS selector for the element to remove
-   * @private
-   */
-  _removeElement(selector) {
-    const element = document.querySelector(selector);
-
-    if (element instanceof HTMLElement) {
-      element.parentNode.removeChild(element);
-    }
-  }
+  })
 });
