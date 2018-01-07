@@ -62,13 +62,6 @@ var app = new EmberApp(defaults, {
 
 The following configuration options can be `set` on the Tour service to control the way that Shepherd is used.  The only required option is `steps`, which you can read more about below.
 
-### autoStart
-
-`autoStart` is a boolean flag you can set to `true` or `false` to go ahead and automatically
-start the tour after you have added steps to the tour.
-
-> **default value:** `false`
-
 ### confirmCancel
 
 `confirmCancel` is a boolean flag, when set to `true` it will pop up a native browser

@@ -15,7 +15,6 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     tour = this.owner.lookup('service:tour');
     tour.setProperties({
       steps,
-      autoStart: false,
       confirmCancel: false,
       modal: false,
       defaults: {
@@ -80,10 +79,8 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     await visit('/');
 
-    tour.cancel();
     tour.set('defaults', defaults);
     tour.set('steps', steps);
-    tour.set('autoStart', false);
 
     await click('.toggleHelpModal');
 
@@ -161,8 +158,6 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     assert.expect(3);
 
     await visit('/');
-
-    tour.cancel();
 
     await click('.toggleHelpNonmodal');
 

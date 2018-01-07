@@ -2,6 +2,7 @@
 import Route from '@ember/routing/route';
 import config from '../config/environment';
 import { inject as service } from '@ember/service';
+import { scheduleOnce } from '@ember/runloop';
 import steps from '../data';
 
 export default Route.extend({
@@ -16,17 +17,11 @@ export default Route.extend({
   beforeModel() {
     const tour = this.get('tour');
 
-    tour.set('autoStart', true);
     tour.set('defaults', this.get('defaults'));
     tour.set('disableScroll', this.get('disableScroll'));
     tour.set('modal', true);
-
-    // We need to check env, and only set steps if not testing because otherwise tests are jacked
-    if (config.environment !== 'test') {
-      tour.set('confirmCancel', false);
-      tour.set('steps', steps);
-    }
-
+    tour.set('confirmCancel', false);
+    tour.set('steps', steps);
     tour.set('requiredElements', [
       {
         selector: '.first-element',
@@ -65,5 +60,13 @@ export default Route.extend({
         }
       ]
     };
+  },
+
+  activate() {
+    if (config.environment !== 'test') {
+      scheduleOnce('afterRender', this, function() {
+        this.get('tour').start();
+      });
+    }
   }
 });

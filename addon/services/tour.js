@@ -17,7 +17,6 @@ export default Service.extend(Evented, {
   window: service(),
 
   // Configuration Options
-  autoStart: false,
   confirmCancel: false,
   confirmCancelMessage: null,
   defaults: {},
@@ -426,10 +425,5 @@ export default Service.extend(Evented, {
       }
 
     });
-    if (get(this, 'autoStart')) {
-      run.later(() => {
-        this.start();
-      });
-    }
   })
 });
