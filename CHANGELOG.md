@@ -1,5 +1,11 @@
 We will list changes, especially breaking changes, between versions here.
 
+### **3.0.0**
+* Removed `autoStart`, so this is a breaking change if you were relying on the tour to start itself.
+
+### **2.9.0**
+* General refactoring and moving utils methods to utils.js
+
 ### **2.8.0**
 * Remove jQuery
 * Refactor tests
