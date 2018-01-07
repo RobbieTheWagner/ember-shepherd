@@ -26,8 +26,6 @@ To start, if you are using Ember CLI, simply run:
 ember install ember-shepherd
 ```
 
-If you are not using Ember CLI, we recommend using [ember-giftwrap](https://github.com/ef4/ember-giftwrap) to install your Ember addons.
-
 ## Usage
 
 Interaction with `ember-shepherd` is done entirely through the Tour service, which you can access from any object using the `Ember.inject` syntax:
