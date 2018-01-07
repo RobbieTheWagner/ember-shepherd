@@ -2,9 +2,8 @@
 
 import { get, observer, set } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
-import { inject as service } from '@ember/service';
+import Service, { inject as service } from '@ember/service';
 import Evented from '@ember/object/evented';
-import Service from '@ember/service';
 import { run } from '@ember/runloop';
 import {
   elementIsHidden,
@@ -82,16 +81,14 @@ export default Service.extend(Evented, {
     this.trigger('start');
   },
 
-  onTourComplete() {
+  /**
+   * This function is called when a tour is completed or cancelled to initiate cleanup.
+   * @param {string} completeOrCancel 'complete' or 'cancel'
+   */
+  onTourFinish(completeOrCancel) {
     set(this, 'isActive', false);
     this.cleanup();
-    this.trigger('complete');
-  },
-
-  onTourCancel() {
-    set(this, 'isActive', false);
-    this.cleanup();
-    this.trigger('cancel');
+    this.trigger(completeOrCancel);
   },
 
   /**
@@ -252,8 +249,8 @@ export default Service.extend(Evented, {
     this.wrapCancelFunction(get(this, 'confirmCancel'), get(this, 'confirmCancelMessage'), tourObject);
 
     tourObject.on('start', run.bind(this, 'onTourStart'));
-    tourObject.on('complete', run.bind(this, 'onTourComplete'));
-    tourObject.on('cancel', run.bind(this, 'onTourCancel'));
+    tourObject.on('complete', run.bind(this, 'onTourFinish', 'complete'));
+    tourObject.on('cancel', run.bind(this, 'onTourFinish', 'cancel'));
     set(this, 'tourObject', tourObject);
   },
 
@@ -268,17 +265,10 @@ export default Service.extend(Evented, {
    * @private
    */
   makeButton({ type, classes, text, action }) {
-    if (type === 'cancel') {
+    const builtInButtonTypes = ['back', 'cancel', 'next'];
+    if (builtInButtonTypes.includes(type)) {
       action = run.bind(this, function() {
-        this.cancel();
-      });
-    } else if (type === 'back') {
-      action = run.bind(this, function() {
-        this.back();
-      });
-    } else if (type === 'next') {
-      action = run.bind(this, function() {
-        this.next();
+        this[type]();
       });
     } else {
       action = action || function() {};
