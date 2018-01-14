@@ -10,7 +10,8 @@ import {
   getElementFromObject,
   getElementFromString,
   removeElement,
-  setPositionForHighlightElement
+  setPositionForHighlightElement,
+  toggleShepherdModalClass
 } from '../utils';
 
 export default Service.extend(Evented, {
@@ -303,25 +304,21 @@ export default Service.extend(Evented, {
   popoutElement(step) {
     const currentElement = this.getElementForStep(step);
 
-    if (currentElement) {
-      if (step.options.highlightClass) {
-        currentElement.classList.add(step.options.highlightClass);
-      }
+    if (!currentElement) {
+      return;
+    }
 
-      if (get(this, 'modal')) {
-        currentElement.style.pointerEvents = 'none';
+    if (step.options.highlightClass) {
+      currentElement.classList.add(step.options.highlightClass);
+    }
 
-        if (step.options.copyStyles) {
-          this.createHighlightOverlay(step);
-        } else {
-          const shepherdModal = document.querySelector('.shepherd-modal');
+    if (get(this, 'modal')) {
+      currentElement.style.pointerEvents = 'none';
 
-          if (shepherdModal) {
-            shepherdModal.classList.remove('shepherd-modal');
-          }
-
-          currentElement.classList.add('shepherd-modal');
-        }
+      if (step.options.copyStyles) {
+        this.createHighlightOverlay(step);
+      } else {
+        toggleShepherdModalClass(currentElement);
       }
     }
   },
