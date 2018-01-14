@@ -1,5 +1,8 @@
 We will list changes, especially breaking changes, between versions here.
 
+### **3.1.0**
+* Removed `ember-window-mock` dependency
+
 ### **3.0.0**
 * Removed `autoStart`, so this is a breaking change if you were relying on the tour to start itself.
 

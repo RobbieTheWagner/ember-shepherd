@@ -1,7 +1,6 @@
 import { click, find, findAll } from 'ember-native-dom-helpers';
 import { module, test } from 'qunit';
 import { visit } from '@ember/test-helpers';
-import { lookupWindow } from 'ember-window-mock';
 import { setupApplicationTest } from 'ember-qunit';
 import sinonTest from 'ember-sinon-qunit/test-support/test';
 import steps from '../data';
@@ -124,9 +123,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       }
     }];
 
-    const window = lookupWindow(this);
-    const stub = this.stub(window, 'confirm');
-    stub.returns(true);
+    const spy = this.spy(window, 'confirm');
 
     await visit('/');
 
@@ -139,7 +136,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     await click('.shepherd-open a.shepherd-cancel-link', document.documentElement);
 
-    assert.ok(stub.calledOnce);
+    assert.ok(spy.calledOnce);
   });
 
   test('Modal page contents', async function(assert) {

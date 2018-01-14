@@ -2,7 +2,7 @@
 
 import { get, observer, set } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
-import Service, { inject as service } from '@ember/service';
+import Service from '@ember/service';
 import Evented from '@ember/object/evented';
 import { run } from '@ember/runloop';
 import {
@@ -14,8 +14,6 @@ import {
 } from '../utils';
 
 export default Service.extend(Evented, {
-  window: service(),
-
   // Configuration Options
   confirmCancel: false,
   confirmCancelMessage: null,
@@ -228,7 +226,7 @@ export default Service.extend(Evented, {
       const cancelMessage = confirmCancelMessage || 'Are you sure you want to stop the tour?';
 
       const newCancelFunction = () => {
-        const stopTour = get(this, 'window').confirm(cancelMessage);
+        const stopTour = window.confirm(cancelMessage);
         if (stopTour) {
           cancelFunction();
         }

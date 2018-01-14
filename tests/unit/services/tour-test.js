@@ -1,7 +1,6 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 import EmberObject from '@ember/object';
-import { mockWindow } from 'ember-window-mock';
 import { run } from '@ember/runloop';
 import { getElementPosition, setPositionForHighlightElement } from 'ember-shepherd/utils';
 
@@ -36,10 +35,6 @@ const steps = [
 
 module('Unit | Service | tour', function(hooks) {
   setupTest(hooks);
-
-  hooks.beforeEach(function() {
-    mockWindow(this);
-  });
 
   test('it starts the tour when the `start` event is triggered', function(assert) {
     assert.expect(1);
