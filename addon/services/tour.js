@@ -10,7 +10,8 @@ import {
   getElementFromObject,
   getElementFromString,
   removeElement,
-  setPositionForHighlightElement
+  setPositionForHighlightElement,
+  toggleShepherdModalClass
 } from '../utils';
 
 export default Service.extend(Evented, {
@@ -317,13 +318,7 @@ export default Service.extend(Evented, {
       if (step.options.copyStyles) {
         this.createHighlightOverlay(step);
       } else {
-        const shepherdModal = document.querySelector('.shepherd-modal');
-
-        if (shepherdModal) {
-          shepherdModal.classList.remove('shepherd-modal');
-        }
-
-        currentElement.classList.add('shepherd-modal');
+        toggleShepherdModalClass(currentElement);
       }
     }
   },

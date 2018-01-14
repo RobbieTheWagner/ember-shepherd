@@ -101,11 +101,26 @@ function setPositionForHighlightElement({ currentElement, highlightElement }) {
   highlightElement.style['z-index'] = 10002;
 }
 
+/**
+ * Remove any leftover .shepherd-modal classes and add the .shepherd-modal class to the currentElement
+ * @param {HTMLElement} currentElement The element for the current step
+ */
+function toggleShepherdModalClass(currentElement) {
+  const shepherdModal = document.querySelector('.shepherd-modal');
+
+  if (shepherdModal) {
+    shepherdModal.classList.remove('shepherd-modal');
+  }
+
+  currentElement.classList.add('shepherd-modal');
+}
+
 export {
   elementIsHidden,
   getElementFromObject,
   getElementFromString,
   getElementPosition,
   removeElement,
-  setPositionForHighlightElement
+  setPositionForHighlightElement,
+  toggleShepherdModalClass
 };
