@@ -7,8 +7,7 @@ import Evented from '@ember/object/evented';
 import { run } from '@ember/runloop';
 import {
   elementIsHidden,
-  getElementFromObject,
-  getElementFromString,
+  getElementForStep,
   removeElement,
   setPositionForHighlightElement,
   toggleShepherdModalClass
@@ -104,7 +103,7 @@ export default Service.extend(Evented, {
         const { steps } = tour;
 
         steps.map((step) => {
-          const stepElement = this.getElementForStep(step);
+          const stepElement = getElementForStep(step);
 
           if (step && step.options.attachTo && stepElement) {
             stepElement.style.pointerEvents = 'auto';
@@ -132,7 +131,7 @@ export default Service.extend(Evented, {
   createHighlightOverlay(step) {
     removeElement('#highlightOverlay');
 
-    const currentElement = this.getElementForStep(step);
+    const currentElement = getElementForStep(step);
 
     if (currentElement) {
       const highlightElement = currentElement.cloneNode(true);
@@ -163,36 +162,6 @@ export default Service.extend(Evented, {
         }, 50);
       });
     }
-  },
-
-  /**
-   * Return the element for a step
-   *
-   * @method getElementForStep
-   * @param step step the step to get an element for
-   * @returns {Element} the element for this step
-   * @private
-   */
-  getElementForStep(step) {
-    const { options: { attachTo } } = step;
-
-    if (!attachTo) {
-      return null;
-    }
-
-    const type = typeof attachTo;
-
-    let element;
-
-    if (type === 'string') {
-      element = getElementFromString(attachTo);
-    } else if (type === 'object') {
-      element = getElementFromObject(attachTo);
-    } else {
-      /* istanbul ignore next: cannot test undefined attachTo, but it does work! */
-      element = null;
-    }
-    return element;
   },
 
   /**
@@ -302,7 +271,7 @@ export default Service.extend(Evented, {
    * @private
    */
   popoutElement(step) {
-    const currentElement = this.getElementForStep(step);
+    const currentElement = getElementForStep(step);
 
     if (!currentElement) {
       return;
@@ -393,7 +362,7 @@ export default Service.extend(Evented, {
       });
       currentStep.on('hide', () => {
         // Remove element copy, if it was cloned
-        const currentElement = this.getElementForStep(currentStep);
+        const currentElement = getElementForStep(currentStep);
 
         if (currentElement) {
           if (currentStep.options.highlightClass) {

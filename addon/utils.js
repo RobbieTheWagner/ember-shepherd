@@ -27,6 +27,36 @@ function getElementFromObject(attachTo) {
 }
 
 /**
+ * Return the element for a step
+ *
+ * @method getElementForStep
+ * @param step step the step to get an element for
+ * @returns {Element} the element for this step
+ * @private
+ */
+function getElementForStep(step) {
+  const { options: { attachTo } } = step;
+
+  if (!attachTo) {
+    return null;
+  }
+
+  const type = typeof attachTo;
+
+  let element;
+
+  if (type === 'string') {
+    element = getElementFromString(attachTo);
+  } else if (type === 'object') {
+    element = getElementFromObject(attachTo);
+  } else {
+    /* istanbul ignore next: cannot test undefined attachTo, but it does work! */
+    element = null;
+  }
+  return element;
+}
+
+/**
  * Get the element from an option string
  *
  * @method getElementFromString
@@ -117,8 +147,7 @@ function toggleShepherdModalClass(currentElement) {
 
 export {
   elementIsHidden,
-  getElementFromObject,
-  getElementFromString,
+  getElementForStep,
   getElementPosition,
   removeElement,
   setPositionForHighlightElement,
