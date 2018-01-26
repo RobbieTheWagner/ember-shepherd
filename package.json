@@ -100,7 +100,7 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "https://ember-shepherd.shipshape.io/",
+    "demoURL": "http://ember-shepherd.shipshape.io/",
     "after": [
       "ember-tether"
     ]
