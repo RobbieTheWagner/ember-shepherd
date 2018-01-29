@@ -5,18 +5,21 @@
 @import url(https://fonts.googleapis.com/css?family=Inconsolata);
 
 $color1: #6e698c;
-$commentColor: #c8c7d5;
-$textColor: #493f8c;
-$brightText: #01a2a6;
-$altText: #cfcef2;
-$darkPurple: #323040;
+$keyword-color: #00009f;
+$comment-color: #c8c7d5;
+$text-color: #493f8c;
+$bright-text: #01a2a6;
+$alt-text: #cfcef2;
+$dark-purple: #323040;
+
+$normal-font: 14pt;
 
 code[class*="language-"],
 pre[class*="language-"] {
-  color: $textColor;
+  color: $text-color;
   direction: ltr;
   font-family: 'Inconsolata', monospace;
-  font-size: 14pt;
+  font-size: $normal-font;
   -moz-hyphens: none;
   -ms-hyphens: none;
   -webkit-hyphens: none;
@@ -64,7 +67,7 @@ pre[class*="language-"] {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  color: $commentColor;
+  color: $comment-color;
   font-style: italic;
 }
 
@@ -74,13 +77,13 @@ pre[class*="language-"] {
 
 .token.string,
 .token.attr-value {
-  color: $altText;
+  color: $alt-text;
 }
 
 .token.punctuation,
 .token.operator {
   background-color: $color1;
-  color: $textColor;
+  color: $text-color;
 }
 
 .token.entity,
@@ -93,26 +96,26 @@ pre[class*="language-"] {
 .token.property,
 .token.regex,
 .token.inserted {
-  color: $brightText;
+  color: $bright-text;
 }
 
 .token.atrule,
 .token.keyword,
 .token.attr-name,
 .language-autohotkey .token.selector {
-  color: $brightText;
+  color: $bright-text;
 }
 
 .token.function,
 .token.deleted,
 .language-autohotkey .token.tag {
-  color: $darkPurple;
+  color: $dark-purple;
 }
 
 .token.tag,
 .token.selector,
 .language-autohotkey .token.keyword {
-  color: #00009f;
+  color: $keyword-color;
 }
 
 .token.important,

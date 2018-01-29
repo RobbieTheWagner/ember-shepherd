@@ -3,8 +3,12 @@
 
 $background1: #3d2f53;
 $background2: #624b86;
-$lightColor: #c1b5d3;
-$altLightColor: #7b7486;
+$button-dark: #75beaa;
+$color-inherit: inherit;
+$light-color: #c1b5d3;
+$altlight-color: #7b7486;
+$panel-border: #d8d8d8;
+$transparent: transparent;
 $whiteish: #c8c7d5;
 
 body,
@@ -30,9 +34,9 @@ body {
 
 a {
   &.bottomButton {
-    background-color: transparent;
-    border: 2px solid $lightColor;
-    color: $lightColor;
+    background-color: $transparent;
+    border: 2px solid $light-color;
+    color: $light-color;
     cursor: pointer;
     display: inline-block;
     font-size: 0.7em;
@@ -53,7 +57,7 @@ a {
 
 .panel {
   background-color: $whiteish;
-  border-color: #d8d8d8;
+  border-color: $panel-border;
   border-style: solid;
   border-width: 1px;
   color: $background1;
@@ -63,8 +67,8 @@ a {
 }
 
 .button.dark {
-  background: $lightColor;
-  color: #75beaa;
+  background: $light-color;
+  color: $button-dark;
 }
 
 @media (max-width: 568px) {
@@ -121,7 +125,7 @@ a {
         color: $whiteish;
 
         a {
-          color: $altLightColor;
+          color: $altlight-color;
         }
       }
     }
@@ -134,7 +138,7 @@ a {
 }
 
 .shepherd-element.shepherd-theme-arrows .shepherd-content a {
-  color: inherit;
+  color: $color-inherit;
 }
 
 .shepherd-element.shepherd-theme-arrows .shepherd-content footer .shepherd-buttons li .shepherd-button {
@@ -162,7 +166,7 @@ pre {
 }
 
 .pageTitle {
-  color: $lightColor;
+  color: $light-color;
   font-size: 50pt;
 
   .ember-title {
