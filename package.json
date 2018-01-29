@@ -93,7 +93,7 @@
     "eslint-plugin-node": "^5.2.1",
     "flexi": "^2.0.2",
     "loader.js": "^4.2.3",
-    "stylelint-config-ship-shape": "^0.2.0"
+    "stylelint-config-ship-shape": "^0.3.0"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"
