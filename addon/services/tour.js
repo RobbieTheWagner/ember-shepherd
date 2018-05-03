@@ -383,7 +383,9 @@ export default Service.extend(Evented, {
           }
 
           run.later(() => {
-            disableScroll.on(window);
+            if (get(this, 'disableScroll')) {
+              disableScroll.on(window);
+            }
           }, 50);
         };
       }
