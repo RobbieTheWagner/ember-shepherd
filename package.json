@@ -83,7 +83,7 @@
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-native-dom-event-dispatcher": "^0.6.4",
     "ember-native-dom-helpers": "^0.6.0",
-    "ember-prism": "0.2.0",
+    "ember-prism": "0.3.0",
     "ember-resolver": "^4.0.0",
     "ember-sinon": "^2.0.0",
     "ember-sinon-qunit": "^3.1.0",
