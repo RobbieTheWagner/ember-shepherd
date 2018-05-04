@@ -23,6 +23,7 @@ export default Service.extend(Evented, {
   isActive: false,
   messageForUser: null,
   modal: false,
+  modalContainer: 'body',
   requiredElements: [],
   steps: [],
 
@@ -70,7 +71,8 @@ export default Service.extend(Evented, {
     if (get(this, 'modal')) {
       const shepherdOverlay = document.createElement('div');
       shepherdOverlay.id = 'shepherdOverlay';
-      document.body.appendChild(shepherdOverlay);
+      const parent = document.querySelector(get(this, 'modalContainer'));
+      parent.appendChild(shepherdOverlay);
     }
     if (get(this, 'disableScroll')) {
       disableScroll.on(window);
