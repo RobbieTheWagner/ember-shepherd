@@ -123,7 +123,7 @@ this.get('tour').set('requiredElements', [
     message: 'User not logged in, please log in to start this tour.',
     title: 'Please login'
   },
-);
+]);
 ```
 
 > **default value:** `[]`
