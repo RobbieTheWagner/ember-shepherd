@@ -1,5 +1,9 @@
 We will list changes, especially breaking changes, between versions here.
 
+### **3.2.0**
+* Fixed `disableScroll` bug
+* Refactored methods a bit
+
 ### **3.1.0**
 * Removed `ember-window-mock` dependency
 
