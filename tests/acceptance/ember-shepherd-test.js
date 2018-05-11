@@ -1,6 +1,5 @@
-import { click, find, findAll } from 'ember-native-dom-helpers';
 import { module, test } from 'qunit';
-import { visit } from '@ember/test-helpers';
+import { visit, click, find } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import sinonTest from 'ember-sinon-qunit/test-support/test';
 import steps from '../data';
@@ -24,13 +23,13 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     });
   });
 
-  hooks.afterEach(function() {
+  hooks.afterEach(async function() {
     // Remove all Shepherd stuff, to start fresh each time.
     document.body.classList.remove('shepherd-active');
-    findAll('[class^=shepherd]', document.documentElement).forEach((el) => {
+    document.querySelectorAll('[class^=shepherd]').forEach((el) => {
       el.parentNode.removeChild(el);
     });
-    findAll('[id^=shepherd]', document.documentElement).forEach((el) => {
+    document.querySelectorAll('[id^=shepherd]').forEach((el) => {
       el.parentNode.removeChild(el);
     });
     tour.cleanup();
@@ -41,7 +40,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     await click('.toggleHelpModal');
 
-    const cancelLink = find('.shepherd-cancel-link', document.documentElement);
+    const cancelLink = document.querySelector('.shepherd-cancel-link');
     assert.ok(cancelLink, 'Cancel link shown');
   });
 
@@ -83,7 +82,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     await click('.toggleHelpModal');
 
-    assert.notOk(find('.shepherd-open a.shepherd-cancel-link', document.documentElement));
+    assert.notOk(document.querySelector('.shepherd-open a.shepherd-cancel-link'));
   });
 
   test('Cancel link cancels the tour', async function(assert) {
@@ -93,7 +92,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     assert.ok(document.body.classList.contains('shepherd-active'), 'Body has class of shepherd-active, when shepherd becomes active');
 
-    await click('.shepherd-content a.shepherd-cancel-link', document.documentElement);
+    await click(document.querySelector('.shepherd-content a.shepherd-cancel-link'));
 
     assert.notOk(document.body.classList.contains('shepherd-active'), 'Body does not have class of shepherd-active, when shepherd becomes inactive');
   });
@@ -134,7 +133,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     assert.ok(document.body.classList.contains('shepherd-active'), 'Body has class of shepherd-active, when shepherd becomes active');
 
-    await click('.shepherd-open a.shepherd-cancel-link', document.documentElement);
+    await click(document.querySelector('.shepherd-open a.shepherd-cancel-link'));
 
     assert.ok(spy.calledOnce);
   });
@@ -147,8 +146,8 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     await click('.toggleHelpModal');
 
     assert.ok(document.body.classList.contains('shepherd-active'), 'Body gets class of shepherd-active, when shepherd becomes active');
-    assert.equal(findAll('.shepherd-enabled', document.documentElement).length, 2, 'attachTo element and tour have shepherd-enabled class');
-    assert.ok(find('#shepherdOverlay', document.documentElement), '#shepherdOverlay exists, since modal');
+    assert.equal(document.querySelectorAll('.shepherd-enabled').length, 2, 'attachTo element and tour have shepherd-enabled class');
+    assert.ok(document.querySelector('#shepherdOverlay'), '#shepherdOverlay exists, since modal');
   });
 
   test('Non-modal page contents', async function(assert) {
@@ -159,8 +158,8 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     await click('.toggleHelpNonmodal');
 
     assert.ok(document.body.classList.contains('shepherd-active'), 'Body gets class of shepherd-active, when shepherd becomes active');
-    assert.equal(findAll('.shepherd-enabled', document.documentElement).length, 2, 'attachTo element and tour get shepherd-enabled class');
-    assert.notOk(find('#shepherdOverlay', document.documentElement), '#shepherdOverlay should not exist, since non-modal');
+    assert.equal(document.querySelectorAll('.shepherd-enabled').length, 2, 'attachTo element and tour get shepherd-enabled class');
+    assert.notOk(document.querySelector('#shepherdOverlay'), '#shepherdOverlay should not exist, since non-modal');
   });
 
   test('Tour next, back, and cancel builtInButtons work', async function(assert) {
@@ -169,17 +168,17 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     await visit('/');
 
     await click('.toggleHelpModal');
-    await click('.shepherd-content .next-button', document.documentElement);
+    await click(document.querySelector('.shepherd-content .next-button'));
 
-    assert.ok(find('.shepherd-enabled .back-button', document.documentElement), 'Ensure that the back button appears');
+    assert.ok(document.querySelector('.shepherd-enabled .back-button'), 'Ensure that the back button appears');
 
-    await click('.shepherd-content .back-button', document.documentElement);
+    await click(document.querySelector('.shepherd-content .back-button'));
 
-    assert.notOk(find('.shepherd-enabled .back-button', document.documentElement), 'Ensure that the back button disappears');
+    assert.notOk(document.querySelector('.shepherd-enabled .back-button'), 'Ensure that the back button disappears');
 
-    await click('.shepherd-content .cancel-button', document.documentElement);
+    await click(document.querySelector('.shepherd-content .cancel-button'));
 
-    assert.notOk(find('.shepherd-enabled [class^=shepherd-button]', document.documentElement), 'Ensure that all buttons are gone, after exit');
+    assert.notOk(document.querySelector('.shepherd-enabled [class^=shepherd-button]'), 'Ensure that all buttons are gone, after exit');
   });
 
   test('Highlight applied', async function(assert) {
@@ -216,11 +215,11 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     await click('.toggleHelpModal');
 
-    assert.ok(find('.highlight', document.documentElement), 'currentElement highlighted');
+    assert.ok(document.querySelector('.highlight'), 'currentElement highlighted');
 
-    await click('.shepherd-content .cancel-button', document.documentElement);
+    await click(document.querySelector('.shepherd-content .cancel-button'));
 
-    assert.notOk(find('.highlight', document.documentElement), 'highlightClass removed on cancel');
+    assert.notOk(document.querySelector('.highlight'), 'highlightClass removed on cancel');
   });
 
   test('Highlight applied when `tour.modal == false`', async function(assert) {
@@ -256,11 +255,11 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     await click('.toggleHelpNonmodal');
 
-    assert.ok(find('.highlight', document.documentElement), 'currentElement highlighted');
+    assert.ok(document.querySelector('.highlight'), 'currentElement highlighted');
 
-    await click('.shepherd-content .cancel-button', document.documentElement);
+    await click(document.querySelector('.shepherd-content .cancel-button'));
 
-    assert.notOk(find('.highlight', document.documentElement), 'highlightClass removed on cancel');
+    assert.notOk(document.querySelector('.highlight'), 'highlightClass removed on cancel');
   });
 
   test('Defaults applied', async function(assert) {
@@ -302,7 +301,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     await click('.toggleHelpModal');
 
-    assert.ok(find('.test-defaults', document.documentElement), 'defaults class applied');
+    assert.ok(document.querySelector('.test-defaults'), 'defaults class applied');
   });
 
   test('configuration works with attachTo object when element is a simple string', async function(assert) {
@@ -342,7 +341,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     await click('.toggleHelpModal');
 
-    assert.ok(find('.shepherd-step', document.documentElement), 'tour is visible');
+    assert.ok(document.querySelector('.shepherd-step'), 'tour is visible');
   });
 
   test('configuration works with attachTo object when element is dom element', async function(assert) {
@@ -382,7 +381,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     await click('.toggleHelpModal');
 
-    assert.ok(find('.shepherd-step', document.documentElement), 'tour is visible');
+    assert.ok(document.querySelector('.shepherd-step'), 'tour is visible');
   });
 
   test('buttons work when type is not specified and passed action is triggered', async function(assert) {
@@ -428,11 +427,11 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     await click('.toggleHelpModal');
 
-    assert.ok(find('.button-one', document.body), 'tour button one is visible');
-    assert.ok(find('.button-two', document.body), 'tour button two is visible');
-    assert.ok(find('.button-three', document.body), 'tour button three is visible');
+    assert.ok(document.querySelector('.button-one'), 'tour button one is visible');
+    assert.ok(document.querySelector('.button-two'), 'tour button two is visible');
+    assert.ok(document.querySelector('.button-three'), 'tour button three is visible');
 
-    await click(find('.button-two', document.body));
+    await click(document.querySelector('.button-two'));
 
     assert.ok(buttonActionCalled, 'button action triggered');
   });
@@ -445,20 +444,20 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     await click('.toggleHelpModal');
 
     // Go through a step of the tour...
-    await click('[data-id="intro"] .next-button', document.documentElement);
+    await click(document.querySelector('[data-id="intro"] .next-button'));
 
     // Check the target elements have pointer-events = 'none'
     // Get the 2 shepherd-target's
-    findAll('.shepherd-target', document.documentElement).map((elem) => {
+    document.querySelectorAll('.shepherd-target').forEach((elem) => {
       assert.equal(elem.style.pointerEvents, 'none');
     });
 
     // Exit the tour
-    await click('[data-id="installation"] .cancel-button', document.documentElement);
+    await click(document.querySelector('[data-id="installation"] .cancel-button'));
 
     // Check all the target elements now have pointer-events = 'auto'
     // Get the 2 shepherd-target's again
-    findAll('.shepherd-target', document.documentElement).map((elem) => {
+    document.querySelectorAll('.shepherd-target').forEach((elem) => {
       assert.equal(elem.style.pointerEvents, 'auto');
     });
   });
@@ -472,17 +471,17 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     // Visit route
     await visit('/');
 
-    find('#ember-testing-container', document.body).scrollTop = 0;
+    document.querySelector('#ember-testing-container').scrollTop = 0;
 
-    assert.equal(find('#ember-testing-container', document.body).scrollTop, 0, 'Scroll is initially 0');
+    assert.equal(document.querySelector('#ember-testing-container').scrollTop, 0, 'Scroll is initially 0');
 
     await click('.toggleHelpModal');
 
-    await click('.shepherd-content .next-button', document.documentElement);
+    await click(document.querySelector('.shepherd-content .next-button'));
 
-    await click('.shepherd-content .next-button', document.documentElement);
+    await click(document.querySelector('.shepherd-content .next-button'));
 
-    assert.ok(find('#ember-testing-container', document.body).scrollTop > 0, 'Scrolled down correctly');
+    assert.ok(document.querySelector('#ember-testing-container').scrollTop > 0, 'Scrolled down correctly');
   });
 
   test('scrollTo works with a custom scrollToHandler', async function(assert) {
@@ -510,7 +509,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
         text: ['A field that has rested gives a bountiful crop.'],
         scrollTo: true,
         scrollToHandler() {
-          return find('#ember-testing-container', document.body).scrollTop = 120;
+          return document.querySelector('#ember-testing-container').scrollTop = 120;
         }
       }
     }];
@@ -520,13 +519,13 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     tour.set('steps', steps);
 
-    find('#ember-testing-container', document.body).scrollTop = 0;
-    assert.equal(find('#ember-testing-container', document.body).scrollTop, 0, 'Scroll is initially 0');
+    document.querySelector('#ember-testing-container').scrollTop = 0;
+    assert.equal(document.querySelector('#ember-testing-container').scrollTop, 0, 'Scroll is initially 0');
 
     await click('.toggleHelpModal');
-    await click('.shepherd-content .next-button', document.documentElement);
+    await click(document.querySelector('.shepherd-content .next-button'));
 
-    assert.ok(find('#ember-testing-container', document.body).scrollTop === 120, 'Scrolled correctly');
+    assert.ok(document.querySelector('#ember-testing-container').scrollTop === 120, 'Scrolled correctly');
   });
 
   test('scrollTo works without a custom scrollToHandler', async function(assert) {
@@ -537,14 +536,14 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     // Visit route
     await visit('/');
 
-    find('#ember-testing-container', document.body).scrollTop = 0;
+    document.querySelector('#ember-testing-container').scrollTop = 0;
 
-    assert.equal(find('#ember-testing-container', document.body).scrollTop, 0, 'Scroll is initially 0');
+    assert.equal(document.querySelector('#ember-testing-container').scrollTop, 0, 'Scroll is initially 0');
 
     await click('.toggleHelpModal');
-    await click('.shepherd-content .next-button', document.documentElement);
+    await click(document.querySelector('.shepherd-content .next-button'));
 
-    assert.ok(find('#ember-testing-container', document.body).scrollTop > 0, 'Scrolled correctly');
+    assert.ok(document.querySelector('#ember-testing-container').scrollTop > 0, 'Scrolled correctly');
   });
 
   test('Shows by id works', async function(assert) {
@@ -552,7 +551,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     tour.show('usage');
 
-    assert.equal(find('.shepherd-enabled.shepherd-open .shepherd-text', document.documentElement).textContent,
+    assert.equal(document.querySelector('.shepherd-enabled.shepherd-open .shepherd-text').textContent,
       'To use the tour service, simply inject it into your application and use it like this example.',
       'Usage step shown');
   });
@@ -590,6 +589,6 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     await click('.toggleHelpModal');
 
-    assert.equal(findAll('.first-element', document.documentElement).length, 2, 'First element is copied with copyStyles');
+    assert.equal(document.querySelectorAll('.first-element').length, 2, 'First element is copied with copyStyles');
   });
 });

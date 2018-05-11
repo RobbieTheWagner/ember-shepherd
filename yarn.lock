@@ -3248,20 +3248,6 @@ ember-maybe-import-regenerator@^0.1.6:
     ember-cli-babel "^6.0.0-beta.4"
     regenerator-runtime "^0.9.5"
 
-ember-native-dom-event-dispatcher@^0.6.4:
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/ember-native-dom-event-dispatcher/-/ember-native-dom-event-dispatcher-0.6.4.tgz#ba03d512a72d159a376b27593b497ba08fe14a8a"
-  dependencies:
-    ember-cli-babel "^6.11.0"
-    ember-cli-version-checker "^2.1.0"
-
-ember-native-dom-helpers@^0.6.0:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/ember-native-dom-helpers/-/ember-native-dom-helpers-0.6.1.tgz#ca54b1adb9aff2e0ae10f068583bc8b92633324d"
-  dependencies:
-    broccoli-funnel "^1.1.0"
-    ember-cli-babel "^6.6.0"
-
 ember-prism@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/ember-prism/-/ember-prism-0.3.0.tgz#487870c8ee3969511bd5d501a3c38385892d293f"
