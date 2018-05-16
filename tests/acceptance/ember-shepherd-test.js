@@ -592,4 +592,31 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     assert.equal(findAll('.first-element', document.documentElement).length, 2, 'First element is copied with copyStyles');
   });
+
+  test('configuring the modal container works', async function(assert) {
+    await visit('/');
+    await click('.toggleHelpModal');
+
+    assert.equal(
+      find('#shepherdOverlay', document.documentElement).parentNode.tagName,
+      'BODY',
+      'modal overlay gets placed in body element by default'
+    );
+    await click('.cancel-button', document.documentElement);
+    assert.notOk(
+      find('#shepherdOverlay', document.documentElement),
+      'overlay gets cleaned up after closing tour (default location)'
+    );
+
+    tour.set('modalContainer', '.test-modal-container');
+    await visit('/');
+    await click('.toggleHelpModal');
+
+    assert.ok(
+      find('#shepherdOverlay').parentNode.classList.contains('test-modal-container'),
+      'modal overlay gets placed in custom element'
+    );
+    await click('.cancel-button', document.documentElement);
+    assert.notOk(find('#shepherdOverlay'), 'overlay gets cleaned up after closing tour (custom location)');
+  });
 });
