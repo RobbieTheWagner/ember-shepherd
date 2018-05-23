@@ -10,7 +10,8 @@ import {
   getElementForStep,
   removeElement,
   setPositionForHighlightElement,
-  toggleShepherdModalClass
+  toggleShepherdModalClass,
+  cleanupShepherdElements
 } from '../utils';
 
 export default Service.extend(Evented, {
@@ -27,13 +28,7 @@ export default Service.extend(Evented, {
   steps: [],
 
   willDestroy() {
-    document.body.classList.remove('shepherd-active');
-    document.querySelectorAll('[class^=shepherd]').forEach((el) => {
-      el.parentNode.removeChild(el);
-    });
-    document.querySelectorAll('[id^=shepherd]').forEach((el) => {
-      el.parentNode.removeChild(el);
-    });
+    cleanupShepherdElements();
     this.cleanup();
   },
 
