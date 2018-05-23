@@ -23,18 +23,6 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     });
   });
 
-  hooks.afterEach(async function() {
-    // Remove all Shepherd stuff, to start fresh each time.
-    document.body.classList.remove('shepherd-active');
-    document.querySelectorAll('[class^=shepherd]').forEach((el) => {
-      el.parentNode.removeChild(el);
-    });
-    document.querySelectorAll('[id^=shepherd]').forEach((el) => {
-      el.parentNode.removeChild(el);
-    });
-    tour.cleanup();
-  });
-
   test('Shows cancel link', async function(assert) {
     await visit('/');
 

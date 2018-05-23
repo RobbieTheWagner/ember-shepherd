@@ -26,6 +26,17 @@ export default Service.extend(Evented, {
   requiredElements: [],
   steps: [],
 
+  willDestroy() {
+    document.body.classList.remove('shepherd-active');
+    document.querySelectorAll('[class^=shepherd]').forEach((el) => {
+      el.parentNode.removeChild(el);
+    });
+    document.querySelectorAll('[id^=shepherd]').forEach((el) => {
+      el.parentNode.removeChild(el);
+    });
+    this.cleanup();
+  },
+
   /**
    * Get the tour object and call back
    * @public
