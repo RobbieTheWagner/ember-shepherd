@@ -10,7 +10,8 @@ import {
   getElementForStep,
   removeElement,
   setPositionForHighlightElement,
-  toggleShepherdModalClass
+  toggleShepherdModalClass,
+  cleanupShepherdElements
 } from '../utils';
 
 export default Service.extend(Evented, {
@@ -25,6 +26,11 @@ export default Service.extend(Evented, {
   modal: false,
   requiredElements: [],
   steps: [],
+
+  willDestroy() {
+    cleanupShepherdElements();
+    this.cleanup();
+  },
 
   /**
    * Get the tour object and call back
