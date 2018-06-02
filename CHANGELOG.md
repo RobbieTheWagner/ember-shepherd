@@ -1,5 +1,8 @@
 We will list changes, especially breaking changes, between versions here.
 
+### **3.3.0**
+* Add `modalContainer` option for applying the modal to something other than `body`
+
 ### **3.2.0**
 * Fixed `disableScroll` bug
 * Refactored methods a bit
