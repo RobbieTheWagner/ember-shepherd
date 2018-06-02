@@ -103,6 +103,12 @@ Thanks to [jquery-disablescroll](https://github.com/ultrapasty/jquery-disablescr
 
 > **default value:** `false`
 
+### modalContainer
+
+`modalContainer` configures where in the DOM the modal overlay element will be placed (only has effect if `modal` is set to `true`)
+
+> **default value:** `body`
+
 ### requiredElements
 
 `requiredElements` is an array of objects that indicate DOM elements that are **REQUIRED** by your tour and must
