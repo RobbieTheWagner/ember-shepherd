@@ -585,13 +585,13 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     await click('.toggleHelpModal');
 
     assert.equal(
-      find('#shepherdOverlay', document.documentElement).parentNode.tagName,
+      document.querySelector('#shepherdOverlay').parentNode.tagName,
       'BODY',
       'modal overlay gets placed in body element by default'
     );
-    await click('.cancel-button', document.documentElement);
+    await click(document.querySelector('.cancel-button'));
     assert.notOk(
-      find('#shepherdOverlay', document.documentElement),
+      document.querySelector('#shepherdOverlay'),
       'overlay gets cleaned up after closing tour (default location)'
     );
 
@@ -600,10 +600,10 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     await click('.toggleHelpModal');
 
     assert.ok(
-      find('#shepherdOverlay').parentNode.classList.contains('test-modal-container'),
+      document.querySelector('#shepherdOverlay').parentNode.classList.contains('test-modal-container'),
       'modal overlay gets placed in custom element'
     );
-    await click('.cancel-button', document.documentElement);
-    assert.notOk(find('#shepherdOverlay'), 'overlay gets cleaned up after closing tour (custom location)');
+    await click(document.querySelector('.cancel-button'));
+    assert.notOk(document.querySelector('#shepherdOverlay'), 'overlay gets cleaned up after closing tour (custom location)');
   });
 });
