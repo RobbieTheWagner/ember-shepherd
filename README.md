@@ -224,6 +224,32 @@ A function that returns a promise. When the promise resolves, the rest of the `s
 
 These are the standard button types supported by Shepherd. Just set type to next, back or cancel, then set the text, and classes as normal.
 
+Custom actions can also be used by using an action method instead of a type. For example:
+
+``` javascript
+...
+builtInButtons: [
+  {
+    classes: 'shepherd-button-secondary',
+    text: 'Exit',
+    type: 'cancel'
+  },
+  {
+    classes: 'shepherd-button-primary',
+    text: 'Next',
+    type: 'next'
+  },
+  {
+    classes: 'shepherd-button-primary',
+    text: 'Custom action',
+    action() {
+      console.log('custom action called');
+    }
+  }
+]
+...
+```
+
 ##### classes
 
 Extra classes to apply to the step, for styling purposes and such.
