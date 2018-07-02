@@ -1,5 +1,9 @@
 We will list changes, especially breaking changes, between versions here.
 
+### **4.0.0-beta.0**
+* Use new Shepherd beta based on popper.js. This is not necessarily breaking, but
+doing a major version bump, since we are moving away from tether.
+
 ### **3.3.0**
 * Add `modalContainer` option for applying the modal to something other than `body`
 
