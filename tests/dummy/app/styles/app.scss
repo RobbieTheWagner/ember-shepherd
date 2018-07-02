@@ -80,28 +80,6 @@ a {
 
 .shepherd-element {
   &.shepherd-theme-arrows {
-    &.shepherd-element-attached-bottom {
-      &.shepherd-element-attached-center {
-        .shepherd-content:before {
-          border-top-color: $background1;
-          bottom: 100%;
-          left: 50%;
-          margin-left: -16px;
-        }
-      }
-    }
-
-    &.shepherd-element-attached-top {
-      &.shepherd-element-attached-center {
-        .shepherd-content:before {
-          border-bottom-color: $background1;
-          bottom: 100%;
-          left: 50%;
-          margin-left: -16px;
-        }
-      }
-    }
-
     &.shepherd-has-title {
       header {
         background-color: $whiteish;
@@ -115,6 +93,26 @@ a {
         h6 {
           color: $background1;
         }
+      }
+    }
+
+    &[x-placement^="bottom"] {
+      .popper__arrow {
+        border-bottom-color: $background1;
+      }
+
+      &.shepherd-has-title .popper__arrow {
+        border-bottom-color: $whiteish;
+      }
+    }
+
+    &[x-placement^="top"] {
+      .popper__arrow {
+        border-top-color: $background1;
+      }
+
+      &.shepherd-has-title .popper__arrow {
+        border-top-color: $whiteish;
       }
     }
 
@@ -146,6 +144,10 @@ a {
   font-size: 0.75em;
   line-height: 0.75em;
   padding-top: 1em;
+
+  &.shepherd-button-secondary {
+    background-color: $whiteish;
+  }
 }
 
 h1,
