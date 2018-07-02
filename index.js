@@ -32,11 +32,12 @@ module.exports = {
           }
         };
       },
-      'tether-shepherd'() {
+      'shepherd.js'() {
         return {
           srcDir: 'dist',
           import: {
             include: [
+              'js/popper.js',
               'js/shepherd.js',
               this.theme
             ],

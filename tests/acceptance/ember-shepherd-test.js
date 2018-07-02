@@ -134,7 +134,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     await click('.toggleHelpModal');
 
     assert.ok(document.body.classList.contains('shepherd-active'), 'Body gets class of shepherd-active, when shepherd becomes active');
-    assert.equal(document.querySelectorAll('.shepherd-enabled').length, 2, 'attachTo element and tour have shepherd-enabled class');
+    assert.equal(document.querySelectorAll('.shepherd-enabled').length, 1, 'attachTo element has the shepherd-enabled class');
     assert.ok(document.querySelector('#shepherdOverlay'), '#shepherdOverlay exists, since modal');
   });
 
@@ -146,7 +146,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     await click('.toggleHelpNonmodal');
 
     assert.ok(document.body.classList.contains('shepherd-active'), 'Body gets class of shepherd-active, when shepherd becomes active');
-    assert.equal(document.querySelectorAll('.shepherd-enabled').length, 2, 'attachTo element and tour get shepherd-enabled class');
+    assert.equal(document.querySelectorAll('.shepherd-enabled').length, 1, 'attachTo element has the shepherd-enabled class');
     assert.notOk(document.querySelector('#shepherdOverlay'), '#shepherdOverlay should not exist, since non-modal');
   });
 
@@ -158,15 +158,15 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     await click('.toggleHelpModal');
     await click(document.querySelector('.shepherd-content .next-button'));
 
-    assert.ok(document.querySelector('.shepherd-enabled .back-button'), 'Ensure that the back button appears');
+    assert.ok(document.querySelector('.shepherd-open .back-button'), 'Ensure that the back button appears');
 
     await click(document.querySelector('.shepherd-content .back-button'));
 
-    assert.notOk(document.querySelector('.shepherd-enabled .back-button'), 'Ensure that the back button disappears');
+    assert.notOk(document.querySelector('.shepherd-open .back-button'), 'Ensure that the back button disappears');
 
     await click(document.querySelector('.shepherd-content .cancel-button'));
 
-    assert.notOk(document.querySelector('.shepherd-enabled [class^=shepherd-button]'), 'Ensure that all buttons are gone, after exit');
+    assert.notOk(document.querySelector('.shepherd-open [class^=shepherd-button]'), 'Ensure that all buttons are gone, after exit');
   });
 
   test('Highlight applied', async function(assert) {
@@ -539,7 +539,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     tour.show('usage');
 
-    assert.equal(document.querySelector('.shepherd-enabled.shepherd-open .shepherd-text').textContent,
+    assert.equal(document.querySelector('.shepherd-open .shepherd-text').textContent,
       'To use the tour service, simply inject it into your application and use it like this example.',
       'Usage step shown');
   });
