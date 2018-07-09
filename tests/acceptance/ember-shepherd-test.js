@@ -425,7 +425,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
   });
 
   test('`pointer-events` is set to `auto` for any step element on clean up', async function(assert) {
-    assert.expect(4);
+    assert.expect(2);
 
     await visit('/');
 
@@ -434,20 +434,17 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     // Go through a step of the tour...
     await click(document.querySelector('[data-id="intro"] .next-button'));
 
-    // Check the target elements have pointer-events = 'none'
-    // Get the 2 shepherd-target's
-    document.querySelectorAll('.shepherd-target').forEach((elem) => {
-      assert.equal(elem.style.pointerEvents, 'none');
-    });
+    // Get the target element
+    const targetElement = document.querySelector('.shepherd-target');
+
+    // Check the target element has pointer-events = 'none'
+    assert.equal(targetElement.style.pointerEvents, 'none');
 
     // Exit the tour
     await click(document.querySelector('[data-id="installation"] .cancel-button'));
 
-    // Check all the target elements now have pointer-events = 'auto'
-    // Get the 2 shepherd-target's again
-    document.querySelectorAll('.shepherd-target').forEach((elem) => {
-      assert.equal(elem.style.pointerEvents, 'auto');
-    });
+    // Check the target element now has pointer-events = 'auto'
+    assert.equal(targetElement.style.pointerEvents, 'auto');
   });
 
   test('scrollTo works with disableScroll on', async function(assert) {
