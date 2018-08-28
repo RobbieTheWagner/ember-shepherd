@@ -3,7 +3,7 @@
 const fastbootTransform = require('fastboot-transform');
 
 module.exports = {
-  name: require('./package').name,
+  name: 'ember-shepherd',
   included(app) {
     let theme = 'css/shepherd-theme-';
     if (app.options && app.options.shepherd && app.options.shepherd.theme) {
