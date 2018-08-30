@@ -181,9 +181,9 @@
     ember-cli-preprocess-registry "^3.0.0"
     rsvp "^4.8.0"
 
-"@html-next/flexi-layouts@^2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@html-next/flexi-layouts/-/flexi-layouts-2.2.1.tgz#4cadc8cd1f84e839c0d16cb647a1e92734050307"
+"@html-next/flexi-layouts@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@html-next/flexi-layouts/-/flexi-layouts-2.2.2.tgz#750da44b5b36aefbabbd735bb2cec23cb91beddd"
   dependencies:
     "@html-next/flexi-config" "2.1.1"
     broccoli-funnel "^2.0.1"
@@ -194,6 +194,7 @@
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
     ember-cli-preprocess-registry "^3.0.0"
+    ember-copy "^1.0.0"
     ember-window-mock "^0.4.0"
     rsvp "^4.0.0"
 
@@ -2108,11 +2109,12 @@ cli-spinners@^1.1.0:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/cli-spinners/-/cli-spinners-1.3.1.tgz#002c1990912d0d59580c93bd36c056de99e4259a"
 
-cli-table2@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/cli-table2/-/cli-table2-0.2.0.tgz#2d1ef7f218a0e786e214540562d4bd177fe32d97"
+cli-table3@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/cli-table3/-/cli-table3-0.4.0.tgz#a7fd50f011d734e3f16403cfcbedbea97659e417"
   dependencies:
-    lodash "^3.10.1"
+    kind-of "^3.0.4"
+    object-assign "^4.1.0"
     string-width "^1.0.1"
   optionalDependencies:
     colors "^1.1.2"
@@ -2834,6 +2836,10 @@ electron-to-chromium@^1.3.45:
   version "1.3.45"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.45.tgz#458ac1b1c5c760ce8811a16d2bfbd97ec30bafb8"
 
+element-matches@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/element-matches/-/element-matches-0.1.2.tgz#7345cb71e965bd2b12f725e524591c102198361a"
+
 ember-assign-polyfill@^2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/ember-assign-polyfill/-/ember-assign-polyfill-2.5.0.tgz#0dc7079addbdbad7984ba3f35d970cf07a73f704"
@@ -3223,6 +3229,12 @@ ember-cli@~3.3.0:
     watch-detector "^0.1.0"
     yam "^0.0.24"
 
+ember-copy@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ember-copy/-/ember-copy-1.0.0.tgz#426554ba6cf65920f31d24d0a3ca2cb1be16e4aa"
+  dependencies:
+    ember-cli-babel "^6.6.0"
+
 ember-debonair@^0.4.4:
   version "0.4.4"
   resolved "https://registry.yarnpkg.com/ember-debonair/-/ember-debonair-0.4.4.tgz#961658d51320050e137795e868a4fc9558ef8840"
@@ -3378,12 +3390,12 @@ ember-try-config@^3.0.0:
     rsvp "^4.8.1"
     semver "^5.5.0"
 
-ember-try@^1.0.0-beta.3:
-  version "1.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/ember-try/-/ember-try-1.0.0-beta.3.tgz#04da09ba2d57f0fe3a7174acff0dc1add2760855"
+ember-try@^1.0.0-beta.6:
+  version "1.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/ember-try/-/ember-try-1.0.0-beta.6.tgz#d90cd2c582bc242be889a30a4bb157adc6cbe476"
   dependencies:
     chalk "^2.3.0"
-    cli-table2 "^0.2.0"
+    cli-table3 "^0.4.0"
     core-object "^3.1.5"
     debug "^3.1.0"
     ember-try-config "^3.0.0"
@@ -5429,7 +5441,7 @@ keyv@3.0.0:
   dependencies:
     json-buffer "3.0.0"
 
-kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
+kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.0.4, kind-of@^3.2.0:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
   dependencies:
@@ -5558,6 +5570,10 @@ locate-path@^2.0.0:
   dependencies:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
+
+lodash-es@^4.17.10:
+  version "4.17.10"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.10.tgz#62cd7104cdf5dd87f235a837f0ede0e8e5117e05"
 
 lodash._baseassign@^3.0.0:
   version "3.2.0"
@@ -5906,7 +5922,7 @@ lodash.values@~2.3.0:
   dependencies:
     lodash.keys "~2.3.0"
 
-lodash@^3.10.0, lodash@^3.10.1, lodash@^3.9.3:
+lodash@^3.10.0, lodash@^3.9.3:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
@@ -7999,10 +8015,12 @@ shellwords@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
 
-shepherd.js@^2.0.0-beta.8:
-  version "2.0.0-beta.8"
-  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-2.0.0-beta.8.tgz#4d5357799173d6c81eb9d3a413dc41a367fdb2a7"
+shepherd.js@^2.0.0-beta.23:
+  version "2.0.0-beta.23"
+  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-2.0.0-beta.23.tgz#5cda98967912610f6dc44152e301061dc5315b39"
   dependencies:
+    element-matches "^0.1.2"
+    lodash-es "^4.17.10"
     popper.js "^1.14.3"
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:

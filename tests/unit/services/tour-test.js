@@ -21,7 +21,7 @@ const steps = [
           type: 'next'
         }
       ],
-      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+      classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
       copyStyles: false,
       title: 'Welcome to Ember-Shepherd!',
       text: ['Test text'],

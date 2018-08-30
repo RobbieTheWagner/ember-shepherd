@@ -15,7 +15,7 @@ export default [
           type: 'next'
         }
       ],
-      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+      classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
       copyStyles: false,
       title: 'Welcome to Ember Shepherd!',
       text: [
@@ -49,7 +49,7 @@ export default [
           type: 'next'
         }
       ],
-      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+      classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
       copyStyles: false,
       text: ['Installation is simple, if you are using Ember-CLI, just install like any other addon.']
     }
@@ -75,7 +75,7 @@ export default [
           type: 'next'
         }
       ],
-      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+      classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
       copyStyles: false,
       text: ['To use the tour service, simply inject it into your application and use it like this example.']
     }
@@ -104,7 +104,7 @@ export default [
           type: 'next'
         }
       ],
-      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+      classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
       copyStyles: false,
       text: [
         'We implemented true modal functionality by disabling clicking of the rest of the page.',
@@ -136,7 +136,7 @@ export default [
           type: 'next'
         }
       ],
-      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+      classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
       copyStyles: false,
       text: [
         `When using a modal, most times just setting the z-index of your element to something high will
@@ -166,7 +166,7 @@ export default [
           type: 'next'
         }
       ],
-      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+      classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
       copyStyles: false,
       text: [
         `For the common button types, next, back, cancel, etc, we implemented Ember actions
@@ -196,7 +196,7 @@ export default [
           type: 'next'
         }
       ],
-      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+      classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
       copyStyles: false,
       text: [
         `When navigating the user through a tour, you may want to disable scrolling, so they
@@ -220,7 +220,7 @@ export default [
           type: 'back'
         }
       ],
-      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+      classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
       copyStyles: false,
       text: ['If no attachTo is specified, the modal will appear in the center of the screen, as per the Shepherd docs.']
     }

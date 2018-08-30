@@ -9,7 +9,7 @@ export default Route.extend({
   tour: service(),
   disableScroll: true,
   defaults: {
-    classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
+    classes: 'shepherd-element shepherd-theme-arrows',
     scrollTo: true,
     showCancelLink: true
   },

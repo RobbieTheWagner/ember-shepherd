@@ -29,7 +29,7 @@
   transition: all 0.3s ease-out;
 }
 
-.shepherd-step {
+.shepherd-element {
   z-index: 10002;
 }
 

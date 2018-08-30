@@ -16,7 +16,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       confirmCancel: false,
       modal: false,
       defaults: {
-        classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
+        classes: 'shepherd-theme-arrows',
         scrollTo: true,
         showCancelLink: true
       }
@@ -34,7 +34,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
   test('Hides cancel link', async function(assert) {
     const defaults = {
-      classes: 'shepherd-element shepherd-open shepherd-theme-arrows test-defaults',
+      classes: 'shepherd-theme-arrows test-defaults',
       showCancelLink: false
     };
 
@@ -55,7 +55,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
           }
         ],
         showCancelLink: false,
-        classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+        classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
         copyStyles: false,
         highlightClass: 'highlight',
         title: 'Welcome to Ember-Shepherd!',
@@ -70,7 +70,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     await click('.toggleHelpModal');
 
-    assert.notOk(document.querySelector('.shepherd-open a.shepherd-cancel-link'));
+    assert.notOk(document.querySelector('.shepherd-element a.shepherd-cancel-link'));
   });
 
   test('Cancel link cancels the tour', async function(assert) {
@@ -102,7 +102,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
             type: 'next'
           }
         ],
-        classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+        classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
         copyStyles: false,
         title: 'Welcome to Ember Shepherd!',
         text: ['A field that has rested gives a bountiful crop.'],
@@ -121,7 +121,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     assert.ok(document.body.classList.contains('shepherd-active'), 'Body has class of shepherd-active, when shepherd becomes active');
 
-    await click(document.querySelector('.shepherd-open a.shepherd-cancel-link'));
+    await click(document.querySelector('.shepherd-element a.shepherd-cancel-link'));
 
     assert.ok(spy.calledOnce);
   });
@@ -156,17 +156,14 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     await visit('/');
 
     await click('.toggleHelpModal');
-    await click(document.querySelector('.shepherd-content .next-button'));
+    await click(document.querySelector('.shepherd-element[style*="display: block"] .next-button'));
+    assert.ok(document.querySelector('.shepherd-element[style*="display: block"] .back-button'), 'Ensure that the back button appears');
 
-    assert.ok(document.querySelector('.shepherd-open .back-button'), 'Ensure that the back button appears');
+    await click(document.querySelector('.shepherd-element[style*="display: block"] .back-button'));
+    assert.notOk(document.querySelector('.shepherd-element[style*="display: block"] .back-button'), 'Ensure that the back button disappears');
 
-    await click(document.querySelector('.shepherd-content .back-button'));
-
-    assert.notOk(document.querySelector('.shepherd-open .back-button'), 'Ensure that the back button disappears');
-
-    await click(document.querySelector('.shepherd-content .cancel-button'));
-
-    assert.notOk(document.querySelector('.shepherd-open [class^=shepherd-button]'), 'Ensure that all buttons are gone, after exit');
+    await click(document.querySelector('.shepherd-element[style*="display: block"] .cancel-button'));
+    assert.notOk(document.querySelector('.shepherd-element [class^=shepherd-button]'), 'Ensure that all buttons are gone, after exit');
   });
 
   test('Highlight applied', async function(assert) {
@@ -188,7 +185,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
             type: 'next'
           }
         ],
-        classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+        classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
         copyStyles: false,
         highlightClass: 'highlight',
         title: 'Welcome to Ember-Shepherd!',
@@ -229,7 +226,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
             type: 'next'
           }
         ],
-        classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+        classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
         copyStyles: false,
         highlightClass: 'highlight',
         title: 'Welcome to Ember-Shepherd!',
@@ -254,7 +251,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     assert.expect(1);
 
     const defaults = {
-      classes: 'shepherd-element shepherd-open shepherd-theme-arrows test-defaults',
+      classes: 'shepherd-theme-arrows test-defaults',
       scrollTo: false,
       showCancelLink: true
     };
@@ -315,7 +312,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
             type: 'next'
           }
         ],
-        classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+        classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
         copyStyles: false,
         highlightClass: 'highlight',
         title: 'Welcome to Ember-Shepherd!',
@@ -329,7 +326,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     await click('.toggleHelpModal');
 
-    assert.ok(document.querySelector('.shepherd-step'), 'tour is visible');
+    assert.ok(document.querySelector('.shepherd-element'), 'tour is visible');
   });
 
   test('configuration works with attachTo object when element is dom element', async function(assert) {
@@ -357,7 +354,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
             type: 'next'
           }
         ],
-        classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+        classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
         copyStyles: false,
         highlightClass: 'highlight',
         title: 'Welcome to Ember-Shepherd!',
@@ -369,7 +366,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     await click('.toggleHelpModal');
 
-    assert.ok(document.querySelector('.shepherd-step'), 'tour is visible');
+    assert.ok(document.querySelector('.shepherd-element'), 'tour is visible');
   });
 
   test('buttons work when type is not specified and passed action is triggered', async function(assert) {
@@ -401,7 +398,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
             text: 'button three'
           }
         ],
-        classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+        classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
         copyStyles: false,
         highlightClass: 'highlight',
         title: 'Welcome to Ember-Shepherd!',
@@ -488,7 +485,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
             type: 'next'
           }
         ],
-        classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+        classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
         copyStyles: false,
         title: 'Welcome to Ember Shepherd!',
         text: ['A field that has rested gives a bountiful crop.'],
@@ -536,7 +533,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     tour.show('usage');
 
-    assert.equal(document.querySelector('.shepherd-open .shepherd-text').textContent,
+    assert.equal(document.querySelector('.shepherd-element .shepherd-text').textContent,
       'To use the tour service, simply inject it into your application and use it like this example.',
       'Usage step shown');
   });
@@ -560,7 +557,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
             type: 'next'
           }
         ],
-        classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+        classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
         copyStyles: true,
         title: 'Welcome to Ember Shepherd!',
         text: ['A field that has rested gives a bountiful crop.'],
