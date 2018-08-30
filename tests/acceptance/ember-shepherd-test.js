@@ -110,7 +110,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       }
     }];
 
-    const spy = this.spy(window, 'confirm');
+    const stub = this.stub(window, 'confirm');
 
     await visit('/');
 
@@ -123,7 +123,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     await click(document.querySelector('.shepherd-element a.shepherd-cancel-link'));
 
-    assert.ok(spy.calledOnce);
+    assert.ok(stub.calledOnce);
   });
 
   test('Modal page contents', async function(assert) {
