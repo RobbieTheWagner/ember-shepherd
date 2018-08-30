@@ -302,9 +302,9 @@ When true, an x will appear in the top right of the popup, for canceling the tou
 
 The step's title. It becomes an h3 at the top of the step.
 
-##### tetherOptions
+##### popperOptions
 
-Extra options to pass to tether
+Extra options to pass to Popper
 
 ##### text
 

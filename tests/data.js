@@ -20,10 +20,10 @@ export default [
       title: 'Welcome to Ember Shepherd!',
       text: [
         `Ember Shepherd is a javascript library for guiding users through your Ember app.
-           It is an Ember addon that wraps <a href="https://github.com/HubSpot/shepherd">Shepherd</a>
-           and extends its functionality. Shepherd uses <a href="http://github.hubspot.com/tether/">Tether</a>,
+           It is an Ember addon that wraps <a href="https://github.com/shipshapecode/shepherd">Shepherd</a>
+           and extends its functionality. Shepherd uses <a href="https://popper.js.org/">Popper.js</a>,
            another open source library, to position all of its steps.`,
-        `Tether makes sure your steps never end up off screen or cropped by an
+        `Popper makes sure your steps never end up off screen or cropped by an
            overflow. Try resizing your browser to see what we mean.`
       ]
     }
