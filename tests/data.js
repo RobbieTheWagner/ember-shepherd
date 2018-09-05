@@ -169,7 +169,7 @@ export default [
       classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
       copyStyles: false,
       text: [
-        `For the common button types, next, back, cancel, etc, we implemented Ember actions
+        `For the common button types ("next", "back", "cancel", etc.), we implemented Ember actions
           that perform these actions on your tour automatically. To use them, simply include
           in the builtInButtons array in each step.`
       ]
