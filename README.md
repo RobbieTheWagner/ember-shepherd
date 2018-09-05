@@ -1,4 +1,4 @@
-# Ember-shepherd
+# ember-shepherd
 
 <a href="https://shipshape.io/"><img src="http://i.imgur.com/KVqNjgO.png" alt="Ship Shape" width="100" height="100"/></a>
 
@@ -44,21 +44,10 @@ export default Component.extend({
 })
 ```
 
-## Themes
-
-Shepherd has several built in themes. By default, we include the `'arrows'` theme. You can specify which theme to include in `ember-cli-build.js` like so:
-
-```js
-var app = new EmberApp(defaults, {
-  shepherd: {
-    theme: 'dark'
-  }
-});
-```
 
 ## Configuration
 
-The following configuration options can be `set` on the Tour service to control the way that Shepherd is used.  The only required option is `steps`, which you can read more about below.
+The following configuration options can be `set` on the Tour service to control the way that Shepherd is used. **The only required option is `steps`, which you can read more about below.**
 
 ### confirmCancel
 
@@ -75,7 +64,7 @@ is set to true.
 `defaults` is used to set the options that will be applied to each step by default.
 You can pass in any of the options that you can with Shepherd.
 
-## You must set defaults *BEFORE* setting steps
+**⚠️ You must set defaults *BEFORE* setting steps.**
 
 It will be an object of a form something like:
 
@@ -319,6 +308,20 @@ Currently does ***not*** accept htmlbars input (PR welcome).
 ##### when
 
 An object that contains function to be executed when events occur on the step.  Supported events are `before-show`, `show`, `before-hide`, `hide`, `complete`, `cancel`, and `destroy`.
+
+
+## Themes
+
+Shepherd has several built in themes. By default, we include the `'arrows'` theme. You can specify which theme to include in `ember-cli-build.js` like so:
+
+```js
+var app = new EmberApp(defaults, {
+  shepherd: {
+    theme: 'dark'
+  }
+});
+```
+
 
 ## Interacting with `ember-shepherd`
 
