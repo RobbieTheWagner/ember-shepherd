@@ -190,38 +190,16 @@ export default Service.extend(Evented, {
     }
   },
 
-  /**
-   * This wraps the cancel function in a confirm dialog
-   * @param  {boolean} confirmCancel Whether to show the dialog or not
-   * @param  {string} confirmCancelMessage The message to display
-   * @param  {object} tourObject The tour object
-   * @private
-   */
-  wrapCancelFunction(confirmCancel, confirmCancelMessage, tourObject) {
-    const cancelFunction = tourObject.cancel;
-
-    if (confirmCancel) {
-      const cancelMessage = confirmCancelMessage || 'Are you sure you want to stop the tour?';
-
-      const newCancelFunction = () => {
-        const stopTour = window.confirm(cancelMessage);
-        if (stopTour) {
-          cancelFunction();
-        }
-      };
-      tourObject.cancel = newCancelFunction;
-    }
-  },
-
   initialize() {
+    const confirmCancel = get(this, 'confirmCancel');
+    const confirmCancelMessage = get(this, 'confirmCancelMessage');
     const defaults = get(this, 'defaults');
 
     const tourObject = new Shepherd.Tour({
+      confirmCancel,
+      confirmCancelMessage,
       defaults
     });
-
-    // Allow for confirm cancel dialog
-    this.wrapCancelFunction(get(this, 'confirmCancel'), get(this, 'confirmCancelMessage'), tourObject);
 
     tourObject.on('start', run.bind(this, 'onTourStart'));
     tourObject.on('complete', run.bind(this, 'onTourFinish', 'complete'));

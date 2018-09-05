@@ -8092,9 +8092,9 @@ shellwords@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
 
-shepherd.js@^2.0.0-beta.23:
-  version "2.0.0-beta.23"
-  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-2.0.0-beta.23.tgz#5cda98967912610f6dc44152e301061dc5315b39"
+shepherd.js@^2.0.0-beta.24:
+  version "2.0.0-beta.24"
+  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-2.0.0-beta.24.tgz#c5cddef57bae5aa19d36744d6e6e4339cbb37d3f"
   dependencies:
     element-matches "^0.1.2"
     lodash-es "^4.17.10"
