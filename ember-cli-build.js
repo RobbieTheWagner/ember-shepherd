@@ -3,13 +3,13 @@
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function(defaults) {
-  const options = {
-    shepherd: {
-      theme: 'arrows'
+  const app = new EmberAddon(defaults, {
+    sassOptions: {
+      includePaths: [
+        'node_modules/shepherd.js/src/scss'
+      ]
     }
-  };
-
-  const app = new EmberAddon(defaults, options);
+  });
 
   /*
     This build file specifies the options for the dummy test app of this

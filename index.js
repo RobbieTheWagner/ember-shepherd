@@ -5,15 +5,9 @@ const fastbootTransform = require('fastboot-transform');
 module.exports = {
   name: require('./package').name,
   included(app) {
-    let theme = 'css/shepherd-theme-';
     if (app.options && app.options.shepherd && app.options.shepherd.theme) {
-      theme += app.options.shepherd.theme;
-    } else {
-      theme += 'arrows';
+      this.theme = `dist/css/shepherd-theme-${app.options.shepherd.theme}.css`;
     }
-    theme += '.css';
-
-    this.theme = theme;
 
     this._super.included.apply(this, arguments);
   },
@@ -33,14 +27,18 @@ module.exports = {
         };
       },
       'shepherd.js'() {
+        const include = [
+          'dist/js/popper.js',
+          'dist/js/shepherd.js'
+        ];
+
+        if (this.theme) {
+          include.push(this.theme);
+        }
+
         return {
-          srcDir: 'dist',
           import: {
-            include: [
-              'js/popper.js',
-              'js/shepherd.js',
-              this.theme
-            ],
+            include,
             processTree(tree) {
               return fastbootTransform(tree);
             }

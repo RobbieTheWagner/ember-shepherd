@@ -4,12 +4,18 @@
 $background1: #3d2f53;
 $background2: #624b86;
 $button-dark: #75beaa;
-$color-inherit: inherit;
 $light-color: #c1b5d3;
 $altlight-color: #7b7486;
 $panel-border: #d8d8d8;
 $transparent: transparent;
 $whiteish: #c8c7d5;
+
+// Shepherd theme overrides
+$shepherd-text-background: $background1;
+$shepherd-theme-primary: $background2;
+$shepherd-theme-secondary: $whiteish;
+
+@import "shepherd-theme-arrows";
 
 body,
 html {
@@ -117,8 +123,6 @@ a {
     }
 
     .shepherd-content {
-      background-color: $background1;
-
       .shepherd-text {
         color: $whiteish;
 
@@ -135,19 +139,10 @@ a {
   width: 400px;
 }
 
-.shepherd-element.shepherd-theme-arrows .shepherd-content a {
-  color: $color-inherit;
-}
-
 .shepherd-element.shepherd-theme-arrows .shepherd-content footer .shepherd-buttons li .shepherd-button {
-  background: $background2;
   font-size: 0.75em;
   line-height: 0.75em;
   padding-top: 1em;
-
-  &.shepherd-button-secondary {
-    background-color: $whiteish;
-  }
 }
 
 h1,

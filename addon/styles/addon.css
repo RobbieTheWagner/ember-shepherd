@@ -1,5 +1,5 @@
 #highlightOverlay {
-  z-index: 10001;
+  z-index: 9998;
 }
 
 #shepherdOverlay {
@@ -11,7 +11,7 @@
   -moz-opacity: 0.5;
   -khtml-opacity: 0.5;
   opacity: 0.5;
-  z-index: 10000;
+  z-index: 9997;
   background-color: #000;
   background: -moz-radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
   background: -webkit-gradient(radial,center center,0px,center center,100%,color-stop(0%,rgba(0,0,0,0.4)),color-stop(100%,rgba(0,0,0,0.9)));
@@ -29,11 +29,7 @@
   transition: all 0.3s ease-out;
 }
 
-.shepherd-element {
-  z-index: 10002;
-}
-
 .shepherd-modal.shepherd-enabled {
   position: relative;
-  z-index: 10001;
+  z-index: 9998;
 }
