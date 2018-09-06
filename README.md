@@ -183,13 +183,16 @@ this.get('tour').set('steps', [
 
 A lot of the options are the same as Shepherd options, but I will go through each of them for reference.
 
+
 #### id
 
 The name to give this step of the tour
 
+
 #### options
 
 An object with all of the options for the step
+
 
 ##### attachTo
 
@@ -205,13 +208,19 @@ Can also be an object formatted like
 
 Where `.myElement` is any valid jQuery selector.
 
+> **default value:** `''`
+
+
 ##### beforeShowPromise
 
 A function that returns a promise. When the promise resolves, the rest of the `show` code for the step will execute. This is a good place to schedule things in the Ember.run loop that you need to ensure happen before show.
 
+> **default value:** `null`
+
+
 ##### builtInButtons
 
-These are the standard button types supported by Shepherd. Just set type to next, back or cancel, then set the text, and classes as normal.
+These are the standard button types supported by Shepherd. Just set type to `next`, `back`, or `cancel`, then set the text and classes as normal.
 
 Custom actions can also be used by using an action method instead of a type. For example:
 
@@ -239,21 +248,36 @@ builtInButtons: [
 ...
 ```
 
+> **required:** `yes`
+
+
 ##### classes
 
 Extra classes to apply to the step, for styling purposes and such.
+
+> **default value:** `''`
+
 
 ##### copyStyles
 
 This is a boolean, and when set to `true` it will fully clone the element and styles, rather than just increasing the element's z-index. This should only be used if the element does not pop out and highlight like it should, when using modal functionality.
 
+> **default value:** `false`
+
+
 ##### highlightClass
 
 This is an extra class to apply to the attachTo element, when it is highlighted. It can be any string. Just style that class name in your css.
 
+> **default value:** ``
+
+
 ##### scrollTo
 
-This sets whether the screen should be scrolled to get to the element or not, when the step is active.
+This sets whether or not the screen should be scrolled to get to the element when the step becomes active.
+
+> **default value:** `false`
+
 
 ##### scrollToHandler
 
@@ -283,17 +307,29 @@ For custom scrolling actions, pass a function to this option. For example:
 
 ```
 
+> **default value:** `null`
+
+
 ##### showCancelLink
 
 When true, an x will appear in the top right of the popup, for canceling the tour.
+
+> **default value:** `false`
+
 
 ##### title
 
 The step's title. It becomes an h3 at the top of the step.
 
+> **default value:** `''`
+
+
 ##### popperOptions
 
 Extra options to pass to Popper
+
+> **default value:** `null`
+
 
 ##### text
 
@@ -305,9 +341,22 @@ The text content to display in the tour popup. Can be:
 
 Currently does ***not*** accept htmlbars input (PR welcome).
 
+> **default value:** `null`
+
+
 ##### when
 
-An object that contains function to be executed when events occur on the step.  Supported events are `before-show`, `show`, `before-hide`, `hide`, `complete`, `cancel`, and `destroy`.
+An object containing functions to be executed when events occur on the step.  Supported events are `before-show`, `show`, `before-hide`, `hide`, `complete`, `cancel`, and `destroy`.
+
+```js
+  when: {
+    show: function() {
+      window.scrollTo(0, 0);
+    }
+  }
+```
+
+> **default value:** `null`
 
 
 ## Themes
