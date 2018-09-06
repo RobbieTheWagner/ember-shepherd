@@ -336,7 +336,7 @@ export default Service.extend(Evented, {
     steps.forEach((step, index) => {
       const { id, options } = step;
 
-      options.buttons = options.builtInButtons.map(this.makeButton, this);
+      options.buttons = (options.buttons !== false) ? options.builtInButtons.map(this.makeButton, this) : false;
       options.attachTo = this.normalizeAttachTo(options.attachTo);
       tour.addStep(id, options);
 
