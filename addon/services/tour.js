@@ -336,8 +336,8 @@ export default Service.extend(Evented, {
     steps.forEach((step, index) => {
       const { id, options } = step;
 
-      assert('You must either pass buttons or `false`, undefined is not supported', options.buttons !== undefined);
-      options.buttons = (options.buttons !== false) ? options.builtInButtons.map(this.makeButton, this) : false;
+      assert('You must either pass an array of builtInButtons or `false`, undefined is not supported', options.builtInButtons !== undefined);
+      options.buttons = (options.builtInButtons !== false) ? options.builtInButtons.map(this.makeButton, this) : false;
       options.attachTo = this.normalizeAttachTo(options.attachTo);
       tour.addStep(id, options);
 
