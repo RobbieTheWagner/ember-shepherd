@@ -1,5 +1,5 @@
 /* eslint-disable ember/avoid-leaking-state-in-ember-objects, ember/no-observers */
-
+import { assert } from '@ember/debug';
 import { get, observer, set } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
 import Service from '@ember/service';
@@ -336,7 +336,8 @@ export default Service.extend(Evented, {
     steps.forEach((step, index) => {
       const { id, options } = step;
 
-      options.buttons = options.builtInButtons.map(this.makeButton, this);
+      assert('You must either pass an array of builtInButtons or `false`, undefined is not supported', options.builtInButtons !== undefined);
+      options.buttons = (options.builtInButtons !== false) ? options.builtInButtons.map(this.makeButton, this) : false;
       options.attachTo = this.normalizeAttachTo(options.attachTo);
       tour.addStep(id, options);
 
