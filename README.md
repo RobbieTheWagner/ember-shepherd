@@ -143,7 +143,7 @@ this.get('tour').set('steps', [
           });
         });
       },
-      builtInButtons: [
+      buttons: [
         {
           classes: 'shepherd-button-secondary',
           text: 'Exit',
@@ -218,7 +218,7 @@ A function that returns a promise. When the promise resolves, the rest of the `s
 > **default value:** `null`
 
 
-##### builtInButtons
+##### buttons
 
 These are the standard button types supported by Shepherd. Just set type to `next`, `back`, or `cancel`, then set the text and classes as normal.
 
@@ -226,7 +226,7 @@ Custom actions can also be used by using an action method instead of a type. For
 
 ``` javascript
 ...
-builtInButtons: [
+buttons: [
   {
     classes: 'shepherd-button-secondary',
     text: 'Exit',

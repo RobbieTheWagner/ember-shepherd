@@ -36,7 +36,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       id: 'step-without-cancel-link',
       options: {
         attachTo: '.first-element bottom',
-        builtInButtons: [
+        buttons: [
           builtInButtons.cancel,
           builtInButtons.next,
         ],
@@ -107,7 +107,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     assert.notOk(document.querySelector('#shepherdOverlay'), '#shepherdOverlay should not exist, since non-modal');
   });
 
-  test('Tour next, back, and cancel builtInButtons work', async function(assert) {
+  test('Tour next, back, and cancel buttons work', async function(assert) {
     assert.expect(3);
 
     await visit('/');
@@ -130,7 +130,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       id: 'test-highlight',
       options: {
         attachTo: '.first-element bottom',
-        builtInButtons: [
+        buttons: [
           builtInButtons.cancel,
           builtInButtons.next,
         ],
@@ -160,7 +160,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       id: 'test-highlight',
       options: {
         attachTo: '.first-element bottom',
-        builtInButtons: [
+        buttons: [
           builtInButtons.cancel,
           builtInButtons.next,
         ],
@@ -190,7 +190,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
         id: 'test-highlight',
         options: {
           attachTo: '.first-element bottom',
-          builtInButtons: [
+          buttons: [
             builtInButtons.cancel,
             builtInButtons.next,
           ],
@@ -217,7 +217,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
           element: '.first-element',
           on: 'bottom'
         },
-        builtInButtons: [
+        buttons: [
           builtInButtons.cancel,
           builtInButtons.next,
         ],
@@ -245,7 +245,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
           element: find('.first-element'),
           on: 'bottom'
         },
-        builtInButtons: [
+        buttons: [
           builtInButtons.cancel,
           builtInButtons.next,
         ],
@@ -271,7 +271,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
           element: '.first-element',
           on: 'bottom'
         },
-        builtInButtons: [
+        buttons: [
           {
             classes: 'shepherd-button-secondary button-one',
             text: 'button one'
@@ -386,7 +386,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       id: 'intro',
       options: {
         attachTo: '.first-element bottom',
-        builtInButtons: [
+        buttons: [
           builtInButtons.cancel,
           builtInButtons.next,
         ],
@@ -446,7 +446,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       id: 'intro',
       options: {
         attachTo: '.first-element bottom',
-        builtInButtons: [
+        buttons: [
           builtInButtons.cancel,
           builtInButtons.next,
         ],

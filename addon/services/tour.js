@@ -291,7 +291,6 @@ export default Service.extend(Evented, {
   stepsChange: observer('steps', function() {
     this.initialize();
     const steps = get(this, 'steps');
-
     const tour = get(this, 'tourObject');
 
     // Return nothing if there are no steps
@@ -315,8 +314,8 @@ export default Service.extend(Evented, {
     steps.forEach((step, index) => {
       const { id, options } = step;
 
-      assert('You must either pass an array of builtInButtons or `false`, undefined is not supported', options.builtInButtons !== undefined);
-      options.buttons = (options.builtInButtons !== false) ? options.builtInButtons.map(this.makeButton, this) : false;
+      assert('You must either pass an array of buttons or `false`, undefined is not supported', options.buttons !== undefined);
+      options.buttons = (options.buttons !== false) ? options.buttons.map(this.makeButton, this) : false;
       options.attachTo = this.normalizeAttachTo(options.attachTo);
       tour.addStep(id, options);
 
