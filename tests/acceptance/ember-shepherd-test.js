@@ -2,7 +2,7 @@ import { module, test } from 'qunit';
 import { visit, click, find } from '@ember/test-helpers';
 import { later } from '@ember/runloop';
 import { setupApplicationTest } from 'ember-qunit';
-import { builtInButtons } from '../data';
+import { builtInButtons, steps as defaultSteps } from '../data';
 
 import {
   elementIds as modalElementIds,
@@ -73,6 +73,57 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       await click(document.querySelector('.shepherd-content a.shepherd-cancel-link'));
 
       assert.notOk(document.body.classList.contains('shepherd-active'), 'Body does not have class of shepherd-active, when shepherd becomes inactive');
+    });
+  });
+
+  module('Required Elements', function () {
+    test('Not warning about required elements when none are specified', async function(assert) {
+      await visit('/');
+      await click('.toggleHelpModal');
+
+      const currentStepId = document.body.getAttribute('data-shepherd-step');
+
+      assert.equal(currentStepId, defaultSteps[0].id);
+    });
+
+
+    test('Not warning about required elements when none are missing', async function(assert) {
+      const requiredElements = [
+        {
+          selector: 'body',
+          message: 'Body element not found 🤔',
+          title: 'Error'
+        },
+      ];
+
+      tour.set('requiredElements', requiredElements);
+
+      await visit('/');
+      await click('.toggleHelpModal');
+
+      const currentStepId = document.body.getAttribute('data-shepherd-step');
+
+      assert.equal(currentStepId, defaultSteps[0].id);
+    });
+
+
+    test('Warning about missing required elements when all are present', async function(assert) {
+      const requiredElements = [
+        {
+          selector: '👻',
+          message: '👻 element not found',
+          title: 'Missing Required Elements'
+        },
+      ];
+
+      tour.set('requiredElements', requiredElements);
+
+      await visit('/');
+      await click('.toggleHelpModal');
+
+      const currentStepId = document.body.getAttribute('data-shepherd-step');
+
+      assert.equal(currentStepId, 'error');
     });
   });
 

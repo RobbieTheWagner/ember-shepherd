@@ -16,19 +16,8 @@ export default Route.extend({
     tour.set('disableScroll', this.get('disableScroll'));
     tour.set('modal', true);
     tour.set('confirmCancel', false);
+
     tour.addSteps(defaultSteps);
-    tour.set('requiredElements', [
-      {
-        selector: '.first-element',
-        message: 'First element not found',
-        title: 'Error'
-      },
-      {
-        selector: '.install-element',
-        message: 'Install element not found',
-        title: 'Error'
-      }
-    ]);
 
     tour.on('cancel', () => {
       console.log('cancel');
