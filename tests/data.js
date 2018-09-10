@@ -1,21 +1,31 @@
-export default [
+export const builtInButtons = {
+  cancel: {
+    classes: 'shepherd-button-secondary cancel-button',
+    text: 'Exit',
+    type: 'cancel'
+  },
+  next: {
+    classes: 'shepherd-button-primary next-button',
+    text: 'Next',
+    type: 'next'
+  },
+  back: {
+    classes: 'shepherd-button-primary back-button',
+    text: 'Back',
+    type: 'back'
+  }
+};
+
+export const steps = [
   {
     id: 'intro',
     options: {
       attachTo: '.first-element bottom',
       builtInButtons: [
-        {
-          classes: 'shepherd-button-secondary cancel-button',
-          text: 'Exit',
-          type: 'cancel'
-        },
-        {
-          classes: 'shepherd-button-primary next-button',
-          text: 'Next',
-          type: 'next'
-        }
+        builtInButtons.cancel,
+        builtInButtons.next,
       ],
-      classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
+      classes: 'custom-class-name-1 custom-class-name-2',
       copyStyles: false,
       title: 'Welcome to Ember Shepherd!',
       text: [
@@ -33,23 +43,11 @@ export default [
     options: {
       attachTo: '.install-element bottom',
       builtInButtons: [
-        {
-          classes: 'shepherd-button-secondary cancel-button',
-          text: 'Exit',
-          type: 'cancel'
-        },
-        {
-          classes: 'shepherd-button-primary back-button',
-          text: 'Back',
-          type: 'back'
-        },
-        {
-          classes: 'shepherd-button-primary next-button',
-          text: 'Next',
-          type: 'next'
-        }
+        builtInButtons.cancel,
+        builtInButtons.back,
+        builtInButtons.next,
       ],
-      classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
+      classes: 'custom-class-name-1 custom-class-name-2',
       copyStyles: false,
       text: ['Installation is simple, if you are using Ember-CLI, just install like any other addon.']
     }
@@ -59,23 +57,11 @@ export default [
     options: {
       attachTo: '.usage-element bottom',
       builtInButtons: [
-        {
-          classes: 'shepherd-button-secondary cancel-button',
-          text: 'Exit',
-          type: 'cancel'
-        },
-        {
-          classes: 'shepherd-button-primary back-button',
-          text: 'Back',
-          type: 'back'
-        },
-        {
-          classes: 'shepherd-button-primary next-button',
-          text: 'Next',
-          type: 'next'
-        }
+        builtInButtons.cancel,
+        builtInButtons.back,
+        builtInButtons.next,
       ],
-      classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
+      classes: 'custom-class-name-1 custom-class-name-2',
       copyStyles: false,
       text: ['To use the tour service, simply inject it into your application and use it like this example.']
     }
@@ -88,23 +74,11 @@ export default [
         on: 'top'
       },
       builtInButtons: [
-        {
-          classes: 'shepherd-button-secondary cancel-button',
-          text: 'Exit',
-          type: 'cancel'
-        },
-        {
-          classes: 'shepherd-button-primary back-button',
-          text: 'Back',
-          type: 'back'
-        },
-        {
-          classes: 'shepherd-button-primary next-button',
-          text: 'Next',
-          type: 'next'
-        }
+        builtInButtons.cancel,
+        builtInButtons.back,
+        builtInButtons.next,
       ],
-      classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
+      classes: 'custom-class-name-1 custom-class-name-2',
       copyStyles: false,
       text: [
         'We implemented true modal functionality by disabling clicking of the rest of the page.',
@@ -120,23 +94,11 @@ export default [
         on: 'top'
       },
       builtInButtons: [
-        {
-          classes: 'shepherd-button-secondary cancel-button',
-          text: 'Exit',
-          type: 'cancel'
-        },
-        {
-          classes: 'shepherd-button-primary back-button',
-          text: 'Back',
-          type: 'back'
-        },
-        {
-          classes: 'shepherd-button-primary next-button',
-          text: 'Next',
-          type: 'next'
-        }
+        builtInButtons.cancel,
+        builtInButtons.back,
+        builtInButtons.next,
       ],
-      classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
+      classes: 'custom-class-name-1 custom-class-name-2',
       copyStyles: false,
       text: [
         `When using a modal, most times just setting the z-index of your element to something high will
@@ -150,23 +112,11 @@ export default [
     options: {
       attachTo: '.built-in-buttons-element top',
       builtInButtons: [
-        {
-          classes: 'shepherd-button-secondary cancel-button',
-          text: 'Exit',
-          type: 'cancel'
-        },
-        {
-          classes: 'shepherd-button-primary back-button',
-          text: 'Back',
-          type: 'back'
-        },
-        {
-          classes: 'shepherd-button-primary next-button',
-          text: 'Next',
-          type: 'next'
-        }
+        builtInButtons.cancel,
+        builtInButtons.back,
+        builtInButtons.next,
       ],
-      classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
+      classes: 'custom-class-name-1 custom-class-name-2',
       copyStyles: false,
       text: [
         `For the common button types ("next", "back", "cancel", etc.), we implemented Ember actions
@@ -180,23 +130,11 @@ export default [
     options: {
       attachTo: '.disable-scroll-element top',
       builtInButtons: [
-        {
-          classes: 'shepherd-button-secondary cancel-button',
-          text: 'Exit',
-          type: 'cancel'
-        },
-        {
-          classes: 'shepherd-button-primary back-button',
-          text: 'Back',
-          type: 'back'
-        },
-        {
-          classes: 'shepherd-button-primary next-button',
-          text: 'Next',
-          type: 'next'
-        }
+        builtInButtons.cancel,
+        builtInButtons.back,
+        builtInButtons.next,
       ],
-      classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
+      classes: 'custom-class-name-1 custom-class-name-2',
       copyStyles: false,
       text: [
         `When navigating the user through a tour, you may want to disable scrolling, so they
@@ -209,18 +147,10 @@ export default [
     id: 'noAttachTo',
     options: {
       builtInButtons: [
-        {
-          classes: 'shepherd-button-secondary cancel-button',
-          text: 'Exit',
-          type: 'cancel'
-        },
-        {
-          classes: 'shepherd-button-primary back-button',
-          text: 'Back',
-          type: 'back'
-        }
+        builtInButtons.cancel,
+        builtInButtons.back,
       ],
-      classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
+      classes: 'custom-class-name-1 custom-class-name-2',
       copyStyles: false,
       text: ['If no attachTo is specified, the modal will appear in the center of the screen, as per the Shepherd docs.']
     }

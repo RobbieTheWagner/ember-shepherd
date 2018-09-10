@@ -2,25 +2,19 @@ import { module, test } from 'qunit';
 import { visit, click, find } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import sinonTest from 'ember-sinon-qunit/test-support/test';
-import steps from '../data';
+import { builtInButtons, steps as defaultSteps } from '../data';
 
-let tour;
 
 module('Acceptance | Tour functionality tests', function(hooks) {
+  let tour;
+
   setupApplicationTest(hooks);
 
   hooks.beforeEach(function() {
     tour = this.owner.lookup('service:tour');
-    tour.setProperties({
-      steps,
-      confirmCancel: false,
-      modal: false,
-      defaults: {
-        classes: 'shepherd-theme-arrows',
-        scrollTo: true,
-        showCancelLink: true
-      }
-    });
+
+    tour.set('confirmCancel', false);
+    tour.set('modal', false);
   });
 
   test('Shows cancel link', async function(assert) {
@@ -39,27 +33,14 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     };
 
     const steps = [{
-      id: 'test-highlight',
+      id: 'step-without-cancel-link',
       options: {
         attachTo: '.first-element bottom',
         builtInButtons: [
-          {
-            classes: 'shepherd-button-secondary cancel-button',
-            text: 'Exit',
-            type: 'cancel'
-          },
-          {
-            classes: 'shepherd-button-primary next-button',
-            text: 'Next',
-            type: 'next'
-          }
+          builtInButtons.cancel,
+          builtInButtons.next,
         ],
         showCancelLink: false,
-        classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
-        copyStyles: false,
-        highlightClass: 'highlight',
-        title: 'Welcome to Ember-Shepherd!',
-        text: ['Testing highlight']
       }
     }];
 
@@ -86,36 +67,12 @@ module('Acceptance | Tour functionality tests', function(hooks) {
   });
 
   sinonTest('Confirm cancel makes you confirm cancelling the tour', async function(assert) {
-    const steps = [{
-      id: 'intro',
-      options: {
-        attachTo: '.first-element bottom',
-        builtInButtons: [
-          {
-            classes: 'shepherd-button-secondary cancel-button',
-            text: 'Exit',
-            type: 'cancel'
-          },
-          {
-            classes: 'shepherd-button-primary next-button',
-            text: 'Next',
-            type: 'next'
-          }
-        ],
-        classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
-        copyStyles: false,
-        title: 'Welcome to Ember Shepherd!',
-        text: ['A field that has rested gives a bountiful crop.'],
-        scrollTo: false
-      }
-    }];
-
     const stub = this.stub(window, 'confirm');
 
     await visit('/');
 
     tour.set('confirmCancel', true);
-    tour.set('steps', steps);
+    tour.set('steps', defaultSteps);
 
     await click('.toggleHelpModal');
 
@@ -174,21 +131,10 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       options: {
         attachTo: '.first-element bottom',
         builtInButtons: [
-          {
-            classes: 'shepherd-button-secondary cancel-button',
-            text: 'Exit',
-            type: 'cancel'
-          },
-          {
-            classes: 'shepherd-button-primary next-button',
-            text: 'Next',
-            type: 'next'
-          }
+          builtInButtons.cancel,
+          builtInButtons.next,
         ],
-        classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
-        copyStyles: false,
         highlightClass: 'highlight',
-        title: 'Welcome to Ember-Shepherd!',
         text: ['Testing highlight']
       }
     }];
@@ -215,21 +161,10 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       options: {
         attachTo: '.first-element bottom',
         builtInButtons: [
-          {
-            classes: 'shepherd-button-secondary cancel-button',
-            text: 'Exit',
-            type: 'cancel'
-          },
-          {
-            classes: 'shepherd-button-primary next-button',
-            text: 'Next',
-            type: 'next'
-          }
+          builtInButtons.cancel,
+          builtInButtons.next,
         ],
-        classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
-        copyStyles: false,
         highlightClass: 'highlight',
-        title: 'Welcome to Ember-Shepherd!',
         text: ['Testing highlight']
       }
     }];
@@ -250,49 +185,31 @@ module('Acceptance | Tour functionality tests', function(hooks) {
   test('Defaults applied', async function(assert) {
     assert.expect(1);
 
-    const defaults = {
-      classes: 'shepherd-theme-arrows test-defaults',
-      scrollTo: false,
-      showCancelLink: true
-    };
-
-    const steps = [{
-      id: 'test-defaults-classes',
-      options: {
-        attachTo: '.first-element bottom',
-        builtInButtons: [
-          {
-            classes: 'shepherd-button-secondary cancel-button',
-            text: 'Exit',
-            type: 'cancel'
-          },
-          {
-            classes: 'shepherd-button-primary next-button',
-            text: 'Next',
-            type: 'next'
-          }
-        ],
-        copyStyles: false,
-        highlightClass: 'highlight',
-        title: 'Welcome to Ember-Shepherd!',
-        text: ['Testing defaults']
+    const stepsWithoutClasses = [
+      {
+        id: 'test-highlight',
+        options: {
+          attachTo: '.first-element bottom',
+          builtInButtons: [
+            builtInButtons.cancel,
+            builtInButtons.next,
+          ],
+        }
       }
-    }];
+    ];
 
     await visit('/');
 
-    tour.set('defaults', defaults);
-    tour.set('steps', steps);
+    tour.set('steps', stepsWithoutClasses);
 
     await click('.toggleHelpModal');
 
-    assert.ok(document.querySelector('.test-defaults'), 'defaults class applied');
+    assert.ok(document.querySelector('.custom-default-class'), 'defaults class applied');
   });
 
   test('configuration works with attachTo object when element is a simple string', async function(assert) {
     assert.expect(1);
 
-    // Override default behavior
     const steps = [{
       id: 'test-attachTo-string',
       options: {
@@ -301,22 +218,9 @@ module('Acceptance | Tour functionality tests', function(hooks) {
           on: 'bottom'
         },
         builtInButtons: [
-          {
-            classes: 'shepherd-button-secondary cancel-button',
-            text: 'Exit',
-            type: 'cancel'
-          },
-          {
-            classes: 'shepherd-button-primary next-button',
-            text: 'Next',
-            type: 'next'
-          }
+          builtInButtons.cancel,
+          builtInButtons.next,
         ],
-        classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
-        copyStyles: false,
-        highlightClass: 'highlight',
-        title: 'Welcome to Ember-Shepherd!',
-        text: ['Testing highlight']
       }
     }];
 
@@ -334,7 +238,6 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     await visit('/');
 
-    // Override default behavior
     const steps = [{
       id: 'test-attachTo-dom',
       options: {
@@ -343,22 +246,9 @@ module('Acceptance | Tour functionality tests', function(hooks) {
           on: 'bottom'
         },
         builtInButtons: [
-          {
-            classes: 'shepherd-button-secondary cancel-button',
-            text: 'Exit',
-            type: 'cancel'
-          },
-          {
-            classes: 'shepherd-button-primary next-button',
-            text: 'Next',
-            type: 'next'
-          }
+          builtInButtons.cancel,
+          builtInButtons.next,
         ],
-        classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
-        copyStyles: false,
-        highlightClass: 'highlight',
-        title: 'Welcome to Ember-Shepherd!',
-        text: ['Testing highlight']
       }
     }];
 
@@ -398,11 +288,6 @@ module('Acceptance | Tour functionality tests', function(hooks) {
             text: 'button three'
           }
         ],
-        classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
-        copyStyles: false,
-        highlightClass: 'highlight',
-        title: 'Welcome to Ember-Shepherd!',
-        text: ['Testing highlight']
       }
     }];
 
@@ -474,21 +359,9 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       options: {
         attachTo: '.first-element bottom',
         builtInButtons: [
-          {
-            classes: 'shepherd-button-secondary cancel-button',
-            text: 'Exit',
-            type: 'cancel'
-          },
-          {
-            classes: 'shepherd-button-primary next-button',
-            text: 'Next',
-            type: 'next'
-          }
+          builtInButtons.cancel,
+          builtInButtons.next,
         ],
-        classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
-        copyStyles: false,
-        title: 'Welcome to Ember Shepherd!',
-        text: ['A field that has rested gives a bountiful crop.'],
         scrollTo: true,
         scrollToHandler() {
           return document.querySelector('#ember-testing-container').scrollTop = 120;
@@ -546,22 +419,10 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       options: {
         attachTo: '.first-element bottom',
         builtInButtons: [
-          {
-            classes: 'shepherd-button-secondary cancel-button',
-            text: 'Exit',
-            type: 'cancel'
-          },
-          {
-            classes: 'shepherd-button-primary next-button',
-            text: 'Next',
-            type: 'next'
-          }
+          builtInButtons.cancel,
+          builtInButtons.next,
         ],
-        classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
         copyStyles: true,
-        title: 'Welcome to Ember Shepherd!',
-        text: ['A field that has rested gives a bountiful crop.'],
-        scrollTo: false
       }
     }];
 

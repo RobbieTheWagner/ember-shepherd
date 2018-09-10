@@ -70,7 +70,7 @@ It will be an object of a form something like:
 
 ```js
 this.get('tour').set('defaults', {
-  classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
+  classes: 'custom-class-name-1 custom-class-name-2',
   scrollTo: false,
   showCancelLink: true
 });
@@ -160,7 +160,7 @@ this.get('tour').set('steps', [
           type: 'next'
         }
       ],
-      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+      classes: 'custom-class-name-1 custom-class-name-2',
       copyStyles: false,
       highlightClass: 'highlight',
       scrollTo: false,
