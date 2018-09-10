@@ -91,7 +91,9 @@ export default Service.extend(Evented, {
    * @param {string} completeOrCancel 'complete' or 'cancel'
    */
   onTourFinish(completeOrCancel) {
-    set(this, 'isActive', false);
+    if (!this.isDestroyed) {
+      set(this, 'isActive', false);
+    }
     this.cleanup();
     this.trigger(completeOrCancel);
   },
