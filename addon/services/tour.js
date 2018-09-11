@@ -325,7 +325,6 @@ export default Service.extend(Evented, {
           text: 'Exit',
           action: tour.cancel
         }],
-        classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
         copyStyles: false,
         title: get(this, 'errorTitle'),
         text: [get(this, 'messageForUser')]

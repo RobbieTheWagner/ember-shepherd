@@ -3,6 +3,7 @@ import { setupTest } from 'ember-qunit';
 import EmberObject from '@ember/object';
 import { run } from '@ember/runloop';
 import { getElementPosition, setPositionForHighlightElement } from 'ember-shepherd/utils';
+import { builtInButtons } from '../../data';
 
 const steps = [
   {
@@ -10,19 +11,10 @@ const steps = [
     options: {
       attachTo: '.test-element bottom',
       builtInButtons: [
-        {
-          classes: 'shepherd-button-secondary',
-          text: 'Exit',
-          type: 'cancel'
-        },
-        {
-          classes: 'shepherd-button-primary',
-          text: 'Next',
-          type: 'next'
-        }
+        builtInButtons.cancel,
+        builtInButtons.next,
       ],
-      classes: 'shepherd shepherd-theme-arrows shepherd-transparent-text',
-      copyStyles: false,
+      classes: 'custom-class-name-1 custom-class-name-2',
       title: 'Welcome to Ember-Shepherd!',
       text: ['Test text'],
       scrollTo: true,
