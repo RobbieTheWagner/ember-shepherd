@@ -59,17 +59,17 @@ confirm window on cancel, to ensure you want to cancel.
 `confirmCancelMessage` is a string to display in the confirm dialog when `confirmCancel`
 is set to true.
 
-### defaults
+### defaultStepOptions
 
-`defaults` is used to set the options that will be applied to each step by default.
+`defaultStepOptions` is used to set the options that will be applied to each step by default.
 You can pass in any of the options that you can with Shepherd.
 
-**⚠️ You must set defaults *BEFORE* setting steps.**
+**⚠️ You must set `defaultStepOptions` *BEFORE* setting steps.**
 
 It will be an object of a form something like:
 
 ```js
-this.get('tour').set('defaults', {
+this.get('tour').set('defaultStepOptions', {
   classes: 'custom-class-name-1 custom-class-name-2',
   scrollTo: false,
   showCancelLink: true

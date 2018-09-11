@@ -8,7 +8,7 @@ import { steps as defaultSteps } from '../data';
 export default Route.extend({
   tour: service(),
   disableScroll: true,
-  defaults: {
+  defaultStepOptions: {
     classes: 'shepherd-theme-arrows custom-default-class',
     scrollTo: true,
     showCancelLink: true
@@ -17,7 +17,7 @@ export default Route.extend({
   beforeModel() {
     const tour = this.get('tour');
 
-    tour.set('defaults', this.get('defaults'));
+    tour.set('defaultStepOptions', this.get('defaultStepOptions'));
     tour.set('disableScroll', this.get('disableScroll'));
     tour.set('modal', true);
     tour.set('confirmCancel', false);
