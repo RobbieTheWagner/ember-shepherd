@@ -189,33 +189,32 @@ export default Service.extend(Evented, {
   /**
    * Creates a button of the specified type, with the given classes and text
    *
-   * @param type The type of button cancel, back, or next
-   * @param classes Classes to apply to the button
-   * @param text The text for the button
-   * @param action The action to call
+   * @param button.type The type of button cancel, back, or next
+   * @param button.classes Classes to apply to the button
+   * @param button.text The text for the button
+   * @param button.action The action to call
    * @returns {{action: *, classes: *, text: *}}
    * @private
    */
   makeButton(button) {
     const { type, classes, text } = button;
-    const builtInButtonTypes = ['back', 'cancel', 'next'];
-    let { action } = button;
 
     if (!type) {
       return button;
     }
 
+    const builtInButtonTypes = ['back', 'cancel', 'next'];
     if (builtInButtonTypes.includes(type)) {
-      action = run.bind(this, function() {
+      const action = run.bind(this, function() {
         this[type]();
       });
-    }
 
-    return {
-      action,
-      classes,
-      text
-    };
+      return {
+        action,
+        classes,
+        text
+      };
+    }
   },
 
   /**
@@ -322,7 +321,7 @@ export default Service.extend(Evented, {
       const { id, options } = step;
 
       if (options.buttons) {
-        options.buttons.map(this.makeButton, this);
+        options.buttons = options.buttons.map(this.makeButton, this);
       }
       options.attachTo = this.normalizeAttachTo(options.attachTo);
       tour.addStep(id, options);
