@@ -1,5 +1,4 @@
 /* eslint-disable ember/avoid-leaking-state-in-ember-objects, ember/no-observers */
-import { assert } from '@ember/debug';
 import { get, observer, set } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
 import Service from '@ember/service';
@@ -322,7 +321,7 @@ export default Service.extend(Evented, {
     steps.forEach((step, index) => {
       const { id, options } = step;
 
-      if(options.buttons) {
+      if (options.buttons) {
         options.buttons.map(this.makeButton, this);
       }
       options.attachTo = this.normalizeAttachTo(options.attachTo);
