@@ -220,7 +220,7 @@ A function that returns a promise. When the promise resolves, the rest of the `s
 
 ##### buttons
 
-These are the standard button types supported by Shepherd. Just set type to `next`, `back`, or `cancel`, then set the text and classes as normal.
+There are the standard button types supported by ember-shepherd. Just set type to `next`, `back`, or `cancel`, then set the text and classes as normal. These will automatically be bound to the Shepherd functions. If no type is passed, a normal Shepherd button will be created.
 
 Custom actions can also be used by using an action method instead of a type. For example:
 

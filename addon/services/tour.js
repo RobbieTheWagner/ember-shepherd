@@ -197,15 +197,21 @@ export default Service.extend(Evented, {
    * @returns {{action: *, classes: *, text: *}}
    * @private
    */
-  makeButton({ type, classes, text, action }) {
+  makeButton(button) {
+    const { type, classes, text } = button;
     const builtInButtonTypes = ['back', 'cancel', 'next'];
+    let { action } = button;
+
+    if (!type) {
+      return button;
+    }
+
     if (builtInButtonTypes.includes(type)) {
       action = run.bind(this, function() {
         this[type]();
       });
-    } else {
-      action = action || function() {};
     }
+
     return {
       action,
       classes,
