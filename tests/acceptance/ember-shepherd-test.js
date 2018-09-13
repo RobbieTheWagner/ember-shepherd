@@ -27,7 +27,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
   });
 
   test('Hides cancel link', async function(assert) {
-    const defaults = {
+    const defaultStepOptions = {
       classes: 'shepherd-theme-arrows test-defaults',
       showCancelLink: false
     };
@@ -46,7 +46,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     await visit('/');
 
-    tour.set('defaults', defaults);
+    tour.set('defaultStepOptions', defaultStepOptions);
     tour.set('steps', steps);
 
     await click('.toggleHelpModal');

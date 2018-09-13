@@ -18,7 +18,7 @@ export default Service.extend(Evented, {
   // Configuration Options
   confirmCancel: false,
   confirmCancelMessage: null,
-  defaults: {},
+  defaultStepOptions: {},
   disableScroll: false,
   errorTitle: null,
   isActive: false,
@@ -171,12 +171,12 @@ export default Service.extend(Evented, {
   initialize() {
     const confirmCancel = get(this, 'confirmCancel');
     const confirmCancelMessage = get(this, 'confirmCancelMessage');
-    const defaults = get(this, 'defaults');
+    const defaultStepOptions = get(this, 'defaultStepOptions');
 
     const tourObject = new Shepherd.Tour({
       confirmCancel,
       confirmCancelMessage,
-      defaults
+      defaultStepOptions
     });
 
     tourObject.on('start', run.bind(this, 'onTourStart'));
