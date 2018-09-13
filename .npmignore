@@ -18,6 +18,7 @@
 /.watchmanconfig
 /bower.json
 /config/ember-try.js
+/config/flexi.js
 /coverage/
 /ember-cli-build.js
 /testem.js
