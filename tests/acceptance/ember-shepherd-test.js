@@ -306,27 +306,55 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     assert.ok(buttonActionCalled, 'button action triggered');
   });
 
-  test('`pointer-events` is set to `auto` for any step element on clean up', async function(assert) {
-    assert.expect(2);
+  test('`pointer-events` is set to `auto` for any previously disabled `attachTo` targets', async function(assert) {
+      const steps = [
+        {
+          id: 'step-1',
+          options: {
+            attachTo: '.shepherd-logo-link top',
+            builtInButtons: [
+              builtInButtons.cancel,
+              builtInButtons.next,
+            ],
+            title: 'Controlling Clickability',
+            text: 'By default, target elements should have their `pointerEvents` style unchanged',
+          },
+        },
+        {
+          id: 'step-2',
+          options: {
+            attachTo: '.shepherd-logo-link top',
+            canClickTarget: false,
+            builtInButtons: [
+              builtInButtons.cancel,
+            ],
+            title: 'Controlling Clickability',
+            text: 'Clickability of target elements can be disabled by setting `canClickTarget` to false',
+          }
+        },
+      ];
 
-    await visit('/');
+      await visit('/');
 
-    await click('.toggleHelpModal');
+      tour.set('steps', steps);
+      tour.set('modal', true);
 
-    // Go through a step of the tour...
-    await click(document.querySelector('[data-id="intro"] .next-button'));
+      await click('.toggleHelpModal');
 
-    // Get the target element
-    const targetElement = document.querySelector('.shepherd-target');
+      // Get the target element
+      const targetElement = document.querySelector('.shepherd-target');
 
-    // Check the target element has pointer-events = 'none'
-    assert.equal(targetElement.style.pointerEvents, 'none');
+      assert.equal(getComputedStyle(targetElement)['pointer-events'], 'auto');
 
-    // Exit the tour
-    await click(document.querySelector('[data-id="installation"] .cancel-button'));
+      // Exit the tour
+      await click(document.querySelector('[data-id="step-1"] .next-button'));
 
-    // Check the target element now has pointer-events = 'auto'
-    assert.equal(targetElement.style.pointerEvents, 'auto');
+      assert.equal(getComputedStyle(targetElement)['pointer-events'], 'none');
+
+      // Exit the tour
+      await click(document.querySelector('[data-id="step-2"] .cancel-button'));
+
+      assert.equal(getComputedStyle(targetElement)['pointer-events'], 'auto');
   });
 
   test('scrollTo works with disableScroll on', async function(assert) {

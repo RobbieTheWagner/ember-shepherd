@@ -104,31 +104,9 @@ export default Service.extend(Evented, {
     if (get(this, 'disableScroll')) {
       disableScroll.off(window);
     }
-    if (get(this, 'modal')) {
-      const tour = get(this, 'tourObject');
 
-      if (tour) {
-        const { steps } = tour;
-
-        steps.map((step) => {
-          const stepElement = getElementForStep(step);
-
-          if (step && step.options.attachTo && stepElement) {
-            stepElement.style.pointerEvents = 'auto';
-          }
-        });
-      }
-      run('afterRender', () => {
-        removeElement('#shepherdOverlay');
-        removeElement('#highlightOverlay');
-
-        const shepherdModal = document.querySelector('.shepherd-modal');
-
-        if (shepherdModal) {
-          shepherdModal.classList.remove('shepherd-modal');
-        }
-      });
-    }
+    this._cleanupSteps();
+    this._cleanupModal();
   },
 
   /**
@@ -256,7 +234,7 @@ export default Service.extend(Evented, {
    * @param step The step object that attaches to the element
    * @private
    */
-  popoutElement(step) {
+  styleTargetElement(step) {
     const currentElement = getElementForStep(step);
 
     if (!currentElement) {
@@ -267,9 +245,11 @@ export default Service.extend(Evented, {
       currentElement.classList.add(step.options.highlightClass);
     }
 
-    if (get(this, 'modal')) {
+    if (step.options.canClickTarget === false) {
       currentElement.style.pointerEvents = 'none';
+    }
 
+    if (this.modal) {
       if (step.options.copyStyles) {
         this.createHighlightOverlay(step);
       } else {
@@ -344,7 +324,7 @@ export default Service.extend(Evented, {
       const currentStep = tour.steps[index];
 
       currentStep.on('before-show', () => {
-        this.popoutElement(currentStep);
+        this.styleTargetElement(currentStep);
       });
       currentStep.on('hide', () => {
         // Remove element copy, if it was cloned
@@ -377,5 +357,38 @@ export default Service.extend(Evented, {
       }
 
     });
-  })
+  }),
+
+  _cleanupSteps() {
+    const tour = this.tourObject;
+
+    if (tour) {
+      const { steps } = tour;
+
+      steps.forEach((step) => {
+        if (step.options && step.options.canClickTarget === false && step.options.attachTo) {
+          const stepElement = getElementForStep(step);
+
+          if (stepElement instanceof HTMLElement) {
+            stepElement.style.pointerEvents = 'auto';
+          }
+        }
+      });
+    }
+  },
+
+  _cleanupModal() {
+    if (this.modal) {
+      run('afterRender', () => {
+        removeElement('#shepherdOverlay');
+        removeElement('#highlightOverlay');
+
+        const shepherdModal = document.querySelector('.shepherd-modal');
+
+        if (shepherdModal) {
+          shepherdModal.classList.remove('shepherd-modal');
+        }
+      });
+    }
+  }
 });

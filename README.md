@@ -258,6 +258,13 @@ Extra classes to apply to the step, for styling purposes and such.
 > **default value:** `''`
 
 
+#### canClickTarget
+
+Whether or not the target element being attached to should be "clickable". If set to `false`, Ember Shepherd sets the element's [`pointerEvents` style](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events) to `none` while the step is active.
+
+> **default value:** `true`
+
+
 ##### copyStyles
 
 This is a boolean, and when set to `true` it will fully clone the element and styles, rather than just increasing the element's z-index. This should only be used if the element does not pop out and highlight like it should, when using modal functionality.
