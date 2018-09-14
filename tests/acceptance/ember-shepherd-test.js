@@ -93,22 +93,6 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     assert.notOk(document.querySelector('#shepherdOverlay'), '#shepherdOverlay should not exist, since non-modal');
   });
 
-  test('Tour next, back, and cancel buttons work', async function(assert) {
-    assert.expect(3);
-
-    await visit('/');
-
-    await click('.toggleHelpModal');
-    await click(document.querySelector('.shepherd-element[style*="display: block"] .next-button'));
-    assert.ok(document.querySelector('.shepherd-element[style*="display: block"] .back-button'), 'Ensure that the back button appears');
-
-    await click(document.querySelector('.shepherd-element[style*="display: block"] .back-button'));
-    assert.notOk(document.querySelector('.shepherd-element[style*="display: block"] .back-button'), 'Ensure that the back button disappears');
-
-    await click(document.querySelector('.shepherd-element[style*="display: block"] .cancel-button'));
-    assert.notOk(document.querySelector('.shepherd-element [class^=shepherd-button]'), 'Ensure that all buttons are gone, after exit');
-  });
-
   test('Highlight applied', async function(assert) {
     assert.expect(2);
 
