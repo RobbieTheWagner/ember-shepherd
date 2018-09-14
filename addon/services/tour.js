@@ -1,5 +1,4 @@
 /* eslint-disable ember/avoid-leaking-state-in-ember-objects, ember/no-observers */
-import { assert } from '@ember/debug';
 import { get, observer, set } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
 import Service from '@ember/service';
@@ -91,7 +90,9 @@ export default Service.extend(Evented, {
    * @param {string} completeOrCancel 'complete' or 'cancel'
    */
   onTourFinish(completeOrCancel) {
-    set(this, 'isActive', false);
+    if (!this.isDestroyed) {
+      set(this, 'isActive', false);
+    }
     this.cleanup();
     this.trigger(completeOrCancel);
   },
@@ -188,27 +189,32 @@ export default Service.extend(Evented, {
   /**
    * Creates a button of the specified type, with the given classes and text
    *
-   * @param type The type of button cancel, back, or next
-   * @param classes Classes to apply to the button
-   * @param text The text for the button
-   * @param action The action to call
+   * @param button.type The type of button cancel, back, or next
+   * @param button.classes Classes to apply to the button
+   * @param button.text The text for the button
+   * @param button.action The action to call
    * @returns {{action: *, classes: *, text: *}}
    * @private
    */
-  makeButton({ type, classes, text, action }) {
+  makeButton(button) {
+    const { type, classes, text } = button;
+
+    if (!type) {
+      return button;
+    }
+
     const builtInButtonTypes = ['back', 'cancel', 'next'];
     if (builtInButtonTypes.includes(type)) {
-      action = run.bind(this, function() {
+      const action = run.bind(this, function() {
         this[type]();
       });
-    } else {
-      action = action || function() {};
+
+      return {
+        action,
+        classes,
+        text
+      };
     }
-    return {
-      action,
-      classes,
-      text
-    };
   },
 
   /**
@@ -291,7 +297,6 @@ export default Service.extend(Evented, {
   stepsChange: observer('steps', function() {
     this.initialize();
     const steps = get(this, 'steps');
-
     const tour = get(this, 'tourObject');
 
     // Return nothing if there are no steps
@@ -315,8 +320,9 @@ export default Service.extend(Evented, {
     steps.forEach((step, index) => {
       const { id, options } = step;
 
-      assert('You must either pass an array of builtInButtons or `false`, undefined is not supported', options.builtInButtons !== undefined);
-      options.buttons = (options.builtInButtons !== false) ? options.builtInButtons.map(this.makeButton, this) : false;
+      if (options.buttons) {
+        options.buttons = options.buttons.map(this.makeButton, this);
+      }
       options.attachTo = this.normalizeAttachTo(options.attachTo);
       tour.addStep(id, options);
 

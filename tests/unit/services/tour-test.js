@@ -10,7 +10,7 @@ const steps = [
     id: 'intro',
     options: {
       attachTo: '.test-element bottom',
-      builtInButtons: [
+      buttons: [
         builtInButtons.cancel,
         builtInButtons.next,
       ],

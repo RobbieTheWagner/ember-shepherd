@@ -21,7 +21,7 @@ export const steps = [
     id: 'intro',
     options: {
       attachTo: '.first-element bottom',
-      builtInButtons: [
+      buttons: [
         builtInButtons.cancel,
         builtInButtons.next,
       ],
@@ -42,7 +42,7 @@ export const steps = [
     id: 'installation',
     options: {
       attachTo: '.install-element bottom',
-      builtInButtons: [
+      buttons: [
         builtInButtons.cancel,
         builtInButtons.back,
         builtInButtons.next,
@@ -56,7 +56,7 @@ export const steps = [
     id: 'usage',
     options: {
       attachTo: '.usage-element bottom',
-      builtInButtons: [
+      buttons: [
         builtInButtons.cancel,
         builtInButtons.back,
         builtInButtons.next,
@@ -73,7 +73,7 @@ export const steps = [
         element: '.modal-element',
         on: 'top'
       },
-      builtInButtons: [
+      buttons: [
         builtInButtons.cancel,
         builtInButtons.back,
         builtInButtons.next,
@@ -93,7 +93,7 @@ export const steps = [
         element: '.style-copy-element',
         on: 'top'
       },
-      builtInButtons: [
+      buttons: [
         builtInButtons.cancel,
         builtInButtons.back,
         builtInButtons.next,
@@ -108,10 +108,10 @@ export const steps = [
     }
   },
   {
-    id: 'builtInButtons',
+    id: 'buttons',
     options: {
       attachTo: '.built-in-buttons-element top',
-      builtInButtons: [
+      buttons: [
         builtInButtons.cancel,
         builtInButtons.back,
         builtInButtons.next,
@@ -121,7 +121,7 @@ export const steps = [
       text: [
         `For the common button types ("next", "back", "cancel", etc.), we implemented Ember actions
           that perform these actions on your tour automatically. To use them, simply include
-          in the builtInButtons array in each step.`
+          in the buttons array in each step.`
       ]
     }
   },
@@ -129,7 +129,7 @@ export const steps = [
     id: 'disableScroll',
     options: {
       attachTo: '.disable-scroll-element top',
-      builtInButtons: [
+      buttons: [
         builtInButtons.cancel,
         builtInButtons.back,
         builtInButtons.next,
@@ -146,7 +146,7 @@ export const steps = [
   {
     id: 'noAttachTo',
     options: {
-      builtInButtons: [
+      buttons: [
         builtInButtons.cancel,
         builtInButtons.back,
       ],

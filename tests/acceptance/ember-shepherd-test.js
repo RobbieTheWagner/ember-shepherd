@@ -1,8 +1,7 @@
 import { module, test } from 'qunit';
 import { visit, click, find } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
-import sinonTest from 'ember-sinon-qunit/test-support/test';
-import { builtInButtons, steps as defaultSteps } from '../data';
+import { builtInButtons } from '../data';
 
 
 module('Acceptance | Tour functionality tests', function(hooks) {
@@ -15,6 +14,10 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     tour.set('confirmCancel', false);
     tour.set('modal', false);
+  });
+
+  hooks.afterEach(async function() {
+    return await tour.cancel();
   });
 
   test('Shows cancel link', async function(assert) {
@@ -36,11 +39,11 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       id: 'step-without-cancel-link',
       options: {
         attachTo: '.first-element bottom',
-        builtInButtons: [
+        buttons: [
           builtInButtons.cancel,
-          builtInButtons.next,
+          builtInButtons.next
         ],
-        showCancelLink: false,
+        showCancelLink: false
       }
     }];
 
@@ -64,23 +67,6 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     await click(document.querySelector('.shepherd-content a.shepherd-cancel-link'));
 
     assert.notOk(document.body.classList.contains('shepherd-active'), 'Body does not have class of shepherd-active, when shepherd becomes inactive');
-  });
-
-  sinonTest('Confirm cancel makes you confirm cancelling the tour', async function(assert) {
-    const stub = this.stub(window, 'confirm');
-
-    await visit('/');
-
-    tour.set('confirmCancel', true);
-    tour.set('steps', defaultSteps);
-
-    await click('.toggleHelpModal');
-
-    assert.ok(document.body.classList.contains('shepherd-active'), 'Body has class of shepherd-active, when shepherd becomes active');
-
-    await click(document.querySelector('.shepherd-element a.shepherd-cancel-link'));
-
-    assert.ok(stub.calledOnce);
   });
 
   test('Modal page contents', async function(assert) {
@@ -107,22 +93,6 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     assert.notOk(document.querySelector('#shepherdOverlay'), '#shepherdOverlay should not exist, since non-modal');
   });
 
-  test('Tour next, back, and cancel builtInButtons work', async function(assert) {
-    assert.expect(3);
-
-    await visit('/');
-
-    await click('.toggleHelpModal');
-    await click(document.querySelector('.shepherd-element[style*="display: block"] .next-button'));
-    assert.ok(document.querySelector('.shepherd-element[style*="display: block"] .back-button'), 'Ensure that the back button appears');
-
-    await click(document.querySelector('.shepherd-element[style*="display: block"] .back-button'));
-    assert.notOk(document.querySelector('.shepherd-element[style*="display: block"] .back-button'), 'Ensure that the back button disappears');
-
-    await click(document.querySelector('.shepherd-element[style*="display: block"] .cancel-button'));
-    assert.notOk(document.querySelector('.shepherd-element [class^=shepherd-button]'), 'Ensure that all buttons are gone, after exit');
-  });
-
   test('Highlight applied', async function(assert) {
     assert.expect(2);
 
@@ -130,9 +100,9 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       id: 'test-highlight',
       options: {
         attachTo: '.first-element bottom',
-        builtInButtons: [
+        buttons: [
           builtInButtons.cancel,
-          builtInButtons.next,
+          builtInButtons.next
         ],
         highlightClass: 'highlight',
         text: ['Testing highlight']
@@ -160,9 +130,9 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       id: 'test-highlight',
       options: {
         attachTo: '.first-element bottom',
-        builtInButtons: [
+        buttons: [
           builtInButtons.cancel,
-          builtInButtons.next,
+          builtInButtons.next
         ],
         highlightClass: 'highlight',
         text: ['Testing highlight']
@@ -190,10 +160,10 @@ module('Acceptance | Tour functionality tests', function(hooks) {
         id: 'test-highlight',
         options: {
           attachTo: '.first-element bottom',
-          builtInButtons: [
+          buttons: [
             builtInButtons.cancel,
-            builtInButtons.next,
-          ],
+            builtInButtons.next
+          ]
         }
       }
     ];
@@ -217,10 +187,10 @@ module('Acceptance | Tour functionality tests', function(hooks) {
           element: '.first-element',
           on: 'bottom'
         },
-        builtInButtons: [
+        buttons: [
           builtInButtons.cancel,
-          builtInButtons.next,
-        ],
+          builtInButtons.next
+        ]
       }
     }];
 
@@ -245,10 +215,10 @@ module('Acceptance | Tour functionality tests', function(hooks) {
           element: find('.first-element'),
           on: 'bottom'
         },
-        builtInButtons: [
+        buttons: [
           builtInButtons.cancel,
-          builtInButtons.next,
-        ],
+          builtInButtons.next
+        ]
       }
     }];
 
@@ -271,7 +241,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
           element: '.first-element',
           on: 'bottom'
         },
-        builtInButtons: [
+        buttons: [
           {
             classes: 'shepherd-button-secondary button-one',
             text: 'button one'
@@ -287,7 +257,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
             classes: 'shepherd-button-secondary button-three',
             text: 'button three'
           }
-        ],
+        ]
       }
     }];
 
@@ -307,54 +277,54 @@ module('Acceptance | Tour functionality tests', function(hooks) {
   });
 
   test('`pointer-events` is set to `auto` for any previously disabled `attachTo` targets', async function(assert) {
-      const steps = [
-        {
-          id: 'step-1',
-          options: {
-            attachTo: '.shepherd-logo-link top',
-            builtInButtons: [
-              builtInButtons.cancel,
-              builtInButtons.next,
-            ],
-            title: 'Controlling Clickability',
-            text: 'By default, target elements should have their `pointerEvents` style unchanged',
-          },
-        },
-        {
-          id: 'step-2',
-          options: {
-            attachTo: '.shepherd-logo-link top',
-            canClickTarget: false,
-            builtInButtons: [
-              builtInButtons.cancel,
-            ],
-            title: 'Controlling Clickability',
-            text: 'Clickability of target elements can be disabled by setting `canClickTarget` to false',
-          }
-        },
-      ];
+    const steps = [
+      {
+        id: 'step-1',
+        options: {
+          attachTo: '.shepherd-logo-link top',
+          buttons: [
+            builtInButtons.cancel,
+            builtInButtons.next
+          ],
+          title: 'Controlling Clickability',
+          text: 'By default, target elements should have their `pointerEvents` style unchanged'
+        }
+      },
+      {
+        id: 'step-2',
+        options: {
+          attachTo: '.shepherd-logo-link top',
+          canClickTarget: false,
+          buttons: [
+            builtInButtons.cancel
+          ],
+          title: 'Controlling Clickability',
+          text: 'Clickability of target elements can be disabled by setting `canClickTarget` to false'
+        }
+      }
+    ];
 
-      await visit('/');
+    await visit('/');
 
-      tour.set('steps', steps);
-      tour.set('modal', true);
+    tour.set('steps', steps);
+    tour.set('modal', true);
 
-      await click('.toggleHelpModal');
+    await click('.toggleHelpModal');
 
-      // Get the target element
-      const targetElement = document.querySelector('.shepherd-target');
+    // Get the target element
+    const targetElement = document.querySelector('.shepherd-target');
 
-      assert.equal(getComputedStyle(targetElement)['pointer-events'], 'auto');
+    assert.equal(getComputedStyle(targetElement)['pointer-events'], 'auto');
 
-      // Exit the tour
-      await click(document.querySelector('[data-id="step-1"] .next-button'));
+    // Exit the tour
+    await click(document.querySelector('[data-id="step-1"] .next-button'));
 
-      assert.equal(getComputedStyle(targetElement)['pointer-events'], 'none');
+    assert.equal(getComputedStyle(targetElement)['pointer-events'], 'none');
 
-      // Exit the tour
-      await click(document.querySelector('[data-id="step-2"] .cancel-button'));
+    // Exit the tour
+    await click(document.querySelector('[data-id="step-2"] .cancel-button'));
 
-      assert.equal(getComputedStyle(targetElement)['pointer-events'], 'auto');
+    assert.equal(getComputedStyle(targetElement)['pointer-events'], 'auto');
   });
 
   test('scrollTo works with disableScroll on', async function(assert) {
@@ -386,9 +356,9 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       id: 'intro',
       options: {
         attachTo: '.first-element bottom',
-        builtInButtons: [
+        buttons: [
           builtInButtons.cancel,
-          builtInButtons.next,
+          builtInButtons.next
         ],
         scrollTo: true,
         scrollToHandler() {
@@ -446,11 +416,11 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       id: 'intro',
       options: {
         attachTo: '.first-element bottom',
-        builtInButtons: [
+        buttons: [
           builtInButtons.cancel,
-          builtInButtons.next,
+          builtInButtons.next
         ],
-        copyStyles: true,
+        copyStyles: true
       }
     }];
 
