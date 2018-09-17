@@ -145,22 +145,11 @@ function toggleShepherdModalClass(currentElement) {
   currentElement.classList.add('shepherd-modal');
 }
 
-function cleanupShepherdElements() {
-  document.body.classList.remove('shepherd-active');
-  document.querySelectorAll('[class^=shepherd]').forEach((el) => {
-    el.parentNode.removeChild(el);
-  });
-  document.querySelectorAll('[id^=shepherd]').forEach((el) => {
-    el.parentNode.removeChild(el);
-  });
-}
-
 export {
   elementIsHidden,
   getElementForStep,
   getElementPosition,
   removeElement,
   setPositionForHighlightElement,
-  toggleShepherdModalClass,
-  cleanupShepherdElements
+  toggleShepherdModalClass
 };
