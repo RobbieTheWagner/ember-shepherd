@@ -1,5 +1,6 @@
 import { module, test } from 'qunit';
 import { visit, click, find } from '@ember/test-helpers';
+import { later } from '@ember/runloop';
 import { setupApplicationTest } from 'ember-qunit';
 import { builtInButtons } from '../data';
 
@@ -354,6 +355,9 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
   test('scrollTo works with a custom scrollToHandler', async function(assert) {
     assert.expect(2);
+
+    const done = assert.async();
+
     // Override default behavior
     const steps = [{
       id: 'intro',
@@ -365,7 +369,11 @@ module('Acceptance | Tour functionality tests', function(hooks) {
         ],
         scrollTo: true,
         scrollToHandler() {
-          return document.querySelector('#ember-testing-container').scrollTop = 120;
+          document.querySelector('#ember-testing-container').scrollTop = 120;
+          return later(() => {
+            assert.equal(document.querySelector('#ember-testing-container').scrollTop, 120, 'Scrolled correctly');
+            done();
+          }, 50);
         }
       }
     }];
@@ -380,8 +388,6 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     await click('.toggleHelpModal');
     await click(document.querySelector('.shepherd-content .next-button'));
-
-    assert.equal(document.querySelector('#ember-testing-container').scrollTop, 120, 'Scrolled correctly');
   });
 
   test('scrollTo works without a custom scrollToHandler', async function(assert) {
