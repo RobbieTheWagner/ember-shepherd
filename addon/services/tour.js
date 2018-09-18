@@ -9,8 +9,7 @@ import {
   getElementForStep,
   removeElement,
   setPositionForHighlightElement,
-  toggleShepherdModalClass,
-  cleanupShepherdElements
+  toggleShepherdModalClass
 } from '../utils';
 
 export default Service.extend(Evented, {
@@ -28,7 +27,6 @@ export default Service.extend(Evented, {
   steps: [],
 
   willDestroy() {
-    cleanupShepherdElements();
     this.cleanup();
   },
 

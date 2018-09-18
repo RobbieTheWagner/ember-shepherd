@@ -1,8 +1,8 @@
 import { module, test } from 'qunit';
 import { visit, click, find } from '@ember/test-helpers';
+import { later } from '@ember/runloop';
 import { setupApplicationTest } from 'ember-qunit';
 import { builtInButtons } from '../data';
-
 
 module('Acceptance | Tour functionality tests', function(hooks) {
   let tour;
@@ -116,11 +116,13 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     await click('.toggleHelpModal');
 
-    assert.ok(document.querySelector('.highlight'), 'currentElement highlighted');
+    assert.ok(tour.get('tourObject').currentStep.target.classList.contains('highlight'),
+      'currentElement has highlightClass applied');
 
-    await click(document.querySelector('.shepherd-content .cancel-button'));
+    await click(document.querySelector('.cancel-button'));
 
-    assert.notOk(document.querySelector('.highlight'), 'highlightClass removed on cancel');
+    assert.notOk(tour.get('tourObject').currentStep.target.classList.contains('highlight'),
+      'highlightClass removed on cancel');
   });
 
   test('Highlight applied when `tour.modal == false`', async function(assert) {
@@ -145,11 +147,13 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     await click('.toggleHelpNonmodal');
 
-    assert.ok(document.querySelector('.highlight'), 'currentElement highlighted');
+    assert.ok(tour.get('tourObject').currentStep.target.classList.contains('highlight'),
+      'currentElement has highlightClass applied');
 
-    await click(document.querySelector('.shepherd-content .cancel-button'));
+    await click(document.querySelector('.cancel-button'));
 
-    assert.notOk(document.querySelector('.highlight'), 'highlightClass removed on cancel');
+    assert.notOk(tour.get('tourObject').currentStep.target.classList.contains('highlight'),
+      'highlightClass removed on cancel');
   });
 
   test('Defaults applied', async function(assert) {
@@ -351,6 +355,9 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
   test('scrollTo works with a custom scrollToHandler', async function(assert) {
     assert.expect(2);
+
+    const done = assert.async();
+
     // Override default behavior
     const steps = [{
       id: 'intro',
@@ -362,7 +369,11 @@ module('Acceptance | Tour functionality tests', function(hooks) {
         ],
         scrollTo: true,
         scrollToHandler() {
-          return document.querySelector('#ember-testing-container').scrollTop = 120;
+          document.querySelector('#ember-testing-container').scrollTop = 120;
+          return later(() => {
+            assert.equal(document.querySelector('#ember-testing-container').scrollTop, 120, 'Scrolled correctly');
+            done();
+          }, 50);
         }
       }
     }];
@@ -377,8 +388,6 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
     await click('.toggleHelpModal');
     await click(document.querySelector('.shepherd-content .next-button'));
-
-    assert.ok(document.querySelector('#ember-testing-container').scrollTop === 120, 'Scrolled correctly');
   });
 
   test('scrollTo works without a custom scrollToHandler', async function(assert) {
@@ -399,12 +408,14 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     assert.ok(document.querySelector('#ember-testing-container').scrollTop > 0, 'Scrolled correctly');
   });
 
-  test('Shows by id works', async function(assert) {
+  test('Show by id works', async function(assert) {
+    assert.expect(1);
+
     await visit('/');
 
     tour.show('usage');
 
-    assert.equal(document.querySelector('.shepherd-element .shepherd-text').textContent,
+    assert.equal(tour.get('tourObject').currentStep.el.querySelector('.shepherd-text').textContent,
       'To use the tour service, simply inject it into your application and use it like this example.',
       'Usage step shown');
   });
