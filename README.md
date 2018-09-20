@@ -92,12 +92,6 @@ Thanks to [jquery-disablescroll](https://github.com/ultrapasty/jquery-disablescr
 
 > **default value:** `false`
 
-### modalContainer
-
-`modalContainer` configures where in the DOM the modal overlay element will be placed (only has effect if `modal` is set to `true`)
-
-> **default value:** `body`
-
 ### requiredElements
 
 `requiredElements` is an array of objects that indicate DOM elements that are **REQUIRED** by your tour and must
@@ -161,12 +155,11 @@ this.get('tour').set('steps', [
         }
       ],
       classes: 'custom-class-name-1 custom-class-name-2',
-      copyStyles: false,
       highlightClass: 'highlight',
       scrollTo: false,
       showCancelLink: true,
       title: 'Welcome to Ember-Shepherd!',
-      text: ['Ember-Shepherd is a javascript library for guiding users through your Ember app.'],
+      text: ['Ember-Shepherd is a JavaScript library for guiding users through your Ember app.'],
       when: {
         show: () => {
           console.log('show step');
@@ -234,13 +227,6 @@ Extra classes to apply to the step, for styling purposes and such.
 Whether or not the target element being attached to should be "clickable". If set to `false`, Ember Shepherd sets the element's [`pointerEvents` style](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events) to `none` while the step is active.
 
 > **default value:** `true`
-
-
-##### copyStyles
-
-This is a boolean, and when set to `true` it will fully clone the element and styles, rather than just increasing the element's z-index. This should only be used if the element does not pop out and highlight like it should, when using modal functionality.
-
-> **default value:** `false`
 
 
 ##### highlightClass

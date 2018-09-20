@@ -3,14 +3,20 @@ import { get, observer, set } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
 import Service from '@ember/service';
 import Evented from '@ember/object/evented';
-import { run } from '@ember/runloop';
+import { run, scheduleOnce } from '@ember/runloop';
 import {
   elementIsHidden,
   getElementForStep,
-  removeElement,
-  setPositionForHighlightElement,
-  toggleShepherdModalClass
-} from '../utils';
+  toggleShepherdModalClass,
+} from '../utils/dom';
+
+import {
+  getModalMaskOpening,
+  createModalOverlay,
+  positionModalOpening,
+  closeModalOpening,
+} from '../utils/modal';
+
 
 export default Service.extend(Evented, {
   // Configuration Options
@@ -22,9 +28,11 @@ export default Service.extend(Evented, {
   isActive: false,
   messageForUser: null,
   modal: false,
-  modalContainer: 'body',
   requiredElements: [],
   steps: [],
+
+  _modalOverlayElem: null,
+  _onScreenChange() {},
 
   willDestroy() {
     this.cleanup();
@@ -71,15 +79,13 @@ export default Service.extend(Evented, {
   },
 
   onTourStart() {
-    if (get(this, 'modal')) {
-      const shepherdOverlay = document.createElement('div');
-      shepherdOverlay.id = 'shepherdOverlay';
-      const parent = document.querySelector(get(this, 'modalContainer'));
-      parent.appendChild(shepherdOverlay);
-    }
+    this.initModalOverlay();
+    this.addStepEventListeners();
+
     if (get(this, 'disableScroll')) {
       disableScroll.on(window);
     }
+
     this.trigger('start');
   },
 
@@ -104,67 +110,9 @@ export default Service.extend(Evented, {
       disableScroll.off(window);
     }
 
-    this._cleanupSteps();
-    this._cleanupModal();
-  },
-
-  /**
-   * Creates an overlay element clone of the element you want to highlight and copies all the styles.
-   * @param step The step object that points to the element to highlight
-   * @private
-   */
-  createHighlightOverlay(step) {
-    removeElement('#highlightOverlay');
-
-    const currentElement = getElementForStep(step);
-
-    if (currentElement) {
-      const highlightElement = currentElement.cloneNode(true);
-
-      highlightElement.setAttribute('id', 'highlightOverlay');
-      document.body.appendChild(highlightElement);
-
-      this.setComputedStylesOnClonedElement(currentElement, highlightElement);
-
-      // Style all internal elements as well
-      const { children } = currentElement;
-
-      const clonedChildren = highlightElement.children;
-
-      for (let i = 0; i < children.length; i++) {
-        this.setComputedStylesOnClonedElement(children[i], clonedChildren[i]);
-      }
-
-      setPositionForHighlightElement({
-        currentElement,
-        highlightElement
-      });
-
-      window.addEventListener('resize', () => {
-        run.debounce(this, setPositionForHighlightElement, {
-          currentElement,
-          highlightElement
-        }, 50);
-      });
-    }
-  },
-
-  /**
-   * Set computed styles on the cloned element
-   *
-   * @method setComputedStylesOnClonedElement
-   * @param element element we want to copy
-   * @param clonedElement cloned element above the overlay
-   * @private
-   */
-  setComputedStylesOnClonedElement(element, clonedElement) {
-    const computedStyle = window.getComputedStyle(element, null);
-
-    for (let i = 0; i < computedStyle.length; i++) {
-      const propertyName = computedStyle[i];
-
-      clonedElement.style[propertyName] = computedStyle.getPropertyValue(propertyName);
-    }
+    this.cleanupStepEventListeners();
+    this.cleanupSteps();
+    this.cleanupModal();
   },
 
   initialize() {
@@ -181,7 +129,9 @@ export default Service.extend(Evented, {
     tourObject.on('start', run.bind(this, 'onTourStart'));
     tourObject.on('complete', run.bind(this, 'onTourFinish', 'complete'));
     tourObject.on('cancel', run.bind(this, 'onTourFinish', 'cancel'));
-    set(this, 'tourObject', tourObject);
+
+    this.tourObject = tourObject;
+    this.initModalOverlay();
   },
 
   /**
@@ -231,6 +181,16 @@ export default Service.extend(Evented, {
     }
   },
 
+  setupModalForStep(step) {
+    if (!this.modal) {
+      this.hideModal();
+
+    } else {
+      this.styleModalOpeningForStep(step);
+      this.showModal();
+    }
+  },
+
   /**
    * Modulates the styles of the passed step's target element, based on the step's options and
    * the tour's `modal` option, to visually emphasize the element
@@ -238,27 +198,21 @@ export default Service.extend(Evented, {
    * @param step The step object that attaches to the element
    * @private
    */
-  styleTargetElement(step) {
-    const currentElement = getElementForStep(step);
+  styleTargetElementForStep(step) {
+    const targetElement = getElementForStep(step);
 
-    if (!currentElement) {
+    if (!targetElement) {
       return;
     }
 
+    toggleShepherdModalClass(targetElement);
+
     if (step.options.highlightClass) {
-      currentElement.classList.add(step.options.highlightClass);
+      targetElement.classList.add(step.options.highlightClass);
     }
 
     if (step.options.canClickTarget === false) {
-      currentElement.style.pointerEvents = 'none';
-    }
-
-    if (this.modal) {
-      if (step.options.copyStyles) {
-        this.createHighlightOverlay(step);
-      } else {
-        toggleShepherdModalClass(currentElement);
-      }
+      targetElement.style.pointerEvents = 'none';
     }
   },
 
@@ -308,7 +262,6 @@ export default Service.extend(Evented, {
           text: 'Exit',
           action: tour.cancel
         }],
-        copyStyles: false,
         title: get(this, 'errorTitle'),
         text: [get(this, 'messageForUser')]
       });
@@ -328,18 +281,20 @@ export default Service.extend(Evented, {
       const currentStep = tour.steps[index];
 
       currentStep.on('before-show', () => {
-        this.styleTargetElement(currentStep);
+        this.setupModalForStep(currentStep);
+        this.styleTargetElementForStep(currentStep);
       });
+
       currentStep.on('hide', () => {
         // Remove element copy, if it was cloned
-        const currentElement = getElementForStep(currentStep);
+        const targetElement = getElementForStep(currentStep);
 
-        if (currentElement) {
+        if (targetElement) {
           if (currentStep.options.highlightClass) {
-            currentElement.classList.remove(currentStep.options.highlightClass);
+            targetElement.classList.remove(currentStep.options.highlightClass);
           }
 
-          removeElement('#highlightOverlay');
+          closeModalOpening(this._modalOverlayOpening);
         }
       });
 
@@ -363,7 +318,72 @@ export default Service.extend(Evented, {
     });
   }),
 
-  _cleanupSteps() {
+  initModalOverlay() {
+    if (!this._modalOverlayElem) {
+      this._modalOverlayElem = createModalOverlay();
+      this._modalOverlayOpening = getModalMaskOpening(this._modalOverlayElem);
+
+      this.hideModal();
+
+      document.body.appendChild(this._modalOverlayElem);
+    }
+  },
+
+  styleModalOpeningForStep(step) {
+    const modalOverlayOpening = this._modalOverlayOpening;
+    const targetElement = getElementForStep(step);
+
+    if (targetElement) {
+      positionModalOpening(targetElement, modalOverlayOpening);
+
+      this._onScreenChange = () => {
+        run.debounce(
+          this,
+          () => { positionModalOpening(targetElement, modalOverlayOpening) },
+          50
+        );
+      };
+
+      this.addStepEventListeners();
+
+    } else {
+      closeModalOpening(this._modalOverlayOpening);
+    }
+  },
+
+  showModal() {
+    if (this._modalOverlayElem) {
+      this._modalOverlayElem.style.display = 'block';
+    }
+  },
+
+  hideModal() {
+    if (this._modalOverlayElem) {
+      this._modalOverlayElem.style.display = 'none';
+    }
+  },
+
+  addStepEventListeners() {
+    if (typeof this._onScreenChange === 'function') {
+      window.removeEventListener('resize', this._onScreenChange, false);
+      window.removeEventListener('scroll', this._onScreenChange, false);
+    }
+
+    window.addEventListener('resize', this._onScreenChange, false);
+    window.addEventListener('scroll', this._onScreenChange, false);
+  },
+
+
+  cleanupStepEventListeners() {
+    if (typeof this._onScreenChange === 'function') {
+      window.removeEventListener('resize', this._onScreenChange, false);
+      window.removeEventListener('scroll', this._onScreenChange, false);
+
+      this._onScreenChange = null;
+    }
+  },
+
+  cleanupSteps() {
     const tour = this.tourObject;
 
     if (tour) {
@@ -381,18 +401,15 @@ export default Service.extend(Evented, {
     }
   },
 
-  _cleanupModal() {
-    if (this.modal) {
-      run('afterRender', () => {
-        removeElement('#shepherdOverlay');
-        removeElement('#highlightOverlay');
+  cleanupModal() {
+    scheduleOnce('afterRender', this, () => {
+      const element = this._modalOverlayElem;
 
-        const shepherdModal = document.querySelector('.shepherd-modal');
+      if (element && element instanceof SVGElement) {
+        element.parentNode.removeChild(element);
+      }
 
-        if (shepherdModal) {
-          shepherdModal.classList.remove('shepherd-modal');
-        }
-      });
-    }
-  }
+      this._modalOverlayElem = null;
+    });
+  },
 });

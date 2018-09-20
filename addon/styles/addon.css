@@ -1,8 +1,4 @@
-#highlightOverlay {
-  z-index: 9998;
-}
-
-#shepherdOverlay {
+#shepherdModalOverlayContainer {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,13 +8,7 @@
   -khtml-opacity: 0.5;
   opacity: 0.5;
   z-index: 9997;
-  background-color: #000;
-  background: -moz-radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
-  background: -webkit-gradient(radial,center center,0px,center center,100%,color-stop(0%,rgba(0,0,0,0.4)),color-stop(100%,rgba(0,0,0,0.9)));
-  background: -webkit-radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
-  background: -o-radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
-  background: -ms-radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
-  background: radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
+  pointer-events: none;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#66000000',endColorstr='#e6000000',GradientType=1);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
   filter: alpha(opacity=50);
@@ -28,6 +18,7 @@
   -o-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
 }
+
 
 .shepherd-modal.shepherd-enabled {
   position: relative;
