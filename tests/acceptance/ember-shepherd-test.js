@@ -3,6 +3,7 @@ import { visit, click, find } from '@ember/test-helpers';
 import { later } from '@ember/runloop';
 import { setupApplicationTest } from 'ember-qunit';
 import { builtInButtons } from '../data';
+import { elementIds } from 'ember-shepherd/utils/modal';
 
 module('Acceptance | Tour functionality tests', function(hooks) {
   let tour;
@@ -20,454 +21,417 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     return await tour.cancel();
   });
 
-  test('Shows cancel link', async function(assert) {
-    await visit('/');
+  module('Cancel link', function() {
+    test('Shows cancel link', async function(assert) {
+      await visit('/');
 
-    await click('.toggleHelpModal');
+      await click('.toggleHelpModal');
 
-    const cancelLink = document.querySelector('.shepherd-cancel-link');
-    assert.ok(cancelLink, 'Cancel link shown');
-  });
+      const cancelLink = document.querySelector('.shepherd-cancel-link');
+      assert.ok(cancelLink, 'Cancel link shown');
+    });
 
-  test('Hides cancel link', async function(assert) {
-    const defaultStepOptions = {
-      classes: 'shepherd-theme-arrows test-defaults',
-      showCancelLink: false
-    };
-
-    const steps = [{
-      id: 'step-without-cancel-link',
-      options: {
-        attachTo: '.first-element bottom',
-        buttons: [
-          builtInButtons.cancel,
-          builtInButtons.next
-        ],
+    test('Hides cancel link', async function(assert) {
+      const defaultStepOptions = {
+        classes: 'shepherd-theme-arrows test-defaults',
         showCancelLink: false
-      }
-    }];
+      };
 
-    await visit('/');
+      const steps = [{
+        id: 'step-without-cancel-link',
+        options: {
+          attachTo: '.first-element bottom',
+          buttons: [
+            builtInButtons.cancel,
+            builtInButtons.next
+          ],
+          showCancelLink: false
+        }
+      }];
 
-    tour.set('defaultStepOptions', defaultStepOptions);
-    tour.set('steps', steps);
+      await visit('/');
 
-    await click('.toggleHelpModal');
+      tour.set('defaultStepOptions', defaultStepOptions);
+      tour.set('steps', steps);
 
-    assert.notOk(document.querySelector('.shepherd-element a.shepherd-cancel-link'));
+      await click('.toggleHelpModal');
+
+      assert.notOk(document.querySelector('.shepherd-element a.shepherd-cancel-link'));
+    });
+
+    test('Cancel link cancels the tour', async function(assert) {
+      await visit('/');
+
+      await click('.toggleHelpModal');
+
+      assert.ok(document.body.classList.contains('shepherd-active'), 'Body has class of shepherd-active, when shepherd becomes active');
+
+      await click(document.querySelector('.shepherd-content a.shepherd-cancel-link'));
+
+      assert.notOk(document.body.classList.contains('shepherd-active'), 'Body does not have class of shepherd-active, when shepherd becomes inactive');
+    });
   });
 
-  test('Cancel link cancels the tour', async function(assert) {
-    await visit('/');
+  module('Modal mode', function () {
+    test('Displaying the modal during tours when modal mode is enabled', async function(assert) {
+      await visit('/');
 
-    await click('.toggleHelpModal');
+      const modalOverlay = document.querySelector(`#${elementIds.modalOverlay}`);
 
-    assert.ok(document.body.classList.contains('shepherd-active'), 'Body has class of shepherd-active, when shepherd becomes active');
+      assert.ok(modalOverlay, 'modal overlay is present in the DOM');
+      assert.equal(getComputedStyle(modalOverlay).display, 'none', 'modal overlay is present but not displayed before the tour starts');
 
-    await click(document.querySelector('.shepherd-content a.shepherd-cancel-link'));
+      await click('.toggleHelpModal');
 
-    assert.notOk(document.body.classList.contains('shepherd-active'), 'Body does not have class of shepherd-active, when shepherd becomes inactive');
-  });
+      assert.equal(getComputedStyle(modalOverlay).display, 'block', 'modal overlay is present and displayed after the tour starts');
 
-  test('Modal page contents', async function(assert) {
-    assert.expect(3);
+      assert.ok(document.body.classList.contains('shepherd-active'), 'Body gets class of shepherd-active, when shepherd becomes active');
+      assert.equal(document.querySelectorAll('.shepherd-enabled').length, 1, 'attachTo element has the shepherd-enabled class');
+    });
 
-    await visit('/');
+    test('Hiding the modal during tours when modal mode is not enabled', async function(assert) {
+      await visit('/');
 
-    await click('.toggleHelpModal');
+      const modalOverlay = document.querySelector(`#${elementIds.modalOverlay}`);
 
-    assert.ok(document.body.classList.contains('shepherd-active'), 'Body gets class of shepherd-active, when shepherd becomes active');
-    assert.equal(document.querySelectorAll('.shepherd-enabled').length, 1, 'attachTo element has the shepherd-enabled class');
-    assert.ok(document.querySelector('#shepherdOverlay'), '#shepherdOverlay exists, since modal');
-  });
+      assert.ok(modalOverlay, 'modal overlay is present in the DOM');
+      assert.equal(getComputedStyle(modalOverlay).display, 'none', 'modal overlay is present but not displayed before the tour starts');
 
-  test('Non-modal page contents', async function(assert) {
-    assert.expect(3);
+      await click('.toggleHelpNonmodal');
 
-    await visit('/');
+      assert.equal(getComputedStyle(modalOverlay).display, 'none', 'modal overlay is present but not displayed after the tour starts');
 
-    await click('.toggleHelpNonmodal');
+      assert.ok(document.body.classList.contains('shepherd-active'), 'Body gets class of shepherd-active, when shepherd becomes active');
+      assert.equal(document.querySelectorAll('.shepherd-enabled').length, 1, 'attachTo element has the shepherd-enabled class');
+    });
 
-    assert.ok(document.body.classList.contains('shepherd-active'), 'Body gets class of shepherd-active, when shepherd becomes active');
-    assert.equal(document.querySelectorAll('.shepherd-enabled').length, 1, 'attachTo element has the shepherd-enabled class');
-    assert.notOk(document.querySelector('#shepherdOverlay'), '#shepherdOverlay should not exist, since non-modal');
-  });
+    test('applying highlight classes to the target element', async function(assert) {
+      assert.expect(2);
 
-  test('Highlight applied', async function(assert) {
-    assert.expect(2);
-
-    const steps = [{
-      id: 'test-highlight',
-      options: {
-        attachTo: '.first-element bottom',
-        buttons: [
-          builtInButtons.cancel,
-          builtInButtons.next
-        ],
-        highlightClass: 'highlight',
-        text: ['Testing highlight']
-      }
-    }];
-
-    await visit('/');
-
-    tour.set('steps', steps);
-    tour.set('modal', true);
-
-    await click('.toggleHelpModal');
-
-    assert.ok(tour.get('tourObject').currentStep.target.classList.contains('highlight'),
-      'currentElement has highlightClass applied');
-
-    await click(document.querySelector('.cancel-button'));
-
-    assert.notOk(tour.get('tourObject').currentStep.target.classList.contains('highlight'),
-      'highlightClass removed on cancel');
-  });
-
-  test('Highlight applied when `tour.modal == false`', async function(assert) {
-    assert.expect(2);
-
-    const steps = [{
-      id: 'test-highlight',
-      options: {
-        attachTo: '.first-element bottom',
-        buttons: [
-          builtInButtons.cancel,
-          builtInButtons.next
-        ],
-        highlightClass: 'highlight',
-        text: ['Testing highlight']
-      }
-    }];
-
-    await visit('/');
-
-    tour.set('steps', steps);
-
-    await click('.toggleHelpNonmodal');
-
-    assert.ok(tour.get('tourObject').currentStep.target.classList.contains('highlight'),
-      'currentElement has highlightClass applied');
-
-    await click(document.querySelector('.cancel-button'));
-
-    assert.notOk(tour.get('tourObject').currentStep.target.classList.contains('highlight'),
-      'highlightClass removed on cancel');
-  });
-
-  test('Defaults applied', async function(assert) {
-    assert.expect(1);
-
-    const stepsWithoutClasses = [
-      {
+      const steps = [{
         id: 'test-highlight',
         options: {
           attachTo: '.first-element bottom',
           buttons: [
             builtInButtons.cancel,
             builtInButtons.next
-          ]
+          ],
+          highlightClass: 'highlight',
+          text: ['Testing highlight']
         }
-      }
-    ];
+      }];
 
-    await visit('/');
+      await visit('/');
 
-    tour.set('steps', stepsWithoutClasses);
+      tour.set('steps', steps);
+      tour.set('modal', true);
 
-    await click('.toggleHelpModal');
+      await click('.toggleHelpModal');
 
-    assert.ok(document.querySelector('.custom-default-class'), 'defaults class applied');
-  });
+      assert.ok(tour.get('tourObject').currentStep.target.classList.contains('highlight'),
+        'currentElement has highlightClass applied');
 
-  test('configuration works with attachTo object when element is a simple string', async function(assert) {
-    assert.expect(1);
+      await click(document.querySelector('.cancel-button'));
 
-    const steps = [{
-      id: 'test-attachTo-string',
-      options: {
-        attachTo: {
-          element: '.first-element',
-          on: 'bottom'
-        },
-        buttons: [
-          builtInButtons.cancel,
-          builtInButtons.next
-        ]
-      }
-    }];
+      assert.notOk(tour.get('tourObject').currentStep.target.classList.contains('highlight'),
+        'highlightClass removed on cancel');
+    });
 
-    tour.set('steps', steps);
+    test('Highlight applied when `tour.modal == false`', async function(assert) {
+      assert.expect(2);
 
-    await visit('/');
-
-    await click('.toggleHelpModal');
-
-    assert.ok(document.querySelector('.shepherd-element'), 'tour is visible');
-  });
-
-  test('configuration works with attachTo object when element is dom element', async function(assert) {
-    assert.expect(1);
-
-    await visit('/');
-
-    const steps = [{
-      id: 'test-attachTo-dom',
-      options: {
-        attachTo: {
-          element: find('.first-element'),
-          on: 'bottom'
-        },
-        buttons: [
-          builtInButtons.cancel,
-          builtInButtons.next
-        ]
-      }
-    }];
-
-    tour.set('steps', steps);
-
-    await click('.toggleHelpModal');
-
-    assert.ok(document.querySelector('.shepherd-element'), 'tour is visible');
-  });
-
-  test('buttons work when type is not specified and passed action is triggered', async function(assert) {
-    assert.expect(4);
-
-    let buttonActionCalled = false;
-
-    const steps = [{
-      id: 'test-buttons-custom-action',
-      options: {
-        attachTo: {
-          element: '.first-element',
-          on: 'bottom'
-        },
-        buttons: [
-          {
-            classes: 'shepherd-button-secondary button-one',
-            text: 'button one'
-          },
-          {
-            classes: 'shepherd-button-secondary button-two',
-            text: 'button two',
-            action() {
-              buttonActionCalled = true;
-            }
-          },
-          {
-            classes: 'shepherd-button-secondary button-three',
-            text: 'button three'
-          }
-        ]
-      }
-    }];
-
-    await visit('/');
-
-    tour.set('steps', steps);
-
-    await click('.toggleHelpModal');
-
-    assert.ok(document.querySelector('.button-one'), 'tour button one is visible');
-    assert.ok(document.querySelector('.button-two'), 'tour button two is visible');
-    assert.ok(document.querySelector('.button-three'), 'tour button three is visible');
-
-    await click(document.querySelector('.button-two'));
-
-    assert.ok(buttonActionCalled, 'button action triggered');
-  });
-
-  test('`pointer-events` is set to `auto` for any previously disabled `attachTo` targets', async function(assert) {
-    const steps = [
-      {
-        id: 'step-1',
+      const steps = [{
+        id: 'test-highlight',
         options: {
-          attachTo: '.shepherd-logo-link top',
+          attachTo: '.first-element bottom',
           buttons: [
             builtInButtons.cancel,
             builtInButtons.next
           ],
-          title: 'Controlling Clickability',
-          text: 'By default, target elements should have their `pointerEvents` style unchanged'
+          highlightClass: 'highlight',
+          text: ['Testing highlight']
         }
-      },
-      {
-        id: 'step-2',
+      }];
+
+      await visit('/');
+
+      tour.set('steps', steps);
+
+      await click('.toggleHelpNonmodal');
+
+      assert.ok(tour.get('tourObject').currentStep.target.classList.contains('highlight'),
+        'currentElement has highlightClass applied');
+
+      await click(document.querySelector('.cancel-button'));
+
+      assert.notOk(tour.get('tourObject').currentStep.target.classList.contains('highlight'),
+        'highlightClass removed on cancel');
+    });
+  });
+
+  module('Tour options', function() {
+    test('Defaults applied', async function(assert) {
+      assert.expect(1);
+
+      const stepsWithoutClasses = [
+        {
+          id: 'test-highlight',
+          options: {
+            attachTo: '.first-element bottom',
+            buttons: [
+              builtInButtons.cancel,
+              builtInButtons.next
+            ]
+          }
+        }
+      ];
+
+      await visit('/');
+
+      tour.set('steps', stepsWithoutClasses);
+
+      await click('.toggleHelpModal');
+
+      assert.ok(document.querySelector('.custom-default-class'), 'defaults class applied');
+    });
+
+    test('configuration works with attachTo object when element is a simple string', async function(assert) {
+      assert.expect(1);
+
+      const steps = [{
+        id: 'test-attachTo-string',
         options: {
-          attachTo: '.shepherd-logo-link top',
-          canClickTarget: false,
+          attachTo: {
+            element: '.first-element',
+            on: 'bottom'
+          },
           buttons: [
-            builtInButtons.cancel
+            builtInButtons.cancel,
+            builtInButtons.next
+          ]
+        }
+      }];
+
+      tour.set('steps', steps);
+
+      await visit('/');
+
+      await click('.toggleHelpModal');
+
+      assert.ok(document.querySelector('.shepherd-element'), 'tour is visible');
+    });
+
+    test('configuration works with attachTo object when element is dom element', async function(assert) {
+      assert.expect(1);
+
+      await visit('/');
+
+      const steps = [{
+        id: 'test-attachTo-dom',
+        options: {
+          attachTo: {
+            element: find('.first-element'),
+            on: 'bottom'
+          },
+          buttons: [
+            builtInButtons.cancel,
+            builtInButtons.next
+          ]
+        }
+      }];
+
+      tour.set('steps', steps);
+
+      await click('.toggleHelpModal');
+
+      assert.ok(document.querySelector('.shepherd-element'), 'tour is visible');
+    });
+
+    test('buttons work when type is not specified and passed action is triggered', async function(assert) {
+      assert.expect(4);
+
+      let buttonActionCalled = false;
+
+      const steps = [{
+        id: 'test-buttons-custom-action',
+        options: {
+          attachTo: {
+            element: '.first-element',
+            on: 'bottom'
+          },
+          buttons: [
+            {
+              classes: 'shepherd-button-secondary button-one',
+              text: 'button one'
+            },
+            {
+              classes: 'shepherd-button-secondary button-two',
+              text: 'button two',
+              action() {
+                buttonActionCalled = true;
+              }
+            },
+            {
+              classes: 'shepherd-button-secondary button-three',
+              text: 'button three'
+            }
+          ]
+        }
+      }];
+
+      await visit('/');
+
+      tour.set('steps', steps);
+
+      await click('.toggleHelpModal');
+
+      assert.ok(document.querySelector('.button-one'), 'tour button one is visible');
+      assert.ok(document.querySelector('.button-two'), 'tour button two is visible');
+      assert.ok(document.querySelector('.button-three'), 'tour button three is visible');
+
+      await click(document.querySelector('.button-two'));
+
+      assert.ok(buttonActionCalled, 'button action triggered');
+    });
+
+    test('`pointer-events` is set to `auto` for any previously disabled `attachTo` targets', async function(assert) {
+      const steps = [
+        {
+          id: 'step-1',
+          options: {
+            attachTo: '.shepherd-logo-link top',
+            buttons: [
+              builtInButtons.cancel,
+              builtInButtons.next
+            ],
+            title: 'Controlling Clickability',
+            text: 'By default, target elements should have their `pointerEvents` style unchanged'
+          }
+        },
+        {
+          id: 'step-2',
+          options: {
+            attachTo: '.shepherd-logo-link top',
+            canClickTarget: false,
+            buttons: [
+              builtInButtons.cancel
+            ],
+            title: 'Controlling Clickability',
+            text: 'Clickability of target elements can be disabled by setting `canClickTarget` to false'
+          }
+        }
+      ];
+
+      await visit('/');
+
+      tour.set('steps', steps);
+      tour.set('modal', true);
+
+      await click('.toggleHelpModal');
+
+      // Get the target element
+      const targetElement = document.querySelector('.shepherd-target');
+
+      assert.equal(getComputedStyle(targetElement)['pointer-events'], 'auto');
+
+      // Exit the tour
+      await click(document.querySelector('[data-id="step-1"] .next-button'));
+
+      assert.equal(getComputedStyle(targetElement)['pointer-events'], 'none');
+
+      // Exit the tour
+      await click(document.querySelector('[data-id="step-2"] .cancel-button'));
+
+      assert.equal(getComputedStyle(targetElement)['pointer-events'], 'auto');
+    });
+
+    test('scrollTo works with disableScroll on', async function(assert) {
+      assert.expect(2);
+      // Setup controller tour settings
+      tour.set('disableScroll', true);
+      tour.set('scrollTo', true);
+
+      // Visit route
+      await visit('/');
+
+      document.querySelector('#ember-testing-container').scrollTop = 0;
+
+      assert.equal(document.querySelector('#ember-testing-container').scrollTop, 0, 'Scroll is initially 0');
+
+      await click('.toggleHelpModal');
+
+      await click(document.querySelector('.shepherd-content .next-button'));
+
+      await click(document.querySelector('.shepherd-content .next-button'));
+
+      assert.ok(document.querySelector('#ember-testing-container').scrollTop > 0, 'Scrolled down correctly');
+    });
+
+    test('scrollTo works with a custom scrollToHandler', async function(assert) {
+      assert.expect(2);
+
+      const done = assert.async();
+
+      // Override default behavior
+      const steps = [{
+        id: 'intro',
+        options: {
+          attachTo: '.first-element bottom',
+          buttons: [
+            builtInButtons.cancel,
+            builtInButtons.next
           ],
-          title: 'Controlling Clickability',
-          text: 'Clickability of target elements can be disabled by setting `canClickTarget` to false'
+          scrollTo: true,
+          scrollToHandler() {
+            document.querySelector('#ember-testing-container').scrollTop = 120;
+            return later(() => {
+              assert.equal(document.querySelector('#ember-testing-container').scrollTop, 120, 'Scrolled correctly');
+              done();
+            }, 50);
+          }
         }
-      }
-    ];
+      }];
 
-    await visit('/');
+      // Visit route
+      await visit('/');
 
-    tour.set('steps', steps);
-    tour.set('modal', true);
+      tour.set('steps', steps);
 
-    await click('.toggleHelpModal');
+      document.querySelector('#ember-testing-container').scrollTop = 0;
+      assert.equal(document.querySelector('#ember-testing-container').scrollTop, 0, 'Scroll is initially 0');
 
-    // Get the target element
-    const targetElement = document.querySelector('.shepherd-target');
+      await click('.toggleHelpModal');
+      await click(document.querySelector('.shepherd-content .next-button'));
+    });
 
-    assert.equal(getComputedStyle(targetElement)['pointer-events'], 'auto');
+    test('scrollTo works without a custom scrollToHandler', async function(assert) {
+      assert.expect(2);
+      // Setup controller tour settings
+      tour.set('scrollTo', true);
 
-    // Exit the tour
-    await click(document.querySelector('[data-id="step-1"] .next-button'));
+      // Visit route
+      await visit('/');
 
-    assert.equal(getComputedStyle(targetElement)['pointer-events'], 'none');
+      document.querySelector('#ember-testing-container').scrollTop = 0;
 
-    // Exit the tour
-    await click(document.querySelector('[data-id="step-2"] .cancel-button'));
+      assert.equal(document.querySelector('#ember-testing-container').scrollTop, 0, 'Scroll is initially 0');
 
-    assert.equal(getComputedStyle(targetElement)['pointer-events'], 'auto');
-  });
+      await click('.toggleHelpModal');
+      await click(document.querySelector('.shepherd-content .next-button'));
 
-  test('scrollTo works with disableScroll on', async function(assert) {
-    assert.expect(2);
-    // Setup controller tour settings
-    tour.set('disableScroll', true);
-    tour.set('scrollTo', true);
+      assert.ok(document.querySelector('#ember-testing-container').scrollTop > 0, 'Scrolled correctly');
+    });
 
-    // Visit route
-    await visit('/');
+    test('Show by id works', async function(assert) {
+      assert.expect(1);
 
-    document.querySelector('#ember-testing-container').scrollTop = 0;
+      await visit('/');
 
-    assert.equal(document.querySelector('#ember-testing-container').scrollTop, 0, 'Scroll is initially 0');
+      tour.show('usage');
 
-    await click('.toggleHelpModal');
-
-    await click(document.querySelector('.shepherd-content .next-button'));
-
-    await click(document.querySelector('.shepherd-content .next-button'));
-
-    assert.ok(document.querySelector('#ember-testing-container').scrollTop > 0, 'Scrolled down correctly');
-  });
-
-  test('scrollTo works with a custom scrollToHandler', async function(assert) {
-    assert.expect(2);
-
-    const done = assert.async();
-
-    // Override default behavior
-    const steps = [{
-      id: 'intro',
-      options: {
-        attachTo: '.first-element bottom',
-        buttons: [
-          builtInButtons.cancel,
-          builtInButtons.next
-        ],
-        scrollTo: true,
-        scrollToHandler() {
-          document.querySelector('#ember-testing-container').scrollTop = 120;
-          return later(() => {
-            assert.equal(document.querySelector('#ember-testing-container').scrollTop, 120, 'Scrolled correctly');
-            done();
-          }, 50);
-        }
-      }
-    }];
-
-    // Visit route
-    await visit('/');
-
-    tour.set('steps', steps);
-
-    document.querySelector('#ember-testing-container').scrollTop = 0;
-    assert.equal(document.querySelector('#ember-testing-container').scrollTop, 0, 'Scroll is initially 0');
-
-    await click('.toggleHelpModal');
-    await click(document.querySelector('.shepherd-content .next-button'));
-  });
-
-  test('scrollTo works without a custom scrollToHandler', async function(assert) {
-    assert.expect(2);
-    // Setup controller tour settings
-    tour.set('scrollTo', true);
-
-    // Visit route
-    await visit('/');
-
-    document.querySelector('#ember-testing-container').scrollTop = 0;
-
-    assert.equal(document.querySelector('#ember-testing-container').scrollTop, 0, 'Scroll is initially 0');
-
-    await click('.toggleHelpModal');
-    await click(document.querySelector('.shepherd-content .next-button'));
-
-    assert.ok(document.querySelector('#ember-testing-container').scrollTop > 0, 'Scrolled correctly');
-  });
-
-  test('Show by id works', async function(assert) {
-    assert.expect(1);
-
-    await visit('/');
-
-    tour.show('usage');
-
-    assert.equal(tour.get('tourObject').currentStep.el.querySelector('.shepherd-text').textContent,
-      'To use the tour service, simply inject it into your application and use it like this example.',
-      'Usage step shown');
-  });
-
-  test('copyStyles copies the element correctly', async function(assert) {
-    assert.expect(1);
-
-    const steps = [{
-      id: 'intro',
-      options: {
-        attachTo: '.first-element bottom',
-        buttons: [
-          builtInButtons.cancel,
-          builtInButtons.next
-        ],
-        copyStyles: true
-      }
-    }];
-
-    await visit('/');
-
-    tour.set('steps', steps);
-
-    await click('.toggleHelpModal');
-
-    assert.equal(document.querySelectorAll('.first-element').length, 2, 'First element is copied with copyStyles');
-  });
-
-  test('configuring the modal container works', async function(assert) {
-    await visit('/');
-    await click('.toggleHelpModal');
-
-    assert.equal(
-      document.querySelector('#shepherdOverlay').parentNode.tagName,
-      'BODY',
-      'modal overlay gets placed in body element by default'
-    );
-    await click(document.querySelector('.cancel-button'));
-    assert.notOk(
-      document.querySelector('#shepherdOverlay'),
-      'overlay gets cleaned up after closing tour (default location)'
-    );
-
-    tour.set('modalContainer', '.test-modal-container');
-    await visit('/');
-    await click('.toggleHelpModal');
-
-    assert.ok(
-      document.querySelector('#shepherdOverlay').parentNode.classList.contains('test-modal-container'),
-      'modal overlay gets placed in custom element'
-    );
-    await click(document.querySelector('.cancel-button'));
-    assert.notOk(document.querySelector('#shepherdOverlay'), 'overlay gets cleaned up after closing tour (custom location)');
+      assert.equal(tour.get('tourObject').currentStep.el.querySelector('.shepherd-text').textContent,
+        'To use the tour service, simply inject it into your application and use it like this example.',
+        'Usage step shown');
+    });
   });
 });
