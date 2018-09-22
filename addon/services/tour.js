@@ -286,7 +286,7 @@ export default Service.extend(Evented, {
       });
 
       currentStep.on('hide', () => {
-        // Remove element copy, if it was cloned
+        // Remove any modal and target-element highlight styling
         const targetElement = getElementForStep(currentStep);
 
         if (targetElement) {
@@ -294,7 +294,7 @@ export default Service.extend(Evented, {
             targetElement.classList.remove(currentStep.options.highlightClass);
           }
 
-          closeModalOpening(this._modalOverlayOpening);
+          this.hideModal();
         }
       });
 

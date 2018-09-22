@@ -231,7 +231,7 @@ Whether or not the target element being attached to should be "clickable". If se
 
 ##### highlightClass
 
-This is an extra class to apply to the attachTo element, when it is highlighted. It can be any string. Just style that class name in your css.
+This is an extra class to apply to the attachTo element when it is highlighted (that is, when its step is active). It can be any string. Just style that class name in your CSS.
 
 > **default value:** ``
 
