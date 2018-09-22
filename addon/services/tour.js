@@ -130,7 +130,7 @@ export default Service.extend(Evented, {
     tourObject.on('complete', run.bind(this, 'onTourFinish', 'complete'));
     tourObject.on('cancel', run.bind(this, 'onTourFinish', 'cancel'));
 
-    this.tourObject = tourObject;
+    set(this, 'tourObject', tourObject);
     this.initModalOverlay();
   },
 
