@@ -8,7 +8,6 @@
   -khtml-opacity: 0.5;
   opacity: 0.5;
   z-index: 9997;
-  pointer-events: none;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#66000000',endColorstr='#e6000000',GradientType=1);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
   filter: alpha(opacity=50);
@@ -17,16 +16,23 @@
   -ms-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
-
-  /**
-   * Block all clicks except for those that would occur
-   * on the modals "unfilled" (in the SVG sense) opening.
-   */
-  pointer-events: visibleFill;
 }
 
 
 .shepherd-modal.shepherd-enabled {
   position: relative;
   z-index: 9998;
+}
+
+ /**
+  * Block clicks except for those that would occur
+  * on Shepherd elements or on the target element.
+  */
+.shepherd-active :not(.shepherd-target) {
+  pointer-events: none;
+}
+.shepherd-active .shepherd-target,
+.shepherd-active .shepherd-cancel-link,
+.shepherd-active .shepherd-button {
+  pointer-events: auto;
 }
