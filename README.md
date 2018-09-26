@@ -16,7 +16,7 @@ This is an Ember wrapper for the [Shepherd](https://github.com/HubSpot/Shepherd)
 
 ## Demo
 
-[![Guide your users through a tour of your app](http://i.imgur.com/VxJtJDI.png)](http://shipshapecode.github.io/ember-shepherd/)
+[![Guide your users through a tour of your app](http://i.imgur.com/VxJtJDI.png)](http://shipshapecode.github.io/ember-shepherd/) [![Greenkeeper badge](https://badges.greenkeeper.io/shipshapecode/ember-shepherd.svg)](https://greenkeeper.io/)
 http://shipshapecode.github.io/ember-shepherd/
 
 ## Getting started
