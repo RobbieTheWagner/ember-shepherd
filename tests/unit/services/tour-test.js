@@ -2,27 +2,18 @@ import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 import EmberObject from '@ember/object';
 import { run } from '@ember/runloop';
-import { getElementPosition, setPositionForHighlightElement } from 'ember-shepherd/utils';
+import { builtInButtons } from '../../data';
 
 const steps = [
   {
     id: 'intro',
     options: {
       attachTo: '.test-element bottom',
-      builtInButtons: [
-        {
-          classes: 'shepherd-button-secondary',
-          text: 'Exit',
-          type: 'cancel'
-        },
-        {
-          classes: 'shepherd-button-primary',
-          text: 'Next',
-          type: 'next'
-        }
+      buttons: [
+        builtInButtons.cancel,
+        builtInButtons.next,
       ],
-      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
-      copyStyles: false,
+      classes: 'custom-class-name-1 custom-class-name-2',
       title: 'Welcome to Ember-Shepherd!',
       text: ['Test text'],
       scrollTo: true,
@@ -96,49 +87,5 @@ module('Unit | Service | tour', function(hooks) {
     run(function() {
       service.start();
     });
-  });
-
-  test('it correctly calculates element position from getElementPosition', function(assert) {
-    assert.expect(2);
-
-    const mockElement = { offsetHeight: 500, offsetLeft: 200, offsetTop: 100, offsetWidth: 250 };
-    const position = getElementPosition(mockElement);
-
-    assert.equal(position.top, '100', 'Top is correctly calculated');
-    assert.equal(position.left, '200', 'Left is correctly calculated');
-  });
-
-  test('it correctly sets the highlight element position', function(assert) {
-    assert.expect(4);
-
-    const currentElement = { offsetHeight: 500, offsetLeft: 200, offsetTop: 100, offsetWidth: 250 };
-    const highlightElement = { style: {} };
-
-    setPositionForHighlightElement({
-      currentElement,
-      highlightElement
-    });
-
-    assert.ok(highlightElement.style.left.indexOf(currentElement.offsetLeft) > -1);
-    assert.ok(highlightElement.style.top.indexOf(currentElement.offsetTop) > -1);
-    assert.ok(highlightElement.style.width.indexOf(currentElement.offsetWidth) > -1);
-    assert.ok(highlightElement.style.height.indexOf(currentElement.offsetHeight) > -1);
-  });
-
-  test('it correctly sets the highlight element position format', function(assert) {
-    assert.expect(4);
-
-    const currentElement = { offsetHeight: 500, offsetLeft: 200, offsetTop: 100, offsetWidth: 250 };
-    const highlightElement = { style: {} };
-
-    setPositionForHighlightElement({
-      currentElement,
-      highlightElement
-    });
-
-    assert.ok(highlightElement.style.left.indexOf('px') > -1);
-    assert.ok(highlightElement.style.top.indexOf('px') > -1);
-    assert.ok(highlightElement.style.width.indexOf('px') > -1);
-    assert.ok(highlightElement.style.height.indexOf('px') > -1);
   });
 });

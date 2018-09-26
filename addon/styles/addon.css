@@ -1,8 +1,4 @@
-#highlightOverlay {
-  z-index: 10001;
-}
-
-#shepherdOverlay {
+#shepherdModalOverlayContainer {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,14 +7,7 @@
   -moz-opacity: 0.5;
   -khtml-opacity: 0.5;
   opacity: 0.5;
-  z-index: 10000;
-  background-color: #000;
-  background: -moz-radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
-  background: -webkit-gradient(radial,center center,0px,center center,100%,color-stop(0%,rgba(0,0,0,0.4)),color-stop(100%,rgba(0,0,0,0.9)));
-  background: -webkit-radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
-  background: -o-radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
-  background: -ms-radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
-  background: radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
+  z-index: 9997;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#66000000',endColorstr='#e6000000',GradientType=1);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
   filter: alpha(opacity=50);
@@ -29,11 +18,21 @@
   transition: all 0.3s ease-out;
 }
 
-.shepherd-step {
-  z-index: 10002;
-}
 
 .shepherd-modal.shepherd-enabled {
   position: relative;
-  z-index: 10001;
+  z-index: 9998;
+}
+
+ /**
+  * Block clicks except for those that would occur
+  * on Shepherd elements or on the target element.
+  */
+.shepherd-active :not(.shepherd-target) {
+  pointer-events: none;
+}
+.shepherd-active .shepherd-target,
+.shepherd-active .shepherd-cancel-link,
+.shepherd-active .shepherd-button {
+  pointer-events: auto;
 }

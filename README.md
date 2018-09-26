@@ -1,4 +1,4 @@
-# Ember-shepherd
+# ember-shepherd
 
 <a href="https://shipshape.io/"><img src="http://i.imgur.com/KVqNjgO.png" alt="Ship Shape" width="100" height="100"/></a>
 
@@ -44,21 +44,10 @@ export default Component.extend({
 })
 ```
 
-## Themes
-
-Shepherd has several built in themes. By default, we include the `'arrows'` theme. You can specify which theme to include in `ember-cli-build.js` like so:
-
-```js
-var app = new EmberApp(defaults, {
-  shepherd: {
-    theme: 'dark'
-  }
-});
-```
 
 ## Configuration
 
-The following configuration options can be `set` on the Tour service to control the way that Shepherd is used.  The only required option is `steps`, which you can read more about below.
+The following configuration options can be `set` on the Tour service to control the way that Shepherd is used. **The only required option is `steps`, which you can read more about below.**
 
 ### confirmCancel
 
@@ -70,18 +59,18 @@ confirm window on cancel, to ensure you want to cancel.
 `confirmCancelMessage` is a string to display in the confirm dialog when `confirmCancel`
 is set to true.
 
-### defaults
+### defaultStepOptions
 
-`defaults` is used to set the options that will be applied to each step by default.
+`defaultStepOptions` is used to set the options that will be applied to each step by default.
 You can pass in any of the options that you can with Shepherd.
 
-## You must set defaults *BEFORE* setting steps
+**⚠️ You must set `defaultStepOptions` *BEFORE* setting steps.**
 
 It will be an object of a form something like:
 
 ```js
-this.get('tour').set('defaults', {
-  classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
+this.get('tour').set('defaultStepOptions', {
+  classes: 'custom-class-name-1 custom-class-name-2',
   scrollTo: false,
   showCancelLink: true
 });
@@ -102,12 +91,6 @@ Thanks to [jquery-disablescroll](https://github.com/ultrapasty/jquery-disablescr
 `modal` is a boolean, that should be set to true, if you would like the rest of the screen, other than the current element, greyed out, and the current element highlighted. If you do not need modal functionality, you can remove this option or set it to false.
 
 > **default value:** `false`
-
-### modalContainer
-
-`modalContainer` configures where in the DOM the modal overlay element will be placed (only has effect if `modal` is set to `true`)
-
-> **default value:** `body`
 
 ### requiredElements
 
@@ -154,7 +137,7 @@ this.get('tour').set('steps', [
           });
         });
       },
-      builtInButtons: [
+      buttons: [
         {
           classes: 'shepherd-button-secondary',
           text: 'Exit',
@@ -171,13 +154,12 @@ this.get('tour').set('steps', [
           type: 'next'
         }
       ],
-      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
-      copyStyles: false,
+      classes: 'custom-class-name-1 custom-class-name-2',
       highlightClass: 'highlight',
       scrollTo: false,
       showCancelLink: true,
       title: 'Welcome to Ember-Shepherd!',
-      text: ['Ember-Shepherd is a javascript library for guiding users through your Ember app.'],
+      text: ['Ember-Shepherd is a JavaScript library for guiding users through your Ember app.'],
       when: {
         show: () => {
           console.log('show step');
@@ -194,13 +176,16 @@ this.get('tour').set('steps', [
 
 A lot of the options are the same as Shepherd options, but I will go through each of them for reference.
 
+
 #### id
 
 The name to give this step of the tour
 
+
 #### options
 
 An object with all of the options for the step
+
 
 ##### attachTo
 
@@ -216,55 +201,47 @@ Can also be an object formatted like
 
 Where `.myElement` is any valid jQuery selector.
 
+> **default value:** `''`
+
+
 ##### beforeShowPromise
 
 A function that returns a promise. When the promise resolves, the rest of the `show` code for the step will execute. This is a good place to schedule things in the Ember.run loop that you need to ensure happen before show.
 
-##### builtInButtons
+> **default value:** `null`
 
-These are the standard button types supported by Shepherd. Just set type to next, back or cancel, then set the text, and classes as normal.
 
-Custom actions can also be used by using an action method instead of a type. For example:
+##### buttons
 
-``` javascript
-...
-builtInButtons: [
-  {
-    classes: 'shepherd-button-secondary',
-    text: 'Exit',
-    type: 'cancel'
-  },
-  {
-    classes: 'shepherd-button-primary',
-    text: 'Next',
-    type: 'next'
-  },
-  {
-    classes: 'shepherd-button-primary',
-    text: 'Custom action',
-    action() {
-      console.log('custom action called');
-    }
-  }
-]
-...
-```
+There are some standard button types supported by ember-shepherd. Just set `type` to `'next'`, `'back'`, or `'cancel'`, then set the `text` and `classes` as normal. These will automatically be bound to the Shepherd functions. If no type is passed, a normal Shepherd button will be created.
 
 ##### classes
 
 Extra classes to apply to the step, for styling purposes and such.
 
-##### copyStyles
+> **default value:** `''`
 
-This is a boolean, and when set to `true` it will fully clone the element and styles, rather than just increasing the element's z-index. This should only be used if the element does not pop out and highlight like it should, when using modal functionality.
+
+#### canClickTarget
+
+Whether or not the target element being attached to should be "clickable". If set to `false`, Ember Shepherd sets the element's [`pointerEvents` style](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events) to `none` while the step is active.
+
+> **default value:** `true`
+
 
 ##### highlightClass
 
-This is an extra class to apply to the attachTo element, when it is highlighted. It can be any string. Just style that class name in your css.
+This is an extra class to apply to the attachTo element when it is highlighted (that is, when its step is active). It can be any string. Just style that class name in your CSS.
+
+> **default value:** ``
+
 
 ##### scrollTo
 
-This sets whether the screen should be scrolled to get to the element or not, when the step is active.
+This sets whether or not the screen should be scrolled to get to the element when the step becomes active.
+
+> **default value:** `false`
+
 
 ##### scrollToHandler
 
@@ -294,17 +271,29 @@ For custom scrolling actions, pass a function to this option. For example:
 
 ```
 
+> **default value:** `null`
+
+
 ##### showCancelLink
 
 When true, an x will appear in the top right of the popup, for canceling the tour.
+
+> **default value:** `false`
+
 
 ##### title
 
 The step's title. It becomes an h3 at the top of the step.
 
-##### tetherOptions
+> **default value:** `''`
 
-Extra options to pass to tether
+
+##### popperOptions
+
+Extra options to pass to Popper
+
+> **default value:** `null`
+
 
 ##### text
 
@@ -316,9 +305,36 @@ The text content to display in the tour popup. Can be:
 
 Currently does ***not*** accept htmlbars input (PR welcome).
 
+> **default value:** `null`
+
+
 ##### when
 
-An object that contains function to be executed when events occur on the step.  Supported events are `before-show`, `show`, `before-hide`, `hide`, `complete`, `cancel`, and `destroy`.
+An object containing functions to be executed when events occur on the step.  Supported events are `before-show`, `show`, `before-hide`, `hide`, `complete`, `cancel`, and `destroy`.
+
+```js
+  when: {
+    show: function() {
+      window.scrollTo(0, 0);
+    }
+  }
+```
+
+> **default value:** `null`
+
+
+## Themes
+
+Shepherd has several built in themes. By default, we include the `'arrows'` theme. You can specify which theme to include in `ember-cli-build.js` like so:
+
+```js
+var app = new EmberApp(defaults, {
+  shepherd: {
+    theme: 'dark'
+  }
+});
+```
+
 
 ## Interacting with `ember-shepherd`
 

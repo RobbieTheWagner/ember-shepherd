@@ -4,23 +4,23 @@
     <centered>
       <h1 class="pageTitle"><span class="ember-title">ember</span> Shepherd</h1>
     </centered>
-    <centered class="first-element">
-      <h4>Guide your users through a tour of your app.</h4>
+    <centered>
+      <h4 class="first-element">Guide your users through a tour of your app.</h4>
     </centered>
     <centered>
       <h5>Installation</h5>
     </centered>
-    <centered class="install-element">
-      {{#code-block language='bash'}}ember install ember-shepherd{{/code-block}}
+    <centered>
+      {{#code-block language='bash' class="install-element"}}ember install ember-shepherd{{/code-block}}
     </centered>
     <centered>
       <h5>Usage</h5>
     </centered>
-    <centered class="usage-element">
-      {{~#code-block language='javascript'~}}
+    <centered>
+      {{~#code-block language='javascript' class="usage-element"~}}
 //Inject the service: tour: Ember.inject.service()
 let tour = this.get('tour');
-tour.set('defaults', shepherdDefaults);
+tour.set('defaultStepOptions', shepherdDefaults);
 tour.set('disableScroll', true);
 tour.set('modal', true);
 tour.set('requiredElements', requiredElements);
@@ -36,17 +36,14 @@ tour.cancel();
     <centered>
       <h5>Additional Features</h5>
     </centered>
-    <hbox class="usage-element">
-      <centered xs="12" sm="3" class="panel modal-element">
+    <hbox>
+      <centered xs="12" sm="4" class="panel modal-element">
         Modal
       </centered>
-      <centered xs="12" sm="3" class="panel style-copy-element">
-        Style Copy
-      </centered>
-      <centered xs="12" sm="3" class="panel built-in-buttons-element">
+      <centered xs="12" sm="4" class="panel built-in-buttons-element">
         Built-in Buttons
       </centered>
-      <centered xs="12" sm="3" class="panel disable-scroll-element">
+      <centered xs="12" sm="4" class="panel disable-scroll-element">
         Disable Scroll
       </centered>
     </hbox>
@@ -68,7 +65,7 @@ tour.cancel();
       </centered>
     </hbox>
     <centered class="medium-8 columns medium-centered text-center">
-      <a href="https://github.com/HubSpot/shepherd">
+      <a href="https://github.com/shipshapecode/shepherd" class="shepherd-logo-link">
         <svg xmlns="http://www.w3.org/2000/svg" version="1.0" style="height: 330px; width: 330px; max-width: 80%;"
              viewBox="0 0 128 128">
           <g>
