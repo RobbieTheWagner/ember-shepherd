@@ -15,6 +15,7 @@ import {
   createModalOverlay,
   positionModalOpening,
   closeModalOpening,
+  classNames as modalClassNames,
 } from '../utils/modal';
 
 
@@ -352,15 +353,20 @@ export default Service.extend(Evented, {
   },
 
   showModal() {
+    document.body.classList.add(modalClassNames.isVisible);
+
     if (this._modalOverlayElem) {
       this._modalOverlayElem.style.display = 'block';
     }
   },
 
   hideModal() {
+    document.body.classList.remove(modalClassNames.isVisible);
+
     if (this._modalOverlayElem) {
       this._modalOverlayElem.style.display = 'none';
     }
+
   },
 
   addStepEventListeners() {
@@ -410,6 +416,7 @@ export default Service.extend(Evented, {
       }
 
       this._modalOverlayElem = null;
+      document.body.classList.remove(modalClassNames.isVisible);
     });
   },
 });

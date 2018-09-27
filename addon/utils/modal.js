@@ -6,6 +6,10 @@ const elementIds = {
   modalOverlayMaskOpening: 'shepherdModalMaskOpening',
 };
 
+const classNames = {
+  isVisible: 'shepherd-modal-is-visible'
+};
+
 
 /**
  * <svg id="shepherdModalOverlayContainer" xmlns="http://www.w3.org/2000/svg">
@@ -149,4 +153,5 @@ export {
   closeModalOpening,
   getModalMaskOpening,
   elementIds,
+  classNames,
 }

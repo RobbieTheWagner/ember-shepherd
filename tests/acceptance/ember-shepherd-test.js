@@ -3,7 +3,11 @@ import { visit, click, find } from '@ember/test-helpers';
 import { later } from '@ember/runloop';
 import { setupApplicationTest } from 'ember-qunit';
 import { builtInButtons } from '../data';
-import { elementIds } from 'ember-shepherd/utils/modal';
+
+import {
+  elementIds as modalElementIds,
+  classNames as modalClassNames,
+} from 'ember-shepherd/utils/modal';
 
 module('Acceptance | Tour functionality tests', function(hooks) {
   let tour;
@@ -76,23 +80,25 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     test('Displaying the modal during tours when modal mode is enabled', async function(assert) {
       await visit('/');
 
-      const modalOverlay = document.querySelector(`#${elementIds.modalOverlay}`);
+      const modalOverlay = document.querySelector(`#${modalElementIds.modalOverlay}`);
 
       assert.ok(modalOverlay, 'modal overlay is present in the DOM');
       assert.equal(getComputedStyle(modalOverlay).display, 'none', 'modal overlay is present but not displayed before the tour starts');
+      assert.notOk(document.body.classList.contains(modalClassNames.isVisible), `Body has no class of "${modalClassNames.isVisible}" when shepherd is not active`);
 
       await click('.toggleHelpModal');
 
       assert.equal(getComputedStyle(modalOverlay).display, 'block', 'modal overlay is present and displayed after the tour starts');
 
       assert.ok(document.body.classList.contains('shepherd-active'), 'Body gets class of shepherd-active, when shepherd becomes active');
+      assert.ok(document.body.classList.contains(modalClassNames.isVisible), `Body gets class of "${modalClassNames.isVisible}" when shepherd becomes active`);
       assert.equal(document.querySelectorAll('.shepherd-enabled').length, 1, 'attachTo element has the shepherd-enabled class');
     });
 
     test('Hiding the modal during tours when modal mode is not enabled', async function(assert) {
       await visit('/');
 
-      const modalOverlay = document.querySelector(`#${elementIds.modalOverlay}`);
+      const modalOverlay = document.querySelector(`#${modalElementIds.modalOverlay}`);
 
       assert.ok(modalOverlay, 'modal overlay is present in the DOM');
       assert.equal(getComputedStyle(modalOverlay).display, 'none', 'modal overlay is present but not displayed before the tour starts');
@@ -102,6 +108,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       assert.equal(getComputedStyle(modalOverlay).display, 'none', 'modal overlay is present but not displayed after the tour starts');
 
       assert.ok(document.body.classList.contains('shepherd-active'), 'Body gets class of shepherd-active, when shepherd becomes active');
+      assert.notOk(document.body.classList.contains(modalClassNames.isVisible), `Body has no class of "${modalClassNames.isVisible}" when shepherd is active but not in modal mode`);
       assert.equal(document.querySelectorAll('.shepherd-enabled').length, 1, 'attachTo element has the shepherd-enabled class');
     });
 

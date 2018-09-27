@@ -28,11 +28,11 @@
   * Block clicks except for those that would occur
   * on Shepherd elements or on the target element.
   */
-.shepherd-active :not(.shepherd-target) {
+.shepherd-active.shepherd-modal-is-visible :not(.shepherd-target) {
   pointer-events: none;
 }
-.shepherd-active .shepherd-target,
-.shepherd-active .shepherd-cancel-link,
-.shepherd-active .shepherd-button {
+.shepherd-active.shepherd-modal-is-visible .shepherd-target,
+.shepherd-active.shepherd-modal-is-visible .shepherd-cancel-link,
+.shepherd-active.shepherd-modal-is-visible .shepherd-button {
   pointer-events: auto;
 }
