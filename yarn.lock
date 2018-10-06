@@ -7535,7 +7535,7 @@ pluralize@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
 
-popper.js@^1.14.3:
+popper.js@^1.14.4:
   version "1.14.4"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.14.4.tgz#8eec1d8ff02a5a3a152dd43414a15c7b79fd69b6"
 
@@ -8692,13 +8692,13 @@ shellwords@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
 
-shepherd.js@^2.0.0-beta.27:
-  version "2.0.0-beta.27"
-  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-2.0.0-beta.27.tgz#09b6744fc902fccb1dce482cd7af12422a3d48cd"
+shepherd.js@^2.0.0-beta.28:
+  version "2.0.0-beta.28"
+  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-2.0.0-beta.28.tgz#5a18add7c6f8aefe74f1559c998fca7543151143"
   dependencies:
     element-matches "^0.1.2"
     lodash-es "^4.17.10"
-    popper.js "^1.14.3"
+    tippy.js "^3.0.3"
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
@@ -9521,6 +9521,12 @@ tiny-lr@^1.1.1:
     livereload-js "^2.3.0"
     object-assign "^4.1.0"
     qs "^6.4.0"
+
+tippy.js@^3.0.3:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/tippy.js/-/tippy.js-3.0.4.tgz#36b712f858f079e241b3226dc3b5e09d0be73f8f"
+  dependencies:
+    popper.js "^1.14.4"
 
 tmp@0.0.28:
   version "0.0.28"
