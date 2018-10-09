@@ -11,12 +11,13 @@
 [![Build Status](https://travis-ci.org/shipshapecode/ember-shepherd.svg)](https://travis-ci.org/shipshapecode/ember-shepherd)
 [![Code Climate](https://codeclimate.com/github/shipshapecode/ember-shepherd/badges/gpa.svg)](https://codeclimate.com/github/shipshapecode/ember-shepherd)
 [![Test Coverage](https://codeclimate.com/github/shipshapecode/ember-shepherd/badges/coverage.svg)](https://codeclimate.com/github/shipshapecode/ember-shepherd/coverage)
+[![Greenkeeper badge](https://badges.greenkeeper.io/shipshapecode/ember-shepherd.svg)](https://greenkeeper.io/)
 
 This is an Ember wrapper for the [Shepherd](https://github.com/HubSpot/Shepherd), site tour, library. It provides additional functionality, on top of Shepherd, as well.
 
 ## Demo
 
-[![Guide your users through a tour of your app](http://i.imgur.com/VxJtJDI.png)](http://shipshapecode.github.io/ember-shepherd/) [![Greenkeeper badge](https://badges.greenkeeper.io/shipshapecode/ember-shepherd.svg)](https://greenkeeper.io/)
+[![Guide your users through a tour of your app](http://i.imgur.com/VxJtJDI.png)](http://shipshapecode.github.io/ember-shepherd/)
 http://shipshapecode.github.io/ember-shepherd/
 
 ## Getting started
