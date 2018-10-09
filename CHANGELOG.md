@@ -1,5 +1,32 @@
 # Changelog
 
+## [v4.0.0-beta.11](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.11) (2018-10-09)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.10...v4.0.0-beta.11)
+
+**Breaking changes:**
+
+- Implement SVG-based modal mode [\#248](https://github.com/shipshapecode/ember-shepherd/pull/248) ([BrianSipple](https://github.com/BrianSipple))
+
+**Implemented enhancements:**
+
+- Default highlighting/arrow ui [\#197](https://github.com/shipshapecode/ember-shepherd/issues/197)
+- Update project to use shepherd versions with Tippy [\#256](https://github.com/shipshapecode/ember-shepherd/pull/256) ([BrianSipple](https://github.com/BrianSipple))
+- Fix css rules for pointer-events [\#253](https://github.com/shipshapecode/ember-shepherd/pull/253) ([BrianSipple](https://github.com/BrianSipple))
+- Block clicks outside of visible modal opening. [\#252](https://github.com/shipshapecode/ember-shepherd/pull/252) ([BrianSipple](https://github.com/BrianSipple))
+- Hide modal when hiding the current step [\#250](https://github.com/shipshapecode/ember-shepherd/pull/250) ([BrianSipple](https://github.com/BrianSipple))
+
+**Fixed bugs:**
+
+- cleanupShepherdElements destroys \<body\> element in tests [\#246](https://github.com/shipshapecode/ember-shepherd/issues/246)
+- Use Ember.set to set `this.tourObject` [\#251](https://github.com/shipshapecode/ember-shepherd/pull/251) ([BrianSipple](https://github.com/BrianSipple))
+- Remove cleanupShepherdElements [\#247](https://github.com/shipshapecode/ember-shepherd/pull/247) ([rwwagner90](https://github.com/rwwagner90))
+
+**Merged pull requests:**
+
+- Make `pointer-event` styling aware of the modal's current visibility. [\#254](https://github.com/shipshapecode/ember-shepherd/pull/254) ([BrianSipple](https://github.com/BrianSipple))
+- Update dependencies to enable Greenkeeper 🌴 [\#232](https://github.com/shipshapecode/ember-shepherd/pull/232) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
 ## [v4.0.0-beta.10](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.10) (2018-09-14)
 
 [Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.9...v4.0.0-beta.10)
