@@ -3,21 +3,16 @@ import Route from '@ember/routing/route';
 import config from '../config/environment';
 import { inject as service } from '@ember/service';
 import { scheduleOnce } from '@ember/runloop';
-import { steps as defaultSteps } from '../data';
+import { steps as defaultSteps, defaultStepOptions } from '../data';
 
 export default Route.extend({
   tour: service(),
   disableScroll: true,
-  defaultStepOptions: {
-    classes: 'shepherd-theme-arrows custom-default-class',
-    scrollTo: true,
-    showCancelLink: true
-  },
 
   beforeModel() {
     const tour = this.get('tour');
 
-    tour.set('defaultStepOptions', this.get('defaultStepOptions'));
+    tour.set('defaultStepOptions', defaultStepOptions);
     tour.set('disableScroll', this.get('disableScroll'));
     tour.set('modal', true);
     tour.set('confirmCancel', false);

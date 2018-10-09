@@ -288,9 +288,9 @@ The step's title. It becomes an h3 at the top of the step.
 > **default value:** `''`
 
 
-##### popperOptions
+##### tippyOptions
 
-Extra options to pass to Popper
+Extra options to pass to [Tippy](https://atomiks.github.io/tippyjs/#all-options).
 
 > **default value:** `null`
 

@@ -28,7 +28,7 @@ module.exports = {
       },
       'shepherd.js'() {
         const include = [
-          'dist/js/popper.js',
+          'dist/js/tippy.all.min.js',
           'dist/js/shepherd.js'
         ];
 
@@ -39,6 +39,7 @@ module.exports = {
         return {
           import: {
             include,
+            vendor: ['dist/js/tippy.all.min.js.map'],
             processTree(tree) {
               return fastbootTransform(tree);
             }
