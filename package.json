@@ -4,6 +4,7 @@
   "description": "An Ember wrapper for the site tour library Shepherd.",
   "keywords": [
     "ember-addon",
+    "site tour",
     "tour",
     "shepherd"
   ],
@@ -33,6 +34,16 @@
       "name": "Craig Sketchley",
       "email": "craigsketchley@gmail.com",
       "url": "https://github.com/craigsketchley"
+    },
+    {
+      "name": "Chuck Carpenter",
+      "email": "",
+      "url": "https://github.com/chuckcarpenter"
+    },
+    {
+      "name": "Brian Sipple",
+      "email": "",
+      "url": "https://github.com/BrianSipple"
     }
   ],
   "homepage": "http://shipshapecode.github.io/ember-shepherd/",
@@ -60,7 +71,7 @@
     "@html-next/flexi-dsl": "^2.1.0",
     "@html-next/flexi-layouts": "^2.2.2",
     "broccoli-asset-rev": "^2.7.0",
-    "codeclimate-test-reporter": "^0.5.0",
+    "codeclimate-test-reporter": "^0.5.1",
     "ember-cli": "~3.4.1",
     "ember-cli-code-coverage": "^1.0.0-beta.5",
     "ember-cli-dependency-checker": "^3.0.0",
@@ -91,7 +102,7 @@
     "flexi": "^2.1.0",
     "loader.js": "^4.7.0",
     "qunit-dom": "^0.7.1",
-    "sass": "^1.13.2",
+    "sass": "^1.14.2",
     "stylelint-config-ship-shape": "^0.4.0"
   },
   "engines": {
