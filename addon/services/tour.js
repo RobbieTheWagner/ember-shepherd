@@ -39,7 +39,7 @@ export default Service.extend(Evented, {
   _onScreenChange() {},
 
   willDestroy() {
-    this.cleanup();
+    this._cleanup();
   },
 
   /**
@@ -90,8 +90,8 @@ export default Service.extend(Evented, {
    * When the tour starts, setup the modal overlay, step event listeners, and disableScroll
    */
   onTourStart() {
-    this.initModalOverlay();
-    this.addStepEventListeners();
+    this._initModalOverlay();
+    this._addStepEventListeners();
 
     if (get(this, 'disableScroll')) {
       disableScroll.on(window);
@@ -108,7 +108,7 @@ export default Service.extend(Evented, {
     if (!this.isDestroyed) {
       set(this, 'isActive', false);
     }
-    this.cleanup();
+    this._cleanup();
     this.trigger(completeOrCancel);
   },
 
@@ -116,7 +116,7 @@ export default Service.extend(Evented, {
    * Cleanup the modal leftovers, like the overlay and highlight, so they don't hang around.
    * @private
    */
-  cleanup() {
+  _cleanup() {
     if (get(this, 'disableScroll')) {
       disableScroll.off(window);
     }
@@ -126,7 +126,11 @@ export default Service.extend(Evented, {
     cleanupModal.bind(this)();
   },
 
-  initialize() {
+  /**
+   * Initializes the tour, creates a new Shepherd.Tour. sets options, and binds events
+   * @private
+   */
+  _initialize() {
     const confirmCancel = get(this, 'confirmCancel');
     const confirmCancelMessage = get(this, 'confirmCancelMessage');
     const defaultStepOptions = get(this, 'defaultStepOptions');
@@ -142,16 +146,21 @@ export default Service.extend(Evented, {
     tourObject.on('cancel', bind(this, 'onTourFinish', 'cancel'));
 
     set(this, 'tourObject', tourObject);
-    this.initModalOverlay();
+    this._initModalOverlay();
   },
 
-  setupModalForStep(step) {
+  /**
+   * If modal is enabled, setup the svg mask opening and modal overlay for the step
+   * @param step
+   * @private
+   */
+  _setupModalForStep(step) {
     if (!this.modal) {
-      this.hideModal();
+      this._showOrHideModal('hide');
 
     } else {
-      this.styleModalOpeningForStep(step);
-      this.showModal();
+      this._styleModalOpeningForStep(step);
+      this._showOrHideModal('show');
     }
   },
 
@@ -162,7 +171,7 @@ export default Service.extend(Evented, {
    * @param step The step object that attaches to the element
    * @private
    */
-  styleTargetElementForStep(step) {
+  _styleTargetElementForStep(step) {
     const targetElement = getElementForStep(step);
 
     if (!targetElement) {
@@ -211,7 +220,7 @@ export default Service.extend(Evented, {
    * @private
    */
   stepsChange: observer('steps', function() {
-    this.initialize();
+    this._initialize();
     const steps = get(this, 'steps');
     const tour = get(this, 'tourObject');
 
@@ -245,8 +254,8 @@ export default Service.extend(Evented, {
       const currentStep = tour.steps[index];
 
       currentStep.on('before-show', () => {
-        this.setupModalForStep(currentStep);
-        this.styleTargetElementForStep(currentStep);
+        this._setupModalForStep(currentStep);
+        this._styleTargetElementForStep(currentStep);
       });
 
       currentStep.on('hide', () => {
@@ -258,7 +267,7 @@ export default Service.extend(Evented, {
             targetElement.classList.remove(currentStep.options.highlightClass);
           }
 
-          this.hideModal();
+          this._showOrHideModal('hide');
         }
       });
 
@@ -282,18 +291,18 @@ export default Service.extend(Evented, {
     });
   }),
 
-  initModalOverlay() {
+  _initModalOverlay() {
     if (!this._modalOverlayElem) {
       this._modalOverlayElem = createModalOverlay();
       this._modalOverlayOpening = getModalMaskOpening(this._modalOverlayElem);
 
-      this.hideModal();
+      this._showOrHideModal('hide');
 
       document.body.appendChild(this._modalOverlayElem);
     }
   },
 
-  styleModalOpeningForStep(step) {
+  _styleModalOpeningForStep(step) {
     const modalOverlayOpening = this._modalOverlayOpening;
     const targetElement = getElementForStep(step);
 
@@ -308,31 +317,38 @@ export default Service.extend(Evented, {
         );
       };
 
-      this.addStepEventListeners();
+      this._addStepEventListeners();
 
     } else {
       closeModalOpening(this._modalOverlayOpening);
     }
   },
 
-  showModal() {
-    document.body.classList.add(modalClassNames.isVisible);
+  /**
+   * Show or hide the modal
+   * @param {string} showOrHide 'show' or 'hide'
+   * @private
+   */
+  _showOrHideModal(showOrHide) {
+    const show = showOrHide === 'show';
+
+    if (show) {
+      document.body.classList.add(modalClassNames.isVisible);
+    } else {
+      document.body.classList.remove(modalClassNames.isVisible);
+    }
+
 
     if (this._modalOverlayElem) {
-      this._modalOverlayElem.style.display = 'block';
+      this._modalOverlayElem.style.display = show ? 'block' : 'none';
     }
   },
 
-  hideModal() {
-    document.body.classList.remove(modalClassNames.isVisible);
-
-    if (this._modalOverlayElem) {
-      this._modalOverlayElem.style.display = 'none';
-    }
-
-  },
-
-  addStepEventListeners() {
+  /**
+   * Add resize and scroll listeners to window
+   * @private
+   */
+  _addStepEventListeners() {
     if (typeof this._onScreenChange === 'function') {
       window.removeEventListener('resize', this._onScreenChange, false);
       window.removeEventListener('scroll', this._onScreenChange, false);
