@@ -3,11 +3,14 @@ import { get, observer, set } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
 import Service from '@ember/service';
 import Evented from '@ember/object/evented';
-import { run, scheduleOnce } from '@ember/runloop';
+import { bind, debounce, later } from '@ember/runloop';
+import { normalizeAttachTo } from '../utils/attachTo';
+import { makeButton } from '../utils/buttons';
+import { cleanupModal, cleanupSteps, cleanupStepEventListeners } from '../utils/cleanup';
 import {
   elementIsHidden,
   getElementForStep,
-  toggleShepherdModalClass,
+  toggleShepherdModalClass
 } from '../utils/dom';
 
 import {
@@ -15,7 +18,7 @@ import {
   createModalOverlay,
   positionModalOpening,
   closeModalOpening,
-  classNames as modalClassNames,
+  classNames as modalClassNames
 } from '../utils/modal';
 
 
@@ -74,11 +77,18 @@ export default Service.extend(Evented, {
     get(this, 'tourObject').show(id);
   },
 
+  /**
+   * Start the tour
+   * @public
+   */
   start() {
     set(this, 'isActive', true);
     get(this, 'tourObject').start();
   },
 
+  /**
+   * When the tour starts, setup the modal overlay, step event listeners, and disableScroll
+   */
   onTourStart() {
     this.initModalOverlay();
     this.addStepEventListeners();
@@ -111,9 +121,9 @@ export default Service.extend(Evented, {
       disableScroll.off(window);
     }
 
-    this.cleanupStepEventListeners();
-    this.cleanupSteps();
-    this.cleanupModal();
+    cleanupStepEventListeners.bind(this)();
+    cleanupSteps(this.tourObject);
+    cleanupModal.bind(this)();
   },
 
   initialize() {
@@ -127,59 +137,12 @@ export default Service.extend(Evented, {
       defaultStepOptions
     });
 
-    tourObject.on('start', run.bind(this, 'onTourStart'));
-    tourObject.on('complete', run.bind(this, 'onTourFinish', 'complete'));
-    tourObject.on('cancel', run.bind(this, 'onTourFinish', 'cancel'));
+    tourObject.on('start', bind(this, 'onTourStart'));
+    tourObject.on('complete', bind(this, 'onTourFinish', 'complete'));
+    tourObject.on('cancel', bind(this, 'onTourFinish', 'cancel'));
 
     set(this, 'tourObject', tourObject);
     this.initModalOverlay();
-  },
-
-  /**
-   * Creates a button of the specified type, with the given classes and text
-   *
-   * @param button.type The type of button cancel, back, or next
-   * @param button.classes Classes to apply to the button
-   * @param button.text The text for the button
-   * @param button.action The action to call
-   * @returns {{action: *, classes: *, text: *}}
-   * @private
-   */
-  makeButton(button) {
-    const { type, classes, text } = button;
-
-    if (!type) {
-      return button;
-    }
-
-    const builtInButtonTypes = ['back', 'cancel', 'next'];
-    if (builtInButtonTypes.includes(type)) {
-      const action = run.bind(this, function() {
-        this[type]();
-      });
-
-      return {
-        action,
-        classes,
-        text
-      };
-    }
-  },
-
-  /**
-   * Check if attachTo is an object, if it is, put element and on into a string,
-   * if it is already a string, just return that string
-   *
-   * @param attachTo
-   * @returns {*}
-   * @private
-   */
-  normalizeAttachTo(attachTo) {
-    if (attachTo && typeof attachTo.element === 'string' && typeof attachTo.on === 'string') {
-      return `${attachTo.element} ${attachTo.on}`;
-    } else {
-      return attachTo;
-    }
   },
 
   setupModalForStep(step) {
@@ -273,9 +236,9 @@ export default Service.extend(Evented, {
       const { id, options } = step;
 
       if (options.buttons) {
-        options.buttons = options.buttons.map(this.makeButton, this);
+        options.buttons = options.buttons.map(makeButton.bind(this), this);
       }
-      options.attachTo = this.normalizeAttachTo(options.attachTo);
+      options.attachTo = normalizeAttachTo(options.attachTo);
       tour.addStep(id, options);
 
       // Step up events for the current step
@@ -308,7 +271,7 @@ export default Service.extend(Evented, {
             elem.scrollIntoView();
           }
 
-          run.later(() => {
+          later(() => {
             if (get(this, 'disableScroll')) {
               disableScroll.on(window);
             }
@@ -338,9 +301,9 @@ export default Service.extend(Evented, {
       positionModalOpening(targetElement, modalOverlayOpening);
 
       this._onScreenChange = () => {
-        run.debounce(
+        debounce(
           this,
-          () => { positionModalOpening(targetElement, modalOverlayOpening) },
+          () => { positionModalOpening(targetElement, modalOverlayOpening); },
           50
         );
       };
@@ -377,46 +340,5 @@ export default Service.extend(Evented, {
 
     window.addEventListener('resize', this._onScreenChange, false);
     window.addEventListener('scroll', this._onScreenChange, false);
-  },
-
-
-  cleanupStepEventListeners() {
-    if (typeof this._onScreenChange === 'function') {
-      window.removeEventListener('resize', this._onScreenChange, false);
-      window.removeEventListener('scroll', this._onScreenChange, false);
-
-      this._onScreenChange = null;
-    }
-  },
-
-  cleanupSteps() {
-    const tour = this.tourObject;
-
-    if (tour) {
-      const { steps } = tour;
-
-      steps.forEach((step) => {
-        if (step.options && step.options.canClickTarget === false && step.options.attachTo) {
-          const stepElement = getElementForStep(step);
-
-          if (stepElement instanceof HTMLElement) {
-            stepElement.style.pointerEvents = 'auto';
-          }
-        }
-      });
-    }
-  },
-
-  cleanupModal() {
-    scheduleOnce('afterRender', this, () => {
-      const element = this._modalOverlayElem;
-
-      if (element && element instanceof SVGElement) {
-        element.parentNode.removeChild(element);
-      }
-
-      this._modalOverlayElem = null;
-      document.body.classList.remove(modalClassNames.isVisible);
-    });
-  },
+  }
 });
