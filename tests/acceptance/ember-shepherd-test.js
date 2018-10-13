@@ -56,7 +56,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       await visit('/');
 
       tour.set('defaultStepOptions', defaultStepOptions);
-      tour.set('steps', steps);
+      tour.addSteps(steps);
 
       await click('.toggleHelpModal');
 
@@ -130,7 +130,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       await visit('/');
 
-      tour.set('steps', steps);
+      tour.addSteps(steps);
       tour.set('modal', true);
 
       await click('.toggleHelpModal');
@@ -162,7 +162,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       await visit('/');
 
-      tour.set('steps', steps);
+      tour.addSteps(steps);
 
       await click('.toggleHelpNonmodal');
 
@@ -195,7 +195,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       await visit('/');
 
-      tour.set('steps', stepsWithoutClasses);
+      tour.addSteps(stepsWithoutClasses);
 
       await click('.toggleHelpModal');
 
@@ -219,7 +219,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
         }
       }];
 
-      tour.set('steps', steps);
+      tour.addSteps(steps);
 
       await visit('/');
 
@@ -247,7 +247,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
         }
       }];
 
-      tour.set('steps', steps);
+      tour.addSteps(steps);
 
       await click('.toggleHelpModal');
 
@@ -288,7 +288,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       await visit('/');
 
-      tour.set('steps', steps);
+      tour.addSteps(steps);
 
       await click('.toggleHelpModal');
 
@@ -331,7 +331,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       await visit('/');
 
-      tour.set('steps', steps);
+      tour.addSteps(steps);
       tour.set('modal', true);
 
       await click('.toggleHelpModal');
@@ -402,7 +402,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       // Visit route
       await visit('/');
 
-      tour.set('steps', steps);
+      tour.addSteps(steps);
 
       document.querySelector('#ember-testing-container').scrollTop = 0;
       assert.equal(document.querySelector('#ember-testing-container').scrollTop, 0, 'Scroll is initially 0');

@@ -119,12 +119,12 @@ this.get('tour').set('requiredElements', [
 > **default value:** `[]`
 
 
-### steps
+### addSteps
 
-You will need to define a steps object to set on the tour service of the following form:
+You must pass an array of steps to `addSteps`, something like this:
 
 ```js
-this.get('tour').set('steps', [
+this.get('tour').addSteps([
   {
     id: 'intro',
     options: {
