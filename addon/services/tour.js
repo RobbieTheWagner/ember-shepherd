@@ -1,5 +1,5 @@
-/* eslint-disable ember/avoid-leaking-state-in-ember-objects, ember/no-observers */
-import { get, observer, set } from '@ember/object';
+/* eslint-disable ember/avoid-leaking-state-in-ember-objects */
+import { get, set } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
 import Service from '@ember/service';
 import Evented from '@ember/object/evented';
@@ -214,14 +214,13 @@ export default Service.extend(Evented, {
     return allElementsPresent;
   },
 
-  // TODO: Figure out how to use a computed instead of an observer here
   /**
-   * Create a tour object based on the current configuration
+   * Take a set of steps and create a tour object based on the current configuration
+   * @param {Array} steps An array of steps
    * @private
    */
-  stepsChange: observer('steps', function() {
+  addSteps(steps) {
     this._initialize();
-    const steps = get(this, 'steps');
     const tour = get(this, 'tourObject');
 
     // Return nothing if there are no steps
@@ -287,9 +286,22 @@ export default Service.extend(Evented, {
           }, 50);
         };
       }
-
     });
-  }),
+  },
+
+  /**
+   * Add resize and scroll listeners to window
+   * @private
+   */
+  _addStepEventListeners() {
+    if (typeof this._onScreenChange === 'function') {
+      window.removeEventListener('resize', this._onScreenChange, false);
+      window.removeEventListener('scroll', this._onScreenChange, false);
+    }
+
+    window.addEventListener('resize', this._onScreenChange, false);
+    window.addEventListener('scroll', this._onScreenChange, false);
+  },
 
   _initModalOverlay() {
     if (!this._modalOverlayElem) {
@@ -342,19 +354,5 @@ export default Service.extend(Evented, {
     if (this._modalOverlayElem) {
       this._modalOverlayElem.style.display = show ? 'block' : 'none';
     }
-  },
-
-  /**
-   * Add resize and scroll listeners to window
-   * @private
-   */
-  _addStepEventListeners() {
-    if (typeof this._onScreenChange === 'function') {
-      window.removeEventListener('resize', this._onScreenChange, false);
-      window.removeEventListener('scroll', this._onScreenChange, false);
-    }
-
-    window.addEventListener('resize', this._onScreenChange, false);
-    window.addEventListener('scroll', this._onScreenChange, false);
   }
 });
