@@ -60,6 +60,14 @@ export default Service.extend(Evented, {
   },
 
   /**
+   * Hides the current step
+   * @public
+   */
+  hide() {
+    get(this, 'tourObject').hide();
+  },
+
+  /**
    * Advance the tour to the next step and trigger next
    * @public
    */

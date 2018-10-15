@@ -491,5 +491,16 @@ module('Acceptance | Tour functionality tests', function(hooks) {
         'To use the tour service, simply inject it into your application and use it like this example.',
         'Usage step shown');
     });
+
+    test('hide method hides the current step', async function(assert) {
+      assert.expect(1);
+
+      await visit('/');
+
+      tour.show('usage');
+      tour.hide();
+
+      assert.equal(tour.get('tourObject').currentStep.el.hidden, true, 'The step is hidden');
+    });
   });
 });
