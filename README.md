@@ -79,19 +79,6 @@ this.get('tour').set('defaultStepOptions', {
 
 > **default value:** `{}`
 
-### disableScroll
-
-`disableScroll` is a boolean, that when set to true, will keep the user from scrolling with the scrollbar,
-mousewheel, arrow keys, etc. You may want to use this to ensure you are driving the scroll position with the tour.
-Thanks to [jquery-disablescroll](https://github.com/ultrapasty/jquery-disablescroll) for this functionality.
-
-> **default value:** `false`
-
-### modal
-
-`modal` is a boolean, that should be set to true, if you would like the rest of the screen, other than the current element, greyed out, and the current element highlighted. If you do not need modal functionality, you can remove this option or set it to false.
-
-> **default value:** `false`
 
 ### requiredElements
 
@@ -99,6 +86,8 @@ Thanks to [jquery-disablescroll](https://github.com/ultrapasty/jquery-disablescr
 exist and be visible for the tour to start. If any elements are not present, it will keep the tour from starting.
 
 You can also specify a message, which will tell the user what they need to do to make the tour work.
+
+**⚠️ You must set `requiredElements` *BEFORE* setting steps.**
 
 _Example_
 ```js
@@ -117,6 +106,27 @@ this.get('tour').set('requiredElements', [
 ```
 
 > **default value:** `[]`
+
+
+### disableScroll
+
+`disableScroll` is a boolean, that when set to true, will keep the user from scrolling with the scrollbar,
+mousewheel, arrow keys, etc. You may want to use this to ensure you are driving the scroll position with the tour.
+Thanks to [jquery-disablescroll](https://github.com/ultrapasty/jquery-disablescroll) for this functionality.
+
+> **default value:** `false`
+
+### modal
+
+`modal` is a boolean, that should be set to true, if you would like the rest of the screen, other than the current element, greyed out, and the current element highlighted. If you do not need modal functionality, you can remove this option or set it to false.
+
+> **default value:** `false`
+
+### modalContainer
+
+`modalContainer` configures where in the DOM the modal overlay element will be placed (only has effect if `modal` is set to `true`)
+
+> **default value:** `body`
 
 
 ### addSteps
