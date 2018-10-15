@@ -19,6 +19,7 @@ module.exports = {
     disableScroll: false
   },
   rules: {
+    'no-console': 'off'
   },
   overrides: [
     // node files
