@@ -18,6 +18,17 @@ export function cleanupModal() {
   });
 }
 
+// Remove any modal and target-element highlight styling
+export function unhighlightStepTarget(currentStep) {
+  const targetElement = getElementForStep(currentStep);
+
+  if (targetElement) {
+    if (currentStep.options.highlightClass) {
+      targetElement.classList.remove(currentStep.options.highlightClass);
+    }
+  }
+}
+
 /**
  * Cleanup the steps and set pointerEvents back to 'auto'
  * @param tour The tour object

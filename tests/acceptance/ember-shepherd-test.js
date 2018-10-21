@@ -22,7 +22,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
   });
 
   hooks.afterEach(async function() {
-    return await tour.cancel();
+    return await tour.complete();
   });
 
   module('Cancel link', function() {
@@ -393,12 +393,12 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       assert.equal(getComputedStyle(targetElement)['pointer-events'], 'auto');
 
       // Exit the tour
-      await click(document.querySelector('[data-id="step-1"] .next-button'));
+      await click(document.querySelector('[data-shepherd-step-id="step-1"] .next-button'));
 
       assert.equal(getComputedStyle(targetElement)['pointer-events'], 'none');
 
       // Exit the tour
-      await click(document.querySelector('[data-id="step-2"] .cancel-button'));
+      await click(document.querySelector('[data-shepherd-step-id="step-2"] .cancel-button'));
 
       assert.equal(getComputedStyle(targetElement)['pointer-events'], 'auto');
     });
@@ -500,7 +500,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       tour.show('usage');
       tour.hide();
 
-      assert.equal(tour.get('tourObject').currentStep.el.hidden, true, 'The step is hidden');
+      assert.equal(tour.get('tourObject').currentStep.isOpen(), false, 'The step is hidden');
     });
   });
 });
