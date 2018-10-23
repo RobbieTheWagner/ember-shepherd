@@ -62,7 +62,7 @@
     "ember-cli-node-assets": "0.2.2",
     "ember-getowner-polyfill": "^2.2.0",
     "fastboot-transform": "^0.1.3",
-    "shepherd.js": "^2.0.0-beta.33"
+    "shepherd.js": "^2.0.0-beta.34"
   },
   "devDependencies": {
     "@ember/optional-features": "^0.6.3",
