@@ -6,7 +6,7 @@ import Evented from '@ember/object/evented';
 import { bind, debounce, later } from '@ember/runloop';
 import { normalizeAttachTo } from '../utils/attachTo';
 import { makeButton } from '../utils/buttons';
-import { cleanupModal, cleanupSteps, cleanupStepEventListeners } from '../utils/cleanup';
+import { cleanupModal, cleanupSteps, cleanupStepEventListeners, unhighlightStepTarget } from '../utils/cleanup';
 import {
   elementIsHidden,
   getElementForStep,
@@ -57,6 +57,14 @@ export default Service.extend(Evented, {
    */
   cancel() {
     get(this, 'tourObject').cancel();
+  },
+
+  /**
+   * Complete the tour
+   * @public
+   */
+  complete() {
+    get(this, 'tourObject').complete();
   },
 
   /**
@@ -254,6 +262,7 @@ export default Service.extend(Evented, {
       if (options.buttons) {
         options.buttons = options.buttons.map(makeButton.bind(this), this);
       }
+
       options.attachTo = normalizeAttachTo(options.attachTo);
       tour.addStep(id, options);
 
@@ -265,17 +274,12 @@ export default Service.extend(Evented, {
         this._styleTargetElementForStep(currentStep);
       });
 
-      currentStep.on('hide', () => {
-        // Remove any modal and target-element highlight styling
-        const targetElement = getElementForStep(currentStep);
-
-        if (targetElement) {
-          if (currentStep.options.highlightClass) {
-            targetElement.classList.remove(currentStep.options.highlightClass);
-          }
-
+      // Remove any modal and target-element highlight styling
+      ['hide', 'destroy'].forEach(event => {
+        currentStep.on(event, () => {
+          unhighlightStepTarget(currentStep);
           this._showOrHideModal('hide');
-        }
+        });
       });
 
       if (!currentStep.options.scrollToHandler) {
