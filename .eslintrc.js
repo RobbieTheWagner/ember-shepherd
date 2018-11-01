@@ -16,7 +16,8 @@ module.exports = {
   },
   globals: {
     Shepherd: false,
-    disableScroll: false
+    disableScroll: false,
+    tippy: false,
   },
   rules: {
     'no-console': 'off'

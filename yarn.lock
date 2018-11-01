@@ -10647,6 +10647,13 @@ tippy.js@^3.0.6:
   dependencies:
     popper.js "^1.14.4"
 
+tippy.js@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/tippy.js/-/tippy.js-3.1.1.tgz#758c24d6e33eb8de762f269b05c991180659a4cb"
+  integrity sha512-okRIUESCkUTLxV90XwOudmWAlwUN4aCcRoA+JP79oWG2SOMo8OUQoJITYfCZFMOD9Qc5bQ3p8Lha0EttisTp1g==
+  dependencies:
+    popper.js "^1.14.4"
+
 tmp@0.0.28:
   version "0.0.28"
   resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.28.tgz#172735b7f614ea7af39664fa84cf0de4e515d120"

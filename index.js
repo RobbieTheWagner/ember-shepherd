@@ -3,7 +3,12 @@
 const fastbootTransform = require('fastboot-transform');
 
 module.exports = {
+  isDevelopingAddon() {
+    return true;
+  },
+
   name: require('./package').name,
+
   included(app) {
     if (app.options && app.options.shepherd && app.options.shepherd.theme) {
       this.theme = `dist/css/shepherd-theme-${app.options.shepherd.theme}.css`;
@@ -43,7 +48,20 @@ module.exports = {
             }
           }
         };
-      }
+      },
+      'tippy.js'() {
+        return {
+          srcDir: 'dist',
+          import: {
+            include: [
+              'tippy.standalone.js',
+            ],
+            processTree(tree) {
+              return fastbootTransform(tree);
+            }
+          }
+        };
+      },
     }
   }
 };
