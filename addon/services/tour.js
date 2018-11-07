@@ -337,7 +337,8 @@ export default Service.extend(Evented, {
         debounce(
           this,
           () => { positionModalOpening(targetElement, modalOverlayOpening); },
-          50
+          50,
+          true
         );
       };
 
