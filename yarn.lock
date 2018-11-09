@@ -9696,14 +9696,14 @@ shellwords@^0.1.1:
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
 
-shepherd.js@^2.0.0-beta.34:
-  version "2.0.0-beta.34"
-  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-2.0.0-beta.34.tgz#b19ff4d942398396ec936d3adde824375e7c350a"
-  integrity sha512-Dlkn79bmv/C7HQp93B34Ovped6OmLPEY1dn1Cup3fgrXdHoH/iIkIPaGtXH4mMs2DUByRGOON8Cu/w0wY09OBw==
+shepherd.js@^2.0.0-beta.35:
+  version "2.0.0-beta.35"
+  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-2.0.0-beta.35.tgz#a2df6d7a66dbcda96123040638933542ba3616eb"
+  integrity sha512-/EJOuYFfv8mhrgfOm8FCsFheTH+5tjJxEKJEIEKLDX3xtpVtD0J1RW/phs2uJI3y6+x7D3hW8Ne2ky1m05PxDg==
   dependencies:
     element-matches "^0.1.2"
     lodash-es "^4.17.11"
-    tippy.js "^3.0.6"
+    tippy.js "^3.1.1"
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
@@ -10640,10 +10640,10 @@ tiny-lr@^1.1.1:
     object-assign "^4.1.0"
     qs "^6.4.0"
 
-tippy.js@^3.0.6:
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/tippy.js/-/tippy.js-3.0.6.tgz#ad29361e96129de582bf4088f00ea8413632ceb4"
-  integrity sha512-/paH+Kf3Caj0J+AlB1Kdg2KFAZ8yJeXZ8hPiwDBfxOLZg3YxDUa2OpMi3ODK8TXSMoPqcGUExCVcc46AmGCxjQ==
+tippy.js@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/tippy.js/-/tippy.js-3.1.1.tgz#758c24d6e33eb8de762f269b05c991180659a4cb"
+  integrity sha512-okRIUESCkUTLxV90XwOudmWAlwUN4aCcRoA+JP79oWG2SOMo8OUQoJITYfCZFMOD9Qc5bQ3p8Lha0EttisTp1g==
   dependencies:
     popper.js "^1.14.4"
 
