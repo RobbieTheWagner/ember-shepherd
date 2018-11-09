@@ -1,5 +1,46 @@
 # Changelog
 
+## [v4.0.0-beta.14](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.14) (2018-11-09)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.13...v4.0.0-beta.14)
+
+**Merged pull requests:**
+
+- Update style imports with latest Shepherd version [\#272](https://github.com/shipshapecode/ember-shepherd/pull/272) ([BrianSipple](https://github.com/BrianSipple))
+- Run debounced modal opening positioning immediately [\#271](https://github.com/shipshapecode/ember-shepherd/pull/271) ([scottkidder](https://github.com/scottkidder))
+- Bump deps [\#265](https://github.com/shipshapecode/ember-shepherd/pull/265) ([rwwagner90](https://github.com/rwwagner90))
+
+## [v4.0.0-beta.13](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.13) (2018-10-23)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.12...v4.0.0-beta.13)
+
+**Implemented enhancements:**
+
+- Add helper for hiding a current step. [\#249](https://github.com/shipshapecode/ember-shepherd/issues/249)
+- Add method to hide current step [\#261](https://github.com/shipshapecode/ember-shepherd/pull/261) ([rwwagner90](https://github.com/rwwagner90))
+- Document required elements order; add requiredElements tests [\#239](https://github.com/shipshapecode/ember-shepherd/pull/239) ([BrianSipple](https://github.com/BrianSipple))
+
+## [v4.0.0-beta.12](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.12) (2018-10-13)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.11...v4.0.0-beta.12)
+
+**Implemented enhancements:**
+
+- Refactor observer in favor of explicit methods [\#242](https://github.com/shipshapecode/ember-shepherd/issues/242)
+
+**Closed issues:**
+
+- An in-range update of sass is breaking the build 🚨 [\#255](https://github.com/shipshapecode/ember-shepherd/issues/255)
+- Action required: Greenkeeper could not be activated 🚨 [\#231](https://github.com/shipshapecode/ember-shepherd/issues/231)
+- Fix "method\_complexity" issue in addon/services/tour.js [\#181](https://github.com/shipshapecode/ember-shepherd/issues/181)
+- Fix "method\_lines" issue in addon/services/tour.js [\#180](https://github.com/shipshapecode/ember-shepherd/issues/180)
+
+**Merged pull requests:**
+
+- Replace steps observer with manual `addSteps` method [\#260](https://github.com/shipshapecode/ember-shepherd/pull/260) ([rwwagner90](https://github.com/rwwagner90))
+- Move some utils around, add comments, \_ private methods [\#259](https://github.com/shipshapecode/ember-shepherd/pull/259) ([rwwagner90](https://github.com/rwwagner90))
+- Update addon installation to not look for extra tippy file [\#258](https://github.com/shipshapecode/ember-shepherd/pull/258) ([BrianSipple](https://github.com/BrianSipple))
+
 ## [v4.0.0-beta.11](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.11) (2018-10-09)
 
 [Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.10...v4.0.0-beta.11)
