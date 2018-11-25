@@ -56,6 +56,7 @@ export default Service.extend(Evented, {
    * @public
    */
   cancel() {
+    this._showOrHideModal('hide');
     get(this, 'tourObject').cancel();
   },
 
@@ -64,6 +65,7 @@ export default Service.extend(Evented, {
    * @public
    */
   complete() {
+    this._showOrHideModal('hide');
     get(this, 'tourObject').complete();
   },
 
@@ -72,6 +74,7 @@ export default Service.extend(Evented, {
    * @public
    */
   hide() {
+    this._showOrHideModal('hide');
     get(this, 'tourObject').hide();
   },
 
@@ -162,7 +165,6 @@ export default Service.extend(Evented, {
     tourObject.on('cancel', bind(this, 'onTourFinish', 'cancel'));
 
     set(this, 'tourObject', tourObject);
-    this._initModalOverlay();
   },
 
   /**
@@ -278,7 +280,6 @@ export default Service.extend(Evented, {
       ['hide', 'destroy'].forEach(event => {
         currentStep.on(event, () => {
           unhighlightStepTarget(currentStep);
-          this._showOrHideModal('hide');
         });
       });
 
@@ -320,6 +321,7 @@ export default Service.extend(Evented, {
       this._modalOverlayElem = createModalOverlay();
       this._modalOverlayOpening = getModalMaskOpening(this._modalOverlayElem);
 
+      // don't show yet -- each step will control that
       this._showOrHideModal('hide');
 
       document.body.appendChild(this._modalOverlayElem);
