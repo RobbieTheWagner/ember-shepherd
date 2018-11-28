@@ -131,13 +131,11 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     test('Displaying the modal during tours when modal mode is enabled', async function(assert) {
       await visit('/');
 
-      const modalOverlay = document.querySelector(`#${modalElementIds.modalOverlay}`);
-
-      assert.ok(modalOverlay, 'modal overlay is present in the DOM');
-      assert.equal(getComputedStyle(modalOverlay).display, 'none', 'modal overlay is present but not displayed before the tour starts');
-      assert.notOk(document.body.classList.contains(modalClassNames.isVisible), `Body has no class of "${modalClassNames.isVisible}" when shepherd is not active`);
+      assert.equal(document.querySelector(`#${modalElementIds.modalOverlay}`), null, 'modal overlay is not present in the DOM before any tour is started');
 
       await click('.toggleHelpModal');
+
+      const modalOverlay = document.querySelector(`#${modalElementIds.modalOverlay}`);
 
       assert.equal(getComputedStyle(modalOverlay).display, 'block', 'modal overlay is present and displayed after the tour starts');
 
@@ -149,12 +147,11 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     test('Hiding the modal during tours when modal mode is not enabled', async function(assert) {
       await visit('/');
 
-      const modalOverlay = document.querySelector(`#${modalElementIds.modalOverlay}`);
-
-      assert.ok(modalOverlay, 'modal overlay is present in the DOM');
-      assert.equal(getComputedStyle(modalOverlay).display, 'none', 'modal overlay is present but not displayed before the tour starts');
+      assert.equal(document.querySelector(`#${modalElementIds.modalOverlay}`), null, 'modal overlay is not present in the DOM before any tour is started');
 
       await click('.toggleHelpNonmodal');
+
+      const modalOverlay = document.querySelector(`#${modalElementIds.modalOverlay}`);
 
       assert.equal(getComputedStyle(modalOverlay).display, 'none', 'modal overlay is present but not displayed after the tour starts');
 
