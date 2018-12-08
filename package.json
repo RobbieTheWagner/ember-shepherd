@@ -56,7 +56,7 @@
     "test:all": "ember try:each"
   },
   "dependencies": {
-    "disable-scroll": "0.3.0",
+    "disable-scroll": "0.4.1",
     "ember-assign-polyfill": "^2.6.0",
     "ember-cli-babel": "^6.16.0",
     "ember-cli-node-assets": "0.2.2",
