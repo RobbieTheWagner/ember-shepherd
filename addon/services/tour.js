@@ -3,23 +3,12 @@ import { get, set } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
 import Service from '@ember/service';
 import Evented from '@ember/object/evented';
-import { bind, debounce, later } from '@ember/runloop';
+import { bind, later } from '@ember/runloop';
 import { normalizeAttachTo } from '../utils/attachTo';
 import { makeButton } from '../utils/buttons';
-import { cleanupModal, cleanupSteps, cleanupStepEventListeners, unhighlightStepTarget } from '../utils/cleanup';
 import {
-  elementIsHidden,
-  getElementForStep,
-  toggleShepherdModalClass
+  elementIsHidden
 } from '../utils/dom';
-
-import {
-  getModalMaskOpening,
-  createModalOverlay,
-  positionModalOpening,
-  closeModalOpening,
-  classNames as modalClassNames
-} from '../utils/modal';
 
 
 export default Service.extend(Evented, {
@@ -34,9 +23,6 @@ export default Service.extend(Evented, {
   modal: false,
   requiredElements: [],
   steps: [],
-
-  _modalOverlayElem: null,
-  _onScreenChange() {},
 
   willDestroy() {
     this._cleanup();
@@ -56,7 +42,6 @@ export default Service.extend(Evented, {
    * @public
    */
   cancel() {
-    this._showOrHideModal('hide');
     get(this, 'tourObject').cancel();
   },
 
@@ -65,7 +50,6 @@ export default Service.extend(Evented, {
    * @public
    */
   complete() {
-    this._showOrHideModal('hide');
     get(this, 'tourObject').complete();
   },
 
@@ -74,7 +58,6 @@ export default Service.extend(Evented, {
    * @public
    */
   hide() {
-    this._showOrHideModal('hide');
     get(this, 'tourObject').hide();
   },
 
@@ -106,12 +89,9 @@ export default Service.extend(Evented, {
   },
 
   /**
-   * When the tour starts, setup the modal overlay, step event listeners, and disableScroll
+   * When the tour starts, setup the step event listeners, and disableScroll
    */
   onTourStart() {
-    this._initModalOverlay();
-    this._addStepEventListeners();
-
     if (get(this, 'disableScroll')) {
       disableScroll.on(window);
     }
@@ -132,17 +112,13 @@ export default Service.extend(Evented, {
   },
 
   /**
-   * Cleanup the modal leftovers, like the overlay and highlight, so they don't hang around.
+   * Cleanup disableScroll
    * @private
    */
   _cleanup() {
     if (get(this, 'disableScroll')) {
       disableScroll.off(window);
     }
-
-    cleanupStepEventListeners.bind(this)();
-    cleanupSteps(this.tourObject);
-    cleanupModal.bind(this)();
   },
 
   /**
@@ -153,11 +129,13 @@ export default Service.extend(Evented, {
     const confirmCancel = get(this, 'confirmCancel');
     const confirmCancelMessage = get(this, 'confirmCancelMessage');
     const defaultStepOptions = get(this, 'defaultStepOptions');
+    const useModalOverlay = get(this, 'modal');
 
     const tourObject = new Shepherd.Tour({
       confirmCancel,
       confirmCancelMessage,
-      defaultStepOptions
+      defaultStepOptions,
+      useModalOverlay
     });
 
     tourObject.on('start', bind(this, 'onTourStart'));
@@ -165,46 +143,6 @@ export default Service.extend(Evented, {
     tourObject.on('cancel', bind(this, 'onTourFinish', 'cancel'));
 
     set(this, 'tourObject', tourObject);
-  },
-
-  /**
-   * If modal is enabled, setup the svg mask opening and modal overlay for the step
-   * @param step
-   * @private
-   */
-  _setupModalForStep(step) {
-    if (!this.modal) {
-      this._showOrHideModal('hide');
-
-    } else {
-      this._styleModalOpeningForStep(step);
-      this._showOrHideModal('show');
-    }
-  },
-
-  /**
-   * Modulates the styles of the passed step's target element, based on the step's options and
-   * the tour's `modal` option, to visually emphasize the element
-   *
-   * @param step The step object that attaches to the element
-   * @private
-   */
-  _styleTargetElementForStep(step) {
-    const targetElement = getElementForStep(step);
-
-    if (!targetElement) {
-      return;
-    }
-
-    toggleShepherdModalClass(targetElement);
-
-    if (step.options.highlightClass) {
-      targetElement.classList.add(step.options.highlightClass);
-    }
-
-    if (step.options.canClickTarget === false) {
-      targetElement.style.pointerEvents = 'none';
-    }
   },
 
   /**
@@ -271,18 +209,6 @@ export default Service.extend(Evented, {
       // Step up events for the current step
       const currentStep = tour.steps[index];
 
-      currentStep.on('before-show', () => {
-        this._setupModalForStep(currentStep);
-        this._styleTargetElementForStep(currentStep);
-      });
-
-      // Remove any modal and target-element highlight styling
-      ['hide', 'destroy'].forEach(event => {
-        currentStep.on(event, () => {
-          unhighlightStepTarget(currentStep);
-        });
-      });
-
       if (!currentStep.options.scrollToHandler) {
         currentStep.options.scrollToHandler = (elem) => {
           // Allow scrolling so scrollTo works.
@@ -300,74 +226,5 @@ export default Service.extend(Evented, {
         };
       }
     });
-  },
-
-  /**
-   * Add resize and scroll listeners to window
-   * @private
-   */
-  _addStepEventListeners() {
-    if (typeof this._onScreenChange === 'function') {
-      window.removeEventListener('resize', this._onScreenChange, false);
-      window.removeEventListener('scroll', this._onScreenChange, false);
-    }
-
-    window.addEventListener('resize', this._onScreenChange, false);
-    window.addEventListener('scroll', this._onScreenChange, false);
-  },
-
-  _initModalOverlay() {
-    if (!this._modalOverlayElem) {
-      this._modalOverlayElem = createModalOverlay();
-      this._modalOverlayOpening = getModalMaskOpening(this._modalOverlayElem);
-
-      // don't show yet -- each step will control that
-      this._showOrHideModal('hide');
-
-      document.body.appendChild(this._modalOverlayElem);
-    }
-  },
-
-  _styleModalOpeningForStep(step) {
-    const modalOverlayOpening = this._modalOverlayOpening;
-    const targetElement = getElementForStep(step);
-
-    if (targetElement) {
-      positionModalOpening(targetElement, modalOverlayOpening);
-
-      this._onScreenChange = () => {
-        debounce(
-          this,
-          () => { positionModalOpening(targetElement, modalOverlayOpening); },
-          50,
-          true
-        );
-      };
-
-      this._addStepEventListeners();
-
-    } else {
-      closeModalOpening(this._modalOverlayOpening);
-    }
-  },
-
-  /**
-   * Show or hide the modal
-   * @param {string} showOrHide 'show' or 'hide'
-   * @private
-   */
-  _showOrHideModal(showOrHide) {
-    const show = showOrHide === 'show';
-
-    if (show) {
-      document.body.classList.add(modalClassNames.isVisible);
-    } else {
-      document.body.classList.remove(modalClassNames.isVisible);
-    }
-
-
-    if (this._modalOverlayElem) {
-      this._modalOverlayElem.style.display = show ? 'block' : 'none';
-    }
   }
 });

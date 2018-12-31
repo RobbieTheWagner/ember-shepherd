@@ -3,7 +3,7 @@ import Route from '@ember/routing/route';
 import config from '../config/environment';
 import { inject as service } from '@ember/service';
 import { scheduleOnce } from '@ember/runloop';
-import { steps as defaultSteps, defaultStepOptions } from '../data';
+import { steps as defaultSteps, defaultStepOptions} from '../data';
 
 export default Route.extend({
   tour: service(),
@@ -16,8 +16,6 @@ export default Route.extend({
     tour.set('disableScroll', this.get('disableScroll'));
     tour.set('modal', true);
     tour.set('confirmCancel', false);
-
-    tour.addSteps(defaultSteps);
 
     tour.on('cancel', () => {
       console.log('cancel');
@@ -49,6 +47,7 @@ export default Route.extend({
   activate() {
     if (config.environment !== 'test') {
       scheduleOnce('afterRender', this, function() {
+        this.get('tour').addSteps(defaultSteps);
         this.get('tour').start();
       });
     }
