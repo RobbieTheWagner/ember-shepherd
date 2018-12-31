@@ -17,6 +17,8 @@ export default Route.extend({
     tour.set('modal', true);
     tour.set('confirmCancel', false);
 
+    tour.addSteps(defaultSteps);
+
     tour.on('cancel', () => {
       console.log('cancel');
     });
@@ -47,7 +49,6 @@ export default Route.extend({
   activate() {
     if (config.environment !== 'test') {
       scheduleOnce('afterRender', this, function() {
-        this.get('tour').addSteps(defaultSteps);
         this.get('tour').start();
       });
     }

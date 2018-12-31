@@ -1,8 +1,13 @@
 import { module, test } from 'qunit';
 import { visit, click, find } from '@ember/test-helpers';
-import { later } from '@ember/runloop';
 import { setupApplicationTest } from 'ember-qunit';
 import { builtInButtons, steps as defaultSteps } from '../data';
+
+const toggleTour = async (tour, modal) => {
+  tour.set('modal', modal);
+  tour.addSteps(defaultSteps);
+  return await tour.start();
+};
 
 module('Acceptance | Tour functionality tests', function(hooks) {
   let tour;
@@ -13,7 +18,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     tour = this.owner.lookup('service:tour');
 
     tour.set('confirmCancel', false);
-    tour.set('modal', false);
+    tour.set('modal', true);
   });
 
   hooks.afterEach(async function() {
@@ -24,7 +29,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     test('Shows cancel link', async function(assert) {
       await visit('/');
 
-      await click('.toggleHelpModal');
+      await toggleTour(tour, true);
 
       const cancelLink = document.querySelector('.shepherd-cancel-link');
       assert.ok(cancelLink, 'Cancel link shown');
@@ -53,7 +58,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       tour.set('defaultStepOptions', defaultStepOptions);
       tour.addSteps(steps);
 
-      await click('.toggleHelpModal');
+      tour.start();
 
       assert.notOk(document.querySelector('.shepherd-element a.shepherd-cancel-link'));
     });
@@ -61,7 +66,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     test('Cancel link cancels the tour', async function(assert) {
       await visit('/');
 
-      await click('.toggleHelpModal');
+      await toggleTour(tour, true);
 
       assert.ok(document.body.classList.contains('shepherd-active'), 'Body has class of shepherd-active, when shepherd becomes active');
 
@@ -71,10 +76,11 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     });
   });
 
-  module('Required Elements', function () {
+  module('Required Elements', function() {
     test('Not warning about required elements when none are specified', async function(assert) {
       await visit('/');
-      await click('.toggleHelpModal');
+
+      await toggleTour(tour, true);
 
       const currentStepId = document.body.getAttribute('data-shepherd-step');
 
@@ -88,13 +94,14 @@ module('Acceptance | Tour functionality tests', function(hooks) {
           selector: 'body',
           message: 'Body element not found 🤔',
           title: 'Error'
-        },
+        }
       ];
 
       tour.set('requiredElements', requiredElements);
 
       await visit('/');
-      await click('.toggleHelpModal');
+
+      await toggleTour(tour, true);
 
       const currentStepId = document.body.getAttribute('data-shepherd-step');
 
@@ -108,13 +115,14 @@ module('Acceptance | Tour functionality tests', function(hooks) {
           selector: '👻',
           message: '👻 element not found',
           title: 'Missing Required Elements'
-        },
+        }
       ];
 
       tour.set('requiredElements', requiredElements);
 
       await visit('/');
-      await click('.toggleHelpModal');
+
+      await toggleTour(tour, true);
 
       const currentStepId = document.body.getAttribute('data-shepherd-step');
 
@@ -143,7 +151,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       tour.addSteps(stepsWithoutClasses);
 
-      await click('.toggleHelpModal');
+      tour.start();
 
       assert.ok(document.querySelector('.custom-default-class'), 'defaults class applied');
     });
@@ -169,7 +177,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       await visit('/');
 
-      await click('.toggleHelpModal');
+      tour.start();
 
       assert.ok(document.querySelector('.shepherd-element'), 'tour is visible');
     });
@@ -194,8 +202,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       }];
 
       tour.addSteps(steps);
-
-      await click('.toggleHelpModal');
+      tour.start();
 
       assert.ok(document.querySelector('.shepherd-element'), 'tour is visible');
     });
@@ -236,7 +243,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       tour.addSteps(steps);
 
-      await click('.toggleHelpModal');
+      await tour.start();
 
       assert.ok(document.querySelector('.button-one'), 'tour button one is visible');
       assert.ok(document.querySelector('.button-two'), 'tour button two is visible');
@@ -260,7 +267,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       assert.equal(document.querySelector('#ember-testing-container').scrollTop, 0, 'Scroll is initially 0');
 
-      await click('.toggleHelpModal');
+      await tour.start();
 
       await click(document.querySelector('.shepherd-content .next-button'));
 
@@ -286,10 +293,8 @@ module('Acceptance | Tour functionality tests', function(hooks) {
           scrollTo: true,
           scrollToHandler() {
             document.querySelector('#ember-testing-container').scrollTop = 120;
-            return later(() => {
-              assert.equal(document.querySelector('#ember-testing-container').scrollTop, 120, 'Scrolled correctly');
-              done();
-            }, 50);
+            assert.equal(document.querySelector('#ember-testing-container').scrollTop, 120, 'Scrolled correctly');
+            done();
           }
         }
       }];
@@ -302,7 +307,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       document.querySelector('#ember-testing-container').scrollTop = 0;
       assert.equal(document.querySelector('#ember-testing-container').scrollTop, 0, 'Scroll is initially 0');
 
-      await click('.toggleHelpModal');
+      await tour.start();
       await click(document.querySelector('.shepherd-content .next-button'));
     });
 
@@ -318,7 +323,8 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       assert.equal(document.querySelector('#ember-testing-container').scrollTop, 0, 'Scroll is initially 0');
 
-      await click('.toggleHelpModal');
+      await tour.start();
+
       await click(document.querySelector('.shepherd-content .next-button'));
 
       assert.ok(document.querySelector('#ember-testing-container').scrollTop > 0, 'Scrolled correctly');
