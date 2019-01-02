@@ -8251,7 +8251,7 @@ pluralize@^7.0.0:
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
   integrity sha512-ARhBOdzS3e41FbkW/XWrTEtukqqLoK5+Z/4UeDaLuSW+39JPeFgs4gCGqsrJHVZX0fUrx//4OF0K1CUGwlIFow==
 
-popper.js@^1.14.5:
+popper.js@^1.14.6:
   version "1.14.6"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.14.6.tgz#ab20dd4edf9288b8b3b6531c47c361107b60b4b0"
   integrity sha512-AGwHGQBKumlk/MDfrSOf0JHhJCImdDMcGNoqKmKkU+68GFazv3CQ6q9r7Ja1sKDZmYWTckY/uLyEznheTDycnA==
@@ -9458,14 +9458,14 @@ shellwords@^0.1.1:
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
 
-shepherd.js@^2.0.0-beta.35:
-  version "2.0.0-beta.35"
-  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-2.0.0-beta.35.tgz#a2df6d7a66dbcda96123040638933542ba3616eb"
-  integrity sha512-/EJOuYFfv8mhrgfOm8FCsFheTH+5tjJxEKJEIEKLDX3xtpVtD0J1RW/phs2uJI3y6+x7D3hW8Ne2ky1m05PxDg==
+shepherd.js@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-2.0.1.tgz#b069eaa165966a5e13c1615f29b44094484ed63b"
+  integrity sha512-hWUMpheaJUKEob1Tvy1qmMex+F2oEcOtGYLq0Ll81/EJ+jLjOhs753WU1djJdSr5eFSJFM0fQwCjVkF8D9fqqQ==
   dependencies:
     element-matches "^0.1.2"
     lodash-es "^4.17.11"
-    tippy.js "^3.1.1"
+    tippy.js "^3.3.0"
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
@@ -10303,12 +10303,12 @@ tiny-lr@^1.1.1:
     object-assign "^4.1.0"
     qs "^6.4.0"
 
-tippy.js@^3.1.1:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/tippy.js/-/tippy.js-3.2.0.tgz#dc4d1f13047f973ff062b5305201d068819f9935"
-  integrity sha512-OBZzx/g0ukTJ4CpS165pNU8RZ1uSWG1rDJHLFol4nA8kt+8VB7DQbnXh/HFEJ2hxo7K3+Np3Acqn0NbJ6iJUIg==
+tippy.js@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/tippy.js/-/tippy.js-3.3.0.tgz#90d4f90be9c80fdc0d0025f49378e3d9f60508d3"
+  integrity sha512-2gIQg57EFSCBqE97NZbakSkGBJF0GzdOhx/lneGQGMzJiJyvbpyKgNy4l4qofq0nEbXACl7C/jW/ErsdQa21aQ==
   dependencies:
-    popper.js "^1.14.5"
+    popper.js "^1.14.6"
 
 tmp@0.0.28:
   version "0.0.28"

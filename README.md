@@ -122,13 +122,6 @@ Thanks to [jquery-disablescroll](https://github.com/ultrapasty/jquery-disablescr
 
 > **default value:** `false`
 
-### modalContainer
-
-`modalContainer` configures where in the DOM the modal overlay element will be placed (only has effect if `modal` is set to `true`)
-
-> **default value:** `body`
-
-
 ### addSteps
 
 You must pass an array of steps to `addSteps`, something like this:
