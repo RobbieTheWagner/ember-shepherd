@@ -1,5 +1,21 @@
 # Changelog
 
+## [v4.0.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0) (2019-01-02)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.15...v4.0.0)
+
+**Merged pull requests:**
+
+- Remove modal code [\#281](https://github.com/shipshapecode/ember-shepherd/pull/281) ([rwwagner90](https://github.com/rwwagner90))
+
+## [v4.0.0-beta.15](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.15) (2018-11-28)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.14...v4.0.0-beta.15)
+
+**Merged pull requests:**
+
+- Fix turning off modal overlay in successive tour starts [\#277](https://github.com/shipshapecode/ember-shepherd/pull/277) ([BrianSipple](https://github.com/BrianSipple))
+
 ## [v4.0.0-beta.14](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.14) (2018-11-09)
 
 [Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.13...v4.0.0-beta.14)
