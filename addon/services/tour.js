@@ -129,12 +129,14 @@ export default Service.extend(Evented, {
     const confirmCancel = get(this, 'confirmCancel');
     const confirmCancelMessage = get(this, 'confirmCancelMessage');
     const defaultStepOptions = get(this, 'defaultStepOptions');
+    const tourName = get(this, 'tourName');
     const useModalOverlay = get(this, 'modal');
 
     const tourObject = new Shepherd.Tour({
       confirmCancel,
       confirmCancelMessage,
       defaultStepOptions,
+      tourName,
       useModalOverlay
     });
 
