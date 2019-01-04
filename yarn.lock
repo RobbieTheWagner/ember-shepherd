@@ -9485,10 +9485,10 @@ shellwords@^0.1.1:
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
 
-shepherd.js@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-2.0.1.tgz#b069eaa165966a5e13c1615f29b44094484ed63b"
-  integrity sha512-hWUMpheaJUKEob1Tvy1qmMex+F2oEcOtGYLq0Ll81/EJ+jLjOhs753WU1djJdSr5eFSJFM0fQwCjVkF8D9fqqQ==
+shepherd.js@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-2.0.2.tgz#189b218913c10529231780d34a2ec436d567000a"
+  integrity sha512-J5EvVMximtscMsbAwPBT7MBb8ia/i+5wZjDflcpjiCZ0D/NFiGh0xADwwuvKOdQ77NKJomDONTUpk4Q80ZOKtA==
   dependencies:
     element-matches "^0.1.2"
     lodash-es "^4.17.11"
