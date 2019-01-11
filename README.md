@@ -1,4 +1,5 @@
-# ember-shepherd
+ember-shepherd
+==============================================================================
 
 <a href="https://shipshape.io/"><img src="http://i.imgur.com/DWHQjA5.png" alt="Ship Shape" width="100" height="100"/></a>
 
@@ -13,21 +14,30 @@
 [![Test Coverage](https://codeclimate.com/github/shipshapecode/ember-shepherd/badges/coverage.svg)](https://codeclimate.com/github/shipshapecode/ember-shepherd/coverage)
 [![Greenkeeper badge](https://badges.greenkeeper.io/shipshapecode/ember-shepherd.svg)](https://greenkeeper.io/)
 
-This is an Ember wrapper for the [Shepherd](https://github.com/HubSpot/Shepherd), site tour, library. It provides additional functionality, on top of Shepherd, as well.
+This is an Ember wrapper for the [Shepherd](https://github.com/shipshapecode/shepherd), site tour, library. It provides additional functionality, on top of Shepherd, as well.
 
-## Demo
+Compatibility
+------------------------------------------------------------------------------
+
+* Ember.js v2.18 or above
+* Ember CLI v2.13 or above
+
+
+Installation
+------------------------------------------------------------------------------
+
+```
+ember install ember-shepherd
+```
+
+Demo
+------------------------------------------------------------------------------
 
 [![Guide your users through a tour of your app](http://i.imgur.com/VxJtJDI.png)](http://shipshapecode.github.io/ember-shepherd/)
 http://shipshapecode.github.io/ember-shepherd/
 
-## Getting started
-
-To start, if you are using Ember CLI, simply run:
-```bash
-ember install ember-shepherd
-```
-
-## Usage
+Usage
+------------------------------------------------------------------------------
 
 Interaction with `ember-shepherd` is done entirely through the Tour service, which you can access from any object using the `Ember.inject` syntax:
 
@@ -404,3 +414,8 @@ beforeShowPromise: function() {
 
 ## Contributing
 Please feel free to post any issues you encounter or feature requests on the issues in this repo. Pull requests welcome as well!
+
+License
+------------------------------------------------------------------------------
+
+This project is licensed under the [MIT License](LICENSE.md).
