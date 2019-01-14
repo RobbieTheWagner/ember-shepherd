@@ -1,5 +1,29 @@
 # Changelog
 
+## [v4.4.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.4.0) (2019-01-14)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.3.0...v4.4.0)
+
+## [v4.3.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.3.0) (2019-01-11)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.2.0...v4.3.0)
+
+## [v4.2.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.2.0) (2019-01-07)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.1.1...v4.2.0)
+
+## [v4.1.1](https://github.com/shipshapecode/ember-shepherd/tree/v4.1.1) (2019-01-04)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.1.0...v4.1.1)
+
+## [v4.1.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.1.0) (2019-01-02)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0...v4.1.0)
+
+**Implemented enhancements:**
+
+- feat: Pass tourName option when initializing the Shepherd.Tour [\#282](https://github.com/shipshapecode/ember-shepherd/pull/282) ([scottkidder](https://github.com/scottkidder))
+
 ## [v4.0.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0) (2019-01-02)
 
 [Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.15...v4.0.0)

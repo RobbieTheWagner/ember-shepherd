@@ -1,3 +1,183 @@
+## [v4.0.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0) (2019-01-02)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.15...v4.0.0)
+
+**Merged pull requests:**
+
+- Remove modal code [\#281](https://github.com/shipshapecode/ember-shepherd/pull/281) ([rwwagner90](https://github.com/rwwagner90))
+
+## [v4.0.0-beta.15](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.15) (2018-11-28)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.14...v4.0.0-beta.15)
+
+**Merged pull requests:**
+
+- Fix turning off modal overlay in successive tour starts [\#277](https://github.com/shipshapecode/ember-shepherd/pull/277) ([BrianSipple](https://github.com/BrianSipple))
+
+## [v4.0.0-beta.14](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.14) (2018-11-09)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.13...v4.0.0-beta.14)
+
+**Merged pull requests:**
+
+- Update style imports with latest Shepherd version [\#272](https://github.com/shipshapecode/ember-shepherd/pull/272) ([BrianSipple](https://github.com/BrianSipple))
+- Run debounced modal opening positioning immediately [\#271](https://github.com/shipshapecode/ember-shepherd/pull/271) ([scottkidder](https://github.com/scottkidder))
+- Bump deps [\#265](https://github.com/shipshapecode/ember-shepherd/pull/265) ([rwwagner90](https://github.com/rwwagner90))
+
+## [v4.0.0-beta.13](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.13) (2018-10-23)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.12...v4.0.0-beta.13)
+
+**Implemented enhancements:**
+
+- Add helper for hiding a current step. [\#249](https://github.com/shipshapecode/ember-shepherd/issues/249)
+- Add method to hide current step [\#261](https://github.com/shipshapecode/ember-shepherd/pull/261) ([rwwagner90](https://github.com/rwwagner90))
+- Document required elements order; add requiredElements tests [\#239](https://github.com/shipshapecode/ember-shepherd/pull/239) ([BrianSipple](https://github.com/BrianSipple))
+
+## [v4.0.0-beta.12](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.12) (2018-10-13)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.11...v4.0.0-beta.12)
+
+**Implemented enhancements:**
+
+- Refactor observer in favor of explicit methods [\#242](https://github.com/shipshapecode/ember-shepherd/issues/242)
+
+**Closed issues:**
+
+- An in-range update of sass is breaking the build 🚨 [\#255](https://github.com/shipshapecode/ember-shepherd/issues/255)
+- Action required: Greenkeeper could not be activated 🚨 [\#231](https://github.com/shipshapecode/ember-shepherd/issues/231)
+- Fix "method\_complexity" issue in addon/services/tour.js [\#181](https://github.com/shipshapecode/ember-shepherd/issues/181)
+- Fix "method\_lines" issue in addon/services/tour.js [\#180](https://github.com/shipshapecode/ember-shepherd/issues/180)
+
+**Merged pull requests:**
+
+- Replace steps observer with manual `addSteps` method [\#260](https://github.com/shipshapecode/ember-shepherd/pull/260) ([rwwagner90](https://github.com/rwwagner90))
+- Move some utils around, add comments, \_ private methods [\#259](https://github.com/shipshapecode/ember-shepherd/pull/259) ([rwwagner90](https://github.com/rwwagner90))
+- Update addon installation to not look for extra tippy file [\#258](https://github.com/shipshapecode/ember-shepherd/pull/258) ([BrianSipple](https://github.com/BrianSipple))
+
+## [v4.0.0-beta.11](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.11) (2018-10-09)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.10...v4.0.0-beta.11)
+
+**Breaking changes:**
+
+- Implement SVG-based modal mode [\#248](https://github.com/shipshapecode/ember-shepherd/pull/248) ([BrianSipple](https://github.com/BrianSipple))
+
+**Implemented enhancements:**
+
+- Default highlighting/arrow ui [\#197](https://github.com/shipshapecode/ember-shepherd/issues/197)
+- Update project to use shepherd versions with Tippy [\#256](https://github.com/shipshapecode/ember-shepherd/pull/256) ([BrianSipple](https://github.com/BrianSipple))
+- Fix css rules for pointer-events [\#253](https://github.com/shipshapecode/ember-shepherd/pull/253) ([BrianSipple](https://github.com/BrianSipple))
+- Block clicks outside of visible modal opening. [\#252](https://github.com/shipshapecode/ember-shepherd/pull/252) ([BrianSipple](https://github.com/BrianSipple))
+- Hide modal when hiding the current step [\#250](https://github.com/shipshapecode/ember-shepherd/pull/250) ([BrianSipple](https://github.com/BrianSipple))
+
+**Fixed bugs:**
+
+- cleanupShepherdElements destroys \<body\> element in tests [\#246](https://github.com/shipshapecode/ember-shepherd/issues/246)
+- Use Ember.set to set `this.tourObject` [\#251](https://github.com/shipshapecode/ember-shepherd/pull/251) ([BrianSipple](https://github.com/BrianSipple))
+- Remove cleanupShepherdElements [\#247](https://github.com/shipshapecode/ember-shepherd/pull/247) ([rwwagner90](https://github.com/rwwagner90))
+
+**Merged pull requests:**
+
+- Make `pointer-event` styling aware of the modal's current visibility. [\#254](https://github.com/shipshapecode/ember-shepherd/pull/254) ([BrianSipple](https://github.com/BrianSipple))
+- Update dependencies to enable Greenkeeper 🌴 [\#232](https://github.com/shipshapecode/ember-shepherd/pull/232) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
+## [v4.0.0-beta.10](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.10) (2018-09-14)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.9...v4.0.0-beta.10)
+
+**Breaking changes:**
+
+- Change builtInButtons to buttons [\#241](https://github.com/shipshapecode/ember-shepherd/pull/241) ([chuckcarpenter](https://github.com/chuckcarpenter))
+
+**Closed issues:**
+
+- Clarify/change builtInButtons [\#224](https://github.com/shipshapecode/ember-shepherd/issues/224)
+
+## [v4.0.0-beta.9](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.9) (2018-09-13)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.8...v4.0.0-beta.9)
+
+**Breaking changes:**
+
+- Stop disabling target element pointer events [\#245](https://github.com/shipshapecode/ember-shepherd/pull/245) ([BrianSipple](https://github.com/BrianSipple))
+- Rename `defaults` to `defaultStepOptions`. [\#243](https://github.com/shipshapecode/ember-shepherd/pull/243) ([BrianSipple](https://github.com/BrianSipple))
+
+**Closed issues:**
+
+- Remove usage of `.shepherd-transparent-text` class [\#238](https://github.com/shipshapecode/ember-shepherd/issues/238)
+
+**Merged pull requests:**
+
+- Clean up testing mock data and class name usage. [\#240](https://github.com/shipshapecode/ember-shepherd/pull/240) ([BrianSipple](https://github.com/BrianSipple))
+
+## [v4.0.0-beta.8](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.8) (2018-09-07)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.7...v4.0.0-beta.8)
+
+**Implemented enhancements:**
+
+- remove required buttons options [\#237](https://github.com/shipshapecode/ember-shepherd/pull/237) ([chuckcarpenter](https://github.com/chuckcarpenter))
+
+## [v4.0.0-beta.7](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.7) (2018-09-07)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.6...v4.0.0-beta.7)
+
+**Merged pull requests:**
+
+- Update readme with descriptions of which step options are required [\#235](https://github.com/shipshapecode/ember-shepherd/pull/235) ([BrianSipple](https://github.com/BrianSipple))
+
+## [v4.0.0-beta.6](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.6) (2018-09-06)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.5...v4.0.0-beta.6)
+
+## [v4.0.0-beta.5](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.5) (2018-09-06)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.4...v4.0.0-beta.5)
+
+## [v4.0.0-beta.4](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.4) (2018-09-05)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.3...v4.0.0-beta.4)
+
+**Merged pull requests:**
+
+- Tweak README ordering and text. [\#234](https://github.com/shipshapecode/ember-shepherd/pull/234) ([BrianSipple](https://github.com/BrianSipple))
+- Tweak dialog text for the `builtInButtons` step. [\#233](https://github.com/shipshapecode/ember-shepherd/pull/233) ([BrianSipple](https://github.com/BrianSipple))
+
+## [v4.0.0-beta.3](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.3) (2018-08-30)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.2...v4.0.0-beta.3)
+
+## [v4.0.0-beta.2](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.2) (2018-08-09)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.1...v4.0.0-beta.2)
+
+## [v4.0.0-beta.1](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.1) (2018-07-09)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.0...v4.0.0-beta.1)
+
+**Merged pull requests:**
+
+- Update ember-assign-polyfill to the latest version 🚀 [\#223](https://github.com/shipshapecode/ember-shepherd/pull/223) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update qunit-dom to the latest version 🚀 [\#222](https://github.com/shipshapecode/ember-shepherd/pull/222) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
+## [v4.0.0-beta.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0-beta.0) (2018-07-02)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v3.3.0...v4.0.0-beta.0)
+
+**Closed issues:**
+
+- Custom button actions [\#218](https://github.com/shipshapecode/ember-shepherd/issues/218)
+- Needs a release [\#216](https://github.com/shipshapecode/ember-shepherd/issues/216)
+- Tether is end-of-life [\#214](https://github.com/shipshapecode/ember-shepherd/issues/214)
+
+**Merged pull requests:**
+
+- Update add-on to use Shepherd with Popper.js [\#221](https://github.com/shipshapecode/ember-shepherd/pull/221) ([chuckcarpenter](https://github.com/chuckcarpenter))
+- Updated docs with custom actions [\#220](https://github.com/shipshapecode/ember-shepherd/pull/220) ([chrism](https://github.com/chrism))
+- Update ember-assign-polyfill to the latest version 🚀 [\#219](https://github.com/shipshapecode/ember-shepherd/pull/219) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update ember-tether to the latest version 🚀 [\#217](https://github.com/shipshapecode/ember-shepherd/pull/217) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
 ### **3.3.0**
 * Add `modalContainer` option for applying the modal to something other than `body`
 
