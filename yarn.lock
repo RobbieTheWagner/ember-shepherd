@@ -8958,10 +8958,10 @@ shellwords@^0.1.1:
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
 
-shepherd.js@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-2.2.0.tgz#ffbd94f8ceb0521c069a24292aaaf728864c30ac"
-  integrity sha512-S/rcNW5niPB00/cuyYAkHlaG3TS5ijrGljbc1PT3H46f++NOltTxPZdEYQLaLnZuk5r4RGaa9mw4feRE4FIhQw==
+shepherd.js@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-2.3.0.tgz#a531747ad5c20841e63b74f40bd74be372a16a0e"
+  integrity sha512-8Yg/WAWjkXMjUn54UhTDjE0+epHfew77JzCTMBdD7OOkv/oTsEj+N/jUQyQES1hXk3tLHBtDVm2PsKDY6hKNgA==
   dependencies:
     element-matches "^0.1.2"
     lodash-es "^4.17.11"
@@ -9485,7 +9485,7 @@ stylelint-scss@^3.5.0:
     postcss-selector-parser "^5.0.0"
     postcss-value-parser "^3.3.1"
 
-stylelint@^9.1.3:
+stylelint@^9.1.3, stylelint@^9.9.0:
   version "9.9.0"
   resolved "https://registry.yarnpkg.com/stylelint/-/stylelint-9.9.0.tgz#dde466e9b049e0bd30e912ad280f1a2ecf6efdf8"
   integrity sha512-kIuX0/9/I2mZeHz6EoFt7UpLt7Mz+ic9/PmFwKMdq4BkQHikg3FkcgAElLdAmaI8Au1JEUOS996ZFE+mwXytmA==
