@@ -111,7 +111,7 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "http://ember-shepherd.shipshape.io/"
+    "demoURL": "https://shipshapecode.github.io/ember-shepherd/"
   },
   "greenkeeper": {
     "ignore": [
