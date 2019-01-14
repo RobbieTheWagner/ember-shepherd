@@ -35,6 +35,14 @@ pre[class*="language-"] {
   word-spacing: normal;
 }
 
+/* Code blocks */
+pre[class*="language-"] {
+  background-color: $color1;
+  margin: 0.5em 0;
+  overflow: auto;
+  padding: 1em;
+}
+
 pre[class*="language-"]::-moz-selection,
 pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection,
@@ -47,14 +55,6 @@ pre[class*="language-"] ::selection,
 code[class*="language-"]::selection,
 code[class*="language-"] ::selection {
   background: #b3d4fc;
-}
-
-/* Code blocks */
-pre[class*="language-"] {
-  background-color: $color1;
-  margin: 0.5em 0;
-  overflow: auto;
-  padding: 1em;
 }
 
 /* Inline code */
@@ -86,6 +86,11 @@ pre[class*="language-"] {
   color: $text-color;
 }
 
+.token.tag,
+.token.selector {
+  color: $keyword-color;
+}
+
 .token.entity,
 .token.url,
 .token.symbol,
@@ -95,27 +100,29 @@ pre[class*="language-"] {
 .token.constant,
 .token.property,
 .token.regex,
-.token.inserted {
+.token.inserted,
+.token.atrule,
+.token.keyword,
+.token.attr-name {
   color: $bright-text;
 }
 
-.token.atrule,
-.token.keyword,
-.token.attr-name,
-.language-autohotkey .token.selector {
-  color: $bright-text;
+.language-autohotkey {
+  .token {
+    &.keyword {
+      color: $keyword-color;
+    }
+
+    &.selector {
+      color: $bright-text;
+    }
+  }
 }
 
 .token.function,
 .token.deleted,
 .language-autohotkey .token.tag {
   color: $dark-purple;
-}
-
-.token.tag,
-.token.selector,
-.language-autohotkey .token.keyword {
-  color: $keyword-color;
 }
 
 .token.important,
