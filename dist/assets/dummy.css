@@ -1,0 +1,544 @@
+@charset "UTF-8";
+/**
+ * GHColors theme by Avi Aryan (http://aviaryan.in)
+ * Inspired by Github syntax coloring
+ */
+@import url(https://fonts.googleapis.com/css?family=Inconsolata);
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
+code[class*=language-],
+pre[class*=language-] {
+  color: #493f8c;
+  direction: ltr;
+  font-family: "Inconsolata", monospace;
+  font-size: 14pt;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  -webkit-hyphens: none;
+  hyphens: none;
+  line-height: 1.2em;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  text-align: left;
+  text-shadow: none;
+  white-space: pre;
+  word-break: normal;
+  word-spacing: normal;
+}
+
+/* Code blocks */
+pre[class*=language-] {
+  background-color: #6e698c;
+  margin: 0.5em 0;
+  overflow: auto;
+  padding: 1em;
+}
+
+pre[class*=language-]::-moz-selection,
+pre[class*=language-] ::-moz-selection,
+code[class*=language-]::-moz-selection,
+code[class*=language-] ::-moz-selection {
+  background: #b3d4fc;
+}
+
+pre[class*=language-]::selection,
+pre[class*=language-] ::selection,
+code[class*=language-]::selection,
+code[class*=language-] ::selection {
+  background: #b3d4fc;
+}
+
+/* Inline code */
+:not(pre) > code[class*=language-] {
+  background: #6e698c;
+  padding: 1px 0.2em;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #c8c7d5;
+  font-style: italic;
+}
+
+.token.namespace {
+  opacity: 0.7;
+}
+
+.token.string,
+.token.attr-value {
+  color: #cfcef2;
+}
+
+.token.punctuation,
+.token.operator {
+  background-color: #6e698c;
+  color: #493f8c;
+}
+
+.token.tag,
+.token.selector {
+  color: #00009f;
+}
+
+.token.entity,
+.token.url,
+.token.symbol,
+.token.number,
+.token.boolean,
+.token.variable,
+.token.constant,
+.token.property,
+.token.regex,
+.token.inserted,
+.token.atrule,
+.token.keyword,
+.token.attr-name {
+  color: #01a2a6;
+}
+
+.language-autohotkey .token.keyword {
+  color: #00009f;
+}
+.language-autohotkey .token.selector {
+  color: #01a2a6;
+}
+
+.token.function,
+.token.deleted,
+.language-autohotkey .token.tag {
+  color: #323040;
+}
+
+.token.important,
+.token.function,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Pier Sans";
+  font-style: italic;
+  font-weight: bold;
+  src: url("../../fonts/PierSans-BoldItalic.eot");
+  src: url("../../fonts/PierSans-BoldItalic.eot?#iefix") format("embedded-opentype"), url("../../fonts/PierSans-BoldItalic.woff") format("woff"), url("../../fonts/PierSans-BoldItalic.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Pier Sans";
+  font-style: italic;
+  font-weight: normal;
+  src: url("../../fonts/PierSans-Italic.eot");
+  src: url("../../fonts/PierSans-Italic.eot?#iefix") format("embedded-opentype"), url("../../fonts/PierSans-Italic.woff") format("woff"), url("../../fonts/PierSans-Italic.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Pier Sans";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../../fonts/PierSans.eot");
+  src: url("../../fonts/PierSans.eot?#iefix") format("embedded-opentype"), url("../../fonts/PierSans.woff") format("woff"), url("../../fonts/PierSans.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Pier Sans";
+  font-style: normal;
+  font-weight: bold;
+  src: url("../../fonts/PierSans-Bold.eot");
+  src: url("../../fonts/PierSans-Bold.eot?#iefix") format("embedded-opentype"), url("../../fonts/PierSans-Bold.woff") format("woff"), url("../../fonts/PierSans-Bold.ttf") format("truetype");
+}
+/* stylelint-disable selector-max-id */
+#shepherdModalOverlayContainer {
+  -ms-filter: "progid:dximagetransform.microsoft.gradient.alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  height: 100%;
+  left: 0;
+  opacity: 0.5;
+  position: fixed;
+  top: 0;
+  transition: all 0.3s ease-out;
+  width: 100%;
+  z-index: 9997;
+}
+
+.shepherd-modal.shepherd-enabled {
+  position: relative;
+  z-index: 9998;
+}
+
+/**
+ * Block clicks except for those that would occur
+ * on Shepherd elements or on the target element.
+*/
+.shepherd-active.shepherd-modal-is-visible :not(.shepherd-target) {
+  pointer-events: none;
+}
+
+.shepherd-active.shepherd-modal-is-visible .shepherd-target,
+.shepherd-active.shepherd-modal-is-visible .shepherd-cancel-link,
+.shepherd-active.shepherd-modal-is-visible .shepherd-button {
+  pointer-events: auto;
+}
+
+/* stylelint-enable */
+/**
+ * Styles to support usage of Tippy.js tooltips (https://atomiks.github.io/tippyjs)
+ */
+/**
+ * Tippy tooltips have the following base structure:
+ *
+ * <div class="tippy-popper" x-placement="top">
+ *   <div class="tippy-tooltip">
+ *     <div class="tippy-content">
+ *       [[ Content Here ]]
+ *     </div>
+ *   </div>
+ * </div>
+ */
+.tippy-popper {
+  z-index: 9999;
+}
+.tippy-popper .tippy-arrow {
+  border: 16px solid transparent;
+  content: "";
+  display: block;
+  height: 0;
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+}
+.tippy-popper[x-placement^=top] {
+  margin-bottom: 16px;
+}
+.tippy-popper[x-placement^=top] .tippy-arrow {
+  border-bottom: 0;
+  border-top-color: #3d2f53;
+  left: calc(50% - 16px);
+}
+.tippy-popper[x-placement^=bottom] {
+  margin-top: 16px;
+}
+.tippy-popper[x-placement^=bottom] .tippy-arrow {
+  border-bottom-color: #e6e6e6;
+  border-top: 0;
+  left: calc(50% - 16px);
+}
+.tippy-popper[x-placement^=left] {
+  margin-right: 16px;
+}
+.tippy-popper[x-placement^=left] .tippy-arrow {
+  border-left-color: #3d2f53;
+  border-right: 0;
+  margin-top: -16px;
+  top: calc(50% - 16px);
+}
+.tippy-popper[x-placement^=right] {
+  margin-left: 16px;
+}
+.tippy-popper[x-placement^=right] .tippy-arrow {
+  border-left: 0;
+  border-right-color: #3d2f53;
+  top: calc(50% - 16px);
+}
+.tippy-popper .tippy-tooltip {
+  background-color: rgba(0, 0, 0, 0);
+  max-height: 100%;
+  max-width: 100%;
+  padding: 0;
+  width: 400px;
+}
+
+.shepherd-element, .shepherd-element:after, .shepherd-element:before,
+.shepherd-element *,
+.shepherd-element *:after,
+.shepherd-element *:before {
+  box-sizing: border-box;
+}
+
+.shepherd-element {
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+}
+.shepherd-element.shepherd-has-title .shepherd-content header {
+  background: #e6e6e6;
+  padding: 1em;
+}
+.shepherd-element .shepherd-content {
+  background: #3d2f53;
+  font-size: inherit;
+  padding: 0;
+}
+.shepherd-element .shepherd-content header {
+  *zoom: 1;
+  align-items: center;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  display: flex;
+  justify-content: center;
+  line-height: 2em;
+  padding: 0.75em 0.75em 0;
+}
+.shepherd-element .shepherd-content header:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+.shepherd-element .shepherd-content header .shepherd-title,
+.shepherd-element .shepherd-content header .shepherd-cancel-link {
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  vertical-align: middle;
+}
+.shepherd-element .shepherd-content header .shepherd-title {
+  color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex: 1 0 auto;
+  font-size: 1.1em;
+}
+.shepherd-element .shepherd-content header .shepherd-cancel-link {
+  color: rgba(179, 179, 179, 0.75);
+  font-size: 2em;
+  margin-left: auto;
+  text-decoration: none;
+  transition: color 0.5s ease;
+}
+.shepherd-element .shepherd-content header .shepherd-cancel-link:before {
+  content: "×";
+}
+.shepherd-element .shepherd-content header .shepherd-cancel-link:hover {
+  color: rgba(0, 0, 0, 0.75);
+}
+.shepherd-element .shepherd-content .shepherd-text {
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.3em;
+  padding: 0.75em;
+}
+.shepherd-element .shepherd-content .shepherd-text a,
+.shepherd-element .shepherd-content .shepherd-text a:visited,
+.shepherd-element .shepherd-content .shepherd-text a:active {
+  border-bottom: 1px dotted;
+  border-bottom-color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+}
+.shepherd-element .shepherd-content .shepherd-text a:hover,
+.shepherd-element .shepherd-content .shepherd-text a:visited:hover,
+.shepherd-element .shepherd-content .shepherd-text a:active:hover {
+  border-bottom-style: solid;
+}
+.shepherd-element .shepherd-content .shepherd-text p {
+  margin-top: 0;
+}
+.shepherd-element .shepherd-content .shepherd-text p:last-child {
+  margin-bottom: 0;
+}
+.shepherd-element .shepherd-content footer {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 0 0.75em 0.75em;
+}
+.shepherd-element .shepherd-content footer .shepherd-buttons {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
+.shepherd-element .shepherd-content footer .shepherd-buttons li {
+  display: inline;
+  margin: 0 0.5em 0 0;
+}
+.shepherd-element .shepherd-content footer .shepherd-buttons li:last-child {
+  margin-right: 0;
+}
+.shepherd-element .shepherd-content footer .shepherd-buttons li .shepherd-button {
+  display: inline-block;
+  *display: inline;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  background: #624b86;
+  border: 0;
+  border-radius: 3px;
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.8em;
+  letter-spacing: 0.1em;
+  line-height: 1em;
+  padding: 0.75em 2em;
+  text-transform: uppercase;
+  transition: all 0.5s ease;
+}
+.shepherd-element .shepherd-content footer .shepherd-buttons li .shepherd-button:hover {
+  background: #4a3965;
+}
+.shepherd-element .shepherd-content footer .shepherd-buttons li .shepherd-button.shepherd-button-secondary {
+  background: #c8c7d5;
+  color: rgba(0, 0, 0, 0.75);
+}
+.shepherd-element .shepherd-content footer .shepherd-buttons li .shepherd-button.shepherd-button-secondary:hover {
+  background: #abaabf;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+body,
+html {
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #c8c7d5;
+  font-family: "Pier Sans", sans-serif;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  margin-top: 0.2rem;
+}
+
+body {
+  background-color: #3d2f53;
+  font-family: "Pier Sans", sans-serif;
+  margin: 0;
+}
+
+a.bottomButton {
+  background-color: transparent;
+  border: 2px solid #c1b5d3;
+  color: #c1b5d3;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.7em;
+  font-weight: 500;
+  letter-spacing: 3px;
+  line-height: 1.3em;
+  padding: 1.25em 1.25em 1em 1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 150px;
+}
+a.bottomButton:hover {
+  border: 2px solid #c8c7d5;
+  color: #c8c7d5;
+}
+
+.panel {
+  background-color: #c8c7d5;
+  border-color: #d8d8d8;
+  border-style: solid;
+  border-width: 1px;
+  color: #3d2f53;
+  font-size: 0.75em;
+  margin-bottom: 1.25rem;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.button.dark {
+  background: #c1b5d3;
+  color: #75beaa;
+}
+
+@media (max-width: 568px) {
+  .button {
+    display: block;
+    margin: 1em auto 0;
+  }
+}
+.shepherd-element.shepherd-theme-arrows.shepherd-has-title header {
+  background-color: #c8c7d5;
+  color: #3d2f53;
+}
+.shepherd-element.shepherd-theme-arrows.shepherd-has-title header h1,
+.shepherd-element.shepherd-theme-arrows.shepherd-has-title header h2,
+.shepherd-element.shepherd-theme-arrows.shepherd-has-title header h3,
+.shepherd-element.shepherd-theme-arrows.shepherd-has-title header h4,
+.shepherd-element.shepherd-theme-arrows.shepherd-has-title header h5,
+.shepherd-element.shepherd-theme-arrows.shepherd-has-title header h6 {
+  color: #3d2f53;
+}
+.shepherd-element.shepherd-theme-arrows[x-placement^=bottom] .popper__arrow {
+  border-bottom-color: #3d2f53;
+}
+.shepherd-element.shepherd-theme-arrows[x-placement^=bottom].shepherd-has-title .popper__arrow {
+  border-bottom-color: #c8c7d5;
+}
+.shepherd-element.shepherd-theme-arrows[x-placement^=top] .popper__arrow {
+  border-top-color: #3d2f53;
+}
+.shepherd-element.shepherd-theme-arrows[x-placement^=top].shepherd-has-title .popper__arrow {
+  border-top-color: #c8c7d5;
+}
+.shepherd-element.shepherd-theme-arrows .shepherd-content {
+  max-width: 100%;
+  width: 400px;
+}
+.shepherd-element.shepherd-theme-arrows .shepherd-content .shepherd-text {
+  color: #c8c7d5;
+}
+.shepherd-element.shepherd-theme-arrows .shepherd-content .shepherd-text a {
+  color: #7b7486;
+}
+
+.shepherd-element.shepherd-theme-arrows .shepherd-content footer .shepherd-buttons li .shepherd-button {
+  font-size: 0.75em;
+  line-height: 0.75em;
+  padding-top: 1em;
+}
+
+pre {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  line-height: 1.4em;
+  width: 100%;
+}
+
+.pageTitle {
+  color: #c1b5d3;
+  font-size: 50pt;
+}
+.pageTitle .ember-title {
+  font-family: "Pacifico";
+}
+
+@media only screen and (min-width: 40.0625em) {
+  h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1.4;
+  }
+
+  h1 {
+    font-size: 2.75rem;
+  }
+
+  h2 {
+    font-size: 2.3125rem;
+  }
+
+  h3 {
+    font-size: 1.6875rem;
+  }
+
+  h4 {
+    font-size: 1.4375rem;
+  }
+
+  h5 {
+    font-size: 1.125rem;
+  }
+
+  h6 {
+    font-size: 1rem;
+  }
+}
+
+/*# sourceMappingURL=dummy.css.map */
