@@ -24,7 +24,7 @@ tour.set('defaultStepOptions', shepherdStepDefaults);
 tour.set('disableScroll', true);
 tour.set('modal', true);
 tour.set('requiredElements', requiredElements);
-tour.set('steps', steps);
+tour.addSteps(steps);
 
 // Methods to control the tour
 tour.start();
