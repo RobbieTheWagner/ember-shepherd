@@ -58,7 +58,7 @@ export default Component.extend({
 
 ## Configuration
 
-The following configuration options can be `set` on the Tour service to control the way that Shepherd is used. **The only required option is `steps`, which you can read more about below.**
+The following configuration options can be `set` on the Tour service to control the way that Shepherd is used. **The only required option is `steps`, which is set via `addSteps`.**
 
 ### confirmCancel
 
@@ -75,7 +75,7 @@ is set to true.
 `defaultStepOptions` is used to set the options that will be applied to each step by default.
 You can pass in any of the options that you can with Shepherd.
 
-**⚠️ You must set `defaultStepOptions` *BEFORE* setting steps.**
+**⚠️ You must set `defaultStepOptions` *BEFORE* calling `addSteps` to set the steps.**
 
 It will be an object of a form something like:
 
@@ -97,7 +97,7 @@ exist and be visible for the tour to start. If any elements are not present, it 
 
 You can also specify a message, which will tell the user what they need to do to make the tour work.
 
-**⚠️ You must set `requiredElements` *BEFORE* setting steps.**
+**⚠️ You must set `requiredElements` *BEFORE* calling `addSteps` to set the steps.**
 
 _Example_
 ```js
