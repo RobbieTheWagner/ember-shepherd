@@ -122,7 +122,6 @@ this.get('tour').set('requiredElements', [
 
 `disableScroll` is a boolean, that when set to true, will keep the user from scrolling with the scrollbar,
 mousewheel, arrow keys, etc. You may want to use this to ensure you are driving the scroll position with the tour.
-Thanks to [jquery-disablescroll](https://github.com/ultrapasty/jquery-disablescroll) for this functionality.
 
 > **default value:** `false`
 
