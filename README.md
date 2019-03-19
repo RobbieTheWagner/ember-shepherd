@@ -442,8 +442,11 @@ beforeShowPromise: function() {
 }
 ```
 
-## Contributing
-Please feel free to post any issues you encounter or feature requests on the issues in this repo. Pull requests welcome as well!
+Contributing
+------------------------------------------------------------------------------
+
+See the [Contributing](CONTRIBUTING.md) guide for details.
+
 
 License
 ------------------------------------------------------------------------------
