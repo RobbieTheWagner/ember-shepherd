@@ -1,5 +1,25 @@
 # Changelog
 
+## [v4.6.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.6.0) (2019-03-20)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.5.3...v4.6.0)
+
+## [v4.5.3](https://github.com/shipshapecode/ember-shepherd/tree/v4.5.3) (2019-01-16)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.5.2...v4.5.3)
+
+## [v4.5.2](https://github.com/shipshapecode/ember-shepherd/tree/v4.5.2) (2019-01-15)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.5.1...v4.5.2)
+
+## [v4.5.1](https://github.com/shipshapecode/ember-shepherd/tree/v4.5.1) (2019-01-14)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.5.0...v4.5.1)
+
+## [v4.5.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.5.0) (2019-01-14)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.4.0...v4.5.0)
+
 ## [v4.4.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.4.0) (2019-01-14)
 
 [Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.3.0...v4.4.0)
