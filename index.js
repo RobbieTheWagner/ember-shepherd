@@ -10,22 +10,15 @@ module.exports = {
     }
 
     this._super.included.apply(this, arguments);
+
+    this.import('node_modules/disable-scroll/lib/index.js', {
+      using: [
+        { transformation: 'cjs', as: 'disable-scroll' }
+      ]
+    });
   },
   options: {
     nodeAssets: {
-      'disable-scroll'() {
-        return {
-          srcDir: 'dist',
-          import: {
-            include: [
-              'disable-scroll.js'
-            ],
-            processTree(tree) {
-              return fastbootTransform(tree);
-            }
-          }
-        };
-      },
       'shepherd.js'() {
         const include = [
           'dist/js/shepherd.js'
