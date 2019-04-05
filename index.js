@@ -10,12 +10,6 @@ module.exports = {
     }
 
     this._super.included.apply(this, arguments);
-
-    this.import('node_modules/disable-scroll/lib/index.js', {
-      using: [
-        { transformation: 'cjs', as: 'disable-scroll' }
-      ]
-    });
   },
   options: {
     nodeAssets: {
