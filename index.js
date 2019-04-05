@@ -13,19 +13,6 @@ module.exports = {
   },
   options: {
     nodeAssets: {
-      'disable-scroll'() {
-        return {
-          srcDir: 'dist',
-          import: {
-            include: [
-              'disable-scroll.js'
-            ],
-            processTree(tree) {
-              return fastbootTransform(tree);
-            }
-          }
-        };
-      },
       'shepherd.js'() {
         const include = [
           'dist/js/shepherd.js'

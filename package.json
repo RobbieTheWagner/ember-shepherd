@@ -56,8 +56,9 @@
     "test:all": "ember try:each"
   },
   "dependencies": {
-    "disable-scroll": "0.3.0",
+    "disable-scroll": "^0.4.1",
     "ember-assign-polyfill": "^2.6.0",
+    "ember-auto-import": "^1.2.21",
     "ember-cli-babel": "^7.1.2",
     "ember-cli-node-assets": "0.2.2",
     "ember-getowner-polyfill": "^2.2.0",
@@ -102,7 +103,7 @@
     "flexi": "^2.1.0",
     "loader.js": "^4.7.0",
     "qunit-dom": "^0.8.0",
-    "sass": "^1.17.3",
+    "sass": "^1.17.4",
     "stylelint": "^9.10.1",
     "stylelint-config-ship-shape": "^0.5.2"
   },

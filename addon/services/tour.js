@@ -9,7 +9,7 @@ import { makeButton } from '../utils/buttons';
 import {
   elementIsHidden
 } from '../utils/dom';
-
+import disableScroll from 'disable-scroll';
 
 export default Service.extend(Evented, {
   // Configuration Options
