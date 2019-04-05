@@ -17,6 +17,14 @@ export default Route.extend({
     tour.set('modal', true);
     tour.set('confirmCancel', false);
 
+    // Disable animations in the test environment, to ensure timing is correct
+    if (config.environment === 'test') {
+      tour.set('defaultStepOptions.tippyOptions', {
+        delay: 0,
+        duration: 0
+      });
+    }
+
     tour.addSteps(defaultSteps);
 
     tour.on('cancel', () => {

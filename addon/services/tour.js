@@ -3,6 +3,7 @@ import { get, set } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
 import Service from '@ember/service';
 import Evented from '@ember/object/evented';
+import { getOwner } from '@ember/application';
 import { bind, later } from '@ember/runloop';
 import { normalizeAttachTo } from '../utils/attachTo';
 import { makeButton } from '../utils/buttons';
@@ -131,6 +132,18 @@ export default Service.extend(Evented, {
     const defaultStepOptions = get(this, 'defaultStepOptions');
     const tourName = get(this, 'tourName');
     const useModalOverlay = get(this, 'modal');
+
+    // Ensure `tippyOptions` exists on `defaultStepOptions`
+    defaultStepOptions.tippyOptions = defaultStepOptions.tippyOptions || {};
+
+    let { rootElement } = getOwner(this);
+    if (typeof rootElement === 'string') {
+      rootElement = document.querySelector(rootElement);
+    }
+
+    if (rootElement && !defaultStepOptions.tippyOptions.appendTo) {
+      defaultStepOptions.tippyOptions.appendTo = rootElement;
+    }
 
     const tourObject = new Shepherd.Tour({
       confirmCancel,
