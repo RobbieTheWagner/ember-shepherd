@@ -1,5 +1,14 @@
 # Changelog
 
+## [v4.7.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.7.0) (2019-04-05)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.6.0...v4.7.0)
+
+**Implemented enhancements:**
+
+- Use ember-auto-import to import disable-scroll, bump disable-scroll to 0.4.1 [\#296](https://github.com/shipshapecode/ember-shepherd/pull/296) ([rwwagner90](https://github.com/rwwagner90))
+- Use rootElement, if defined, rather than document.body [\#295](https://github.com/shipshapecode/ember-shepherd/pull/295) ([rwwagner90](https://github.com/rwwagner90))
+
 ## [v4.6.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.6.0) (2019-03-20)
 
 [Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.5.3...v4.6.0)
