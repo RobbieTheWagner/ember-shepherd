@@ -39,97 +39,10 @@ http://shipshapecode.github.io/ember-shepherd/
 Usage
 ------------------------------------------------------------------------------
 
-Interaction with `ember-shepherd` is done entirely through the Tour service, which you can access from any object using the `Ember.inject` syntax:
-
-```js
-import Component from '@ember/component';
-import { inject as service } from '@ember/service';
-
-export default Component.extend({
-
-  tour: service()
-
-  // OR
-
-  tourService: service('tour')
-})
-```
-
 
 ## Configuration
 
 The following configuration options can be `set` on the Tour service to control the way that Shepherd is used. **The only required option is `steps`, which is set via `addSteps`.**
-
-### confirmCancel
-
-`confirmCancel` is a boolean flag, when set to `true` it will pop up a native browser
-confirm window on cancel, to ensure you want to cancel.
-
-### confirmCancelMessage
-
-`confirmCancelMessage` is a string to display in the confirm dialog when `confirmCancel`
-is set to true.
-
-### defaultStepOptions
-
-`defaultStepOptions` is used to set the options that will be applied to each step by default.
-You can pass in any of the options that you can with Shepherd.
-
-**⚠️ You must set `defaultStepOptions` *BEFORE* calling `addSteps` to set the steps.**
-
-It will be an object of a form something like:
-
-```js
-this.get('tour').set('defaultStepOptions', {
-  classes: 'custom-class-name-1 custom-class-name-2',
-  scrollTo: false,
-  showCancelLink: true
-});
-```
-
-> **default value:** `{}`
-
-
-### requiredElements
-
-`requiredElements` is an array of objects that indicate DOM elements that are **REQUIRED** by your tour and must
-exist and be visible for the tour to start. If any elements are not present, it will keep the tour from starting.
-
-You can also specify a message, which will tell the user what they need to do to make the tour work.
-
-**⚠️ You must set `requiredElements` *BEFORE* calling `addSteps` to set the steps.**
-
-_Example_
-```js
-this.get('tour').set('requiredElements', [
-  {
-    selector: '.search-result-element',
-    message: 'No search results found. Please execute another search, and try to start the tour again.',
-    title: 'No results'
-  },
-  {
-    selector: '.username-element',
-    message: 'User not logged in, please log in to start this tour.',
-    title: 'Please login'
-  },
-]);
-```
-
-> **default value:** `[]`
-
-
-### disableScroll
-
-`disableScroll` is a boolean, that when set to true, will keep the user from scrolling with the scrollbar,
-mousewheel, arrow keys, etc. You may want to use this to ensure you are driving the scroll position with the tour.
-
-> **default value:** `false`
-
-### modal
-
-`modal` is a boolean, that should be set to true, if you would like the rest of the screen, other than the current element, greyed out, and the current element highlighted. If you do not need modal functionality, you can remove this option or set it to false.
-
-> **default value:** `false`
 
 ### addSteps
 
@@ -399,47 +312,6 @@ this.get('tour').next();
 
 // Go to the previous step
 this.get('tour').back();
-```
-
-## Q/A
-
-### Q: Woah, events? How does that work with buttons?
-
-A: Don't worry, it's not too bad!  You can just set up an action to start (or cancel, or advance, etc.) the tour like so:
-
-```js
-// app/routes/application.js
-
-import Route from "@ember/routing/route";
-import { inject as service } from '@ember/service';
-
-export default Route.extend({
-
-  tour: service(),
-
-  actions: {
-    startTour: function() {
-      this.get('tour').start();
-    }
-  }
-});
-```
-
-### Q: How do I make a tour span multiple route transitions?
-
-A : You can use `beforeShowPromise` to ensure you have fully transitioned to the new route before showing
-the step by doing something like this:
-
-```
-beforeShowPromise: function() {
-  return new Promise(function(resolve) {
-    router.transitionTo('myurl').finally(() => {
-      Ember.run.scheduleOnce('afterRender', this, function() {
-        resolve();
-      });
-    });
-  });
-}
 ```
 
 Contributing

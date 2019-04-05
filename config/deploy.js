@@ -1,12 +1,10 @@
-/* jshint node: true */
+/* eslint-env node */
+'use strict';
 
 module.exports = function(deployTarget) {
-  var ENV = {
-    build: {},
+  let ENV = {
+    build: {}
     // include other plugin configuration that applies to all deploy targets here
-    ghpages: {
-      gitRemoteUrl: 'https://github.com/shipshapecode/ember-shepherd'
-    }
   };
 
   if (deployTarget === 'development') {
