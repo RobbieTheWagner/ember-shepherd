@@ -133,13 +133,16 @@ export default Service.extend(Evented, {
     const tourName = get(this, 'tourName');
     const useModalOverlay = get(this, 'modal');
 
+    // Ensure `tippyOptions` exists on `defaultStepOptions`
+    defaultStepOptions.tippyOptions = defaultStepOptions.tippyOptions || {};
+
     let { rootElement } = getOwner(this);
     if (typeof rootElement === 'string') {
       rootElement = document.querySelector(rootElement);
     }
 
-    if (rootElement && !defaultStepOptions.appendTo) {
-      defaultStepOptions.appendTo = rootElement;
+    if (rootElement && !defaultStepOptions.tippyOptions.appendTo) {
+      defaultStepOptions.tippyOptions.appendTo = rootElement;
     }
 
     const tourObject = new Shepherd.Tour({
