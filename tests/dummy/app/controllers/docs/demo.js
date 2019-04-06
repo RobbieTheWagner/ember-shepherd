@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { steps as defaultSteps } from '../data';
+import { steps as defaultSteps } from '../../data';
 
 export default Controller.extend({
   tour: service(),

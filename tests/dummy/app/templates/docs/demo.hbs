@@ -1,22 +1,22 @@
 {{! template-lint-disable }}
 <div class="demo-page">
-  <box fill xs="11" md="5">
-    <centered>
+  <div class="docs-w-full">
+    <div class="docs-flex docs-justify-center">
       <h1 class="pageTitle"><span class="ember-title">ember</span> Shepherd</h1>
-    </centered>
-    <centered>
+    </div>
+    <div class="docs-flex docs-justify-center">
       <h4 class="first-element">Guide your users through a tour of your app.</h4>
-    </centered>
-    <centered>
+    </div>
+    <div class="docs-flex docs-justify-center">
       <h5>Installation</h5>
-    </centered>
-    <centered>
+    </div>
+    <div class="docs-flex docs-justify-center">
       {{#code-block language='bash' class="install-element"}}ember install ember-shepherd{{/code-block}}
-    </centered>
-    <centered>
+    </div>
+    <div class="docs-flex docs-justify-center">
       <h5>Usage</h5>
-    </centered>
-    <centered>
+    </div>
+    <div class="docs-flex docs-justify-center">
       {{~#code-block language='javascript' class="usage-element"~}}
 //Inject the service: tour: Ember.inject.service()
 let tour = this.get('tour');
@@ -32,40 +32,41 @@ tour.next();
 tour.back();
 tour.cancel();
       {{~/code-block~}}
-    </centered>
-    <centered>
+    </div>
+    <div class="docs-flex docs-justify-center">
       <h5>Additional Features</h5>
-    </centered>
-    <hbox>
-      <centered xs="12" sm="4" class="panel modal-element">
+    </div>
+    <div class="docs-flex docs-flex-wrap">
+      <div class="panel modal-element docs-flex docs-justify-center docs-w-full lg:docs-w-1/3">
         Modal
-      </centered>
-      <centered xs="12" sm="4" class="panel built-in-buttons-element">
+      </div>
+      <div class="panel built-in-buttons-element docs-flex docs-justify-center docs-w-full lg:docs-w-1/3">
         Built-in Buttons
-      </centered>
-      <centered xs="12" sm="4" class="panel disable-scroll-element">
+      </div>
+      <div class="panel disable-scroll-element docs-flex docs-justify-center docs-w-full lg:docs-w-1/3">
         Disable Scroll
-      </centered>
-    </hbox>
-    <hbox>
-      <centered class="text-center" xs="6" sm="3">
-        <a href='javascript:void(0)' class="bottomButton toggleHelpModal" {{action 'toggleHelpModal'}}>Modal Demo</a>
-      </centered>
-      <centered class="text-center" xs="6" sm="3">
-        <a href='javascript:void(0)' class="bottomButton toggleHelpNonmodal" {{action
-          'toggleHelpNonmodal'}}>Non-modal</a>
-      </centered>
-      <centered class="text-center" xs="6" sm="3">
-        <a href='javascript:void(0)' class="bottomButton"
-           href="https://github.com/shipshapecode/ember-shepherd/blob/master/README.md">Docs</a>
-      </centered>
-      <centered class="text-center" xs="6" sm="3">
-        <a href='javascript:void(0)' class="bottomButton"
-           href="https://github.com/shipshapecode/ember-shepherd">Github</a>
-      </centered>
-    </hbox>
-    <centered class="medium-8 columns medium-centered text-center">
-      <a href="https://github.com/shipshapecode/shepherd" class="shepherd-logo-link">
+      </div>
+    </div>
+    <div class="docs-flex docs-flex-wrap">
+      <div class="docs-text-center docs-flex docs-justify-center docs-w-1/2">
+        <a href='javascript:void(0)'
+           class="bottomButton toggleHelpModal"
+           {{action 'toggleHelpModal'}}
+        >
+          Modal Demo
+        </a>
+      </div>
+      <div class="docs-text-center docs-flex docs-justify-center docs-w-1/2">
+        <a href='javascript:void(0)'
+           class="bottomButton toggleHelpNonmodal"
+          {{action 'toggleHelpNonmodal'}}
+        >
+          Non-modal
+        </a>
+      </div>
+    </div>
+    <div class="docs-flex docs-justify-center">
+      <a href="https://github.com/shipshapecode/shepherd" class="shepherd-logo-link docs-flex docs-justify-center">
         <svg xmlns="http://www.w3.org/2000/svg" version="1.0" style="height: 330px; width: 330px; max-width: 80%;"
              viewBox="0 0 128 128">
           <g>
@@ -129,7 +130,7 @@ tour.cancel();
           </g>
         </svg>
       </a>
-    </centered>
-  </box>
+    </div>
+  </div>
 </div>
 <div class="test-modal-container"></div>
