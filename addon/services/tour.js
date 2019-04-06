@@ -28,6 +28,9 @@ import disableScroll from 'disable-scroll';
  *   tourService: service('tour')
  * });
  * ```
+ *
+ * The following configuration options can be `set` on the Tour service to control the way that Shepherd is used. **The only required option is `steps`, which is set via `addSteps`.**
+ *
  * @class Tour
  */
 export default Service.extend(Evented, {
@@ -159,6 +162,60 @@ export default Service.extend(Evented, {
 
   /**
    * Take a set of steps and create a tour object based on the current configuration
+   *
+   * You must pass an array of steps to `addSteps`, something like this:
+   *
+   * ```js
+   * this.get('tour').addSteps([
+   *   {
+   *     id: 'intro',
+   *     options: {
+   *       attachTo: '.first-element bottom',
+   *       beforeShowPromise: function() {
+   *         return new Promise(function(resolve) {
+   *           Ember.run.scheduleOnce('afterRender', this, function() {
+   *             window.scrollTo(0, 0);
+   *             this.get('documents.firstObject').set('isSelected', true);
+   *             resolve();
+   *           });
+   *         });
+   *       },
+   *       buttons: [
+   *         {
+   *           classes: 'shepherd-button-secondary',
+   *           text: 'Exit',
+   *           type: 'cancel'
+   *         },
+   *         {
+   *           classes: 'shepherd-button-primary',
+   *           text: 'Back',
+   *           type: 'back'
+   *         },
+   *         {
+   *           classes: 'shepherd-button-primary',
+   *           text: 'Next',
+   *           type: 'next'
+   *         }
+   *       ],
+   *       classes: 'custom-class-name-1 custom-class-name-2',
+   *       highlightClass: 'highlight',
+   *       scrollTo: false,
+   *       showCancelLink: true,
+   *       title: 'Welcome to Ember-Shepherd!',
+   *       text: ['Ember-Shepherd is a JavaScript library for guiding users through your Ember app.'],
+   *       when: {
+   *         show: () => {
+   *           console.log('show step');
+   *         },
+   *         hide: () => {
+   *           console.log('hide step');
+   *         }
+   *       }
+   *     }
+   *   },
+   * ...
+   * ]);
+   * ```
    *
    * @method addSteps
    * @param {array} steps An array of steps
