@@ -1,5 +1,21 @@
 # Changelog
 
+## [Unreleased](https://github.com/shipshapecode/ember-shepherd/tree/HEAD)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.8.0...HEAD)
+
+**Closed issues:**
+
+- Explore Integration of Ember CLI Addon docs.  [\#244](https://github.com/shipshapecode/ember-shepherd/issues/244)
+
+## [v4.8.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.8.0) (2019-04-07)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.7.0...v4.8.0)
+
+**Implemented enhancements:**
+
+- Use ember-cli-addon-docs for documentation [\#297](https://github.com/shipshapecode/ember-shepherd/pull/297) ([rwwagner90](https://github.com/rwwagner90))
+
 ## [v4.7.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.7.0) (2019-04-05)
 
 [Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.6.0...v4.7.0)
