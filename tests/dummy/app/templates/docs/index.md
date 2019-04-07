@@ -14,35 +14,9 @@ ember-shepherd
 [![Test Coverage](https://codeclimate.com/github/shipshapecode/ember-shepherd/badges/coverage.svg)](https://codeclimate.com/github/shipshapecode/ember-shepherd/coverage)
 [![Greenkeeper badge](https://badges.greenkeeper.io/shipshapecode/ember-shepherd.svg)](https://greenkeeper.io/)
 
-This is an Ember wrapper for the [Shepherd](https://github.com/shipshapecode/shepherd), site tour, library. It provides additional functionality, on top of Shepherd, as well.
-
-Compatibility
-------------------------------------------------------------------------------
-
-* Ember.js v2.18 or above
-* Ember CLI v2.13 or above
-
-
 Installation
 ------------------------------------------------------------------------------
 
 ```
 ember install ember-shepherd
 ```
-
-Documentation
-------------------------------------------------------------------------------
-
-[View Docs](http://shipshapecode.github.io/ember-shepherd/)
-
-
-Contributing
-------------------------------------------------------------------------------
-
-See the [Contributing](CONTRIBUTING.md) guide for details.
-
-
-License
-------------------------------------------------------------------------------
-
-This project is licensed under the [MIT License](LICENSE.md).

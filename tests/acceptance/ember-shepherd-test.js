@@ -27,7 +27,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
   module('Cancel link', function() {
     test('Shows cancel link', async function(assert) {
-      await visit('/');
+      await visit('/docs/demo');
 
       await toggleTour(tour, true);
 
@@ -53,7 +53,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
         }
       }];
 
-      await visit('/');
+      await visit('/docs/demo');
 
       tour.set('defaultStepOptions', defaultStepOptions);
       tour.addSteps(steps);
@@ -64,7 +64,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     });
 
     test('Cancel link cancels the tour', async function(assert) {
-      await visit('/');
+      await visit('/docs/demo');
 
       await toggleTour(tour, true);
 
@@ -78,7 +78,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
   module('Required Elements', function() {
     test('Not warning about required elements when none are specified', async function(assert) {
-      await visit('/');
+      await visit('/docs/demo');
 
       await toggleTour(tour, true);
 
@@ -99,7 +99,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       tour.set('requiredElements', requiredElements);
 
-      await visit('/');
+      await visit('/docs/demo');
 
       await toggleTour(tour, true);
 
@@ -120,7 +120,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       tour.set('requiredElements', requiredElements);
 
-      await visit('/');
+      await visit('/docs/demo');
 
       await toggleTour(tour, true);
 
@@ -147,7 +147,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
         }
       ];
 
-      await visit('/');
+      await visit('/docs/demo');
 
       tour.addSteps(stepsWithoutClasses);
 
@@ -175,7 +175,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       tour.addSteps(steps);
 
-      await visit('/');
+      await visit('/docs/demo');
 
       tour.start();
 
@@ -185,7 +185,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     test('configuration works with attachTo object when element is dom element', async function(assert) {
       assert.expect(1);
 
-      await visit('/');
+      await visit('/docs/demo');
 
       const steps = [{
         id: 'test-attachTo-dom',
@@ -239,7 +239,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
         }
       }];
 
-      await visit('/');
+      await visit('/docs/demo');
 
       tour.addSteps(steps);
 
@@ -261,7 +261,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       tour.set('scrollTo', true);
 
       // Visit route
-      await visit('/');
+      await visit('/docs/demo');
 
       document.querySelector('#ember-testing-container').scrollTop = 0;
 
@@ -300,7 +300,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       }];
 
       // Visit route
-      await visit('/');
+      await visit('/docs/demo');
 
       tour.addSteps(steps);
 
@@ -317,7 +317,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       tour.set('scrollTo', true);
 
       // Visit route
-      await visit('/');
+      await visit('/docs/demo');
 
       document.querySelector('#ember-testing-container').scrollTop = 0;
 
@@ -333,7 +333,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     test('Show by id works', async function(assert) {
       assert.expect(1);
 
-      await visit('/');
+      await visit('/docs/demo');
 
       tour.show('usage');
 
@@ -345,7 +345,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     test('hide method hides the current step', async function(assert) {
       assert.expect(1);
 
-      await visit('/');
+      await visit('/docs/demo');
 
       tour.show('usage');
       tour.hide();

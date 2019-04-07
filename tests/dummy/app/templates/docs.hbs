@@ -1,0 +1,25 @@
+{{#docs-viewer as |viewer|}}
+  {{#viewer.nav as |nav|}}
+    {{nav.section "Introduction"}}
+    {{nav.item "Introduction" "docs.index"}}
+    {{nav.item "Usage" "docs.usage"}}
+
+    {{nav.section "Demo"}}
+    {{nav.item "Demo" "docs.demo"}}
+
+    {{nav.section "Styles"}}
+    {{nav.item "Themes" "docs.themes"}}
+    {{nav.item "Using SASS Variables" "docs.sass-variables"}}
+
+    {{nav.section "FAQ"}}
+    {{nav.item "FAQ" "docs.faq"}}
+  {{/viewer.nav}}
+
+  {{#viewer.main}}
+    <div class="docs-container">
+      <div class="docs-section">
+        {{outlet}}
+      </div>
+    </div>
+  {{/viewer.main}}
+{{/docs-viewer}}

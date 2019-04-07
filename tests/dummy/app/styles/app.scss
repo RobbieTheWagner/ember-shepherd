@@ -17,183 +17,161 @@ $shepherd-theme-secondary: $whiteish;
 
 @import "shepherd-theme-default";
 
-body,
-html {
-  height: 100%;
-}
+.demo-page {
+  a {
+    &.bottomButton {
+      background-color: $transparent;
+      border: 2px solid $light-color;
+      color: $light-color;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 0.7em;
+      font-weight: 500;
+      letter-spacing: 3px;
+      line-height: 1.3em;
+      padding: 1.25em 1.25em 1em 1em;
+      text-decoration: none;
+      text-transform: uppercase;
+      width: 150px;
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: $whiteish;
-  font-family: $f-primary;
-  font-weight: 400;
-  margin-bottom: 0.5rem;
-  margin-top: 0.2rem;
-}
-
-body {
-  background-color: $background1;
-  font-family: $f-primary;
-  margin: 0;
-}
-
-a {
-  &.bottomButton {
-    background-color: $transparent;
-    border: 2px solid $light-color;
-    color: $light-color;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 0.7em;
-    font-weight: 500;
-    letter-spacing: 3px;
-    line-height: 1.3em;
-    padding: 1.25em 1.25em 1em 1em;
-    text-decoration: none;
-    text-transform: uppercase;
-    width: 150px;
-
-    &:hover {
-      border: 2px solid $whiteish;
-      color: $whiteish;
-    }
-  }
-}
-
-.panel {
-  background-color: $whiteish;
-  border-color: $panel-border;
-  border-style: solid;
-  border-width: 1px;
-  color: $background1;
-  font-size: 0.75em;
-  margin-bottom: 1.25rem;
-  padding: 1.25rem;
-  text-align: center;
-}
-
-.button.dark {
-  background: $light-color;
-  color: $button-dark;
-}
-
-@media (max-width: 568px) {
-  .button {
-    display: block;
-    margin: 1em auto 0;
-  }
-}
-
-.shepherd-element {
-  &.shepherd-theme-arrows {
-    &.shepherd-has-title {
-      header {
-        background-color: $whiteish;
-        color: $background1;
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-          color: $background1;
-        }
-      }
-    }
-
-    &[x-placement^="bottom"] {
-      .popper__arrow {
-        border-bottom-color: $background1;
-      }
-
-      &.shepherd-has-title .popper__arrow {
-        border-bottom-color: $whiteish;
-      }
-    }
-
-    &[x-placement^="top"] {
-      // stylelint-disable-next-line
-      .popper__arrow {
-        border-top-color: $background1;
-      }
-
-      &.shepherd-has-title .popper__arrow {
-        border-top-color: $whiteish;
-      }
-    }
-
-    .shepherd-content {
-      max-width: 100%;
-      width: 400px;
-
-      .shepherd-text {
+      &:hover {
+        border: 2px solid $whiteish;
         color: $whiteish;
+      }
+    }
+  }
 
-        a {
-          color: $altlight-color;
+  .panel {
+    background-color: $whiteish;
+    border-color: $panel-border;
+    border-style: solid;
+    border-width: 1px;
+    color: $background1;
+    font-size: 0.75em;
+    margin-bottom: 1.25rem;
+    padding: 1.25rem;
+    text-align: center;
+  }
+
+  .button.dark {
+    background: $light-color;
+    color: $button-dark;
+  }
+
+  @media (max-width: 568px) {
+    .button {
+      display: block;
+      margin: 1em auto 0;
+    }
+  }
+
+  .shepherd-element {
+    &.shepherd-theme-arrows {
+      &.shepherd-has-title {
+        header {
+          background-color: $whiteish;
+          color: $background1;
+
+          h1,
+          h2,
+          h3,
+          h4,
+          h5,
+          h6 {
+            color: $background1;
+          }
+        }
+      }
+
+      &[x-placement^="bottom"] {
+        .popper__arrow {
+          border-bottom-color: $background1;
+        }
+
+        &.shepherd-has-title .popper__arrow {
+          border-bottom-color: $whiteish;
+        }
+      }
+
+      &[x-placement^="top"] {
+        // stylelint-disable-next-line
+        .popper__arrow {
+          border-top-color: $background1;
+        }
+
+        &.shepherd-has-title .popper__arrow {
+          border-top-color: $whiteish;
+        }
+      }
+
+      .shepherd-content {
+        max-width: 100%;
+        width: 400px;
+
+        .shepherd-text {
+          color: $whiteish;
+
+          a {
+            color: $altlight-color;
+          }
         }
       }
     }
   }
-}
 
-.shepherd-element.shepherd-theme-arrows .shepherd-content footer .shepherd-buttons li .shepherd-button {
-  font-size: 0.75em;
-  line-height: 0.75em;
-  padding-top: 1em;
-}
-
-pre {
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  line-height: 1.4em;
-  width: 100%;
-}
-
-.pageTitle {
-  color: $light-color;
-  font-size: 50pt;
-
-  .ember-title {
-    font-family: $f-pacifico;
-  }
-}
-
-@media only screen and (min-width: 40.0625em) {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    line-height: 1.4;
+  .shepherd-element.shepherd-theme-arrows .shepherd-content footer .shepherd-buttons li .shepherd-button {
+    font-size: 0.75em;
+    line-height: 0.75em;
+    padding-top: 1em;
   }
 
-  h1 {
-    font-size: 2.75rem;
+  pre {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    line-height: 1.4em;
+    width: 100%;
   }
 
-  h2 {
-    font-size: 2.3125rem;
+  .pageTitle {
+    color: $light-color;
+    font-size: 50pt;
+
+    .ember-title {
+      font-family: $f-pacifico;
+    }
   }
 
-  h3 {
-    font-size: 1.6875rem;
-  }
+  @media only screen and (min-width: 40.0625em) {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      line-height: 1.4;
+    }
 
-  h4 {
-    font-size: 1.4375rem;
-  }
+    h1 {
+      font-size: 2.75rem;
+    }
 
-  h5 {
-    font-size: 1.125rem;
-  }
+    h2 {
+      font-size: 2.3125rem;
+    }
 
-  h6 {
-    font-size: 1rem;
+    h3 {
+      font-size: 1.6875rem;
+    }
+
+    h4 {
+      font-size: 1.4375rem;
+    }
+
+    h5 {
+      font-size: 1.125rem;
+    }
+
+    h6 {
+      font-size: 1rem;
+    }
   }
 }

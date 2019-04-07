@@ -1,9 +1,9 @@
 /* eslint-disable ember/avoid-leaking-state-in-ember-objects */
 import Route from '@ember/routing/route';
-import config from '../config/environment';
+import config from '../../config/environment';
 import { inject as service } from '@ember/service';
 import { scheduleOnce } from '@ember/runloop';
-import { steps as defaultSteps, defaultStepOptions} from '../data';
+import { steps as defaultSteps, defaultStepOptions} from '../../data';
 
 export default Route.extend({
   tour: service(),
