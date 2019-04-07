@@ -1,6 +1,8 @@
 Usage
 ------------------------------------------------------------------------------
 
+Most of the usage documentation can be found in the [API Reference for the Tour Service](/docs/api/services/tour).
+
 A lot of the options are the same as Shepherd options, but I will go through each of them for reference.
 
 ## Step Options

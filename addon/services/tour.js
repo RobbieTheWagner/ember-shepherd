@@ -10,7 +10,7 @@ import { makeButton } from '../utils/buttons';
 import {
   elementIsHidden
 } from '../utils/dom';
-import disableScroll from 'disable-scroll';
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 /**
  * Interaction with `ember-shepherd` is done entirely through the Tour service, which you can access from any object using the `Ember.inject` syntax:
@@ -258,7 +258,7 @@ export default Service.extend(Evented, {
       if (!currentStep.options.scrollToHandler) {
         currentStep.options.scrollToHandler = (elem) => {
           // Allow scrolling so scrollTo works.
-          disableScroll.off(window);
+          enableBodyScroll();
 
           if (typeof elem !== 'undefined') {
             elem.scrollIntoView();
@@ -266,7 +266,7 @@ export default Service.extend(Evented, {
 
           later(() => {
             if (get(this, 'disableScroll')) {
-              disableScroll.on(window);
+              disableBodyScroll();
             }
           }, 50);
         };
@@ -329,7 +329,8 @@ export default Service.extend(Evented, {
   /**
    * Show a specific step, by passing its id
    *
-   * @param id The id of the step you want to show
+   * @param {string} [id] The id of the step you want to show
+   * @method show
    * @public
    */
   show(id) {
@@ -355,7 +356,7 @@ export default Service.extend(Evented, {
    */
   _onTourStart() {
     if (get(this, 'disableScroll')) {
-      disableScroll.on(window);
+      disableBodyScroll();
     }
 
     this.trigger('start');
@@ -384,7 +385,7 @@ export default Service.extend(Evented, {
    */
   _cleanup() {
     if (get(this, 'disableScroll')) {
-      disableScroll.off(window);
+      clearAllBodyScrollLocks();
     }
   },
 
