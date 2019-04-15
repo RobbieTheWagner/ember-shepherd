@@ -1,8 +1,12 @@
 # Changelog
 
-## [Unreleased](https://github.com/shipshapecode/ember-shepherd/tree/HEAD)
+## [v4.9.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.9.0) (2019-04-15)
 
-[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.8.0...HEAD)
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.8.0...v4.9.0)
+
+**Implemented enhancements:**
+
+- Update to Shepherd 2.6.0 [\#302](https://github.com/shipshapecode/ember-shepherd/pull/302) ([rwwagner90](https://github.com/rwwagner90))
 
 **Closed issues:**
 
