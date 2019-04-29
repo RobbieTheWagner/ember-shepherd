@@ -11,6 +11,7 @@ import {
   elementIsHidden
 } from '../utils/dom';
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { Promise } from 'rsvp';
 
 /**
  * Interaction with `ember-shepherd` is done entirely through the Tour service, which you can access from any object using the `Ember.inject` syntax:
@@ -156,6 +157,13 @@ export default Service.extend(Evented, {
   requiredElements: [],
   steps: [],
 
+  init() {
+    this._super(...arguments);
+    let owner = getOwner(this);
+    const fastboot = owner.lookup('service:fastboot');
+    this.fastboot = fastboot && fastboot.isFastBoot;
+  },
+
   willDestroy() {
     this._cleanup();
   },
@@ -222,6 +230,9 @@ export default Service.extend(Evented, {
    * @public
    */
   addSteps(steps) {
+    if (this.fastboot) {
+      return Promise.resolve();
+    }
     return this._initialize().then(() => {
       const tour = get(this, 'tourObject');
 
@@ -282,6 +293,9 @@ export default Service.extend(Evented, {
    * @public
    */
   back() {
+    if (this.fastboot) {
+      return;
+    }
     get(this, 'tourObject').back();
     this.trigger('back');
   },
@@ -293,6 +307,9 @@ export default Service.extend(Evented, {
    * @public
    */
   cancel() {
+    if (this.fastboot) {
+      return;
+    }
     get(this, 'tourObject').cancel();
   },
 
@@ -303,6 +320,9 @@ export default Service.extend(Evented, {
    * @public
    */
   complete() {
+    if (this.fastboot) {
+      return;
+    }
     get(this, 'tourObject').complete();
   },
 
@@ -313,6 +333,9 @@ export default Service.extend(Evented, {
    * @public
    */
   hide() {
+    if (this.fastboot) {
+      return;
+    }
     get(this, 'tourObject').hide();
   },
 
@@ -323,6 +346,9 @@ export default Service.extend(Evented, {
    * @public
    */
   next() {
+    if (this.fastboot) {
+      return;
+    }
     get(this, 'tourObject').next();
     this.trigger('next');
   },
@@ -335,6 +361,9 @@ export default Service.extend(Evented, {
    * @public
    */
   show(id) {
+    if (this.fastboot) {
+      return;
+    }
     get(this, 'tourObject').show(id);
   },
 
@@ -345,6 +374,9 @@ export default Service.extend(Evented, {
    * @public
    */
   start() {
+    if (this.fastboot) {
+      return;
+    }
     set(this, 'isActive', true);
     get(this, 'tourObject').start();
   },
