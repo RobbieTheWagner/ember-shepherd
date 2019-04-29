@@ -161,7 +161,7 @@ export default Service.extend(Evented, {
     this._super(...arguments);
     let owner = getOwner(this);
     const fastboot = owner.lookup('service:fastboot');
-    this.fastboot = fastboot && fastboot.isFastBoot;
+    this._isFastBoot = fastboot && fastboot.isFastBoot;
   },
 
   willDestroy() {
@@ -230,7 +230,7 @@ export default Service.extend(Evented, {
    * @public
    */
   addSteps(steps) {
-    if (this.fastboot) {
+    if (this._isFastBoot) {
       return Promise.resolve();
     }
     return this._initialize().then(() => {
@@ -293,7 +293,7 @@ export default Service.extend(Evented, {
    * @public
    */
   back() {
-    if (this.fastboot) {
+    if (this._isFastBoot) {
       return;
     }
     get(this, 'tourObject').back();
@@ -307,7 +307,7 @@ export default Service.extend(Evented, {
    * @public
    */
   cancel() {
-    if (this.fastboot) {
+    if (this._isFastBoot) {
       return;
     }
     get(this, 'tourObject').cancel();
@@ -320,7 +320,7 @@ export default Service.extend(Evented, {
    * @public
    */
   complete() {
-    if (this.fastboot) {
+    if (this._isFastBoot) {
       return;
     }
     get(this, 'tourObject').complete();
@@ -333,7 +333,7 @@ export default Service.extend(Evented, {
    * @public
    */
   hide() {
-    if (this.fastboot) {
+    if (this._isFastBoot) {
       return;
     }
     get(this, 'tourObject').hide();
@@ -346,7 +346,7 @@ export default Service.extend(Evented, {
    * @public
    */
   next() {
-    if (this.fastboot) {
+    if (this._isFastBoot) {
       return;
     }
     get(this, 'tourObject').next();
@@ -361,7 +361,7 @@ export default Service.extend(Evented, {
    * @public
    */
   show(id) {
-    if (this.fastboot) {
+    if (this._isFastBoot) {
       return;
     }
     get(this, 'tourObject').show(id);
@@ -374,7 +374,7 @@ export default Service.extend(Evented, {
    * @public
    */
   start() {
-    if (this.fastboot) {
+    if (this._isFastBoot) {
       return;
     }
     set(this, 'isActive', true);
