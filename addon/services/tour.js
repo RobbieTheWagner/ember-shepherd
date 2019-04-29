@@ -169,7 +169,8 @@ export default Service.extend(Evented, {
   },
 
   /**
-   * Take a set of steps and create a tour object based on the current configuration
+   * Take a set of steps, create a tour object based on the current configuration and load the shepherd.js dependency.
+   * This method returns a promise which resolves when the shepherd.js dependency has been loaded and shepherd is ready to use.
    *
    * You must pass an array of steps to `addSteps`, something like this:
    *
@@ -227,6 +228,7 @@ export default Service.extend(Evented, {
    *
    * @method addSteps
    * @param {array} steps An array of steps
+   * @returns {Promise} Promise that resolves when everything has been set up and shepherd is ready to use
    * @public
    */
   addSteps(steps) {
@@ -368,7 +370,7 @@ export default Service.extend(Evented, {
   },
 
   /**
-   * Start the tour
+   * Start the tour. The Promise from addSteps() must be in a resolved state prior to starting the tour!
    *
    * @method start
    * @public
@@ -377,8 +379,12 @@ export default Service.extend(Evented, {
     if (this._isFastBoot) {
       return;
     }
+    const tourObject = get(this, 'tourObject');
+    if (tourObject == undefined) {
+      throw new Error("the Promise from addSteps must be in a resolved state before the tour can be started");
+    }
     set(this, 'isActive', true);
-    get(this, 'tourObject').start();
+    tourObject.start();
   },
 
   /**
