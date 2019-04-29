@@ -222,55 +222,56 @@ export default Service.extend(Evented, {
    * @public
    */
   addSteps(steps) {
-    this._initialize();
-    const tour = get(this, 'tourObject');
+    return this._initialize().then(() => {
+      const tour = get(this, 'tourObject');
 
-    // Return nothing if there are no steps
-    if (isEmpty(steps)) {
-      return;
-    }
-    /* istanbul ignore next: also can't test this due to things attached to root blowing up tests */
-    if (!this._requiredElementsPresent()) {
-      tour.addStep('error', {
-        buttons: [{
-          text: 'Exit',
-          action: tour.cancel
-        }],
-        title: get(this, 'errorTitle'),
-        text: [get(this, 'messageForUser')]
-      });
-      return;
-    }
-
-    steps.forEach((step, index) => {
-      const { id, options } = step;
-
-      if (options.buttons) {
-        options.buttons = options.buttons.map(makeButton.bind(this), this);
+      // Return nothing if there are no steps
+      if (isEmpty(steps)) {
+        return;
+      }
+      /* istanbul ignore next: also can't test this due to things attached to root blowing up tests */
+      if (!this._requiredElementsPresent()) {
+        tour.addStep('error', {
+          buttons: [{
+            text: 'Exit',
+            action: tour.cancel
+          }],
+          title: get(this, 'errorTitle'),
+          text: [get(this, 'messageForUser')]
+        });
+        return;
       }
 
-      options.attachTo = normalizeAttachTo(options.attachTo);
-      tour.addStep(id, options);
+      steps.forEach((step, index) => {
+        const { id, options } = step;
 
-      // Step up events for the current step
-      const currentStep = tour.steps[index];
+        if (options.buttons) {
+          options.buttons = options.buttons.map(makeButton.bind(this), this);
+        }
 
-      if (!currentStep.options.scrollToHandler) {
-        currentStep.options.scrollToHandler = (elem) => {
-          // Allow scrolling so scrollTo works.
-          enableBodyScroll();
+        options.attachTo = normalizeAttachTo(options.attachTo);
+        tour.addStep(id, options);
 
-          if (typeof elem !== 'undefined') {
-            elem.scrollIntoView();
-          }
+        // Step up events for the current step
+        const currentStep = tour.steps[index];
 
-          later(() => {
-            if (get(this, 'disableScroll')) {
-              disableBodyScroll();
+        if (!currentStep.options.scrollToHandler) {
+          currentStep.options.scrollToHandler = (elem) => {
+            // Allow scrolling so scrollTo works.
+            enableBodyScroll();
+
+            if (typeof elem !== 'undefined') {
+              elem.scrollIntoView();
             }
-          }, 50);
-        };
-      }
+
+            later(() => {
+              if (get(this, 'disableScroll')) {
+                disableBodyScroll();
+              }
+            }, 50);
+          };
+        }
+      });
     });
   },
 
@@ -414,19 +415,23 @@ export default Service.extend(Evented, {
       defaultStepOptions.tippyOptions.appendTo = rootElement;
     }
 
-    const tourObject = new Shepherd.Tour({
-      confirmCancel,
-      confirmCancelMessage,
-      defaultStepOptions,
-      tourName,
-      useModalOverlay
-    });
 
-    tourObject.on('start', bind(this, '_onTourStart'));
-    tourObject.on('complete', bind(this, '_onTourFinish', 'complete'));
-    tourObject.on('cancel', bind(this, '_onTourFinish', 'cancel'));
+    return import('shepherd.js').then(module => {
+      const Shepherd = module.default
+      const tourObject = new Shepherd.Tour({
+        confirmCancel,
+        confirmCancelMessage,
+        defaultStepOptions,
+        tourName,
+        useModalOverlay
+      });
 
-    set(this, 'tourObject', tourObject);
+      tourObject.on('start', bind(this, '_onTourStart'));
+      tourObject.on('complete', bind(this, '_onTourFinish', 'complete'));
+      tourObject.on('cancel', bind(this, '_onTourFinish', 'cancel'));
+
+      set(this, 'tourObject', tourObject);
+    })
   },
 
   /**

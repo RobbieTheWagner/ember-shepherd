@@ -12,11 +12,12 @@ module.exports = {
     this._super.included.apply(this, arguments);
   },
   options: {
+    babel: {
+      plugins: [ require.resolve('ember-auto-import/babel-plugin') ]
+    },
     nodeAssets: {
       'shepherd.js'() {
-        const include = [
-          'dist/js/shepherd.js'
-        ];
+        const include = [];
 
         if (this.theme) {
           include.push(this.theme);
