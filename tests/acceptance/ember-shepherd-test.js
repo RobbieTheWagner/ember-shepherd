@@ -5,7 +5,7 @@ import { builtInButtons, steps as defaultSteps } from '../data';
 
 const toggleTour = async (tour, modal) => {
   tour.set('modal', modal);
-  tour.addSteps(defaultSteps);
+  await tour.addSteps(defaultSteps);
   return await tour.start();
 };
 
@@ -56,7 +56,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       await visit('/docs/demo');
 
       tour.set('defaultStepOptions', defaultStepOptions);
-      tour.addSteps(steps);
+      await tour.addSteps(steps);
 
       tour.start();
 
@@ -149,7 +149,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       await visit('/docs/demo');
 
-      tour.addSteps(stepsWithoutClasses);
+      await tour.addSteps(stepsWithoutClasses);
 
       tour.start();
 
@@ -173,7 +173,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
         }
       }];
 
-      tour.addSteps(steps);
+      await tour.addSteps(steps);
 
       await visit('/docs/demo');
 
@@ -201,7 +201,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
         }
       }];
 
-      tour.addSteps(steps);
+      await tour.addSteps(steps);
       tour.start();
 
       assert.ok(document.querySelector('.shepherd-element'), 'tour is visible');
@@ -241,7 +241,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       await visit('/docs/demo');
 
-      tour.addSteps(steps);
+      await tour.addSteps(steps);
 
       await tour.start();
 
@@ -302,7 +302,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       // Visit route
       await visit('/docs/demo');
 
-      tour.addSteps(steps);
+      await tour.addSteps(steps);
 
       document.querySelector('#ember-testing-container').scrollTop = 0;
       assert.equal(document.querySelector('#ember-testing-container').scrollTop, 0, 'Scroll is initially 0');
