@@ -9,7 +9,7 @@ export default Route.extend({
   tour: service(),
   disableScroll: true,
 
-  beforeModel() {
+  async beforeModel() {
     const tour = this.get('tour');
 
     tour.set('defaultStepOptions', defaultStepOptions);
@@ -25,7 +25,7 @@ export default Route.extend({
       });
     }
 
-    tour.addSteps(defaultSteps);
+    await tour.addSteps(defaultSteps);
 
     tour.on('cancel', () => {
       console.log('cancel');

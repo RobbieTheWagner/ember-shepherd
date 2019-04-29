@@ -11,6 +11,7 @@ import {
   elementIsHidden
 } from '../utils/dom';
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { Promise } from 'rsvp';
 
 /**
  * Interaction with `ember-shepherd` is done entirely through the Tour service, which you can access from any object using the `Ember.inject` syntax:
@@ -156,12 +157,20 @@ export default Service.extend(Evented, {
   requiredElements: [],
   steps: [],
 
+  init() {
+    this._super(...arguments);
+    let owner = getOwner(this);
+    const fastboot = owner.lookup('service:fastboot');
+    this._isFastBoot = fastboot && fastboot.isFastBoot;
+  },
+
   willDestroy() {
     this._cleanup();
   },
 
   /**
-   * Take a set of steps and create a tour object based on the current configuration
+   * Take a set of steps, create a tour object based on the current configuration and load the shepherd.js dependency.
+   * This method returns a promise which resolves when the shepherd.js dependency has been loaded and shepherd is ready to use.
    *
    * You must pass an array of steps to `addSteps`, something like this:
    *
@@ -219,58 +228,63 @@ export default Service.extend(Evented, {
    *
    * @method addSteps
    * @param {array} steps An array of steps
+   * @returns {Promise} Promise that resolves when everything has been set up and shepherd is ready to use
    * @public
    */
   addSteps(steps) {
-    this._initialize();
-    const tour = get(this, 'tourObject');
-
-    // Return nothing if there are no steps
-    if (isEmpty(steps)) {
-      return;
+    if (this._isFastBoot) {
+      return Promise.resolve();
     }
-    /* istanbul ignore next: also can't test this due to things attached to root blowing up tests */
-    if (!this._requiredElementsPresent()) {
-      tour.addStep('error', {
-        buttons: [{
-          text: 'Exit',
-          action: tour.cancel
-        }],
-        title: get(this, 'errorTitle'),
-        text: [get(this, 'messageForUser')]
-      });
-      return;
-    }
+    return this._initialize().then(() => {
+      const tour = get(this, 'tourObject');
 
-    steps.forEach((step, index) => {
-      const { id, options } = step;
-
-      if (options.buttons) {
-        options.buttons = options.buttons.map(makeButton.bind(this), this);
+      // Return nothing if there are no steps
+      if (isEmpty(steps)) {
+        return;
+      }
+      /* istanbul ignore next: also can't test this due to things attached to root blowing up tests */
+      if (!this._requiredElementsPresent()) {
+        tour.addStep('error', {
+          buttons: [{
+            text: 'Exit',
+            action: tour.cancel
+          }],
+          title: get(this, 'errorTitle'),
+          text: [get(this, 'messageForUser')]
+        });
+        return;
       }
 
-      options.attachTo = normalizeAttachTo(options.attachTo);
-      tour.addStep(id, options);
+      steps.forEach((step, index) => {
+        const { id, options } = step;
 
-      // Step up events for the current step
-      const currentStep = tour.steps[index];
+        if (options.buttons) {
+          options.buttons = options.buttons.map(makeButton.bind(this), this);
+        }
 
-      if (!currentStep.options.scrollToHandler) {
-        currentStep.options.scrollToHandler = (elem) => {
-          // Allow scrolling so scrollTo works.
-          enableBodyScroll();
+        options.attachTo = normalizeAttachTo(options.attachTo);
+        tour.addStep(id, options);
 
-          if (typeof elem !== 'undefined') {
-            elem.scrollIntoView();
-          }
+        // Step up events for the current step
+        const currentStep = tour.steps[index];
 
-          later(() => {
-            if (get(this, 'disableScroll')) {
-              disableBodyScroll();
+        if (!currentStep.options.scrollToHandler) {
+          currentStep.options.scrollToHandler = (elem) => {
+            // Allow scrolling so scrollTo works.
+            enableBodyScroll();
+
+            if (typeof elem !== 'undefined') {
+              elem.scrollIntoView();
             }
-          }, 50);
-        };
-      }
+
+            later(() => {
+              if (get(this, 'disableScroll')) {
+                disableBodyScroll();
+              }
+            }, 50);
+          };
+        }
+      });
     });
   },
 
@@ -281,6 +295,9 @@ export default Service.extend(Evented, {
    * @public
    */
   back() {
+    if (this._isFastBoot) {
+      return;
+    }
     get(this, 'tourObject').back();
     this.trigger('back');
   },
@@ -292,6 +309,9 @@ export default Service.extend(Evented, {
    * @public
    */
   cancel() {
+    if (this._isFastBoot) {
+      return;
+    }
     get(this, 'tourObject').cancel();
   },
 
@@ -302,6 +322,9 @@ export default Service.extend(Evented, {
    * @public
    */
   complete() {
+    if (this._isFastBoot) {
+      return;
+    }
     get(this, 'tourObject').complete();
   },
 
@@ -312,6 +335,9 @@ export default Service.extend(Evented, {
    * @public
    */
   hide() {
+    if (this._isFastBoot) {
+      return;
+    }
     get(this, 'tourObject').hide();
   },
 
@@ -322,6 +348,9 @@ export default Service.extend(Evented, {
    * @public
    */
   next() {
+    if (this._isFastBoot) {
+      return;
+    }
     get(this, 'tourObject').next();
     this.trigger('next');
   },
@@ -334,18 +363,28 @@ export default Service.extend(Evented, {
    * @public
    */
   show(id) {
+    if (this._isFastBoot) {
+      return;
+    }
     get(this, 'tourObject').show(id);
   },
 
   /**
-   * Start the tour
+   * Start the tour. The Promise from addSteps() must be in a resolved state prior to starting the tour!
    *
    * @method start
    * @public
    */
   start() {
+    if (this._isFastBoot) {
+      return;
+    }
+    const tourObject = get(this, 'tourObject');
+    if (tourObject == undefined) {
+      throw new Error("the Promise from addSteps must be in a resolved state before the tour can be started");
+    }
     set(this, 'isActive', true);
-    get(this, 'tourObject').start();
+    tourObject.start();
   },
 
   /**
@@ -414,19 +453,23 @@ export default Service.extend(Evented, {
       defaultStepOptions.tippyOptions.appendTo = rootElement;
     }
 
-    const tourObject = new Shepherd.Tour({
-      confirmCancel,
-      confirmCancelMessage,
-      defaultStepOptions,
-      tourName,
-      useModalOverlay
-    });
 
-    tourObject.on('start', bind(this, '_onTourStart'));
-    tourObject.on('complete', bind(this, '_onTourFinish', 'complete'));
-    tourObject.on('cancel', bind(this, '_onTourFinish', 'cancel'));
+    return import('shepherd.js').then(module => {
+      const Shepherd = module.default
+      const tourObject = new Shepherd.Tour({
+        confirmCancel,
+        confirmCancelMessage,
+        defaultStepOptions,
+        tourName,
+        useModalOverlay
+      });
 
-    set(this, 'tourObject', tourObject);
+      tourObject.on('start', bind(this, '_onTourStart'));
+      tourObject.on('complete', bind(this, '_onTourFinish', 'complete'));
+      tourObject.on('cancel', bind(this, '_onTourFinish', 'cancel'));
+
+      set(this, 'tourObject', tourObject);
+    })
   },
 
   /**
