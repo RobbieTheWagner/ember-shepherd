@@ -11,7 +11,6 @@ import {
   elementIsHidden
 } from '../utils/dom';
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
-import { Promise } from 'rsvp';
 
 /**
  * Interaction with `ember-shepherd` is done entirely through the Tour service, which you can access from any object using the `Ember.inject` syntax:
@@ -157,13 +156,6 @@ export default Service.extend(Evented, {
   requiredElements: [],
   steps: [],
 
-  init() {
-    this._super(...arguments);
-    let owner = getOwner(this);
-    const fastboot = owner.lookup('service:fastboot');
-    this._isFastBoot = fastboot && fastboot.isFastBoot;
-  },
-
   willDestroy() {
     this._cleanup();
   },
@@ -232,9 +224,6 @@ export default Service.extend(Evented, {
    * @public
    */
   addSteps(steps) {
-    if (this._isFastBoot) {
-      return Promise.resolve();
-    }
     return this._initialize().then(() => {
       const tour = get(this, 'tourObject');
 
@@ -295,9 +284,6 @@ export default Service.extend(Evented, {
    * @public
    */
   back() {
-    if (this._isFastBoot) {
-      return;
-    }
     get(this, 'tourObject').back();
     this.trigger('back');
   },
@@ -309,9 +295,6 @@ export default Service.extend(Evented, {
    * @public
    */
   cancel() {
-    if (this._isFastBoot) {
-      return;
-    }
     get(this, 'tourObject').cancel();
   },
 
@@ -322,9 +305,6 @@ export default Service.extend(Evented, {
    * @public
    */
   complete() {
-    if (this._isFastBoot) {
-      return;
-    }
     get(this, 'tourObject').complete();
   },
 
@@ -335,9 +315,6 @@ export default Service.extend(Evented, {
    * @public
    */
   hide() {
-    if (this._isFastBoot) {
-      return;
-    }
     get(this, 'tourObject').hide();
   },
 
@@ -348,9 +325,6 @@ export default Service.extend(Evented, {
    * @public
    */
   next() {
-    if (this._isFastBoot) {
-      return;
-    }
     get(this, 'tourObject').next();
     this.trigger('next');
   },
@@ -363,9 +337,6 @@ export default Service.extend(Evented, {
    * @public
    */
   show(id) {
-    if (this._isFastBoot) {
-      return;
-    }
     get(this, 'tourObject').show(id);
   },
 
@@ -376,9 +347,6 @@ export default Service.extend(Evented, {
    * @public
    */
   start() {
-    if (this._isFastBoot) {
-      return;
-    }
     const tourObject = get(this, 'tourObject');
     if (tourObject == undefined) {
       throw new Error("the Promise from addSteps must be in a resolved state before the tour can be started");
