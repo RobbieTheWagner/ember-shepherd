@@ -1,5 +1,25 @@
 # Changelog
 
+## [v5.0.0](https://github.com/shipshapecode/ember-shepherd/tree/v5.0.0) (2019-05-04)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.9.0...v5.0.0)
+
+**Breaking changes:**
+
+- load shepherd.js lazily using ember-auto-import [\#305](https://github.com/shipshapecode/ember-shepherd/pull/305) ([st-h](https://github.com/st-h))
+
+**Implemented enhancements:**
+
+- replace fastboot guards with an initializer [\#307](https://github.com/shipshapecode/ember-shepherd/pull/307) ([st-h](https://github.com/st-h))
+
+**Closed issues:**
+
+- lazily load shepherd dependency [\#304](https://github.com/shipshapecode/ember-shepherd/issues/304)
+
+**Merged pull requests:**
+
+- Shepherd 2.8.0, bump various deps [\#309](https://github.com/shipshapecode/ember-shepherd/pull/309) ([rwwagner90](https://github.com/rwwagner90))
+
 ## [v4.9.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.9.0) (2019-04-15)
 
 [Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.8.0...v4.9.0)
