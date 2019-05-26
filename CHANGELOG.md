@@ -1,5 +1,17 @@
 # Changelog
 
+## [v6.0.0](https://github.com/shipshapecode/ember-shepherd/tree/v6.0.0) (2019-05-26)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v5.0.0...v6.0.0)
+
+**Breaking changes:**
+
+- Ember 3.10, drop support for node 6 [\#316](https://github.com/shipshapecode/ember-shepherd/pull/316) ([rwwagner90](https://github.com/rwwagner90))
+
+**Implemented enhancements:**
+
+- Shepherd.js 2.9.0, bump other deps [\#317](https://github.com/shipshapecode/ember-shepherd/pull/317) ([rwwagner90](https://github.com/rwwagner90))
+
 ## [v5.0.0](https://github.com/shipshapecode/ember-shepherd/tree/v5.0.0) (2019-05-04)
 
 [Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.9.0...v5.0.0)
