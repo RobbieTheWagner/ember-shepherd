@@ -1,3 +1,108 @@
+## [v6.0.0](https://github.com/shipshapecode/ember-shepherd/tree/v6.0.0) (2019-05-26)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v5.0.0...v6.0.0)
+
+**Breaking changes:**
+
+- Ember 3.10, drop support for node 6 [\#316](https://github.com/shipshapecode/ember-shepherd/pull/316) ([rwwagner90](https://github.com/rwwagner90))
+
+**Implemented enhancements:**
+
+- Shepherd.js 2.9.0, bump other deps [\#317](https://github.com/shipshapecode/ember-shepherd/pull/317) ([rwwagner90](https://github.com/rwwagner90))
+
+## [v5.0.0](https://github.com/shipshapecode/ember-shepherd/tree/v5.0.0) (2019-05-04)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.9.0...v5.0.0)
+
+**Breaking changes:**
+
+- load shepherd.js lazily using ember-auto-import [\#305](https://github.com/shipshapecode/ember-shepherd/pull/305) ([st-h](https://github.com/st-h))
+
+**Implemented enhancements:**
+
+- replace fastboot guards with an initializer [\#307](https://github.com/shipshapecode/ember-shepherd/pull/307) ([st-h](https://github.com/st-h))
+
+**Closed issues:**
+
+- lazily load shepherd dependency [\#304](https://github.com/shipshapecode/ember-shepherd/issues/304)
+
+**Merged pull requests:**
+
+- Shepherd 2.8.0, bump various deps [\#309](https://github.com/shipshapecode/ember-shepherd/pull/309) ([rwwagner90](https://github.com/rwwagner90))
+
+## [v4.9.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.9.0) (2019-04-15)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.8.0...v4.9.0)
+
+**Implemented enhancements:**
+
+- Update to Shepherd 2.6.0 [\#302](https://github.com/shipshapecode/ember-shepherd/pull/302) ([rwwagner90](https://github.com/rwwagner90))
+
+**Closed issues:**
+
+- Explore Integration of Ember CLI Addon docs.  [\#244](https://github.com/shipshapecode/ember-shepherd/issues/244)
+
+## [v4.8.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.8.0) (2019-04-07)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.7.0...v4.8.0)
+
+**Implemented enhancements:**
+
+- Use ember-cli-addon-docs for documentation [\#297](https://github.com/shipshapecode/ember-shepherd/pull/297) ([rwwagner90](https://github.com/rwwagner90))
+
+## [v4.7.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.7.0) (2019-04-05)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.6.0...v4.7.0)
+
+**Implemented enhancements:**
+
+- Use ember-auto-import to import disable-scroll, bump disable-scroll to 0.4.1 [\#296](https://github.com/shipshapecode/ember-shepherd/pull/296) ([rwwagner90](https://github.com/rwwagner90))
+- Use rootElement, if defined, rather than document.body [\#295](https://github.com/shipshapecode/ember-shepherd/pull/295) ([rwwagner90](https://github.com/rwwagner90))
+
+## [v4.6.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.6.0) (2019-03-20)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.5.3...v4.6.0)
+
+## [v4.5.3](https://github.com/shipshapecode/ember-shepherd/tree/v4.5.3) (2019-01-16)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.5.2...v4.5.3)
+
+## [v4.5.2](https://github.com/shipshapecode/ember-shepherd/tree/v4.5.2) (2019-01-15)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.5.1...v4.5.2)
+
+## [v4.5.1](https://github.com/shipshapecode/ember-shepherd/tree/v4.5.1) (2019-01-14)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.5.0...v4.5.1)
+
+## [v4.5.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.5.0) (2019-01-14)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.4.0...v4.5.0)
+
+## [v4.4.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.4.0) (2019-01-14)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.3.0...v4.4.0)
+
+## [v4.3.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.3.0) (2019-01-11)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.2.0...v4.3.0)
+
+## [v4.2.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.2.0) (2019-01-07)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.1.1...v4.2.0)
+
+## [v4.1.1](https://github.com/shipshapecode/ember-shepherd/tree/v4.1.1) (2019-01-04)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.1.0...v4.1.1)
+
+## [v4.1.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.1.0) (2019-01-02)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0...v4.1.0)
+
+**Implemented enhancements:**
+
+- feat: Pass tourName option when initializing the Shepherd.Tour [\#282](https://github.com/shipshapecode/ember-shepherd/pull/282) ([scottkidder](https://github.com/scottkidder))
+
 ## [v4.0.0](https://github.com/shipshapecode/ember-shepherd/tree/v4.0.0) (2019-01-02)
 
 [Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v4.0.0-beta.15...v4.0.0)
