@@ -101,7 +101,7 @@
     "qunit-dom": "^0.8.4",
     "sass": "^1.21.0",
     "stylelint": "^10.1.0",
-    "stylelint-config-ship-shape": "^0.5.2"
+    "stylelint-config-ship-shape": "^0.6.0"
   },
   "engines": {
     "node": "8.* || >= 10.*"
