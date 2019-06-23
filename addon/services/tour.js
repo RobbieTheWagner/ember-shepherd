@@ -1,16 +1,13 @@
 /* eslint-disable ember/avoid-leaking-state-in-ember-objects */
-import { get, set } from '@ember/object';
+import { get, getProperties, set } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
 import Service from '@ember/service';
 import Evented from '@ember/object/evented';
 import { getOwner } from '@ember/application';
-import { bind, later } from '@ember/runloop';
+import { bind } from '@ember/runloop';
 import { normalizeAttachTo } from '../utils/attachTo';
 import { makeButton } from '../utils/buttons';
-import {
-  elementIsHidden
-} from '../utils/dom';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { elementIsHidden } from '../utils/dom';
 
 /**
  * Interaction with `ember-shepherd` is done entirely through the Tour service, which you can access from any object using the `Ember.inject` syntax:
@@ -66,7 +63,7 @@ export default Service.extend(Evented, {
    * ```js
    * this.get('tour').set('defaultStepOptions', {
    *   classes: 'custom-class-name-1 custom-class-name-2',
-   *   scrollTo: false,
+   *   scrollTo: true,
    *   showCancelLink: true
    * });
    * ```
@@ -156,10 +153,6 @@ export default Service.extend(Evented, {
   requiredElements: [],
   steps: [],
 
-  willDestroy() {
-    this._cleanup();
-  },
-
   /**
    * Take a set of steps, create a tour object based on the current configuration and load the shepherd.js dependency.
    * This method returns a promise which resolves when the shepherd.js dependency has been loaded and shepherd is ready to use.
@@ -244,7 +237,7 @@ export default Service.extend(Evented, {
         return;
       }
 
-      steps.forEach((step, index) => {
+      steps.forEach((step) => {
         const { id, options } = step;
 
         if (options.buttons) {
@@ -253,26 +246,6 @@ export default Service.extend(Evented, {
 
         options.attachTo = normalizeAttachTo(options.attachTo);
         tour.addStep(id, options);
-
-        // Step up events for the current step
-        const currentStep = tour.steps[index];
-
-        if (!currentStep.options.scrollToHandler) {
-          currentStep.options.scrollToHandler = (elem) => {
-            // Allow scrolling so scrollTo works.
-            enableBodyScroll();
-
-            if (typeof elem !== 'undefined') {
-              elem.scrollIntoView();
-            }
-
-            later(() => {
-              if (get(this, 'disableScroll')) {
-                disableBodyScroll();
-              }
-            }, 50);
-          };
-        }
       });
     });
   },
@@ -349,7 +322,7 @@ export default Service.extend(Evented, {
   start() {
     const tourObject = get(this, 'tourObject');
     if (tourObject == undefined) {
-      throw new Error("the Promise from addSteps must be in a resolved state before the tour can be started");
+      throw new Error('the Promise from addSteps must be in a resolved state before the tour can be started');
     }
     set(this, 'isActive', true);
     tourObject.start();
@@ -362,10 +335,6 @@ export default Service.extend(Evented, {
    * @private
    */
   _onTourStart() {
-    if (get(this, 'disableScroll')) {
-      disableBodyScroll();
-    }
-
     this.trigger('start');
   },
 
@@ -380,20 +349,7 @@ export default Service.extend(Evented, {
     if (!this.isDestroyed) {
       set(this, 'isActive', false);
     }
-    this._cleanup();
     this.trigger(completeOrCancel);
-  },
-
-  /**
-   * Cleanup disableScroll
-   *
-   * @method _cleanup
-   * @private
-   */
-  _cleanup() {
-    if (get(this, 'disableScroll')) {
-      clearAllBodyScrollLocks();
-    }
   },
 
   /**
@@ -403,11 +359,8 @@ export default Service.extend(Evented, {
    * @private
    */
   _initialize() {
-    const confirmCancel = get(this, 'confirmCancel');
-    const confirmCancelMessage = get(this, 'confirmCancelMessage');
-    const defaultStepOptions = get(this, 'defaultStepOptions');
-    const tourName = get(this, 'tourName');
-    const useModalOverlay = get(this, 'modal');
+    const { confirmCancel, confirmCancelMessage, defaultStepOptions, disableScroll, modal, tourName } =
+      getProperties(this, 'confirmCancel', 'confirmCancelMessage', 'defaultStepOptions', 'disableScroll', 'modal', 'tourName');
 
     // Ensure `tippyOptions` exists on `defaultStepOptions`
     defaultStepOptions.tippyOptions = defaultStepOptions.tippyOptions || {};
@@ -423,13 +376,14 @@ export default Service.extend(Evented, {
 
 
     return import('shepherd.js').then(module => {
-      const Shepherd = module.default
+      const Shepherd = module.default;
       const tourObject = new Shepherd.Tour({
         confirmCancel,
         confirmCancelMessage,
         defaultStepOptions,
+        disableScroll,
         tourName,
-        useModalOverlay
+        useModalOverlay: modal
       });
 
       tourObject.on('start', bind(this, '_onTourStart'));
@@ -437,7 +391,7 @@ export default Service.extend(Evented, {
       tourObject.on('cancel', bind(this, '_onTourFinish', 'cancel'));
 
       set(this, 'tourObject', tourObject);
-    })
+    });
   },
 
   /**
