@@ -11217,16 +11217,18 @@ shellwords@^0.1.1:
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
 
-shepherd.js@^2.9.1:
-  version "2.9.1"
-  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-2.9.1.tgz#125f61a3893c234c5d25efba241d29679d2f2432"
-  integrity sha512-gHHPvDh2v2tSKMd5gcS7Kjmeji3pyqhYn7CHyyIe7o/B0CIXs8MgDt3wC/h72Gat5433/+GtxQwqSr8oDQOpGQ==
+shepherd.js@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-3.0.0.tgz#d3ee2653238ddea9633ea91a494c730ff6fd4cfd"
+  integrity sha512-MOhtdMbjSHuwsxDtzT+e5FyutX9iuAfAJsj3kcbjBOeiT2njKesOrxsNm8qoSKCGswqiuXTRA4JvTcYSaYBVHw==
   dependencies:
+    body-scroll-lock "^2.6.1"
     element-matches "^0.1.2"
     lodash.defer "^4.1.0"
     lodash.iselement "^4.1.1"
     lodash.isobjectlike "^4.0.0"
     lodash.zipobject "^4.1.3"
+    smoothscroll-polyfill "^0.4.4"
     tippy.js "^4.3.4"
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:
@@ -11269,6 +11271,11 @@ slice-ansi@^2.1.0:
     ansi-styles "^3.2.0"
     astral-regex "^1.0.0"
     is-fullwidth-code-point "^2.0.0"
+
+smoothscroll-polyfill@^0.4.4:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/smoothscroll-polyfill/-/smoothscroll-polyfill-0.4.4.tgz#3a259131dc6930e6ca80003e1cb03b603b69abf8"
+  integrity sha512-TK5ZA9U5RqCwMpfoMq/l1mrH0JAR7y7KRvOBx0n2869aLxch+gT9GhN3yUfjiw+d/DiF1mKo14+hd62JyMmoBg==
 
 snake-case@^2.1.0:
   version "2.1.0"
