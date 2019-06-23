@@ -1,5 +1,26 @@
 # Changelog
 
+## [v7.0.0](https://github.com/shipshapecode/ember-shepherd/tree/v7.0.0) (2019-06-23)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v6.0.1...v7.0.0)
+
+**Breaking changes:**
+
+- Remove body-scroll-lock, shepherd.js 3.0.0 [\#325](https://github.com/shipshapecode/ember-shepherd/pull/325) ([rwwagner90](https://github.com/rwwagner90))
+
+**Closed issues:**
+
+- 6.0.0 npm error: node\_modules/ember-shepherd: Appears to be a git repo or submodule. [\#319](https://github.com/shipshapecode/ember-shepherd/issues/319)
+
+**Merged pull requests:**
+
+- Greenkeeper/ember cli stylelint 3.0.1 [\#323](https://github.com/shipshapecode/ember-shepherd/pull/323) ([rwwagner90](https://github.com/rwwagner90))
+- Update stylelint-config-ship-shape to the latest version 🚀 [\#320](https://github.com/shipshapecode/ember-shepherd/pull/320) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
+## [v6.0.1](https://github.com/shipshapecode/ember-shepherd/tree/v6.0.1) (2019-06-09)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v6.0.0...v6.0.1)
+
 ## [v6.0.0](https://github.com/shipshapecode/ember-shepherd/tree/v6.0.0) (2019-05-26)
 
 [Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v5.0.0...v6.0.0)
