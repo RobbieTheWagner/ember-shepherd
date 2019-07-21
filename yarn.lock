@@ -5397,6 +5397,15 @@ ember-ignore-children-helper@^1.0.1:
   dependencies:
     ember-cli-babel "^6.8.2"
 
+ember-in-element-polyfill@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/ember-in-element-polyfill/-/ember-in-element-polyfill-0.2.0.tgz#3722b6488bd1609d7b501c3f208eff62ac3dbbef"
+  integrity sha512-cl7hWFhBcwbPbXOHjvupufwgQGRWnPNMXcJT9M/e07AbHVjbI7EnMqOfW1V2lJKsm6KQ1hT3frDcNQWZtS+6lQ==
+  dependencies:
+    debug "^3.1.0"
+    ember-cli-babel "^7.1.2"
+    ember-cli-version-checker "^2.1.0"
+
 ember-inflector@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/ember-inflector/-/ember-inflector-3.0.0.tgz#7e1ee8aaa0fa773ba0905d8b7c0786354d890ee1"
@@ -5440,14 +5449,15 @@ ember-modal-dialog@3.0.0-beta.3:
     ember-ignore-children-helper "^1.0.1"
     ember-wormhole "^0.5.5"
 
-ember-prism@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/ember-prism/-/ember-prism-0.4.0.tgz#b1f02bed563345ead985ace900b7311a730a7149"
-  integrity sha512-5WfDBMs2sBAHalFnF+eZ247wBE+uYw4YW3jkRAGmAf/n7nt1yP3lPOwAEKeflxJWae5kunh77Wjk0ANhXwylxw==
+ember-prism@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/ember-prism/-/ember-prism-0.5.0.tgz#d8d53f345aaa6890d8541456ba05121e5626d5d1"
+  integrity sha512-IvjrS5SA08lDAvjvivV2DiQQgDu/P2f69z2HYH2vzduQw4m7BYF/+xK57zcMQWresIckH/tgKKdnJLZHLAE0Xg==
   dependencies:
     ember-cli-babel "^7.1.2"
     ember-cli-htmlbars "^3.0.0"
     ember-cli-node-assets "^0.2.2"
+    ember-in-element-polyfill "^0.2.0"
     prismjs "^1.15.0"
 
 ember-qunit@^4.4.1:
