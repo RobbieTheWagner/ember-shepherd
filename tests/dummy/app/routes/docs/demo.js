@@ -3,7 +3,7 @@ import Route from '@ember/routing/route';
 import config from '../../config/environment';
 import { inject as service } from '@ember/service';
 import { scheduleOnce } from '@ember/runloop';
-import { steps as defaultSteps, defaultStepOptions} from '../../data';
+import { steps as defaultSteps, defaultStepOptions } from '../../data';
 
 export default Route.extend({
   tour: service(),
@@ -15,6 +15,12 @@ export default Route.extend({
     tour.set('defaultStepOptions', defaultStepOptions);
     tour.set('disableScroll', this.get('disableScroll'));
     tour.set('modal', true);
+    tour.set('styleVariables', {
+      // Shepherd theme overrides
+      shepherdTextBackground: '#3d2f53',
+      shepherdThemePrimary: '#624b86',
+      shepherdThemeSecondary: '#c8c7d5'
+    });
     tour.set('confirmCancel', false);
 
     // Disable animations in the test environment, to ensure timing is correct

@@ -5,7 +5,6 @@ import Service from '@ember/service';
 import Evented from '@ember/object/evented';
 import { getOwner } from '@ember/application';
 import { bind } from '@ember/runloop';
-import { normalizeAttachTo } from '../utils/attachTo';
 import { makeButton } from '../utils/buttons';
 import { elementIsHidden } from '../utils/dom';
 
@@ -238,14 +237,11 @@ export default Service.extend(Evented, {
       }
 
       steps.forEach((step) => {
-        const { id, options } = step;
-
-        if (options.buttons) {
-          options.buttons = options.buttons.map(makeButton.bind(this), this);
+        if (step.buttons) {
+          step.buttons = step.buttons.map(makeButton.bind(this), this);
         }
 
-        options.attachTo = normalizeAttachTo(options.attachTo);
-        tour.addStep(id, options);
+        tour.addStep(step);
       });
     });
   },
@@ -359,8 +355,24 @@ export default Service.extend(Evented, {
    * @private
    */
   _initialize() {
-    const { confirmCancel, confirmCancelMessage, defaultStepOptions, disableScroll, modal, tourName } =
-      getProperties(this, 'confirmCancel', 'confirmCancelMessage', 'defaultStepOptions', 'disableScroll', 'modal', 'tourName');
+    const {
+      confirmCancel,
+      confirmCancelMessage,
+      defaultStepOptions,
+      disableScroll,
+      modal,
+      styleVariables,
+      tourName
+    } = getProperties(
+      this,
+      'confirmCancel',
+      'confirmCancelMessage',
+      'defaultStepOptions',
+      'disableScroll',
+      'modal',
+      'styleVariables',
+      'tourName'
+    );
 
     // Ensure `tippyOptions` exists on `defaultStepOptions`
     defaultStepOptions.tippyOptions = defaultStepOptions.tippyOptions || {};
@@ -383,6 +395,7 @@ export default Service.extend(Evented, {
         defaultStepOptions,
         disableScroll,
         tourName,
+        styleVariables,
         useModalOverlay: modal
       });
 

@@ -6,11 +6,6 @@ module.exports = function(defaults) {
   const app = new EmberAddon(defaults, {
     babel: {
       plugins: [ require.resolve('ember-auto-import/babel-plugin') ]
-    },
-    sassOptions: {
-      includePaths: [
-        'node_modules/shepherd.js/src/scss'
-      ]
     }
   });
 
