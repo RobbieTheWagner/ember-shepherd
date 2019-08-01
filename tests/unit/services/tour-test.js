@@ -8,14 +8,17 @@ const steps = [
   {
     id: 'intro',
     options: {
-      attachTo: '.test-element bottom',
+      attachTo: {
+        element: '.test-element',
+        on: 'bottom'
+      },
       buttons: [
         builtInButtons.cancel,
-        builtInButtons.next,
+        builtInButtons.next
       ],
       classes: 'custom-class-name-1 custom-class-name-2',
       title: 'Welcome to Ember-Shepherd!',
-      text: ['Test text'],
+      text: 'Test text',
       scrollTo: true,
       scrollToHandler() {
         return 'custom scrollToHandler';

@@ -7,20 +7,9 @@ A lot of the options are the same as Shepherd options, but I will go through eac
 
 ## Step Options
 
-### id
+### attachTo
 
-The name to give this step of the tour
-
-
-### options
-
-An object with all of the options for the step
-
-
-### options.attachTo
-
-The selector and position for the tour popup to attach to, of the format 'selector position'. Position options are: top, bottom, left, and right.
-Can also be an object formatted like
+The selector and position for the tour popup to attach to. Position options are: top, bottom, left, and right.
 
 ```js
 {
@@ -31,49 +20,53 @@ Can also be an object formatted like
 
 Where `.myElement` is any valid CSS selector.
 
-> **default value:** `''`
+> **default value:** `undefined`
 
 
-### options.beforeShowPromise
+### beforeShowPromise
 
 A function that returns a promise. When the promise resolves, the rest of the `show` code for the step will execute. This is a good place to schedule things in the Ember.run loop that you need to ensure happen before show.
 
 > **default value:** `null`
 
 
-### options.buttons
+### buttons
 
 There are some standard button types supported by ember-shepherd. Just set `type` to `'next'`, `'back'`, or `'cancel'`, then set the `text` and `classes` as normal. These will automatically be bound to the Shepherd functions. If no type is passed, a normal Shepherd button will be created.
 
-### options.classes
+### classes
 
 Extra classes to apply to the step, for styling purposes and such.
 
 > **default value:** `''`
 
 
-### options.canClickTarget
+### canClickTarget
 
 Whether or not the target element being attached to should be "clickable". If set to `false`, Ember Shepherd sets the element's [`pointerEvents` style](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events) to `none` while the step is active.
 
 > **default value:** `true`
 
 
-### options.highlightClass
+### highlightClass
 
 This is an extra class to apply to the attachTo element when it is highlighted (that is, when its step is active). It can be any string. Just style that class name in your CSS.
 
 > **default value:** ``
 
+### id
 
-### options.scrollTo
+The name to give this step of the tour
+
+
+### scrollTo
 
 This sets whether or not the screen should be scrolled to get to the element when the step becomes active.
 
 > **default value:** `false`
 
 
-### options.scrollToHandler
+### scrollToHandler
 
 For custom scrolling actions, pass a function to this option. For example:
 
@@ -88,14 +81,16 @@ For custom scrolling actions, pass a function to this option. For example:
   };
 
   let steps = [
-    {id: 'intro',
-     options: {
-        attachTo: '#first-item left',
-        title: 'Welcome!',
-        text: ["Have we met before?"],
-        scrollTo: true,
-        scrollToHandler: scrollHandler
-      }
+    {
+      attachTo: {
+        element: '#first-item',
+        on: 'left'
+      },
+      id: 'intro',
+      title: 'Welcome!',
+      text: 'Have we met before?',
+      scrollTo: true,
+      scrollToHandler: scrollHandler
     }
   ];
 
@@ -104,28 +99,28 @@ For custom scrolling actions, pass a function to this option. For example:
 > **default value:** `null`
 
 
-### options.showCancelLink
+### showCancelLink
 
 When true, an x will appear in the top right of the popup, for canceling the tour.
 
 > **default value:** `false`
 
 
-### options.title
+### title
 
 The step's title. It becomes an h3 at the top of the step.
 
 > **default value:** `''`
 
 
-### options.tippyOptions
+### tippyOptions
 
 Extra options to pass to [Tippy](https://atomiks.github.io/tippyjs/#all-options).
 
 > **default value:** `null`
 
 
-### options.text
+### text
 
 The text content to display in the tour popup. Can be:
 + a string
@@ -138,7 +133,7 @@ Currently does ***not*** accept htmlbars input (PR welcome).
 > **default value:** `null`
 
 
-### options.when
+### when
 
 An object containing functions to be executed when events occur on the step.  Supported events are `before-show`, `show`, `before-hide`, `hide`, `complete`, `cancel`, and `destroy`.
 

@@ -7,7 +7,7 @@ import { steps as defaultSteps, defaultStepOptions } from '../../data';
 
 export default Route.extend({
   tour: service(),
-  disableScroll: true,
+  disableScroll: false,
 
   async beforeModel() {
     const tour = this.get('tour');

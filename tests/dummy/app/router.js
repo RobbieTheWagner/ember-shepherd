@@ -10,8 +10,7 @@ Router.map(function() {
   docsRoute(this, function() {
     this.route('demo');
     this.route('faq');
-    this.route('sass-variables');
-    this.route('themes');
+    this.route('style-variables');
     this.route('usage');
 
     this.route('not-found', { path: '/*path' });

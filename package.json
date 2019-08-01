@@ -59,7 +59,7 @@
   "dependencies": {
     "ember-auto-import": "^1.5.2",
     "ember-cli-babel": "^7.7.3",
-    "shepherd.js": "^4.2.0"
+    "shepherd.js": "^4.3.0"
   },
   "devDependencies": {
     "@ember/optional-features": "^0.7.0",
@@ -99,7 +99,7 @@
     "eslint-plugin-node": "^9.0.1",
     "loader.js": "^4.7.0",
     "qunit-dom": "^0.8.4",
-    "sass": "^1.22.7",
+    "sass": "^1.22.9",
     "stylelint": "^10.1.0",
     "stylelint-config-ship-shape": "^0.6.0"
   },
