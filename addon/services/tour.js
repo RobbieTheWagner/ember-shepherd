@@ -5,7 +5,6 @@ import Service from '@ember/service';
 import Evented from '@ember/object/evented';
 import { getOwner } from '@ember/application';
 import { bind } from '@ember/runloop';
-import { normalizeAttachTo } from '../utils/attachTo';
 import { makeButton } from '../utils/buttons';
 import { elementIsHidden } from '../utils/dom';
 
@@ -154,6 +153,14 @@ export default Service.extend(Evented, {
   steps: [],
 
   /**
+   * `styleVariables` allows you to override the default Shepherd styles.
+   * @default undefined
+   * @property styleVariables
+   * @type Object
+   */
+  styleVariables: {},
+
+  /**
    * Take a set of steps, create a tour object based on the current configuration and load the shepherd.js dependency.
    * This method returns a promise which resolves when the shepherd.js dependency has been loaded and shepherd is ready to use.
    *
@@ -162,48 +169,49 @@ export default Service.extend(Evented, {
    * ```js
    * this.get('tour').addSteps([
    *   {
-   *     id: 'intro',
-   *     options: {
-   *       attachTo: '.first-element bottom',
-   *       beforeShowPromise: function() {
-   *         return new Promise(function(resolve) {
-   *           Ember.run.scheduleOnce('afterRender', this, function() {
-   *             window.scrollTo(0, 0);
-   *             this.get('documents.firstObject').set('isSelected', true);
-   *             resolve();
-   *           });
+   *     attachTo: {
+   *       element:'.first-element',
+   *       on: 'bottom'
+   *     },
+   *     beforeShowPromise: function() {
+   *       return new Promise(function(resolve) {
+   *         Ember.run.scheduleOnce('afterRender', this, function() {
+   *           window.scrollTo(0, 0);
+   *           this.get('documents.firstObject').set('isSelected', true);
+   *           resolve();
    *         });
+   *       });
+   *     },
+   *     buttons: [
+   *       {
+   *         classes: 'shepherd-button-secondary',
+   *         text: 'Exit',
+   *         type: 'cancel'
    *       },
-   *       buttons: [
-   *         {
-   *           classes: 'shepherd-button-secondary',
-   *           text: 'Exit',
-   *           type: 'cancel'
-   *         },
-   *         {
-   *           classes: 'shepherd-button-primary',
-   *           text: 'Back',
-   *           type: 'back'
-   *         },
-   *         {
-   *           classes: 'shepherd-button-primary',
-   *           text: 'Next',
-   *           type: 'next'
-   *         }
-   *       ],
-   *       classes: 'custom-class-name-1 custom-class-name-2',
-   *       highlightClass: 'highlight',
-   *       scrollTo: false,
-   *       showCancelLink: true,
-   *       title: 'Welcome to Ember-Shepherd!',
-   *       text: ['Ember-Shepherd is a JavaScript library for guiding users through your Ember app.'],
-   *       when: {
-   *         show: () => {
-   *           console.log('show step');
-   *         },
-   *         hide: () => {
-   *           console.log('hide step');
-   *         }
+   *       {
+   *         classes: 'shepherd-button-primary',
+   *         text: 'Back',
+   *         type: 'back'
+   *       },
+   *       {
+   *         classes: 'shepherd-button-primary',
+   *         text: 'Next',
+   *         type: 'next'
+   *       }
+   *     ],
+   *     classes: 'custom-class-name-1 custom-class-name-2',
+   *     highlightClass: 'highlight',
+   *     id: 'intro',
+   *     scrollTo: false,
+   *     showCancelLink: true,
+   *     title: 'Welcome to Ember-Shepherd!',
+   *     text: 'Ember-Shepherd is a JavaScript library for guiding users through your Ember app.',
+   *     when: {
+   *       show: () => {
+   *         console.log('show step');
+   *       },
+   *       hide: () => {
+   *         console.log('hide step');
    *       }
    *     }
    *   },
@@ -226,26 +234,24 @@ export default Service.extend(Evented, {
       }
       /* istanbul ignore next: also can't test this due to things attached to root blowing up tests */
       if (!this._requiredElementsPresent()) {
-        tour.addStep('error', {
+        tour.addStep({
           buttons: [{
             text: 'Exit',
             action: tour.cancel
           }],
+          id: 'error',
           title: get(this, 'errorTitle'),
-          text: [get(this, 'messageForUser')]
+          text: get(this, 'messageForUser')
         });
         return;
       }
 
       steps.forEach((step) => {
-        const { id, options } = step;
-
-        if (options.buttons) {
-          options.buttons = options.buttons.map(makeButton.bind(this), this);
+        if (step.buttons) {
+          step.buttons = step.buttons.map(makeButton.bind(this), this);
         }
 
-        options.attachTo = normalizeAttachTo(options.attachTo);
-        tour.addStep(id, options);
+        tour.addStep(step);
       });
     });
   },
@@ -359,8 +365,24 @@ export default Service.extend(Evented, {
    * @private
    */
   _initialize() {
-    const { confirmCancel, confirmCancelMessage, defaultStepOptions, disableScroll, modal, tourName } =
-      getProperties(this, 'confirmCancel', 'confirmCancelMessage', 'defaultStepOptions', 'disableScroll', 'modal', 'tourName');
+    const {
+      confirmCancel,
+      confirmCancelMessage,
+      defaultStepOptions,
+      disableScroll,
+      modal,
+      styleVariables,
+      tourName
+    } = getProperties(
+      this,
+      'confirmCancel',
+      'confirmCancelMessage',
+      'defaultStepOptions',
+      'disableScroll',
+      'modal',
+      'styleVariables',
+      'tourName'
+    );
 
     // Ensure `tippyOptions` exists on `defaultStepOptions`
     defaultStepOptions.tippyOptions = defaultStepOptions.tippyOptions || {};
@@ -383,6 +405,7 @@ export default Service.extend(Evented, {
         defaultStepOptions,
         disableScroll,
         tourName,
+        styleVariables,
         useModalOverlay: modal
       });
 

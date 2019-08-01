@@ -10,13 +10,6 @@ $panel-border: #d8d8d8;
 $transparent: transparent;
 $whiteish: #c8c7d5;
 
-// Shepherd theme overrides
-$shepherd-text-background: $background1;
-$shepherd-theme-primary: $background2;
-$shepherd-theme-secondary: $whiteish;
-
-@import "shepherd-theme-default";
-
 .demo-page {
   a {
     &.bottomButton {

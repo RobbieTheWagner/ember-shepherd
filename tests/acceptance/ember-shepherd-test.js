@@ -42,15 +42,16 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       };
 
       const steps = [{
+        attachTo: {
+          element: '.first-element',
+          on: 'bottom'
+        },
+        buttons: [
+          builtInButtons.cancel,
+          builtInButtons.next
+        ],
         id: 'step-without-cancel-link',
-        options: {
-          attachTo: '.first-element bottom',
-          buttons: [
-            builtInButtons.cancel,
-            builtInButtons.next
-          ],
-          showCancelLink: false
-        }
+        showCancelLink: false
       }];
 
       await visit('/docs/demo');
@@ -60,7 +61,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       tour.start();
 
-      assert.notOk(document.querySelector('.shepherd-element a.shepherd-cancel-link'));
+      assert.notOk(document.querySelector('.shepherd-element button.shepherd-cancel-link'));
     });
 
     test('Cancel link cancels the tour', async function(assert) {
@@ -70,14 +71,14 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       assert.ok(document.body.classList.contains('shepherd-active'), 'Body has class of shepherd-active, when shepherd becomes active');
 
-      await click('.shepherd-content a.shepherd-cancel-link');
+      await click('.shepherd-content button.shepherd-cancel-link');
 
       assert.notOk(document.body.classList.contains('shepherd-active'), 'Body does not have class of shepherd-active, when shepherd becomes inactive');
     });
   });
 
   module('Required Elements', function() {
-    test('Not warning about required elements when none are specified', async function(assert) {
+    test('Does not warn about required elements when none are specified', async function(assert) {
       await visit('/docs/demo');
 
       await toggleTour(tour, true);
@@ -88,7 +89,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     });
 
 
-    test('Not warning about required elements when none are missing', async function(assert) {
+    test('Does not warn about required elements when none are missing', async function(assert) {
       const requiredElements = [
         {
           selector: 'body',
@@ -109,7 +110,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
     });
 
 
-    test('Warning about missing required elements when all are present', async function(assert) {
+    test('Warns about missing required elements when all are not present', async function(assert) {
       const requiredElements = [
         {
           selector: '👻',
@@ -136,14 +137,15 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       const stepsWithoutClasses = [
         {
-          id: 'test-highlight',
-          options: {
-            attachTo: '.first-element bottom',
-            buttons: [
-              builtInButtons.cancel,
-              builtInButtons.next
-            ]
-          }
+          attachTo: {
+            element: '.first-element',
+            on: 'bottom'
+          },
+          buttons: [
+            builtInButtons.cancel,
+            builtInButtons.next
+          ],
+          id: 'test-highlight'
         }
       ];
 
@@ -160,17 +162,15 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       assert.expect(1);
 
       const steps = [{
-        id: 'test-attachTo-string',
-        options: {
-          attachTo: {
-            element: '.first-element',
-            on: 'bottom'
-          },
-          buttons: [
-            builtInButtons.cancel,
-            builtInButtons.next
-          ]
-        }
+        attachTo: {
+          element: '.first-element',
+          on: 'bottom'
+        },
+        buttons: [
+          builtInButtons.cancel,
+          builtInButtons.next
+        ],
+        id: 'test-attachTo-string'
       }];
 
       await tour.addSteps(steps);
@@ -188,17 +188,15 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       await visit('/docs/demo');
 
       const steps = [{
-        id: 'test-attachTo-dom',
-        options: {
-          attachTo: {
-            element: find('.first-element'),
-            on: 'bottom'
-          },
-          buttons: [
-            builtInButtons.cancel,
-            builtInButtons.next
-          ]
-        }
+        attachTo: {
+          element: find('.first-element'),
+          on: 'bottom'
+        },
+        buttons: [
+          builtInButtons.cancel,
+          builtInButtons.next
+        ],
+        id: 'test-attachTo-dom'
       }];
 
       await tour.addSteps(steps);
@@ -213,30 +211,28 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       let buttonActionCalled = false;
 
       const steps = [{
-        id: 'test-buttons-custom-action',
-        options: {
-          attachTo: {
-            element: '.first-element',
-            on: 'bottom'
+        attachTo: {
+          element: '.first-element',
+          on: 'bottom'
+        },
+        buttons: [
+          {
+            classes: 'shepherd-button-secondary button-one',
+            text: 'button one'
           },
-          buttons: [
-            {
-              classes: 'shepherd-button-secondary button-one',
-              text: 'button one'
-            },
-            {
-              classes: 'shepherd-button-secondary button-two',
-              text: 'button two',
-              action() {
-                buttonActionCalled = true;
-              }
-            },
-            {
-              classes: 'shepherd-button-secondary button-three',
-              text: 'button three'
+          {
+            classes: 'shepherd-button-secondary button-two',
+            text: 'button two',
+            action() {
+              buttonActionCalled = true;
             }
-          ]
-        }
+          },
+          {
+            classes: 'shepherd-button-secondary button-three',
+            text: 'button three'
+          }
+        ],
+        id: 'test-buttons-custom-action'
       }];
 
       await visit('/docs/demo');
@@ -283,19 +279,20 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       // Override default behavior
       const steps = [{
+        attachTo: {
+          element: '.first-element',
+          on: 'bottom'
+        },
+        buttons: [
+          builtInButtons.cancel,
+          builtInButtons.next
+        ],
         id: 'intro',
-        options: {
-          attachTo: '.first-element bottom',
-          buttons: [
-            builtInButtons.cancel,
-            builtInButtons.next
-          ],
-          scrollTo: true,
-          scrollToHandler() {
-            document.querySelector('#ember-testing-container').scrollTop = 120;
-            assert.equal(document.querySelector('#ember-testing-container').scrollTop, 120, 'Scrolled correctly');
-            done();
-          }
+        scrollTo: true,
+        scrollToHandler() {
+          document.querySelector('#ember-testing-container').scrollTop = 120;
+          assert.equal(document.querySelector('#ember-testing-container').scrollTop, 120, 'Scrolled correctly');
+          done();
         }
       }];
 
