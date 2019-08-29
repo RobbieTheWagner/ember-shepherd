@@ -1,5 +1,34 @@
 # Changelog
 
+## [v9.0.0](https://github.com/shipshapecode/ember-shepherd/tree/v9.0.0) (2019-08-29)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v8.0.0...v9.0.0)
+
+**Breaking changes:**
+
+- Shepherd 5.x [\#338](https://github.com/shipshapecode/ember-shepherd/pull/338) ([rwwagner90](https://github.com/rwwagner90))
+
+## [v8.0.0](https://github.com/shipshapecode/ember-shepherd/tree/v8.0.0) (2019-08-01)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v7.0.0...v8.0.0)
+
+**Breaking changes:**
+
+- Shepherd 4 [\#333](https://github.com/shipshapecode/ember-shepherd/pull/333) ([rwwagner90](https://github.com/rwwagner90))
+
+**Implemented enhancements:**
+
+- Move disableScroll to Shepherd [\#306](https://github.com/shipshapecode/ember-shepherd/issues/306)
+
+**Closed issues:**
+
+- Tour does not close on Route Transitions [\#314](https://github.com/shipshapecode/ember-shepherd/issues/314)
+
+**Merged pull requests:**
+
+- Ember 3.11 [\#330](https://github.com/shipshapecode/ember-shepherd/pull/330) ([rwwagner90](https://github.com/rwwagner90))
+- Update ember-prism to the latest version 🚀 [\#327](https://github.com/shipshapecode/ember-shepherd/pull/327) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
 ## [v7.0.0](https://github.com/shipshapecode/ember-shepherd/tree/v7.0.0) (2019-06-23)
 
 [Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v6.0.1...v7.0.0)
