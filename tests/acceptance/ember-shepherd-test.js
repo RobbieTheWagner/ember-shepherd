@@ -31,14 +31,16 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       await toggleTour(tour, true);
 
-      const cancelLink = document.querySelector('.shepherd-cancel-link');
-      assert.ok(cancelLink, 'Cancel link shown');
+      const cancelIcon = document.querySelector('.shepherd-cancel-icon');
+      assert.ok(cancelIcon, 'Cancel icon shown');
     });
 
     test('Hides cancel link', async function(assert) {
       const defaultStepOptions = {
-        classes: 'shepherd-theme-arrows test-defaults',
-        showCancelLink: false
+        cancelIcon: {
+          enabled: false
+        },
+        classes: 'shepherd-theme-arrows test-defaults'
       };
 
       const steps = [{
@@ -50,8 +52,10 @@ module('Acceptance | Tour functionality tests', function(hooks) {
           builtInButtons.cancel,
           builtInButtons.next
         ],
-        id: 'step-without-cancel-link',
-        showCancelLink: false
+        cancelIcon: {
+          enabled: false
+        },
+        id: 'step-without-cancel-icon'
       }];
 
       await visit('/docs/demo');
@@ -61,7 +65,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       tour.start();
 
-      assert.notOk(document.querySelector('.shepherd-element button.shepherd-cancel-link'));
+      assert.notOk(document.querySelector('.shepherd-element button.shepherd-cancel-icon'));
     });
 
     test('Cancel link cancels the tour', async function(assert) {
@@ -71,7 +75,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       assert.ok(document.body.classList.contains('shepherd-active'), 'Body has class of shepherd-active, when shepherd becomes active');
 
-      await click('.shepherd-content button.shepherd-cancel-link');
+      await click('.shepherd-content button.shepherd-cancel-icon');
 
       assert.notOk(document.body.classList.contains('shepherd-active'), 'Body does not have class of shepherd-active, when shepherd becomes inactive');
     });

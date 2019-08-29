@@ -63,7 +63,9 @@ export default Service.extend(Evented, {
    * this.get('tour').set('defaultStepOptions', {
    *   classes: 'custom-class-name-1 custom-class-name-2',
    *   scrollTo: true,
-   *   showCancelLink: true
+   *   cancelIcon: {
+   *     enabled: true
+   *   },
    * });
    * ```
    *
@@ -199,11 +201,13 @@ export default Service.extend(Evented, {
    *         type: 'next'
    *       }
    *     ],
+   *     cancelIcon: {
+   *       enabled: true
+   *     },
    *     classes: 'custom-class-name-1 custom-class-name-2',
    *     highlightClass: 'highlight',
    *     id: 'intro',
    *     scrollTo: false,
-   *     showCancelLink: true,
    *     title: 'Welcome to Ember-Shepherd!',
    *     text: 'Ember-Shepherd is a JavaScript library for guiding users through your Ember app.',
    *     when: {
