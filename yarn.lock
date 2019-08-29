@@ -7144,6 +7144,13 @@ get-value@^2.0.3, get-value@^2.0.6:
   resolved "https://registry.yarnpkg.com/get-value/-/get-value-2.0.6.tgz#dc15ca1c672387ca76bd37ac0a395ba2042a2c28"
   integrity sha1-3BXKHGcjh8p2vTesCjlbogQqLCg=
 
+get-value@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/get-value/-/get-value-3.0.1.tgz#5efd2a157f1d6a516d7524e124ac52d0a39ef5a8"
+  integrity sha512-mKZj9JLQrwMBtj5wxi6MH8Z5eSKaERpAwjg43dPtlGI1ZVEgH/qC7T8/6R2OBSUA+zzHBZgICsVJaEIV2tKTDA==
+  dependencies:
+    isobject "^3.0.1"
+
 getpass@^0.1.1:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/getpass/-/getpass-0.1.7.tgz#5eff8e3e684d569ae4cb2b1282604e8ba62149fa"
@@ -10743,10 +10750,10 @@ postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.17, postcss@^7.0.2
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-preact@^8.4.2:
-  version "8.4.2"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-8.4.2.tgz#1263b974a17d1ea80b66590e41ef786ced5d6a23"
-  integrity sha512-TsINETWiisfB6RTk0wh3/mvxbGRvx+ljeBccZ4Z6MPFKgu/KFGyf2Bmw3Z/jlXhL5JlNKY6QAbA9PVyzIy9//A==
+preact@^8.5.2:
+  version "8.5.2"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-8.5.2.tgz#2f532da485287c07369e08150cf4d23921a09789"
+  integrity sha512-37tlDJGq5IQKqGUbqPZ7qPtsTOWFyxe+ojAOFfzKo0dEPreenqrqgJuS83zGpeGAqD9h9L9Yr7QuxH2W4ZrKxg==
 
 prelude-ls@~1.1.2:
   version "1.1.2"
@@ -11831,20 +11838,21 @@ shellwords@^0.1.1:
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
 
-shepherd.js@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-4.3.0.tgz#b0032137be5051f8f1d2d434d1a1132f96e71ec8"
-  integrity sha512-6B3tj0KCEOaEXph2Yww1HDtYadqDNqEsQmw+V/W92l0QNGK+V+h83BmM+kujKG57UYs1NNvktnrzZxY4bZ8Zug==
+shepherd.js@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-5.0.1.tgz#90bb7f594decf884010065f01d9d65a6e6071d24"
+  integrity sha512-kjD1/U9c4dAhnCh4zX+3Wt1JxVZBkLtOppP/QPHhJ8TUUtHXPl9fTFgZr9Sso+hho68aEyV2TXi8c+u6/Oj+rA==
   dependencies:
     body-scroll-lock "^2.6.4"
     element-matches "^0.1.2"
     es6-object-assign "^1.1.0"
     es6-symbol "^3.1.1"
+    get-value "^3.0.1"
     nano-css "^5.2.0"
     polished "^3.4.1"
-    preact "^8.4.2"
+    preact "^8.5.2"
     smoothscroll-polyfill "^0.4.4"
-    tippy.js "^5.0.0-beta.0"
+    tippy.js "^5.0.0-beta.1"
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
@@ -12866,10 +12874,10 @@ tiny-lr@^1.1.1:
     object-assign "^4.1.0"
     qs "^6.4.0"
 
-tippy.js@^5.0.0-beta.0:
-  version "5.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/tippy.js/-/tippy.js-5.0.0-beta.0.tgz#d5a0ea9fb92c63fc2ab0a8068577d1b467e3e6cd"
-  integrity sha512-3IOuSWzJ+8dj1yL7aPNma18TV1iwgcuX6fB68RRLS5MhzHU2otf44eacY3gWuYJtnyU+rxoUsdRkiFVxBLmEug==
+tippy.js@^5.0.0-beta.1:
+  version "5.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/tippy.js/-/tippy.js-5.0.0-beta.1.tgz#0c5f8bbdfe865020ed48215fdd3cf4c92bafe512"
+  integrity sha512-SHE5M9anlIWoXkBKA+R6X+synHW3hLcGKxv9X1ZPKbFkV9hyLfWVYpu7XHCan6yFDJhP35A9sCO9JACQxfGwrg==
   dependencies:
     popper.js "^1.15.0"
 

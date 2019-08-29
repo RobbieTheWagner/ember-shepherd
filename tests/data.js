@@ -20,7 +20,9 @@ export const builtInButtons = {
 export const defaultStepOptions = {
   classes: 'shepherd-theme-arrows custom-default-class',
   scrollTo: true,
-  showCancelLink: true,
+  cancelIcon: {
+    enabled: true
+  },
 
   tippyOptions: {
     duration: 500
