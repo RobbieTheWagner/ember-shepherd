@@ -62,9 +62,11 @@ export default Route.extend({
 
   activate() {
     if (config.environment !== 'test') {
-      scheduleOnce('afterRender', this, function() {
-        this.get('tour').start();
-      });
+      scheduleOnce('afterRender', this, this._startTour);
     }
+  },
+
+  _startTour() {
+    this.get('tour').start();
   }
 });
