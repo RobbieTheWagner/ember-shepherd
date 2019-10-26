@@ -19,7 +19,8 @@ module.exports = {
     Shepherd: false
   },
   rules: {
-    'no-console': 'off'
+    'no-console': 'off',
+    'ember/no-jquery': 'error'
   },
   overrides: [
     // node files
