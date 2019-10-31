@@ -73,11 +73,11 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       await toggleTour(tour, true);
 
-      assert.ok(document.body.classList.contains('shepherd-active'), 'Body has class of shepherd-active, when shepherd becomes active');
+      assert.dom('.shepherd-enabled').exists();
 
-      await click('.shepherd-content button.shepherd-cancel-icon');
+      await click(document.querySelector('.shepherd-content button.shepherd-cancel-icon'));
 
-      assert.notOk(document.body.classList.contains('shepherd-active'), 'Body does not have class of shepherd-active, when shepherd becomes inactive');
+      assert.dom('.shepherd-enabled').doesNotExist();
     });
   });
 
@@ -87,9 +87,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       await toggleTour(tour, true);
 
-      const currentStepId = document.body.getAttribute('data-shepherd-step');
-
-      assert.equal(currentStepId, defaultSteps[0].id);
+      assert.dom('.shepherd-element', document.body).hasAttribute('data-shepherd-step-id', defaultSteps[0].id);
     });
 
 
@@ -108,9 +106,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       await toggleTour(tour, true);
 
-      const currentStepId = document.body.getAttribute('data-shepherd-step');
-
-      assert.equal(currentStepId, defaultSteps[0].id);
+      assert.dom('.shepherd-element', document.body).hasAttribute('data-shepherd-step-id', defaultSteps[0].id);
     });
 
 
@@ -129,9 +125,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       await toggleTour(tour, true);
 
-      const currentStepId = document.body.getAttribute('data-shepherd-step');
-
-      assert.equal(currentStepId, 'error');
+      assert.dom('.shepherd-element', document.body).hasAttribute('data-shepherd-step-id', 'error');
     });
   });
 
@@ -249,7 +243,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       assert.ok(document.querySelector('.button-two'), 'tour button two is visible');
       assert.ok(document.querySelector('.button-three'), 'tour button three is visible');
 
-      await click('.button-two');
+      await click(document.querySelector('.button-two'));
 
       assert.ok(buttonActionCalled, 'button action triggered');
     });
@@ -269,9 +263,9 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       await tour.start();
 
-      await click('.shepherd-content .next-button');
+      await click(document.querySelector('.shepherd-content .next-button'));
 
-      await click('.shepherd-content .next-button');
+      await click(document.querySelector('.shepherd-content .next-button'));
 
       assert.ok(document.querySelector('#ember-testing-container').scrollTop > 0, 'Scrolled down correctly');
     });
@@ -309,7 +303,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       assert.equal(document.querySelector('#ember-testing-container').scrollTop, 0, 'Scroll is initially 0');
 
       await tour.start();
-      await click('.shepherd-content .next-button');
+      await click(document.querySelector('.shepherd-content .next-button'));
     });
 
     test('scrollTo works without a custom scrollToHandler', async function(assert) {
@@ -326,7 +320,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       await tour.start();
 
-      await click('.shepherd-content .next-button');
+      await click(document.querySelector('.shepherd-content .next-button'));
 
       assert.ok(document.querySelector('#ember-testing-container').scrollTop > 0, 'Scrolled correctly');
     });
