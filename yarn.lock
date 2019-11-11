@@ -11481,9 +11481,9 @@ shellwords@^0.1.1:
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
 
 shepherd.js@^6.0.0:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-6.0.1.tgz#9dc686df0a7e260e730f4b2eec7ff6132d0bf035"
-  integrity sha512-pTgtf6NXAgzdnBiXtjyG/aaHxwHygb/soDdiydWSscgZQxBUdmjA7kqiPYkO52BfKlRHK5+988HPBwANEUvSqg==
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-6.0.2.tgz#ded562607cf73c88f112e9a6dabc0481a7615035"
+  integrity sha512-QMkOjr08fmE8GVpi05bbmEN2NqCrDEnA4NGOI4Qk2WlV/QsAl347aoTMx7BEfMIrJeZSbLYaY2ZESvI+MRmlbQ==
   dependencies:
     smoothscroll-polyfill "^0.4.4"
     tether "^2.0.0-beta.4"
