@@ -1,7 +1,7 @@
 Usage
 ------------------------------------------------------------------------------
 
-Most of the usage documentation can be found in the [API Reference for the Tour Service](/docs/api/services/tour).
+Most of the usage documentation can be found in the [API Reference for the Tour Service](api/services/tour).
 
 ## Step Options
 
