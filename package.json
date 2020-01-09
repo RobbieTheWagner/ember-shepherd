@@ -57,10 +57,10 @@
     "test:all": "ember try:each"
   },
   "dependencies": {
-    "ember-auto-import": "^1.5.2",
+    "ember-auto-import": "^1.5.3",
     "ember-cli-babel": "^7.13.0",
     "ember-cli-htmlbars": "^4.2.0",
-    "shepherd.js": "^6.0.0"
+    "shepherd.js": "^6.0.2"
   },
   "devDependencies": {
     "@ember/optional-features": "^1.1.0",
@@ -68,7 +68,7 @@
     "babel-eslint": "^10.0.3",
     "broccoli-asset-rev": "^3.0.0",
     "codeclimate-test-reporter": "^0.5.1",
-    "ember-auto-import": "^1.5.3",
+    "ember-angle-bracket-invocation-polyfill": "^2.0.2",
     "ember-cli": "~3.15.1",
     "ember-cli-addon-docs": "^0.6.14",
     "ember-cli-addon-docs-yuidoc": "^0.2.1",
@@ -82,7 +82,7 @@
     "ember-cli-inject-live-reload": "^2.0.1",
     "ember-cli-sass": "^10.0.1",
     "ember-cli-stylelint": "^3.0.2",
-    "ember-cli-template-lint": "^1.0.0-beta.3",
+    "ember-cli-template-lint": "^1.0.0",
     "ember-cli-uglify": "^3.0.0",
     "ember-debonair": "^0.4.4",
     "ember-disable-prototype-extensions": "^1.1.3",
