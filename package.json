@@ -99,7 +99,7 @@
     "eslint-plugin-ember": "^7.7.1",
     "eslint-plugin-node": "^11.0.0",
     "loader.js": "^4.7.0",
-    "qunit-dom": "^0.9.2",
+    "qunit-dom": "^1.0.0",
     "sass": "^1.25.0",
     "stylelint": "^13.2.0",
     "stylelint-config-ship-shape": "^0.6.0"
