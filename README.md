@@ -20,7 +20,7 @@ Compatibility
 
 * Tested with Ember.js >= v3.8, but may work with earlier versions as well
 * Ember CLI v2.13 or above
-* Node.js v8 or above
+* Node.js v10 or above
 
 
 Installation
