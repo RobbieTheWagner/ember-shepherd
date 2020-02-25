@@ -22,10 +22,6 @@ export const defaultStepOptions = {
   scrollTo: true,
   cancelIcon: {
     enabled: true
-  },
-
-  tippyOptions: {
-    duration: 500
   }
 };
 
@@ -46,12 +42,12 @@ export const steps = [
           <p>
             Ember Shepherd is a JavaScript library for guiding users through your Ember app.
             It is an Ember addon that wraps <a href="https://github.com/shipshapecode/shepherd">Shepherd</a>
-            and extends its functionality. Shepherd uses <a href="https://atomiks.github.io/tippyjs/">Tippy.js</a>,
-            another open source library, to position all of its steps and enable entrance and exit animations.
+            and extends its functionality. Shepherd uses <a href="https://popper.js.org/">Popper.js</a>,
+            another open source library, to render dialogs for each tour "step".
           </p>
         
           <p>
-            Tippy makes sure your steps never end up off screen or cropped by an
+            Popper makes sure your steps never end up off screen or cropped by an
             overflow. Try resizing your browser to see what we mean.
           </p>`
   },

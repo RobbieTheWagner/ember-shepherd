@@ -388,17 +388,18 @@ export default Service.extend(Evented, {
       'tourName'
     );
 
-    // Ensure `tippyOptions` exists on `defaultStepOptions`
-    defaultStepOptions.tippyOptions = defaultStepOptions.tippyOptions || {};
+    // Ensure `popperOptions` exists on `defaultStepOptions`
+    defaultStepOptions.popperOptions = defaultStepOptions.popperOptions || {};
 
     let { rootElement } = getOwner(this);
     if (typeof rootElement === 'string') {
       rootElement = document.querySelector(rootElement);
     }
 
-    if (rootElement && !defaultStepOptions.tippyOptions.appendTo) {
-      defaultStepOptions.tippyOptions.appendTo = rootElement;
-    }
+    // TODO: add something back here when we add `appendTo` support
+    // if (rootElement && !defaultStepOptions.tippyOptions.appendTo) {
+    //   defaultStepOptions.tippyOptions.appendTo = rootElement;
+    // }
 
 
     return import('shepherd.js').then(module => {
