@@ -1,3 +1,51 @@
+# Changelog
+
+## [v10.0.0](https://github.com/shipshapecode/ember-shepherd/tree/v10.0.0) (2019-11-13)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v9.0.0...v10.0.0)
+
+**Closed issues:**
+
+- AttachTo doesn't find elements in ember-wormhole [\#343](https://github.com/shipshapecode/ember-shepherd/issues/343)
+- Documentation website seems not to work for ember-shepherd@\<9 [\#341](https://github.com/shipshapecode/ember-shepherd/issues/341)
+
+**Merged pull requests:**
+
+- Update to Shepherd v6 [\#363](https://github.com/shipshapecode/ember-shepherd/pull/363) ([rwwagner90](https://github.com/rwwagner90))
+- Bump sass from 1.22.10 to 1.23.1 [\#351](https://github.com/shipshapecode/ember-shepherd/pull/351) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- Ember 3.13 [\#350](https://github.com/shipshapecode/ember-shepherd/pull/350) ([rwwagner90](https://github.com/rwwagner90))
+- Add dependabot config [\#344](https://github.com/shipshapecode/ember-shepherd/pull/344) ([rwwagner90](https://github.com/rwwagner90))
+- Update stylelint to the latest version 🚀 [\#342](https://github.com/shipshapecode/ember-shepherd/pull/342) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
+## [v9.0.0](https://github.com/shipshapecode/ember-shepherd/tree/v9.0.0) (2019-08-29)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v8.0.0...v9.0.0)
+
+**Breaking changes:**
+
+- Shepherd 5.x [\#338](https://github.com/shipshapecode/ember-shepherd/pull/338) ([rwwagner90](https://github.com/rwwagner90))
+
+## [v8.0.0](https://github.com/shipshapecode/ember-shepherd/tree/v8.0.0) (2019-08-01)
+
+[Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v7.0.0...v8.0.0)
+
+**Breaking changes:**
+
+- Shepherd 4 [\#333](https://github.com/shipshapecode/ember-shepherd/pull/333) ([rwwagner90](https://github.com/rwwagner90))
+
+**Implemented enhancements:**
+
+- Move disableScroll to Shepherd [\#306](https://github.com/shipshapecode/ember-shepherd/issues/306)
+
+**Closed issues:**
+
+- Tour does not close on Route Transitions [\#314](https://github.com/shipshapecode/ember-shepherd/issues/314)
+
+**Merged pull requests:**
+
+- Ember 3.11 [\#330](https://github.com/shipshapecode/ember-shepherd/pull/330) ([rwwagner90](https://github.com/rwwagner90))
+- Update ember-prism to the latest version 🚀 [\#327](https://github.com/shipshapecode/ember-shepherd/pull/327) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
 ## [v7.0.0](https://github.com/shipshapecode/ember-shepherd/tree/v7.0.0) (2019-06-23)
 
 [Full Changelog](https://github.com/shipshapecode/ember-shepherd/compare/v6.0.1...v7.0.0)

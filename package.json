@@ -49,7 +49,7 @@
   "homepage": "http://shipshapecode.github.io/ember-shepherd/",
   "scripts": {
     "build": "ember build --environment=production",
-    "changelog": "github_changelog_generator -u shipshapecode -p ember-shepherd --since-tag v7.0.0 --max-issues 100 --exclude-labels dependencies,duplicate,question,invalid,wontfix",
+    "changelog": "github_changelog_generator -u shipshapecode -p ember-shepherd --since-tag v10.0.0 --max-issues 100 --exclude-labels dependencies,duplicate,question,invalid,wontfix",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
     "start": "ember serve",
