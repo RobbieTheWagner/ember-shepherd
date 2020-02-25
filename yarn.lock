@@ -5777,17 +5777,17 @@ ember-cli-stylelint@^3.0.2:
     js-string-escape "^1.0.1"
 
 ember-cli-template-lint@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/ember-cli-template-lint/-/ember-cli-template-lint-2.0.1.tgz#349b6a3f4d24ae236d5775d3ab73c819f5adf20d"
-  integrity sha512-p5GT5wTQOat5S/yqMCmNtd8atHizi4pCs4CYZ8ougTIQ0hLUbpNxjuEelutPBJQLgaL0FwJ6Mudyv/JHOc/6Pw==
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/ember-cli-template-lint/-/ember-cli-template-lint-2.0.2.tgz#729436e71f45e31a9237bab4bbc9a9ef67401c24"
+  integrity sha512-q/aXIYC9cxWRT3B+VX/45EPzYni5OuctxR9ePhZA1//bjaZtwcnKQtwYk7H4oEDrIKce5KMb0CMco2gvGYmAjA==
   dependencies:
     aot-test-generators "^0.1.0"
     broccoli-concat "^4.2.2"
     broccoli-persistent-filter "^2.1.0"
     chalk "^3.0.0"
     debug "^4.0.1"
-    ember-cli-version-checker "^4.1.0"
-    ember-template-lint "^2.0.0-beta.5"
+    ember-cli-version-checker "^5.0.1"
+    ember-template-lint "^2.0.1"
     json-stable-stringify "^1.0.1"
     md5-hex "^3.0.1"
     strip-ansi "^6.0.0"
@@ -5893,6 +5893,15 @@ ember-cli-version-checker@^4.1.0:
   dependencies:
     resolve-package-path "^2.0.0"
     semver "^6.3.0"
+    silent-error "^1.1.1"
+
+ember-cli-version-checker@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-version-checker/-/ember-cli-version-checker-5.0.1.tgz#1cf488f1ece02b295577177d6a2ca51496d7967c"
+  integrity sha512-gvqyLZM8q31J1UD4OZVoK+T7iapz1jfLWJ23217lXcqMR3NA+VSzZi9B61zlMmCZzlxq3QPWkiL0OspVGCGR3A==
+  dependencies:
+    resolve-package-path "^2.0.0"
+    semver "^7.1.3"
     silent-error "^1.1.1"
 
 ember-cli@~3.16.0:
@@ -6357,20 +6366,20 @@ ember-svg-jar@^2.1.0, ember-svg-jar@^2.2.3:
     mkdirp "^0.5.1"
     path-posix "^1.0.0"
 
-ember-template-lint@^2.0.0-beta.5:
-  version "2.0.0-beta.5"
-  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-2.0.0-beta.5.tgz#899a9967bb094a32b162359250349d25faed9f3b"
-  integrity sha512-oj80qcTkjgPX0r2tvtuqNbJey66sqbxcKloE1pN7K+zMhkquap+o+z9HeAwrr2QsNNUKc5Bg/ykWwjA5NjNXlQ==
+ember-template-lint@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-2.0.1.tgz#80f72e8964526819172c95ff597edd1a4cfeb0d8"
+  integrity sha512-RipRqS3vIXHJvAIQmWCV9j/ApoWBopfvY1m5RNg2z3KU1IV/a48plDyF9L8yY8qqDfRy5SAP4J/AbGuggXN6WQ==
   dependencies:
-    chalk "^2.4.2"
-    ember-template-recast "^4.0.0"
+    chalk "^3.0.0"
+    ember-template-recast "^4.1.0"
+    find-up "^4.1.0"
     globby "^11.0.0"
     micromatch "^4.0.2"
-    minimatch "^3.0.4"
-    resolve "^1.14.2"
+    resolve "^1.15.1"
     strip-bom "^4.0.0"
 
-ember-template-recast@^4.0.0:
+ember-template-recast@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/ember-template-recast/-/ember-template-recast-4.1.0.tgz#7d72fc40c56d7d0f3fa34b50a67608ff7e595faa"
   integrity sha512-BSusv6T9N+toxTzzTQgRpKn4OFce8AFsuJ6tf6N9/YSAAJ63nSBKtXkAoFKSHBET6DgzFEjSe3F0ChCDtYMHWg==
@@ -11886,7 +11895,7 @@ resolve@1.9.0:
   dependencies:
     path-parse "^1.0.6"
 
-resolve@^1.1.7, resolve@^1.10.0, resolve@^1.10.1, resolve@^1.11.1, resolve@^1.12.0, resolve@^1.13.1, resolve@^1.14.0, resolve@^1.14.2, resolve@^1.3.2, resolve@^1.3.3, resolve@^1.4.0, resolve@^1.5.0, resolve@^1.7.1, resolve@^1.8.1:
+resolve@^1.1.7, resolve@^1.10.0, resolve@^1.10.1, resolve@^1.11.1, resolve@^1.12.0, resolve@^1.13.1, resolve@^1.14.0, resolve@^1.14.2, resolve@^1.15.1, resolve@^1.3.2, resolve@^1.3.3, resolve@^1.4.0, resolve@^1.5.0, resolve@^1.7.1, resolve@^1.8.1:
   version "1.15.1"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.15.1.tgz#27bdcdeffeaf2d6244b95bb0f9f4b4653451f3e8"
   integrity sha512-84oo6ZTtoTUpjgNEr5SJyzQhzL72gaRodsSfyxC/AXRvwu0Yse9H8eF9IpGo7b8YetZhlI6v7ZQ6bKBFV/6S7w==
@@ -12126,6 +12135,11 @@ semver@^6.0.0, semver@^6.1.0, semver@^6.1.1, semver@^6.3.0:
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
   integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
+
+semver@^7.1.3:
+  version "7.1.3"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.1.3.tgz#e4345ce73071c53f336445cfc19efb1c311df2a6"
+  integrity sha512-ekM0zfiA9SCBlsKa2X1hxyxiI4L3B6EbVJkkdgQXnSEEaHlGdvyodMruTiulSRWMMB4NeIuYNMC9rTKTz97GxA==
 
 send@0.17.1:
   version "0.17.1"
