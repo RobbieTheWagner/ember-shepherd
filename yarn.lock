@@ -12248,9 +12248,9 @@ shellwords@^0.1.1:
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
 
 shepherd.js@^7.0.2:
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-7.0.2.tgz#2f02b742bf9c8e99183552f0a169d61ec9a618b8"
-  integrity sha512-iO1DdiBEPgR4Zt0c7k8Uck8gsixoOLRpKU2x//FNvrpAgA/oKeY7fttPJy3aIyDGXV2dNSE9JyWT5r0+ch9jLg==
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-7.0.3.tgz#ee0ec9d080b19c9708022f14ab8b2e340f61f240"
+  integrity sha512-cf0heIbqYScdjqVt7Yn6VrLveArZygugXE8NOX1WwnI4ifqTAN4lZIXqF/aoA/3wEteubR4jXwL/BKBHvhetdw==
   dependencies:
     "@popperjs/core" "^2.0.6"
     smoothscroll-polyfill "^0.4.4"
