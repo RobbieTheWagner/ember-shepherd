@@ -31,6 +31,16 @@ import { elementIsHidden } from '../utils/dom';
  */
 export default Service.extend(Evented, {
   // Configuration Options
+
+  /**
+   * The prefix to add to all the `shepherd-*` class names.
+   *
+   * @default undefined
+   * @property classPrefix
+   * @type String
+   */
+  classPrefix: undefined,
+
   /**
    * `confirmCancel` is a boolean flag, when set to `true` it will pop up a native browser
    * confirm window on cancel, to ensure you want to cancel.
@@ -78,18 +88,6 @@ export default Service.extend(Evented, {
   defaultStepOptions: {},
 
   /**
-   * `disableScroll` is a boolean, that when set to true, will keep the user from scrolling with the scrollbar,
-   * mousewheel, arrow keys, etc. You may want to use this to ensure you are driving the scroll position with the tour.
-   *
-   * > **default value:** `false`
-   *
-   * @default false
-   * @property disableScroll
-   * @type Boolean
-   */
-  disableScroll: false,
-
-  /**
    * @default null
    * @property errorTitle
    * @type String
@@ -97,11 +95,29 @@ export default Service.extend(Evented, {
   errorTitle: null,
 
   /**
+   * Exiting the tour with the escape key will be enabled unless this is explicitly set to false.
+   * 
+   * @default undefined
+   * @property exitOnEsc
+   * @type Boolean
+   */
+  exitOnEsc: undefined,
+
+  /**
    * @default false
    * @property isActive
    * @type Boolean
    */
   isActive: false,
+
+  /**
+   * Navigating the tour via left and right arrow keys will be enabled unless this is explicitly set to false.
+   * 
+   * @default undefined
+   * @property keyboardNavigation
+   * @type Boolean
+   */
+  keyboardNavigation: undefined,
 
   /**
    * @default null
@@ -120,6 +136,14 @@ export default Service.extend(Evented, {
    * @type Boolean
    */
   modal: false,
+
+  /**
+   * An optional container element for the modal. If not set, the modal will be appended to `document.body`.
+   * @default undefined
+   * @property modalContainer
+   * @type HTMLElement
+   */
+  modalContainer: undefined,
 
   /**
    * `requiredElements` is an array of objects that indicate DOM elements that are **REQUIRED** by your tour and must
@@ -153,14 +177,6 @@ export default Service.extend(Evented, {
    */
   requiredElements: [],
   steps: [],
-
-  /**
-   * `styleVariables` allows you to override the default Shepherd styles.
-   * @default undefined
-   * @property styleVariables
-   * @type Object
-   */
-  styleVariables: {},
 
   /**
    * Take a set of steps, create a tour object based on the current configuration and load the shepherd.js dependency.
@@ -339,7 +355,7 @@ export default Service.extend(Evented, {
   },
 
   /**
-   * When the tour starts, setup the step event listeners, and disableScroll
+   * When the tour starts, setup the step event listeners
    *
    * @method _onTourStart
    * @private
@@ -370,21 +386,25 @@ export default Service.extend(Evented, {
    */
   _initialize() {
     const {
+      classPrefix,
       confirmCancel,
       confirmCancelMessage,
       defaultStepOptions,
-      disableScroll,
+      exitOnEsc,
+      keyboardNavigation,
       modal,
-      styleVariables,
+      modalContainer,
       tourName
     } = getProperties(
       this,
+      'classPrefix',
       'confirmCancel',
       'confirmCancelMessage',
       'defaultStepOptions',
-      'disableScroll',
+      'exitOnEsc',
+      'keyboardNavigation',
       'modal',
-      'styleVariables',
+      'modalContainer',
       'tourName'
     );
 
@@ -405,12 +425,14 @@ export default Service.extend(Evented, {
     return import('shepherd.js').then(module => {
       const Shepherd = module.default;
       const tourObject = new Shepherd.Tour({
+        classPrefix,
         confirmCancel,
         confirmCancelMessage,
         defaultStepOptions,
-        disableScroll,
+        exitOnEsc,
+        keyboardNavigation,
+        modalContainer: modalContainer || document.body,
         tourName,
-        styleVariables,
         useModalOverlay: modal
       });
 

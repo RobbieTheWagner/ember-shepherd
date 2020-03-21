@@ -15,12 +15,6 @@ export default Route.extend({
     tour.set('defaultStepOptions', defaultStepOptions);
     tour.set('disableScroll', this.get('disableScroll'));
     tour.set('modal', true);
-    tour.set('styleVariables', {
-      // Shepherd theme overrides
-      shepherdTextBackground: '#3d2f53',
-      shepherdThemePrimary: '#624b86',
-      shepherdThemeSecondary: '#c8c7d5'
-    });
     tour.set('confirmCancel', false);
 
     await tour.addSteps(defaultSteps);
