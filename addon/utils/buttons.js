@@ -15,7 +15,7 @@ import { assert } from '@ember/debug';
  * @return {{action: *, classes: *, text: *}} Description here
  */
 export function makeButton(button) {
-  const { classes, secondary, text, type } = button;
+  const { classes, disabled, label, secondary, text, type } = button;
   const builtInButtonTypes = ['back', 'cancel', 'next'];
 
   if (!type) {
@@ -34,6 +34,8 @@ export function makeButton(button) {
   return {
     action,
     classes,
+    disabled,
+    label,
     secondary,
     text
   };
