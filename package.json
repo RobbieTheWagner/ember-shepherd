@@ -8,16 +8,13 @@
     "tour",
     "shepherd"
   ],
+  "homepage": "http://shipshapecode.github.io/ember-shepherd/",
   "repository": "https://github.com/shipshapecode/ember-shepherd",
   "license": "MIT",
   "author": {
     "name": "Robert Wagner",
     "email": "rwwagner90@gmail.com",
     "url": "https://github.com/rwwagner90"
-  },
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
   },
   "contributors": [
     {
@@ -46,7 +43,10 @@
       "url": "https://github.com/BrianSipple"
     }
   ],
-  "homepage": "http://shipshapecode.github.io/ember-shepherd/",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
   "scripts": {
     "build": "ember build --environment=production",
     "changelog": "github_changelog_generator -u shipshapecode -p ember-shepherd --since-tag v10.0.0 --max-issues 100 --exclude-labels dependencies,duplicate,question,invalid,wontfix",
@@ -104,6 +104,8 @@
     "loader.js": "^4.7.0",
     "npm-run-all": "^4.1.5",
     "qunit-dom": "^1.2.0",
+    "release-it": "^13.5.7",
+    "release-it-lerna-changelog": "^2.3.0",
     "sass": "^1.25.0",
     "stylelint": "^13.2.0",
     "stylelint-config-ship-shape": "^0.6.0"
@@ -111,11 +113,29 @@
   "engines": {
     "node": "10.* || >= 12"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "ember": {
     "edition": "octane"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
     "demoURL": "https://shipshapecode.github.io/ember-shepherd/"
+  },
+  "release-it": {
+    "plugins": {
+      "release-it-lerna-changelog": {
+        "infile": "CHANGELOG.md",
+        "launchEditor": true
+      }
+    },
+    "git": {
+      "tagName": "v${version}"
+    },
+    "github": {
+      "release": true,
+      "tokenRef": "GITHUB_AUTH"
+    }
   }
 }
