@@ -1,5 +1,5 @@
 /* eslint-disable ember/avoid-leaking-state-in-ember-objects */
-import { get, getProperties, set } from '@ember/object';
+import { set } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
 import Service from '@ember/service';
 import Evented from '@ember/object/evented';
@@ -96,7 +96,7 @@ export default Service.extend(Evented, {
 
   /**
    * Exiting the tour with the escape key will be enabled unless this is explicitly set to false.
-   * 
+   *
    * @default undefined
    * @property exitOnEsc
    * @type Boolean
@@ -112,7 +112,7 @@ export default Service.extend(Evented, {
 
   /**
    * Navigating the tour via left and right arrow keys will be enabled unless this is explicitly set to false.
-   * 
+   *
    * @default undefined
    * @property keyboardNavigation
    * @type Boolean
@@ -246,7 +246,7 @@ export default Service.extend(Evented, {
    */
   addSteps(steps) {
     return this._initialize().then(() => {
-      const tour = get(this, 'tourObject');
+      const tour = this.tourObject;
 
       // Return nothing if there are no steps
       if (isEmpty(steps)) {
@@ -260,8 +260,8 @@ export default Service.extend(Evented, {
             action: tour.cancel
           }],
           id: 'error',
-          title: get(this, 'errorTitle'),
-          text: get(this, 'messageForUser')
+          title: this.errorTitle,
+          text: this.messageForUser
         });
         return;
       }
@@ -283,7 +283,7 @@ export default Service.extend(Evented, {
    * @public
    */
   back() {
-    get(this, 'tourObject').back();
+    this.tourObject.back();
     this.trigger('back');
   },
 
@@ -294,7 +294,7 @@ export default Service.extend(Evented, {
    * @public
    */
   cancel() {
-    get(this, 'tourObject').cancel();
+    this.tourObject.cancel();
   },
 
   /**
@@ -304,7 +304,7 @@ export default Service.extend(Evented, {
    * @public
    */
   complete() {
-    get(this, 'tourObject').complete();
+    this.tourObject.complete();
   },
 
   /**
@@ -314,7 +314,7 @@ export default Service.extend(Evented, {
    * @public
    */
   hide() {
-    get(this, 'tourObject').hide();
+    this.tourObject.hide();
   },
 
   /**
@@ -324,7 +324,7 @@ export default Service.extend(Evented, {
    * @public
    */
   next() {
-    get(this, 'tourObject').next();
+    this.tourObject.next();
     this.trigger('next');
   },
 
@@ -336,7 +336,7 @@ export default Service.extend(Evented, {
    * @public
    */
   show(id) {
-    get(this, 'tourObject').show(id);
+    this.tourObject.show(id);
   },
 
   /**
@@ -346,7 +346,7 @@ export default Service.extend(Evented, {
    * @public
    */
   start() {
-    const tourObject = get(this, 'tourObject');
+    const tourObject = this.tourObject;
     if (tourObject == undefined) {
       throw new Error('the Promise from addSteps must be in a resolved state before the tour can be started');
     }
@@ -395,18 +395,7 @@ export default Service.extend(Evented, {
       modal,
       modalContainer,
       tourName
-    } = getProperties(
-      this,
-      'classPrefix',
-      'confirmCancel',
-      'confirmCancelMessage',
-      'defaultStepOptions',
-      'exitOnEsc',
-      'keyboardNavigation',
-      'modal',
-      'modalContainer',
-      'tourName'
-    );
+    } = this;
 
     // Ensure `popperOptions` exists on `defaultStepOptions`
     defaultStepOptions.popperOptions = defaultStepOptions.popperOptions || {};
@@ -454,7 +443,7 @@ export default Service.extend(Evented, {
   _requiredElementsPresent() {
     let allElementsPresent = true;
 
-    const requiredElements = get(this, 'requiredElements');
+    const requiredElements = this.requiredElements;
 
     if (isPresent(requiredElements)) {
       /* istanbul ignore next: also can't test this due to things attached to root blowing up tests */

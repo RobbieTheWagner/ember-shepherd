@@ -7,14 +7,14 @@ export default Controller.extend({
 
   actions: {
     toggleHelpModal() {
-      this.get('tour').set('modal', true);
-      this.get('tour').addSteps(defaultSteps);
-      this.get('tour').start();
+      this.tour.set('modal', true);
+      this.tour.addSteps(defaultSteps);
+      this.tour.start();
     },
     toggleHelpNonmodal() {
-      this.get('tour').set('modal', false);
-      this.get('tour').addSteps(defaultSteps);
-      this.get('tour').start();
+      this.tour.set('modal', false);
+      this.tour.addSteps(defaultSteps);
+      this.tour.start();
     }
   }
 });

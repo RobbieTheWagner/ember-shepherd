@@ -10,10 +10,10 @@ export default Route.extend({
   disableScroll: false,
 
   async beforeModel() {
-    const tour = this.get('tour');
+    const tour = this.tour;
 
     tour.set('defaultStepOptions', defaultStepOptions);
-    tour.set('disableScroll', this.get('disableScroll'));
+    tour.set('disableScroll', this.disableScroll);
     tour.set('modal', true);
     tour.set('confirmCancel', false);
 
@@ -53,6 +53,6 @@ export default Route.extend({
   },
 
   _startTour() {
-    this.get('tour').start();
+    this.tour.start();
   }
 });
