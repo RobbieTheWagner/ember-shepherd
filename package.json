@@ -60,7 +60,7 @@
   },
   "dependencies": {
     "ember-auto-import": "^1.5.3",
-    "ember-cli-babel": "^7.19.0",
+    "ember-cli-babel": "^7.20.4",
     "ember-cli-htmlbars": "^5.0.0",
     "shepherd.js": "^8.0.1"
   },
@@ -98,7 +98,7 @@
     "ember-svg-jar": "^2.2.3",
     "ember-template-lint": "^2.8.0",
     "ember-try": "^1.4.0",
-    "eslint": "^7.0.0",
+    "eslint": "^7.1.0",
     "eslint-plugin-ember": "^8.5.2",
     "eslint-plugin-node": "^11.1.0",
     "loader.js": "^4.7.0",
