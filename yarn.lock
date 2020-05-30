@@ -6857,11 +6857,6 @@ ember-responsive@^3.0.5:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-rfc176-data@^0.3.12:
-  version "0.3.12"
-  resolved "https://registry.yarnpkg.com/ember-rfc176-data/-/ember-rfc176-data-0.3.12.tgz#90d82878e69e2ac9a5438e8ce14d12c6031c5bd2"
-  integrity sha512-g9HeZj/gU5bfIIrGXkP7MhS2b3Vu5DfNUrYr14hy99TgIvtZETO+96QF4WOEUXGjIJdfTRjerVnQlqngPQSv1g==
-
 ember-rfc176-data@^0.3.13:
   version "0.3.13"
   resolved "https://registry.yarnpkg.com/ember-rfc176-data/-/ember-rfc176-data-0.3.13.tgz#ed1712a26e65fec703655f35410414aa1982cf3b"
@@ -6956,15 +6951,15 @@ ember-svg-jar@^2.2.3:
     mkdirp "^0.5.1"
     path-posix "^1.0.0"
 
-ember-template-lint@^2.6.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-2.7.0.tgz#635653616c613afe2dfe6e42e2fa8a8ac8c2f341"
-  integrity sha512-UBQNoGMju5sCxAEZDyJwLaIOeavnWBauHajxBafG9IT+zpwwWC9nK/ETiylDqgW+9yvPCTMHLQLxfgTwCJJoPA==
+ember-template-lint@^2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-2.8.0.tgz#01ddc6daf9c8497fe5cfcc55cde25f203a7d8bd3"
+  integrity sha512-tK4aJewdmtVUGSnX/1MR6TuSFAhmIL/CUsUeW33pQsf324l96XzhPP+66G06vjWw8iLW2zK2Rbh5HnEL+IDZsA==
   dependencies:
     chalk "^4.0.0"
     ember-template-recast "^4.1.4"
     find-up "^4.1.0"
-    get-stdin "^7.0.0"
+    get-stdin "^8.0.0"
     globby "^11.0.0"
     is-valid-glob "^1.0.0"
     micromatch "^4.0.2"
@@ -7248,13 +7243,13 @@ escodegen@^1.11.0, escodegen@^1.11.1:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-plugin-ember@^8.4.0:
-  version "8.5.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-8.5.1.tgz#acaeb430e150115350fb184450cd17eaf6bb5d7e"
-  integrity sha512-92tU1ktJBfwcWIdAzVVuo6gLIGWrf2AtnNyHnw7vBmSVcP00P5hM7fDXL0CaLWblAVIrfik4NrOWCe9sSkh6ww==
+eslint-plugin-ember@^8.5.2:
+  version "8.5.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-8.5.2.tgz#9e0c0e43f74e8fe3d5e35903f33edd043f86dec3"
+  integrity sha512-dLA3W2GpPYRszKL9smw/S0aj0KxUiL1vlvQMDWsiuvcCCwgE/fGZ2FbdmicR/ssMnW5elRfNVPKQdS2B91AMxA==
   dependencies:
     "@ember-data/rfc395-data" "^0.0.4"
-    ember-rfc176-data "^0.3.12"
+    ember-rfc176-data "^0.3.13"
     snake-case "^3.0.3"
 
 eslint-plugin-es@^3.0.0:
@@ -8181,11 +8176,6 @@ get-stdin@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-4.0.1.tgz#b968c6b0a04384324902e8bf1a5df32579a450fe"
   integrity sha1-uWjGsKBDhDJJAui/Gl3zJXmkUP4=
-
-get-stdin@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-7.0.0.tgz#8d5de98f15171a125c5e516643c7a6d0ea8a96f6"
-  integrity sha512-zRKcywvrXlXsA0v0i9Io4KDRaAw7+a1ZpjRwl9Wox8PFlVCCHra7E9c4kqXCoCM9nR5tBkaTTZRBoCm60bFqTQ==
 
 get-stdin@^8.0.0:
   version "8.0.0"
@@ -13264,10 +13254,17 @@ sane@^4.0.0, sane@^4.1.0:
     minimist "^1.1.1"
     walker "~1.0.5"
 
-sass@^1.22.10, sass@^1.25.0:
+sass@^1.22.10:
   version "1.26.5"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.26.5.tgz#2d7aecfbbabfa298567c8f06615b6e24d2d68099"
   integrity sha512-FG2swzaZUiX53YzZSjSakzvGtlds0lcbF+URuU9mxOv7WBh7NhXEVDa4kPKN4hN6fC2TkOTOKqiqp6d53N9X5Q==
+  dependencies:
+    chokidar ">=2.0.0 <4.0.0"
+
+sass@^1.26.7:
+  version "1.26.7"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.26.7.tgz#d3c9f3dd9771632bfb60af8746c308da3765166d"
+  integrity sha512-xgNazdkr6yvgHEfNaOjKtZzhDZmKYMCmoRKMPrTDo7YvjaITIzU2DDYsIUuN/atAg7/JOxPeCQHH7TtCo5Tq2g==
   dependencies:
     chokidar ">=2.0.0 <4.0.0"
 
@@ -13447,10 +13444,10 @@ shellwords@^0.1.1:
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
 
-shepherd.js@^7.1.1:
-  version "7.2.1"
-  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-7.2.1.tgz#9973fae7cb595c0c74ae16df5431089f72221680"
-  integrity sha512-IJP2cTv3F7BYjsiN6J+J36s0lKbbBd01p2vKQe2o6EutyVkJd6/Tsr5r+ndMgZ7/aJT7rEb6YkvNWqBfAkcX+A==
+shepherd.js@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-8.0.1.tgz#b105d80414c7018e527beedf6bb7629bf77a613d"
+  integrity sha512-sTVFHuf6cf7NXYzF3PFyrIKvpetItSTdVcjOQcnjMiWBL/+sjeBZb/YXrpCa9QxubERm8qyZLCgs800TmDhjeQ==
   dependencies:
     "@popperjs/core" "^2.4.0"
     deepmerge "^4.2.2"
