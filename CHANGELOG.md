@@ -1,3 +1,15 @@
+## v11.0.1 (2020-07-09)
+
+#### :rocket: Enhancement
+* [#450](https://github.com/shipshapecode/ember-shepherd/pull/450) Add support for modalContainer, fix Tour options ([@rwwagner90](https://github.com/rwwagner90))
+
+#### :house: Internal
+* [#516](https://github.com/shipshapecode/ember-shepherd/pull/516) Add embroider tests ([@rwwagner90](https://github.com/rwwagner90))
+
+#### Committers: 2
+- Robert Wagner ([@rwwagner90](https://github.com/rwwagner90))
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
 # Changelog
 
 ## [v11.0.0](https://github.com/shipshapecode/ember-shepherd/tree/v11.0.0) (2020-02-25)
