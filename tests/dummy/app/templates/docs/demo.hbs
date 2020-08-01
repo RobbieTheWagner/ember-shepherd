@@ -10,30 +10,16 @@
     <div class="docs-flex docs-justify-center">
       <h5>Installation</h5>
     </div>
-    <div class="docs-flex docs-justify-center">
-      {{~#code-block class="install-element"~}}
-        ember install ember-shepherd
-      {{~/code-block~}}
+    <div class="docs-flex docs-justify-center install-element">
+      <CodeBlock @code="ember install ember-shepherd"/>
     </div>
     <div class="docs-flex docs-justify-center">
       <h5>Usage</h5>
     </div>
-    <div class="docs-flex docs-justify-center">
-      {{~#code-block language='javascript' class="usage-element"~}}
-//Inject the service: tour: Ember.inject.service()
-let tour = this.get('tour');
-tour.set('defaultStepOptions', shepherdStepDefaults);
-tour.set('disableScroll', true);
-tour.set('modal', true);
-tour.set('requiredElements', requiredElements);
-tour.addSteps(steps);
-
-// Methods to control the tour
-tour.start();
-tour.next();
-tour.back();
-tour.cancel();
-      {{~/code-block~}}
+    <div class="docs-flex docs-justify-center usage-element">
+      <CodeBlock
+        @code={{this.usage}}
+        @language="javascript"/>
     </div>
     <div class="docs-flex docs-justify-center">
       <h5>Additional Features</h5>
@@ -53,7 +39,7 @@ tour.cancel();
       <div class="docs-text-center docs-flex docs-justify-center docs-w-1/2">
         <a href='javascript:void(0)'
            class="bottomButton toggleHelpModal"
-           {{action 'toggleHelpModal'}}
+           {{on "click" this.toggleHelpModal}}
         >
           Modal Demo
         </a>
@@ -61,7 +47,7 @@ tour.cancel();
       <div class="docs-text-center docs-flex docs-justify-center docs-w-1/2">
         <a href='javascript:void(0)'
            class="bottomButton toggleHelpNonmodal"
-          {{action 'toggleHelpNonmodal'}}
+          {{on "click" this.toggleHelpNonmodal}}
         >
           Non-modal
         </a>
