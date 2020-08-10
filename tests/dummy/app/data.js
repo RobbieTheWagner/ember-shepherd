@@ -45,7 +45,7 @@ export const steps = [
             and extends its functionality. Shepherd uses <a href="https://popper.js.org/">Popper.js</a>,
             another open source library, to render dialogs for each tour "step".
           </p>
-        
+
           <p>
             Popper makes sure your steps never end up off screen or cropped by an
             overflow. Try resizing your browser to see what we mean.
@@ -53,7 +53,7 @@ export const steps = [
   },
   {
     attachTo: {
-      element: '.install-element',
+      element: '.install-element > pre',
       on: 'bottom'
     },
     buttons: [
@@ -68,7 +68,7 @@ export const steps = [
   },
   {
     attachTo: {
-      element: '.usage-element',
+      element: '.usage-element > pre',
       on: 'bottom'
     },
     buttons: [
@@ -97,7 +97,7 @@ export const steps = [
         <p>
           We implemented true modal functionality by disabling clicking of the rest of the page.
         </p>
-        
+
         <p>
           If you would like to enable modal, simply do this.get('tour').set('modal', true).
         </p>`
@@ -136,7 +136,7 @@ export const steps = [
         cannot mess up your carefully planned out, amazing tour. This is now easily achieved
         with this.get('tour').set('disableScroll', true).
       </p>
-      
+
       <p>
         Try scrolling right now, then exit the tour and see that you can again!
       </p>`

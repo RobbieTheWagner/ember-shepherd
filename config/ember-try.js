@@ -7,18 +7,10 @@ module.exports = async function() {
     useYarn: true,
     scenarios: [
       {
-        name: 'ember-lts-3.8',
+        name: 'ember-3.13',
         npm: {
           devDependencies: {
-            'ember-source': '~3.8.0'
-          }
-        }
-      },
-      {
-        name: 'ember-lts-3.12',
-        npm: {
-          devDependencies: {
-            'ember-source': '~3.12.0'
+            'ember-source': '~3.13.0'
           }
         }
       },
@@ -52,16 +44,6 @@ module.exports = async function() {
           devDependencies: {
             'ember-source': await getChannelURL('canary')
           }
-        }
-      },
-      // The default `.travis.yml` runs this scenario via `yarn test`,
-      // not via `ember try`. It's still included here so that running
-      // `ember try:each` manually or from a customized CI config will run it
-      // along with all the other scenarios.
-      {
-        name: 'ember-default',
-        npm: {
-          devDependencies: {}
         }
       },
       {
