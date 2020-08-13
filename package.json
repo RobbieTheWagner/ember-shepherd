@@ -108,7 +108,7 @@
     "release-it-lerna-changelog": "^2.3.0",
     "sass": "^1.26.7",
     "stylelint": "^13.2.0",
-    "stylelint-config-ship-shape": "^0.6.0"
+    "stylelint-config-ship-shape": "^0.7.0"
   },
   "engines": {
     "node": "10.* || >= 12"
