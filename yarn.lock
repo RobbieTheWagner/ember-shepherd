@@ -6683,15 +6683,14 @@ ember-on-modifier@^1.0.0:
     ember-cli-version-checker "^4.1.0"
     ember-modifier-manager-polyfill "^1.2.0"
 
-ember-prism@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/ember-prism/-/ember-prism-0.8.0.tgz#c841571f5f5b7b0cb32a8f3df5a409402d522d7e"
-  integrity sha512-x//UcUaQ0GlIpnkKX06M2aFNplrmvHVmKBiGSS7h+zu59Ft+ioXO32NK+28eFGu9nMhP1G0EMan0gXCDLvrJwA==
+ember-prism@^0.8.1:
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/ember-prism/-/ember-prism-0.8.1.tgz#776d973da30d4eab131bda8443cf35042edc5c8d"
+  integrity sha512-XeUDhbMI7Idrd9cb0hd/+1bvizAycQ9lSPDbp9nibrW9aRbeEZoAZQkb8HRKUCGFrZDBhuOyCf6aIhhwoVVp9A==
   dependencies:
     "@ember/render-modifiers" "^1.0.2"
     ember-cli-babel "^7.19.0"
     ember-cli-htmlbars "^5.1.1"
-    ember-cli-node-assets "^0.2.2"
     prismjs "^1.19.0"
 
 ember-qunit@^4.6.0:
