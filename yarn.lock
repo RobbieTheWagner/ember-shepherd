@@ -6684,9 +6684,9 @@ ember-on-modifier@^1.0.0:
     ember-modifier-manager-polyfill "^1.2.0"
 
 ember-prism@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/ember-prism/-/ember-prism-0.8.0.tgz#c841571f5f5b7b0cb32a8f3df5a409402d522d7e"
-  integrity sha512-x//UcUaQ0GlIpnkKX06M2aFNplrmvHVmKBiGSS7h+zu59Ft+ioXO32NK+28eFGu9nMhP1G0EMan0gXCDLvrJwA==
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/ember-prism/-/ember-prism-0.8.2.tgz#270531bc6835a3a4cca1d8475b55bc523d315efb"
+  integrity sha512-cGh2z9m7P74sVf89t+WrdS/Uy/bxW8Z3AN7Nas38XyAMivHxfv7LdsdEBedul53/JHYUSujTL+kb/Xjyr/yqQg==
   dependencies:
     "@ember/render-modifiers" "^1.0.2"
     ember-cli-babel "^7.19.0"
