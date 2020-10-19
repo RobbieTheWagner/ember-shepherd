@@ -5905,6 +5905,16 @@ ember-angle-bracket-invocation-polyfill@^2.0.2:
     ember-compatibility-helpers "^1.0.2"
     silent-error "^1.1.1"
 
+ember-angle-bracket-invocation-polyfill@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ember-angle-bracket-invocation-polyfill/-/ember-angle-bracket-invocation-polyfill-3.0.0.tgz#d29233dd7863474e7bc2030bc39955b2b92b3d7b"
+  integrity sha512-eEzPGD4ZdUUY/rApiBNiHqsJQbrduAje95UBFcHImWlHsIRrFPxAis82wE6C6DCl3nwFb6ogd/J6kSSlhzRQQw==
+  dependencies:
+    ember-cli-babel "^7.0.0"
+    ember-cli-version-checker "^2.1.2"
+    ember-compatibility-helpers "^1.0.2"
+    silent-error "^1.1.1"
+
 ember-app-scheduler@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/ember-app-scheduler/-/ember-app-scheduler-5.0.1.tgz#8f73a6c04538b4d156d6e179ce29a29c4a0058dc"
@@ -6074,7 +6084,7 @@ ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.10.0, ember-cli-babel@^6.11.0,
     ember-cli-version-checker "^2.1.2"
     semver "^5.5.0"
 
-ember-cli-babel@^7.1.0, ember-cli-babel@^7.1.3, ember-cli-babel@^7.10.0, ember-cli-babel@^7.11.0, ember-cli-babel@^7.11.1, ember-cli-babel@^7.12.0, ember-cli-babel@^7.18.0, ember-cli-babel@^7.19.0, ember-cli-babel@^7.20.2, ember-cli-babel@^7.20.5, ember-cli-babel@^7.21.0, ember-cli-babel@^7.22.1, ember-cli-babel@^7.4.1, ember-cli-babel@^7.7.3:
+ember-cli-babel@^7.0.0, ember-cli-babel@^7.1.0, ember-cli-babel@^7.1.3, ember-cli-babel@^7.10.0, ember-cli-babel@^7.11.0, ember-cli-babel@^7.11.1, ember-cli-babel@^7.12.0, ember-cli-babel@^7.18.0, ember-cli-babel@^7.19.0, ember-cli-babel@^7.20.2, ember-cli-babel@^7.20.5, ember-cli-babel@^7.21.0, ember-cli-babel@^7.22.1, ember-cli-babel@^7.4.1, ember-cli-babel@^7.7.3:
   version "7.23.0"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.23.0.tgz#ec580aa2c115d0810e454dd5c2fffce238284b92"
   integrity sha512-ix58DlRDAbGITtdJoRUPcAoQwKLYr/x/kIXjU9u1ATyhmuUjqb+0FDXghOWbkNihGiNOqBBR49+LBgK9AeBcNw==

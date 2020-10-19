@@ -71,7 +71,7 @@
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
     "codeclimate-test-reporter": "^0.5.1",
-    "ember-angle-bracket-invocation-polyfill": "^2.0.2",
+    "ember-angle-bracket-invocation-polyfill": "^3.0.0",
     "ember-cli": "~3.20.0",
     "ember-cli-addon-docs": "^0.9.0",
     "ember-cli-addon-docs-yuidoc": "^0.2.4",
