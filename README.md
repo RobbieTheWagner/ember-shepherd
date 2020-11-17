@@ -18,7 +18,7 @@ This is an Ember wrapper for the [Shepherd](https://github.com/shipshapecode/she
 Compatibility
 ------------------------------------------------------------------------------
 
-* Ember.js v3.13 or above
+* Ember.js v3.16 or above
 * Ember CLI v2.13 or above
 * Node.js v10 or above
 
