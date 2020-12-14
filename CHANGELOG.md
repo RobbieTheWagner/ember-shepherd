@@ -1,3 +1,16 @@
+## v11.0.2 (2020-12-14)
+
+#### :memo: Documentation
+* [#551](https://github.com/shipshapecode/ember-shepherd/pull/551) Use the new CodeBlock format ([@rwwagner90](https://github.com/rwwagner90))
+
+#### :house: Internal
+* [#634](https://github.com/shipshapecode/ember-shepherd/pull/634) Switch from Travis to GitHub actions ([@rwwagner90](https://github.com/rwwagner90))
+* [#633](https://github.com/shipshapecode/ember-shepherd/pull/633) Ember 3.22 ([@rwwagner90](https://github.com/rwwagner90))
+
+#### Committers: 2
+- Robert Wagner ([@rwwagner90](https://github.com/rwwagner90))
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
 ## v11.0.1 (2020-07-09)
 
 #### :rocket: Enhancement
