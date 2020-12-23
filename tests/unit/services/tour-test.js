@@ -12,10 +12,7 @@ const steps = [
         element: '.test-element',
         on: 'bottom'
       },
-      buttons: [
-        builtInButtons.cancel,
-        builtInButtons.next
-      ],
+      buttons: [builtInButtons.cancel, builtInButtons.next],
       classes: 'custom-class-name-1 custom-class-name-2',
       title: 'Welcome to Ember-Shepherd!',
       text: 'Test text',
@@ -27,67 +24,71 @@ const steps = [
   }
 ];
 
-module('Unit | Service | tour', function(hooks) {
+module('Unit | Service | tour', function (hooks) {
   setupTest(hooks);
 
-  test('it starts the tour when the `start` event is triggered', function(assert) {
+  test('it starts the tour when the `start` event is triggered', function (assert) {
     assert.expect(1);
 
-    const mockTourObject = EmberObject.extend({
+    class mockTourObject extends EmberObject {
       start() {
         assert.ok(true, 'The tour was started');
       }
-    }).create();
+    }
 
     const service = this.owner.factoryFor('service:tour').create({
       steps
     });
 
-    service.set('tourObject', mockTourObject);
+    service.set('tourObject', mockTourObject.create());
 
-    run(function() {
+    run(function () {
       service.start();
     });
   });
 
-  test('it allows another object to bind to events', function(assert) {
+  test('it allows another object to bind to events', function (assert) {
     assert.expect(1);
 
-    const mockTourObject = EmberObject.extend({
+    class mockTourObject extends EmberObject {
       next() {}
-    }).create();
+    }
 
     const service = this.owner.factoryFor('service:tour').create({
       steps
     });
 
-    service.set('tourObject', mockTourObject);
+    service.set('tourObject', mockTourObject.create());
 
-    service.on('next', function() {
+    service.on('next', function () {
       assert.ok(true);
     });
 
-    run(function() {
+    run(function () {
       service.next();
     });
   });
 
-  test('it passes through a custom scrollToHandler option', function(assert) {
+  test('it passes through a custom scrollToHandler option', function (assert) {
     assert.expect(1);
 
-    const mockTourObject = EmberObject.extend({
+    class mockTourObject extends EmberObject {
       start() {
-        assert.equal(steps[0].options.scrollToHandler(), 'custom scrollToHandler', 'The handler was passed through as an option on the step');
+        assert.equal(
+          steps[0].options.scrollToHandler(),
+          'custom scrollToHandler',
+          'The handler was passed through as an option on the step'
+        );
       }
-    }).create();
+    }
 
     const service = this.owner.factoryFor('service:tour').create({
       steps
     });
 
-    service.set('tourObject', mockTourObject);
+    service.set('tourObject', mockTourObject.create());
 
-    run(function() {
+    run(function () {
       service.start();
     });
   });

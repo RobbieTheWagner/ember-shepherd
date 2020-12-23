@@ -29,7 +29,7 @@ import { elementIsHidden } from '../utils/dom';
  *
  * @class Tour
  */
-export default Service.extend(Evented, {
+export default class TourService extends Service.extend(Evented) {
   // Configuration Options
 
   /**
@@ -39,7 +39,7 @@ export default Service.extend(Evented, {
    * @property classPrefix
    * @type String
    */
-  classPrefix: undefined,
+  classPrefix;
 
   /**
    * `confirmCancel` is a boolean flag, when set to `true` it will pop up a native browser
@@ -49,7 +49,7 @@ export default Service.extend(Evented, {
    * @property confirmCancel
    * @type Boolean
    */
-  confirmCancel: false,
+  confirmCancel = false;
 
   /**
    * `confirmCancelMessage` is a string to display in the confirm dialog when `confirmCancel`
@@ -59,7 +59,7 @@ export default Service.extend(Evented, {
    * @property confirmCancelMessage
    * @type String
    */
-  confirmCancelMessage: null,
+  confirmCancelMessage = null;
 
   /**
    * `defaultStepOptions` is used to set the options that will be applied to each step by default.
@@ -85,14 +85,14 @@ export default Service.extend(Evented, {
    * @property defaultStepOptions
    * @type Object
    */
-  defaultStepOptions: {},
+  defaultStepOptions = {};
 
   /**
    * @default null
    * @property errorTitle
    * @type String
    */
-  errorTitle: null,
+  errorTitle = null;
 
   /**
    * Exiting the tour with the escape key will be enabled unless this is explicitly set to false.
@@ -101,14 +101,14 @@ export default Service.extend(Evented, {
    * @property exitOnEsc
    * @type Boolean
    */
-  exitOnEsc: undefined,
+  exitOnEsc;
 
   /**
    * @default false
    * @property isActive
    * @type Boolean
    */
-  isActive: false,
+  isActive = false;
 
   /**
    * Navigating the tour via left and right arrow keys will be enabled unless this is explicitly set to false.
@@ -117,14 +117,14 @@ export default Service.extend(Evented, {
    * @property keyboardNavigation
    * @type Boolean
    */
-  keyboardNavigation: undefined,
+  keyboardNavigation;
 
   /**
    * @default null
    * @property messageForUser
    * @type String
    */
-  messageForUser: null,
+  messageForUser = null;
 
   /**
    * `modal` is a boolean, that should be set to true, if you would like the rest of the screen, other than the current element, greyed out, and the current element highlighted. If you do not need modal functionality, you can remove this option or set it to false.
@@ -135,7 +135,7 @@ export default Service.extend(Evented, {
    * @property modal
    * @type Boolean
    */
-  modal: false,
+  modal = false;
 
   /**
    * An optional container element for the modal. If not set, the modal will be appended to `document.body`.
@@ -143,7 +143,7 @@ export default Service.extend(Evented, {
    * @property modalContainer
    * @type HTMLElement
    */
-  modalContainer: undefined,
+  modalContainer;
 
   /**
    * `requiredElements` is an array of objects that indicate DOM elements that are **REQUIRED** by your tour and must
@@ -175,8 +175,8 @@ export default Service.extend(Evented, {
    * @property requiredElements
    * @type Array
    */
-  requiredElements: [],
-  steps: [],
+  requiredElements = [];
+  steps = [];
 
   /**
    * Take a set of steps, create a tour object based on the current configuration and load the shepherd.js dependency.
@@ -274,7 +274,7 @@ export default Service.extend(Evented, {
         tour.addStep(step);
       });
     });
-  },
+  }
 
   /**
    * Get the tour object and call back
@@ -285,7 +285,7 @@ export default Service.extend(Evented, {
   back() {
     this.tourObject.back();
     this.trigger('back');
-  },
+  }
 
   /**
    * Cancel the tour
@@ -295,7 +295,7 @@ export default Service.extend(Evented, {
    */
   cancel() {
     this.tourObject.cancel();
-  },
+  }
 
   /**
    * Complete the tour
@@ -305,7 +305,7 @@ export default Service.extend(Evented, {
    */
   complete() {
     this.tourObject.complete();
-  },
+  }
 
   /**
    * Hides the current step
@@ -315,7 +315,7 @@ export default Service.extend(Evented, {
    */
   hide() {
     this.tourObject.hide();
-  },
+  }
 
   /**
    * Advance the tour to the next step and trigger next
@@ -326,7 +326,7 @@ export default Service.extend(Evented, {
   next() {
     this.tourObject.next();
     this.trigger('next');
-  },
+  }
 
   /**
    * Show a specific step, by passing its id
@@ -337,7 +337,7 @@ export default Service.extend(Evented, {
    */
   show(id) {
     this.tourObject.show(id);
-  },
+  }
 
   /**
    * Start the tour. The Promise from addSteps() must be in a resolved state prior to starting the tour!
@@ -352,7 +352,7 @@ export default Service.extend(Evented, {
     }
     set(this, 'isActive', true);
     tourObject.start();
-  },
+  }
 
   /**
    * When the tour starts, setup the step event listeners
@@ -362,7 +362,7 @@ export default Service.extend(Evented, {
    */
   _onTourStart() {
     this.trigger('start');
-  },
+  }
 
   /**
    * This function is called when a tour is completed or cancelled to initiate cleanup.
@@ -376,7 +376,7 @@ export default Service.extend(Evented, {
       set(this, 'isActive', false);
     }
     this.trigger(completeOrCancel);
-  },
+  }
 
   /**
    * Initializes the tour, creates a new Shepherd.Tour. sets options, and binds events
@@ -431,7 +431,7 @@ export default Service.extend(Evented, {
 
       set(this, 'tourObject', tourObject);
     });
-  },
+  }
 
   /**
    * Observes the array of requiredElements, which are the elements that must be present at the start of the tour,
@@ -459,4 +459,4 @@ export default Service.extend(Evented, {
     }
     return allElementsPresent;
   }
-});
+}
