@@ -5,9 +5,9 @@ import { inject as service } from '@ember/service';
 import { scheduleOnce } from '@ember/runloop';
 import { steps as defaultSteps, defaultStepOptions } from '../../data';
 
-export default Route.extend({
-  tour: service(),
-  disableScroll: false,
+export default class DocsDemoRoute extends Route {
+  @service tour;
+  disableScroll = false;
 
   async beforeModel() {
     const tour = this.tour;
@@ -22,7 +22,7 @@ export default Route.extend({
     tour.on('cancel', () => {
       console.log('cancel');
     });
-  },
+  }
 
   model() {
     return {
@@ -44,15 +44,15 @@ export default Route.extend({
         }
       ]
     };
-  },
+  }
 
   activate() {
     if (config.environment !== 'test') {
       scheduleOnce('afterRender', this, this._startTour);
     }
-  },
+  }
 
   _startTour() {
     this.tour.start();
   }
-});
+}
