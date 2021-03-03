@@ -9,24 +9,24 @@ const toggleTour = async (tour, modal) => {
   return await tour.start();
 };
 
-module('Acceptance | Tour functionality tests', function(hooks) {
+module('Acceptance | Tour functionality tests', function (hooks) {
   let tour;
 
   setupApplicationTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     tour = this.owner.lookup('service:tour');
 
     tour.set('confirmCancel', false);
     tour.set('modal', true);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     return await tour.complete();
   });
 
-  module('Cancel link', function() {
-    test('Shows cancel link', async function(assert) {
+  module('Cancel link', function () {
+    test('Shows cancel link', async function (assert) {
       await visit('/docs/demo');
 
       await toggleTour(tour, true);
@@ -35,7 +35,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       assert.ok(cancelIcon, 'Cancel icon shown');
     });
 
-    test('Hides cancel link', async function(assert) {
+    test('Hides cancel link', async function (assert) {
       const defaultStepOptions = {
         cancelIcon: {
           enabled: false
@@ -43,20 +43,19 @@ module('Acceptance | Tour functionality tests', function(hooks) {
         classes: 'shepherd-theme-arrows test-defaults'
       };
 
-      const steps = [{
-        attachTo: {
-          element: '.first-element',
-          on: 'bottom'
-        },
-        buttons: [
-          builtInButtons.cancel,
-          builtInButtons.next
-        ],
-        cancelIcon: {
-          enabled: false
-        },
-        id: 'step-without-cancel-icon'
-      }];
+      const steps = [
+        {
+          attachTo: {
+            element: '.first-element',
+            on: 'bottom'
+          },
+          buttons: [builtInButtons.cancel, builtInButtons.next],
+          cancelIcon: {
+            enabled: false
+          },
+          id: 'step-without-cancel-icon'
+        }
+      ];
 
       await visit('/docs/demo');
 
@@ -65,33 +64,38 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       tour.start();
 
-      assert.notOk(document.querySelector('.shepherd-element button.shepherd-cancel-icon'));
+      assert.notOk(
+        document.querySelector('.shepherd-element button.shepherd-cancel-icon')
+      );
     });
 
-    test('Cancel link cancels the tour', async function(assert) {
+    test('Cancel link cancels the tour', async function (assert) {
       await visit('/docs/demo');
 
       await toggleTour(tour, true);
 
       assert.dom('.shepherd-enabled').exists();
 
-      await click(document.querySelector('.shepherd-content button.shepherd-cancel-icon'));
+      await click(
+        document.querySelector('.shepherd-content button.shepherd-cancel-icon')
+      );
 
       assert.dom('.shepherd-enabled').doesNotExist();
     });
   });
 
-  module('Required Elements', function() {
-    test('Does not warn about required elements when none are specified', async function(assert) {
+  module('Required Elements', function () {
+    test('Does not warn about required elements when none are specified', async function (assert) {
       await visit('/docs/demo');
 
       await toggleTour(tour, true);
 
-      assert.dom('.shepherd-element', document.body).hasAttribute('data-shepherd-step-id', defaultSteps[0].id);
+      assert
+        .dom('.shepherd-element', document.body)
+        .hasAttribute('data-shepherd-step-id', defaultSteps[0].id);
     });
 
-
-    test('Does not warn about required elements when none are missing', async function(assert) {
+    test('Does not warn about required elements when none are missing', async function (assert) {
       const requiredElements = [
         {
           selector: 'body',
@@ -106,11 +110,12 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       await toggleTour(tour, true);
 
-      assert.dom('.shepherd-element', document.body).hasAttribute('data-shepherd-step-id', defaultSteps[0].id);
+      assert
+        .dom('.shepherd-element', document.body)
+        .hasAttribute('data-shepherd-step-id', defaultSteps[0].id);
     });
 
-
-    test('Warns about missing required elements when all are not present', async function(assert) {
+    test('Warns about missing required elements when all are not present', async function (assert) {
       const requiredElements = [
         {
           selector: '👻',
@@ -125,12 +130,14 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       await toggleTour(tour, true);
 
-      assert.dom('.shepherd-element', document.body).hasAttribute('data-shepherd-step-id', 'error');
+      assert
+        .dom('.shepherd-element', document.body)
+        .hasAttribute('data-shepherd-step-id', 'error');
     });
   });
 
-  module('Tour options', function() {
-    test('Defaults applied', async function(assert) {
+  module('Tour options', function () {
+    test('Defaults applied', async function (assert) {
       assert.expect(1);
 
       const stepsWithoutClasses = [
@@ -139,10 +146,7 @@ module('Acceptance | Tour functionality tests', function(hooks) {
             element: '.first-element',
             on: 'bottom'
           },
-          buttons: [
-            builtInButtons.cancel,
-            builtInButtons.next
-          ],
+          buttons: [builtInButtons.cancel, builtInButtons.next],
           id: 'test-highlight'
         }
       ];
@@ -153,23 +157,25 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       tour.start();
 
-      assert.ok(document.querySelector('.custom-default-class'), 'defaults class applied');
+      assert.ok(
+        document.querySelector('.custom-default-class'),
+        'defaults class applied'
+      );
     });
 
-    test('configuration works with attachTo object when element is a simple string', async function(assert) {
+    test('configuration works with attachTo object when element is a simple string', async function (assert) {
       assert.expect(1);
 
-      const steps = [{
-        attachTo: {
-          element: '.first-element',
-          on: 'bottom'
-        },
-        buttons: [
-          builtInButtons.cancel,
-          builtInButtons.next
-        ],
-        id: 'test-attachTo-string'
-      }];
+      const steps = [
+        {
+          attachTo: {
+            element: '.first-element',
+            on: 'bottom'
+          },
+          buttons: [builtInButtons.cancel, builtInButtons.next],
+          id: 'test-attachTo-string'
+        }
+      ];
 
       await tour.addSteps(steps);
 
@@ -180,22 +186,21 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       assert.ok(document.querySelector('.shepherd-element'), 'tour is visible');
     });
 
-    test('configuration works with attachTo object when element is dom element', async function(assert) {
+    test('configuration works with attachTo object when element is dom element', async function (assert) {
       assert.expect(1);
 
       await visit('/docs/demo');
 
-      const steps = [{
-        attachTo: {
-          element: find('.first-element'),
-          on: 'bottom'
-        },
-        buttons: [
-          builtInButtons.cancel,
-          builtInButtons.next
-        ],
-        id: 'test-attachTo-dom'
-      }];
+      const steps = [
+        {
+          attachTo: {
+            element: find('.first-element'),
+            on: 'bottom'
+          },
+          buttons: [builtInButtons.cancel, builtInButtons.next],
+          id: 'test-attachTo-dom'
+        }
+      ];
 
       await tour.addSteps(steps);
       tour.start();
@@ -203,35 +208,37 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       assert.ok(document.querySelector('.shepherd-element'), 'tour is visible');
     });
 
-    test('buttons work when type is not specified and passed action is triggered', async function(assert) {
+    test('buttons work when type is not specified and passed action is triggered', async function (assert) {
       assert.expect(4);
 
       let buttonActionCalled = false;
 
-      const steps = [{
-        attachTo: {
-          element: '.first-element',
-          on: 'bottom'
-        },
-        buttons: [
-          {
-            classes: 'shepherd-button-secondary button-one',
-            text: 'button one'
+      const steps = [
+        {
+          attachTo: {
+            element: '.first-element',
+            on: 'bottom'
           },
-          {
-            classes: 'shepherd-button-secondary button-two',
-            text: 'button two',
-            action() {
-              buttonActionCalled = true;
+          buttons: [
+            {
+              classes: 'shepherd-button-secondary button-one',
+              text: 'button one'
+            },
+            {
+              classes: 'shepherd-button-secondary button-two',
+              text: 'button two',
+              action() {
+                buttonActionCalled = true;
+              }
+            },
+            {
+              classes: 'shepherd-button-secondary button-three',
+              text: 'button three'
             }
-          },
-          {
-            classes: 'shepherd-button-secondary button-three',
-            text: 'button three'
-          }
-        ],
-        id: 'test-buttons-custom-action'
-      }];
+          ],
+          id: 'test-buttons-custom-action'
+        }
+      ];
 
       await visit('/docs/demo');
 
@@ -239,16 +246,25 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       await tour.start();
 
-      assert.ok(document.querySelector('.button-one'), 'tour button one is visible');
-      assert.ok(document.querySelector('.button-two'), 'tour button two is visible');
-      assert.ok(document.querySelector('.button-three'), 'tour button three is visible');
+      assert.ok(
+        document.querySelector('.button-one'),
+        'tour button one is visible'
+      );
+      assert.ok(
+        document.querySelector('.button-two'),
+        'tour button two is visible'
+      );
+      assert.ok(
+        document.querySelector('.button-three'),
+        'tour button three is visible'
+      );
 
       await click(document.querySelector('.button-two'));
 
       assert.ok(buttonActionCalled, 'button action triggered');
     });
 
-    test('scrollTo works with disableScroll on', async function(assert) {
+    test('scrollTo works with disableScroll on', async function (assert) {
       assert.expect(2);
       // Setup controller tour settings
       tour.set('disableScroll', true);
@@ -259,7 +275,11 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       document.querySelector('#ember-testing-container').scrollTop = 0;
 
-      assert.equal(document.querySelector('#ember-testing-container').scrollTop, 0, 'Scroll is initially 0');
+      assert.equal(
+        document.querySelector('#ember-testing-container').scrollTop,
+        0,
+        'Scroll is initially 0'
+      );
 
       await tour.start();
 
@@ -267,32 +287,38 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       await click(document.querySelector('.shepherd-content .next-button'));
 
-      assert.ok(document.querySelector('#ember-testing-container').scrollTop > 0, 'Scrolled down correctly');
+      assert.ok(
+        document.querySelector('#ember-testing-container').scrollTop > 0,
+        'Scrolled down correctly'
+      );
     });
 
-    test('scrollTo works with a custom scrollToHandler', async function(assert) {
+    test('scrollTo works with a custom scrollToHandler', async function (assert) {
       assert.expect(2);
 
       const done = assert.async();
 
       // Override default behavior
-      const steps = [{
-        attachTo: {
-          element: '.first-element',
-          on: 'bottom'
-        },
-        buttons: [
-          builtInButtons.cancel,
-          builtInButtons.next
-        ],
-        id: 'intro',
-        scrollTo: true,
-        scrollToHandler() {
-          document.querySelector('#ember-testing-container').scrollTop = 120;
-          assert.equal(document.querySelector('#ember-testing-container').scrollTop, 120, 'Scrolled correctly');
-          done();
+      const steps = [
+        {
+          attachTo: {
+            element: '.first-element',
+            on: 'bottom'
+          },
+          buttons: [builtInButtons.cancel, builtInButtons.next],
+          id: 'intro',
+          scrollTo: true,
+          scrollToHandler() {
+            document.querySelector('#ember-testing-container').scrollTop = 120;
+            assert.equal(
+              document.querySelector('#ember-testing-container').scrollTop,
+              120,
+              'Scrolled correctly'
+            );
+            done();
+          }
         }
-      }];
+      ];
 
       // Visit route
       await visit('/docs/demo');
@@ -300,13 +326,17 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       await tour.addSteps(steps);
 
       document.querySelector('#ember-testing-container').scrollTop = 0;
-      assert.equal(document.querySelector('#ember-testing-container').scrollTop, 0, 'Scroll is initially 0');
+      assert.equal(
+        document.querySelector('#ember-testing-container').scrollTop,
+        0,
+        'Scroll is initially 0'
+      );
 
       await tour.start();
       await click(document.querySelector('.shepherd-content .next-button'));
     });
 
-    test('scrollTo works without a custom scrollToHandler', async function(assert) {
+    test('scrollTo works without a custom scrollToHandler', async function (assert) {
       assert.expect(2);
       // Setup controller tour settings
       tour.set('scrollTo', true);
@@ -316,28 +346,38 @@ module('Acceptance | Tour functionality tests', function(hooks) {
 
       document.querySelector('#ember-testing-container').scrollTop = 0;
 
-      assert.equal(document.querySelector('#ember-testing-container').scrollTop, 0, 'Scroll is initially 0');
+      assert.equal(
+        document.querySelector('#ember-testing-container').scrollTop,
+        0,
+        'Scroll is initially 0'
+      );
 
       await tour.start();
 
       await click(document.querySelector('.shepherd-content .next-button'));
 
-      assert.ok(document.querySelector('#ember-testing-container').scrollTop > 0, 'Scrolled correctly');
+      assert.ok(
+        document.querySelector('#ember-testing-container').scrollTop > 0,
+        'Scrolled correctly'
+      );
     });
 
-    test('Show by id works', async function(assert) {
+    test('Show by id works', async function (assert) {
       assert.expect(1);
 
       await visit('/docs/demo');
 
       tour.show('usage');
 
-      assert.equal(tour.get('tourObject').currentStep.el.querySelector('.shepherd-text').textContent,
+      assert.equal(
+        tour.get('tourObject').currentStep.el.querySelector('.shepherd-text')
+          .textContent,
         'To use the tour service, simply inject it into your application and use it like this example.',
-        'Usage step shown');
+        'Usage step shown'
+      );
     });
 
-    test('hide method hides the current step', async function(assert) {
+    test('hide method hides the current step', async function (assert) {
       assert.expect(1);
 
       await visit('/docs/demo');
@@ -345,7 +385,11 @@ module('Acceptance | Tour functionality tests', function(hooks) {
       tour.show('usage');
       tour.hide();
 
-      assert.equal(tour.get('tourObject').currentStep.isOpen(), false, 'The step is hidden');
+      assert.equal(
+        tour.get('tourObject').currentStep.isOpen(),
+        false,
+        'The step is hidden'
+      );
     });
   });
 });

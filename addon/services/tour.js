@@ -255,10 +255,12 @@ export default class TourService extends Service.extend(Evented) {
       /* istanbul ignore next: also can't test this due to things attached to root blowing up tests */
       if (!this._requiredElementsPresent()) {
         tour.addStep({
-          buttons: [{
-            text: 'Exit',
-            action: tour.cancel
-          }],
+          buttons: [
+            {
+              text: 'Exit',
+              action: tour.cancel
+            }
+          ],
           id: 'error',
           title: this.errorTitle,
           text: this.messageForUser
@@ -348,7 +350,9 @@ export default class TourService extends Service.extend(Evented) {
   start() {
     const tourObject = this.tourObject;
     if (tourObject == undefined) {
-      throw new Error('the Promise from addSteps must be in a resolved state before the tour can be started');
+      throw new Error(
+        'the Promise from addSteps must be in a resolved state before the tour can be started'
+      );
     }
     set(this, 'isActive', true);
     tourObject.start();
@@ -410,8 +414,7 @@ export default class TourService extends Service.extend(Evented) {
     //   defaultStepOptions.tippyOptions.appendTo = rootElement;
     // }
 
-
-    return import('shepherd.js').then(module => {
+    return import('shepherd.js').then((module) => {
       const Shepherd = module.default;
       const tourObject = new Shepherd.Tour({
         classPrefix,
@@ -450,7 +453,10 @@ export default class TourService extends Service.extend(Evented) {
       requiredElements.forEach((element) => {
         const selectedElement = document.querySelector(element.selector);
 
-        if (allElementsPresent && (!selectedElement || elementIsHidden(selectedElement))) {
+        if (
+          allElementsPresent &&
+          (!selectedElement || elementIsHidden(selectedElement))
+        ) {
           allElementsPresent = false;
           set(this, 'errorTitle', element.title);
           set(this, 'messageForUser', element.message);

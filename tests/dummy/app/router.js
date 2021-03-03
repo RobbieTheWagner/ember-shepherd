@@ -6,8 +6,8 @@ const Router = AddonDocsRouter.extend({
   rootURL: config.rootURL
 });
 
-Router.map(function() {
-  docsRoute(this, function() {
+Router.map(function () {
+  docsRoute(this, function () {
     this.route('demo');
     this.route('faq');
     this.route('style-variables');

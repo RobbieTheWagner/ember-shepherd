@@ -31,10 +31,7 @@ export const steps = [
       element: '.first-element',
       on: 'bottom'
     },
-    buttons: [
-      builtInButtons.cancel,
-      builtInButtons.next
-    ],
+    buttons: [builtInButtons.cancel, builtInButtons.next],
     classes: 'custom-class-name-1 custom-class-name-2',
     id: 'intro',
     title: 'Welcome to Ember Shepherd!',
@@ -56,41 +53,31 @@ export const steps = [
       element: '.install-element > pre',
       on: 'bottom'
     },
-    buttons: [
-      builtInButtons.cancel,
-      builtInButtons.back,
-      builtInButtons.next
-    ],
+    buttons: [builtInButtons.cancel, builtInButtons.back, builtInButtons.next],
     classes: 'custom-class-name-1 custom-class-name-2',
     id: 'installation',
     title: 'Installation',
-    text: 'Installation is simple, if you are using Ember-CLI, just install like any other addon.'
+    text:
+      'Installation is simple, if you are using Ember-CLI, just install like any other addon.'
   },
   {
     attachTo: {
       element: '.usage-element > pre',
       on: 'bottom'
     },
-    buttons: [
-      builtInButtons.cancel,
-      builtInButtons.back,
-      builtInButtons.next
-    ],
+    buttons: [builtInButtons.cancel, builtInButtons.back, builtInButtons.next],
     classes: 'custom-class-name-1 custom-class-name-2',
     id: 'usage',
     title: 'Usage',
-    text: 'To use the tour service, simply inject it into your application and use it like this example.'
+    text:
+      'To use the tour service, simply inject it into your application and use it like this example.'
   },
   {
     attachTo: {
       element: '.modal-element',
       on: 'top'
     },
-    buttons: [
-      builtInButtons.cancel,
-      builtInButtons.back,
-      builtInButtons.next
-    ],
+    buttons: [builtInButtons.cancel, builtInButtons.back, builtInButtons.next],
     classes: 'custom-class-name-1 custom-class-name-2',
     id: 'modal',
     text: `
@@ -107,11 +94,7 @@ export const steps = [
       element: '.built-in-buttons-element',
       on: 'top'
     },
-    buttons: [
-      builtInButtons.cancel,
-      builtInButtons.back,
-      builtInButtons.next
-    ],
+    buttons: [builtInButtons.cancel, builtInButtons.back, builtInButtons.next],
     classes: 'custom-class-name-1 custom-class-name-2',
     id: 'buttons',
     text: `For the common button types ("next", "back", "cancel", etc.), we implemented Ember actions
@@ -123,11 +106,7 @@ export const steps = [
       element: '.disable-scroll-element',
       on: 'top'
     },
-    buttons: [
-      builtInButtons.cancel,
-      builtInButtons.back,
-      builtInButtons.next
-    ],
+    buttons: [builtInButtons.cancel, builtInButtons.back, builtInButtons.next],
     classes: 'custom-class-name-1 custom-class-name-2',
     id: 'disableScroll',
     text: `
@@ -142,13 +121,11 @@ export const steps = [
       </p>`
   },
   {
-    buttons: [
-      builtInButtons.cancel,
-      builtInButtons.back
-    ],
+    buttons: [builtInButtons.cancel, builtInButtons.back],
     id: 'noAttachTo',
     title: 'Centered Modals',
     classes: 'custom-class-name-1 custom-class-name-2',
-    text: 'If no attachTo is specified, the modal will appear in the center of the screen, as per the Shepherd docs.'
+    text:
+      'If no attachTo is specified, the modal will appear in the center of the screen, as per the Shepherd docs.'
   }
 ];
