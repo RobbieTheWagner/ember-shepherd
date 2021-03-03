@@ -1,7 +1,6 @@
 import { bind } from '@ember/runloop';
 import { assert } from '@ember/debug';
 
-
 /**
  * Creates a button of the specified type, with the given classes and text
  *
@@ -27,7 +26,7 @@ export function makeButton(button) {
     builtInButtonTypes.includes(type)
   );
 
-  const action = bind(this, function() {
+  const action = bind(this, function () {
     this[type]();
   });
 

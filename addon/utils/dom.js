@@ -1,5 +1,3 @@
-
-
 /**
  * Helper method to check if element is hidden, since we cannot use :visible without jQuery
  *
