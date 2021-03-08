@@ -211,14 +211,7 @@
   dependencies:
     "@babel/types" "^7.13.0"
 
-"@babel/helper-module-imports@^7.12.1", "@babel/helper-module-imports@^7.8.3":
-  version "7.12.5"
-  resolved "https://registry.yarnpkg.com/@babel/helper-module-imports/-/helper-module-imports-7.12.5.tgz#1bfc0229f794988f76ed0a4d4e90860850b54dfb"
-  integrity sha512-SR713Ogqg6++uexFRORf/+nPXMmWIn80TALu0uaFb+iQIUoR7bOC7zBWyzBs5b3tBBJXuyD0cRu1F15GyzjOWA==
-  dependencies:
-    "@babel/types" "^7.12.5"
-
-"@babel/helper-module-imports@^7.12.13":
+"@babel/helper-module-imports@^7.12.1", "@babel/helper-module-imports@^7.12.13", "@babel/helper-module-imports@^7.8.3":
   version "7.12.13"
   resolved "https://registry.yarnpkg.com/@babel/helper-module-imports/-/helper-module-imports-7.12.13.tgz#ec67e4404f41750463e455cc3203f6a32e93fcb0"
   integrity sha512-NGmfvRp9Rqxy0uHSSVP+SRIW1q31a7Ji10cLBcqSDUngGentY4FRiHOFZFE1CLU5eiL0oE8reH7Tg1y99TDM/g==
@@ -1681,10 +1674,10 @@
   resolved "https://registry.yarnpkg.com/@glimmer/validator/-/validator-0.44.0.tgz#03d127097dc9cb23052cdb7fcae59d0a9dca53e1"
   integrity sha512-i01plR0EgFVz69GDrEuFgq1NheIjZcyTy3c7q+w7d096ddPVeVcRzU3LKaqCfovvLJ+6lJx40j45ecycASUUyw==
 
-"@glimmer/vm-babel-plugins@0.74.2":
-  version "0.74.2"
-  resolved "https://registry.yarnpkg.com/@glimmer/vm-babel-plugins/-/vm-babel-plugins-0.74.2.tgz#479774d5885201538245f4cba76cabd4b0dee3a5"
-  integrity sha512-DLIKzim7Fg3o54EPgz/wsEiLOUcg24P4WJ9AAv4xsXfBmFndkEDzq1oJ3SPhB167Vp1m+GKOlfKzFm9mxX5rdA==
+"@glimmer/vm-babel-plugins@0.77.1":
+  version "0.77.1"
+  resolved "https://registry.yarnpkg.com/@glimmer/vm-babel-plugins/-/vm-babel-plugins-0.77.1.tgz#80c8b5476ccff68191bc42ebb29928a9b8d22d69"
+  integrity sha512-amkBPV3H/3OhYIeXo03sU1VzqmUl8TUxHhjfVJwRy+vQV22S5saZCiUCyOYUsUkxdEG5sU8qooooBY8VomkkBg==
   dependencies:
     babel-plugin-debug-macros "^0.3.4"
 
@@ -6896,16 +6889,7 @@ ember-cli-version-checker@^4.1.0:
     semver "^6.3.0"
     silent-error "^1.1.1"
 
-ember-cli-version-checker@^5.0.2, ember-cli-version-checker@^5.1.0, ember-cli-version-checker@^5.1.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/ember-cli-version-checker/-/ember-cli-version-checker-5.1.1.tgz#3185c526c14671609cbd22ab0d0925787fc84f3d"
-  integrity sha512-YziSW1MgOuVdJSyUY2CKSC4vXrGQIHF6FgygHkJOxYGjZNQYwf5MK0sbliKatvJf7kzDSnXs+r8JLrD74W/A8A==
-  dependencies:
-    resolve-package-path "^2.0.0"
-    semver "^7.3.2"
-    silent-error "^1.1.1"
-
-ember-cli-version-checker@^5.1.2:
+ember-cli-version-checker@^5.0.2, ember-cli-version-checker@^5.1.0, ember-cli-version-checker@^5.1.1, ember-cli-version-checker@^5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/ember-cli-version-checker/-/ember-cli-version-checker-5.1.2.tgz#649c7b6404902e3b3d69c396e054cea964911ab0"
   integrity sha512-rk7GY+FmLn/2e22HsZs0Ycrz8HQ1W3Fv+2TFOuEFW9optnDXDgkntPBIl6gact/LHsfBM5RKbM3dHsIIeLgl0Q==
@@ -7334,15 +7318,15 @@ ember-source-channel-url@^3.0.0:
     node-fetch "^2.6.0"
 
 ember-source@~3.25.1:
-  version "3.25.1"
-  resolved "https://registry.yarnpkg.com/ember-source/-/ember-source-3.25.1.tgz#7621fe7d471d08045b95c79fc760c3ca44efce4f"
-  integrity sha512-WCQV3FqbXRkYAwrwLZ6QcHZcTjT9ESa9H8Il+5H0QmDxLPiFnaj/UW4YLgZZ64X9PBT9WCUzLeLcccIFoFFm7w==
+  version "3.25.3"
+  resolved "https://registry.yarnpkg.com/ember-source/-/ember-source-3.25.3.tgz#a64278a2dcc36b03056589e1b7393f4558c42d70"
+  integrity sha512-3HgfvYJfvcALNJSsPvbN0qn9ykI7Px7mPyCidXJRdm+tdPB0DKFW3nqT+4W+7YysWYGsj6yS81NhksnXEw4Naw==
   dependencies:
     "@babel/helper-module-imports" "^7.8.3"
     "@babel/plugin-transform-block-scoping" "^7.8.3"
     "@babel/plugin-transform-object-assign" "^7.8.3"
     "@ember/edition-utils" "^1.2.0"
-    "@glimmer/vm-babel-plugins" "0.74.2"
+    "@glimmer/vm-babel-plugins" "0.77.1"
     babel-plugin-debug-macros "^0.3.3"
     babel-plugin-filter-imports "^4.0.0"
     broccoli-concat "^4.2.4"
