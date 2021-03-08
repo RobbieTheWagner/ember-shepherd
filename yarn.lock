@@ -7370,9 +7370,9 @@ ember-svg-jar@^2.2.3:
     path-posix "^1.0.0"
 
 ember-template-lint@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-3.0.1.tgz#f981f38660d875966ea548a85b874fa278b1787e"
-  integrity sha512-5g7/9wHahDl6DxaZdbJL9w/03Rb5WCwu5FDsVAFNRpPrmiKOaUVIv9UHyqdZCPDVLEot4oHj8FxnwK+yvXt07w==
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-3.1.1.tgz#56f7f4be11241e88a96d436893387229e105fb0d"
+  integrity sha512-4xtcPPuqGteHhM/5qgy4pHT5bobmcltFyAVIsbdOsqtRJ048KZNd6lLhT521fxmTCbAHkqUGNdPmzCk4VfH5Xg==
   dependencies:
     "@ember-template-lint/todo-utils" "^8.0.0-beta.3"
     chalk "^4.0.0"
