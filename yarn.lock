@@ -1865,10 +1865,10 @@
   dependencies:
     "@octokit/openapi-types" "^5.3.2"
 
-"@popperjs/core@^2.5.2":
-  version "2.5.4"
-  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.5.4.tgz#de25b5da9f727985a3757fd59b5d028aba75841a"
-  integrity sha512-ZpKr+WTb8zsajqgDkvCEWgp6d5eJT6Q63Ng2neTbzBO76Lbe91vX/iVIW9dikq+Fs3yEo+ls4cxeXABD2LtcbQ==
+"@popperjs/core@^2.9.1":
+  version "2.9.1"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.9.1.tgz#7f554e7368c9ab679a11f4a042ca17149d70cf12"
+  integrity sha512-DvJbbn3dUgMxDnJLH+RZQPnXak1h4ZVYQ7CWiFWjQwBFkVajT4rfw2PdpHLTSTwxrYfnoEXkuBiwkDm6tPMQeA==
 
 "@simple-dom/interface@^1.4.0":
   version "1.4.0"
@@ -14025,11 +14025,11 @@ shellwords@^0.1.1:
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
 
 shepherd.js@^8.0.1:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-8.1.0.tgz#810b72a6ddf16f6e953126a1315108cc5709f7ce"
-  integrity sha512-mWab5hn2cdSdv5XF3IbBYyT2wPejAjK0flycbkRxqS1c+4epkKRMhpW9Eco6swDCu65wUP7PcecdjayokwI+Vg==
+  version "8.2.3"
+  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-8.2.3.tgz#b031fbe5e5657ededbac087ca16628c95f43ee0d"
+  integrity sha512-OV4oaFqPdIuolP1eKELH65qCH8ie0wfC6YQ8FzLoVax14QoMbpBlBEaWt5Mqrt86OuIvzo+d3oPwoaqyA4ATCw==
   dependencies:
-    "@popperjs/core" "^2.5.2"
+    "@popperjs/core" "^2.9.1"
     deepmerge "^4.2.2"
     smoothscroll-polyfill "^0.4.4"
 
