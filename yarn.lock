@@ -6352,9 +6352,9 @@ elliptic@^6.5.3:
     minimalistic-crypto-utils "^1.0.1"
 
 ember-angle-bracket-invocation-polyfill@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/ember-angle-bracket-invocation-polyfill/-/ember-angle-bracket-invocation-polyfill-3.0.0.tgz#d29233dd7863474e7bc2030bc39955b2b92b3d7b"
-  integrity sha512-eEzPGD4ZdUUY/rApiBNiHqsJQbrduAje95UBFcHImWlHsIRrFPxAis82wE6C6DCl3nwFb6ogd/J6kSSlhzRQQw==
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/ember-angle-bracket-invocation-polyfill/-/ember-angle-bracket-invocation-polyfill-3.0.1.tgz#d346692bd75489e49af95e6727b2817d839f7f22"
+  integrity sha512-zxG6yazA7X9+itp3rir+aK6h+NDRJ/COgFmMWgY+Ol8z81MVj5+tgB4ZXDz7e8cCM0S6cUwv82rC6Bb/P7K0ow==
   dependencies:
     ember-cli-babel "^7.0.0"
     ember-cli-version-checker "^2.1.2"
