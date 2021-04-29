@@ -1,0 +1,20 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "10:00"
+  open-pull-requests-limit: 10
+  labels:
+  - dependencies
+  ignore:
+  - dependency-name: ember-cli
+    versions:
+    - ">= 0"
+  - dependency-name: eslint-plugin-ember
+    versions:
+    - 10.4.0
+  - dependency-name: ember-cli-babel
+    versions:
+    - 7.26.3
