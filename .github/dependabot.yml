@@ -12,9 +12,3 @@ updates:
   - dependency-name: ember-cli
     versions:
     - ">= 0"
-  - dependency-name: eslint-plugin-ember
-    versions:
-    - 10.4.0
-  - dependency-name: ember-cli-babel
-    versions:
-    - 7.26.3
