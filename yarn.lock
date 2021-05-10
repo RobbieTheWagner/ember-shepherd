@@ -13980,9 +13980,9 @@ shellwords@^0.1.1:
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
 
 shepherd.js@^8.0.1:
-  version "8.3.0"
-  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-8.3.0.tgz#8e984ceb0b06743927708dff70946958c829fe8f"
-  integrity sha512-IqabxZ0pfYuPAazwfj5X11B9tmQiRnAsWZVIxx8gi2yHF0BWWmsu9vLpcUWU12XA1/9ux4KtXFgNwE0GC85GQw==
+  version "8.3.1"
+  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-8.3.1.tgz#131eeefc5eb2bc44c9e23d0da139db46b2b55339"
+  integrity sha512-IhxZNhnK2m/pNTXudNfYrcwvcZNWkeYngQbQee8nC3xJ2GjeIatGqivhdZAMZ+LeogZvKMakB931d/V534uhrw==
   dependencies:
     "@popperjs/core" "^2.9.2"
     deepmerge "^4.2.2"
