@@ -57,8 +57,7 @@ export const steps = [
     classes: 'custom-class-name-1 custom-class-name-2',
     id: 'installation',
     title: 'Installation',
-    text:
-      'Installation is simple, if you are using Ember-CLI, just install like any other addon.'
+    text: 'Installation is simple, if you are using Ember-CLI, just install like any other addon.'
   },
   {
     attachTo: {
@@ -69,8 +68,7 @@ export const steps = [
     classes: 'custom-class-name-1 custom-class-name-2',
     id: 'usage',
     title: 'Usage',
-    text:
-      'To use the tour service, simply inject it into your application and use it like this example.'
+    text: 'To use the tour service, simply inject it into your application and use it like this example.'
   },
   {
     attachTo: {
@@ -125,7 +123,6 @@ export const steps = [
     id: 'noAttachTo',
     title: 'Centered Modals',
     classes: 'custom-class-name-1 custom-class-name-2',
-    text:
-      'If no attachTo is specified, the modal will appear in the center of the screen, as per the Shepherd docs.'
+    text: 'If no attachTo is specified, the modal will appear in the center of the screen, as per the Shepherd docs.'
   }
 ];
