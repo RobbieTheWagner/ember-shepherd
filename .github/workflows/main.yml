@@ -23,7 +23,7 @@ jobs:
       - run: yarn test:ember
 
   floating-dependencies:
-    name: "Floating Dependencies"
+    name: 'Floating Dependencies'
     runs-on: ubuntu-latest
 
     steps:
@@ -35,7 +35,7 @@ jobs:
       - run: yarn test:ember
 
   try-scenarios:
-    name: "Try: ${{ matrix.ember-try-scenario }}"
+    name: 'Try: ${{ matrix.ember-try-scenario }}'
 
     runs-on: ubuntu-latest
 
@@ -62,3 +62,11 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: test
         run: node_modules/.bin/ember try:one ${{ matrix.ember-try-scenario }} --skip-cleanup
+
+  automerge:
+    needs: [test, floating-dependencies, try-scenarios]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: fastify/github-action-merge-dependabot@v2.0.0
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
