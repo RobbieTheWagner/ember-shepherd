@@ -120,7 +120,8 @@
     "release-it-lerna-changelog": "^3.1.0",
     "sass": "^1.26.7",
     "stylelint": "^13.8.0",
-    "stylelint-config-ship-shape": "^0.7.0"
+    "stylelint-config-ship-shape": "^0.7.0",
+    "webpack": "^5.37.0"
   },
   "engines": {
     "node": "10.* || >= 12"
