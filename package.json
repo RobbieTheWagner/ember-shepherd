@@ -62,7 +62,7 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "ember-auto-import": "^1.11.2",
+    "ember-auto-import": "^2.0.0",
     "ember-cli-babel": "^7.26.3",
     "ember-cli-htmlbars": "^5.7.1",
     "shepherd.js": "^8.0.1"
