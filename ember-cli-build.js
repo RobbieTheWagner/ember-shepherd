@@ -16,17 +16,6 @@ module.exports = function (defaults) {
     behave. You most likely want to be modifying `./index.js` or app's build file
   */
 
-  if ('@embroider/webpack' in app.dependencies()) {
-    const { Webpack } = require('@embroider/webpack'); // eslint-disable-line node/no-missing-require
-    return require('@embroider/compat') // eslint-disable-line node/no-missing-require
-      .compatBuild(app, Webpack, {
-        packagerOptions: {
-          webpackConfig: {
-            devtool: false
-          }
-        }
-      });
-  } else {
-    return app.toTree();
-  }
+  const { maybeEmbroider } = require('@embroider/test-setup');
+  return maybeEmbroider(app);
 };
