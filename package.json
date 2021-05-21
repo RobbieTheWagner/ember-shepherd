@@ -62,7 +62,7 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "ember-auto-import": "^2.0.0",
+    "ember-auto-import": "^1.10.1",
     "ember-cli-babel": "^7.26.3",
     "ember-cli-htmlbars": "^5.7.1",
     "shepherd.js": "^8.0.1"
@@ -70,7 +70,7 @@
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.2.5",
-    "@embroider/test-setup": "^0.40.0",
+    "@embroider/test-setup": "^0.41.0",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
     "babel-eslint": "^10.1.0",
@@ -120,8 +120,7 @@
     "release-it-lerna-changelog": "^3.1.0",
     "sass": "^1.26.7",
     "stylelint": "^13.8.0",
-    "stylelint-config-ship-shape": "^0.7.0",
-    "webpack": "^5.37.0"
+    "stylelint-config-ship-shape": "^0.7.0"
   },
   "engines": {
     "node": "10.* || >= 12"
