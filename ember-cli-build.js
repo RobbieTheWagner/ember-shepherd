@@ -6,13 +6,7 @@ module.exports = function (defaults) {
   const app = new EmberAddon(defaults, {
     babel: {
       plugins: [require.resolve('ember-auto-import/babel-plugin')]
-    },
-    skipBabel: [
-      {
-        package: 'qunit'
-      },
-      { package: 'velocity' }
-    ]
+    }
   });
 
   /*
@@ -23,5 +17,7 @@ module.exports = function (defaults) {
   */
 
   const { maybeEmbroider } = require('@embroider/test-setup');
-  return maybeEmbroider(app);
+  return maybeEmbroider(app, {
+    skipBabel: [{ package: 'velocity' }]
+  });
 };
