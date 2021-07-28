@@ -6553,7 +6553,7 @@ ember-app-scheduler@^5.1.2:
     ember-compatibility-helpers "^1.1.2"
     ember-destroyable-polyfill "^2.0.2"
 
-ember-auto-import@^1.10.1, ember-auto-import@^1.11.2, ember-auto-import@^1.2.19, ember-auto-import@^1.5.3:
+ember-auto-import@^1.10.1, ember-auto-import@^1.11.2, ember-auto-import@^1.11.3, ember-auto-import@^1.2.19, ember-auto-import@^1.5.3:
   version "1.11.3"
   resolved "https://registry.yarnpkg.com/ember-auto-import/-/ember-auto-import-1.11.3.tgz#6e3384a7fbb163384a34546f2e902cd297b0e683"
   integrity sha512-ekq/XCvsonESobFU30zjZ0I4XMy2E/2ZILCYWuQ1JdhcCSTYhnXDZcqRW8itUG7kbsPqAHT/XZ1LEZYm3seVwQ==
@@ -7458,16 +7458,18 @@ ember-page-title@^6.2.1:
   dependencies:
     ember-cli-babel "^7.23.1"
 
-ember-prism@^0.9.0:
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/ember-prism/-/ember-prism-0.9.1.tgz#0d8a993cfe86dc446212cd40fcaaef247c9ba0d6"
-  integrity sha512-zeCjlQVlaIiO2EAkS8JLHTXMPCopNEvZsFNuA8BiemXjGJs5rKcSv+UYr4jm4oS4ISTwyUORmP4oLPkA3ZY+YA==
+ember-prism@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/ember-prism/-/ember-prism-0.10.0.tgz#aebaa4bcf07a326895fab42708e8cbd1d1c609a0"
+  integrity sha512-7qNZPhmhw8AMkIEBderYff64tUrgIv15spccgNQZVs+qWHXq0S3QpuBDgIz/FjPDeCLbOKCApDwk4KKVlT6Xig==
   dependencies:
     "@ember/render-modifiers" "^1.0.2"
+    ember-auto-import "^1.11.3"
     ember-cli-babel "^7.22.1"
     ember-cli-htmlbars "^5.3.1"
     ember-cli-node-assets "^0.2.2"
     prismjs "^1.22.0"
+    prismjs-glimmer "^1.1.1"
 
 ember-qunit@^5.1.2:
   version "5.1.4"
@@ -13034,6 +13036,11 @@ printf@^0.5.1:
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/printf/-/printf-0.5.3.tgz#8b7eec278d886833312238b2bf42b2b6f250880a"
   integrity sha512-t3lYN6vPU5PZXDiEZZqoyXvN8wCsBfi8gPoxTKo2e5hhV673t/KUh+mfO8P8lCOCDC/BWcOGIxKyebxc5FuqLA==
+
+prismjs-glimmer@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/prismjs-glimmer/-/prismjs-glimmer-1.1.1.tgz#6105bb18f8122e6982fa660649b64060784e55ff"
+  integrity sha512-GNLdqx749bMQx40nPtLtRjhs6c+xBGmJCRizv0mZs2LPH2bhw6sYBEYKbXZWMmFWdhPdGQWB8Qf8h/k9wgBIvw==
 
 prismjs@^1.22.0:
   version "1.24.0"
