@@ -70,4 +70,3 @@ jobs:
       - uses: fastify/github-action-merge-dependabot@v2.2.0
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
-          approve-only: true
