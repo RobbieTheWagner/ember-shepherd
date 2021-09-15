@@ -1174,8 +1174,9 @@
     ember-cli-babel "^7.22.1"
     ember-compatibility-helpers "^1.1.1"
 
-"@ember/render-modifiers@^1.0.1", "@ember/render-modifiers@^1.0.2", "@ember/render-modifiers@github:cibernox/ember-render-modifiers#e3574ed03409ef7a048d7716b8bea361ed6cd6e2":
+"@ember/render-modifiers@^1.0.1", "@ember/render-modifiers@^1.0.2", "@ember/render-modifiers@cibernox/ember-render-modifiers#e3574ed03409ef7a048d7716b8bea361ed6cd6e2":
   version "1.0.2"
+  uid e3574ed03409ef7a048d7716b8bea361ed6cd6e2
   resolved "https://codeload.github.com/cibernox/ember-render-modifiers/tar.gz/e3574ed03409ef7a048d7716b8bea361ed6cd6e2"
   dependencies:
     ember-cli-babel "^7.10.0"
@@ -6572,8 +6573,9 @@ ember-cli-babel@^7.0.0, ember-cli-babel@^7.1.0, ember-cli-babel@^7.1.2, ember-cl
     rimraf "^3.0.1"
     semver "^5.5.0"
 
-"ember-cli-clipboard@github:jkusa/ember-cli-clipboard#e27143fe91c486baa4fe2abf654f73ef594b5216":
+ember-cli-clipboard@jkusa/ember-cli-clipboard#e27143fe91c486baa4fe2abf654f73ef594b5216:
   version "0.15.0"
+  uid e27143fe91c486baa4fe2abf654f73ef594b5216
   resolved "https://codeload.github.com/jkusa/ember-cli-clipboard/tar.gz/e27143fe91c486baa4fe2abf654f73ef594b5216"
   dependencies:
     "@ember/render-modifiers" "^1.0.1"
@@ -7195,8 +7197,9 @@ ember-maybe-import-regenerator@^0.1.6:
     ember-cli-babel "^6.0.0-beta.4"
     regenerator-runtime "^0.9.5"
 
-"ember-modal-dialog@github:yapplabs/ember-modal-dialog#76b74f1c4b791fed5b084836c3b1c8c54836ac71":
+ember-modal-dialog@yapplabs/ember-modal-dialog#76b74f1c4b791fed5b084836c3b1c8c54836ac71:
   version "4.0.0-alpha.1"
+  uid "76b74f1c4b791fed5b084836c3b1c8c54836ac71"
   resolved "https://codeload.github.com/yapplabs/ember-modal-dialog/tar.gz/76b74f1c4b791fed5b084836c3b1c8c54836ac71"
   dependencies:
     "@embroider/macros" "^0.43.5"
@@ -7706,9 +7709,9 @@ eslint-config-prettier@^8.1.0:
   integrity sha512-BgZuLUSeKzvlL/VUjx/Yb787VQ26RU3gGjA3iiFvdsp/2bMfVIWUVP7tjxtjS0e+HP409cPlPvNkQloz8C91ew==
 
 eslint-plugin-ember@^10.5.1:
-  version "10.5.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-10.5.1.tgz#3ec65cb562b438c64aa28d772606dbb55705e037"
-  integrity sha512-6cubCQdsybN2DtuXnlkhqi3SemBk4ktjq2k4vcjFG8QLmrpmiS6sDwIZMM/TLI8f9QwZIjmewhwS4zB/77E47w==
+  version "10.5.4"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-10.5.4.tgz#263a104b297b60d854640612fec9f2d071302e78"
+  integrity sha512-7Z6H47tD4MNFGN51j00YMKjsHjN1z4u8vA1uImSYrgYHLh5nZKyP8pFBFI8pXBicw96N/njH48iz4zjZqMcPlQ==
   dependencies:
     "@ember-data/rfc395-data" "^0.0.4"
     css-tree "^1.0.0-alpha.39"
