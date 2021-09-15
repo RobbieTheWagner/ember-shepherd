@@ -1174,8 +1174,9 @@
     ember-cli-babel "^7.22.1"
     ember-compatibility-helpers "^1.1.1"
 
-"@ember/render-modifiers@^1.0.1", "@ember/render-modifiers@^1.0.2", "@ember/render-modifiers@github:cibernox/ember-render-modifiers#e3574ed03409ef7a048d7716b8bea361ed6cd6e2":
+"@ember/render-modifiers@^1.0.1", "@ember/render-modifiers@^1.0.2", "@ember/render-modifiers@cibernox/ember-render-modifiers#e3574ed03409ef7a048d7716b8bea361ed6cd6e2":
   version "1.0.2"
+  uid e3574ed03409ef7a048d7716b8bea361ed6cd6e2
   resolved "https://codeload.github.com/cibernox/ember-render-modifiers/tar.gz/e3574ed03409ef7a048d7716b8bea361ed6cd6e2"
   dependencies:
     ember-cli-babel "^7.10.0"
@@ -6572,8 +6573,9 @@ ember-cli-babel@^7.0.0, ember-cli-babel@^7.1.0, ember-cli-babel@^7.1.2, ember-cl
     rimraf "^3.0.1"
     semver "^5.5.0"
 
-"ember-cli-clipboard@github:jkusa/ember-cli-clipboard#e27143fe91c486baa4fe2abf654f73ef594b5216":
+ember-cli-clipboard@jkusa/ember-cli-clipboard#e27143fe91c486baa4fe2abf654f73ef594b5216:
   version "0.15.0"
+  uid e27143fe91c486baa4fe2abf654f73ef594b5216
   resolved "https://codeload.github.com/jkusa/ember-cli-clipboard/tar.gz/e27143fe91c486baa4fe2abf654f73ef594b5216"
   dependencies:
     "@ember/render-modifiers" "^1.0.1"
@@ -7195,8 +7197,9 @@ ember-maybe-import-regenerator@^0.1.6:
     ember-cli-babel "^6.0.0-beta.4"
     regenerator-runtime "^0.9.5"
 
-"ember-modal-dialog@github:yapplabs/ember-modal-dialog#76b74f1c4b791fed5b084836c3b1c8c54836ac71":
+ember-modal-dialog@yapplabs/ember-modal-dialog#76b74f1c4b791fed5b084836c3b1c8c54836ac71:
   version "4.0.0-alpha.1"
+  uid "76b74f1c4b791fed5b084836c3b1c8c54836ac71"
   resolved "https://codeload.github.com/yapplabs/ember-modal-dialog/tar.gz/76b74f1c4b791fed5b084836c3b1c8c54836ac71"
   dependencies:
     "@embroider/macros" "^0.43.5"
@@ -7738,10 +7741,10 @@ eslint-plugin-node@^11.1.0:
     resolve "^1.10.1"
     semver "^6.1.0"
 
-eslint-plugin-prettier@^3.3.1:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-3.4.0.tgz#cdbad3bf1dbd2b177e9825737fe63b476a08f0c7"
-  integrity sha512-UDK6rJT6INSfcOo545jiaOwB701uAIt2/dR7WnFQoGCVl1/EMqdANBmwUaqqQ45aXprsTGzSa39LI1PyuRBxxw==
+eslint-plugin-prettier@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-4.0.0.tgz#8b99d1e4b8b24a762472b4567992023619cb98e0"
+  integrity sha512-98MqmCJ7vJodoQK359bqQWaxOE0CS8paAz/GgjaZLyex4TTk3g9HugoO89EqWCrFiOqn9EVvcoo7gZzONCWVwQ==
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
