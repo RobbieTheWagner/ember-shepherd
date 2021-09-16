@@ -1,3 +1,16 @@
+## v12.0.0 (2021-09-16)
+
+#### :boom: Breaking Change
+* [#779](https://github.com/shipshapecode/ember-shepherd/pull/779) Ember 3.26, ember-auto-import 2 ([@rwwagner90](https://github.com/rwwagner90))
+
+#### :house: Internal
+* [#773](https://github.com/shipshapecode/ember-shepherd/pull/773) Add dependabot automerge ([@rwwagner90](https://github.com/rwwagner90))
+* [#654](https://github.com/shipshapecode/ember-shepherd/pull/654) Update eslint-plugin-ember, fix lint ([@rwwagner90](https://github.com/rwwagner90))
+
+#### Committers: 2
+- Robert Wagner ([@rwwagner90](https://github.com/rwwagner90))
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
 ## v11.0.2 (2020-12-14)
 
 #### :memo: Documentation
