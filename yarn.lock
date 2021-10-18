@@ -7236,16 +7236,16 @@ ember-page-title@^6.2.1:
   dependencies:
     ember-cli-babel "^7.23.1"
 
-ember-prism@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/ember-prism/-/ember-prism-0.11.0.tgz#6cfef4932fcbfe650b47c6199fa71bc98ce7a3af"
-  integrity sha512-vEoMBByJSo2KbWkIb7QJye+47q793nE0yKrB6PotDfafyY73PI62hvaFP2HTIvusb+481fzta7VRYl6U8e3Rgw==
+ember-prism@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/ember-prism/-/ember-prism-0.12.0.tgz#a22557d6baca1bbc05e882647774622b5a0454cb"
+  integrity sha512-Z4GauRg99Fu01ZdP+/xKV0P0OEUp471K2ZnYMLUAIossq2vWuI2lggr6GyeTw89hOpn7B2G9nLuT3fI/yFXMRQ==
   dependencies:
+    "@ember/render-modifiers" "^2.0.0"
     ember-auto-import "^2.1.0"
     ember-cli-babel "^7.26.6"
     ember-cli-htmlbars "^5.7.1"
     ember-cli-node-assets "^0.2.2"
-    ember-ref-bucket "^3.1.0"
     prismjs "^1.22.0"
     prismjs-glimmer "^1.1.1"
 
@@ -7263,16 +7263,6 @@ ember-qunit@^5.1.4:
     resolve-package-path "^3.1.0"
     silent-error "^1.1.1"
     validate-peer-dependencies "^1.2.0"
-
-ember-ref-bucket@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/ember-ref-bucket/-/ember-ref-bucket-3.1.0.tgz#c3aa3923bdedcf782923bf24e31a17fdd2f68a02"
-  integrity sha512-oO+Igh8G1UHcf7gEJdbElz/xJHjTds64DXfd+c189rHuKJ4dYMI2m2BkHPermeyUe6ZNEFwlkVe9lYm2rvmcaw==
-  dependencies:
-    ember-cli-babel "^7.22.1"
-    ember-cli-htmlbars "^5.3.1"
-    ember-destroyable-polyfill "^2.0.2"
-    ember-modifier "^2.1.1"
 
 ember-resolver@^8.0.2:
   version "8.0.3"
