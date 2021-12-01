@@ -7149,14 +7149,15 @@ ember-cli-babel@^7.0.0, ember-cli-babel@^7.1.0, ember-cli-babel@^7.1.2, ember-cl
     ember-cli-htmlbars "^5.3.2"
 
 ember-cli-code-coverage@^2.0.0-beta.2:
-  version "2.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/ember-cli-code-coverage/-/ember-cli-code-coverage-2.0.0-beta.2.tgz#ae3b1738fe46e324a37a47d5a902c2b4ad24e0a4"
-  integrity sha512-mHyBETMIV7nG7DCN9+eb9rkggWpw7AEUwtx419sRnjLErrHyco2M2QWpFY7SvQo3rkaZRpSz6SUWsChTPwk6IA==
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/ember-cli-code-coverage/-/ember-cli-code-coverage-2.0.0-beta.4.tgz#679cdeaaa91172104a9b096abc6d5386b02b6e1d"
+  integrity sha512-sCza3NosJ2B62yCKrZwHr/AYN1ln60cwW/WA3CqVOX4oulkFNpC9CFSlLbiiVaASP70q26ktauOAQ+DBL/wVYw==
   dependencies:
     "@embroider/compat" "^0.47.0"
     "@embroider/core" "^0.47.0"
     babel-plugin-istanbul "^6.0.0"
     body-parser "^1.19.0"
+    ember-cli-babel "^7.26.6"
     express "^4.17.1"
     fs-extra "^9.0.0"
     istanbul-lib-coverage "^3.0.0"
