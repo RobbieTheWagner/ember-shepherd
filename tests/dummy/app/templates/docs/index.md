@@ -9,10 +9,9 @@ ember-shepherd
 ![Download count all time](https://img.shields.io/npm/dt/ember-shepherd.svg)
 [![npm](https://img.shields.io/npm/dm/ember-shepherd.svg)]()
 [![Ember Observer Score](http://emberobserver.com/badges/ember-shepherd.svg)](http://emberobserver.com/addons/ember-shepherd)
-[![Build Status](https://travis-ci.org/shipshapecode/ember-shepherd.svg)](https://travis-ci.org/shipshapecode/ember-shepherd)
+![CI Build](https://github.com/shipshapecode/ember-shepherd/workflows/CI%20Build/badge.svg)
 [![Code Climate](https://codeclimate.com/github/shipshapecode/ember-shepherd/badges/gpa.svg)](https://codeclimate.com/github/shipshapecode/ember-shepherd)
 [![Test Coverage](https://codeclimate.com/github/shipshapecode/ember-shepherd/badges/coverage.svg)](https://codeclimate.com/github/shipshapecode/ember-shepherd/coverage)
-[![Greenkeeper badge](https://badges.greenkeeper.io/shipshapecode/ember-shepherd.svg)](https://greenkeeper.io/)
 
 Installation
 ------------------------------------------------------------------------------
