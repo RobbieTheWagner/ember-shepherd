@@ -6,6 +6,9 @@ module.exports = function (defaults) {
   const app = new EmberAddon(defaults, {
     babel: {
       plugins: [require.resolve('ember-auto-import/babel-plugin')]
+    },
+    'ember-cli-babel': {
+      useBabelConfig: true
     }
   });
 
