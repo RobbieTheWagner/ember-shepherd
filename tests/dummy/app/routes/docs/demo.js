@@ -30,19 +30,19 @@ export default class DocsDemoRoute extends Route {
         {
           href: 'https://github.com/shipshapecode/ember-shepherd',
           text: 'Docs',
-          type: 'href'
+          type: 'href',
         },
         {
           href: 'https://github.com/shipshapecode/ember-shepherd',
           text: 'GitHub',
-          type: 'href'
+          type: 'href',
         },
         {
           href: 'https://shipshape.io',
           text: 'Ship Shape',
-          type: 'href'
-        }
-      ]
+          type: 'href',
+        },
+      ],
     };
   }
 

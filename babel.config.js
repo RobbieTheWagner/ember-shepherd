@@ -9,10 +9,10 @@ module.exports = function (api) {
       [
         require.resolve('@babel/preset-env'),
         {
-          targets: require('./tests/dummy/config/targets')
-        }
-      ]
+          targets: require('./tests/dummy/config/targets'),
+        },
+      ],
     ],
-    plugins: [...buildEmberPlugins(__dirname)]
+    plugins: [...buildEmberPlugins(__dirname)],
   };
 };

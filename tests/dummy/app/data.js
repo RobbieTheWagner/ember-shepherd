@@ -3,33 +3,33 @@ export const builtInButtons = {
     classes: 'cancel-button',
     secondary: true,
     text: 'Exit',
-    type: 'cancel'
+    type: 'cancel',
   },
   next: {
     classes: 'next-button',
     text: 'Next',
-    type: 'next'
+    type: 'next',
   },
   back: {
     classes: 'back-button',
     text: 'Back',
-    type: 'back'
-  }
+    type: 'back',
+  },
 };
 
 export const defaultStepOptions = {
   classes: 'shepherd-theme-arrows custom-default-class',
   scrollTo: true,
   cancelIcon: {
-    enabled: true
-  }
+    enabled: true,
+  },
 };
 
 export const steps = [
   {
     attachTo: {
       element: '.first-element',
-      on: 'bottom'
+      on: 'bottom',
     },
     buttons: [builtInButtons.cancel, builtInButtons.next],
     classes: 'custom-class-name-1 custom-class-name-2',
@@ -46,34 +46,34 @@ export const steps = [
           <p>
             Popper makes sure your steps never end up off screen or cropped by an
             overflow. Try resizing your browser to see what we mean.
-          </p>`
+          </p>`,
   },
   {
     attachTo: {
       element: '.install-element > pre',
-      on: 'bottom'
+      on: 'bottom',
     },
     buttons: [builtInButtons.cancel, builtInButtons.back, builtInButtons.next],
     classes: 'custom-class-name-1 custom-class-name-2',
     id: 'installation',
     title: 'Installation',
-    text: 'Installation is simple, if you are using Ember-CLI, just install like any other addon.'
+    text: 'Installation is simple, if you are using Ember-CLI, just install like any other addon.',
   },
   {
     attachTo: {
       element: '.usage-element > pre',
-      on: 'bottom'
+      on: 'bottom',
     },
     buttons: [builtInButtons.cancel, builtInButtons.back, builtInButtons.next],
     classes: 'custom-class-name-1 custom-class-name-2',
     id: 'usage',
     title: 'Usage',
-    text: 'To use the tour service, simply inject it into your application and use it like this example.'
+    text: 'To use the tour service, simply inject it into your application and use it like this example.',
   },
   {
     attachTo: {
       element: '.modal-element',
-      on: 'top'
+      on: 'top',
     },
     buttons: [builtInButtons.cancel, builtInButtons.back, builtInButtons.next],
     classes: 'custom-class-name-1 custom-class-name-2',
@@ -85,24 +85,24 @@ export const steps = [
 
         <p>
           If you would like to enable modal, simply do this.get('tour').set('modal', true).
-        </p>`
+        </p>`,
   },
   {
     attachTo: {
       element: '.built-in-buttons-element',
-      on: 'top'
+      on: 'top',
     },
     buttons: [builtInButtons.cancel, builtInButtons.back, builtInButtons.next],
     classes: 'custom-class-name-1 custom-class-name-2',
     id: 'buttons',
     text: `For the common button types ("next", "back", "cancel", etc.), we implemented Ember actions
           that perform these actions on your tour automatically. To use them, simply include
-          in the buttons array in each step.`
+          in the buttons array in each step.`,
   },
   {
     attachTo: {
       element: '.disable-scroll-element',
-      on: 'top'
+      on: 'top',
     },
     buttons: [builtInButtons.cancel, builtInButtons.back, builtInButtons.next],
     classes: 'custom-class-name-1 custom-class-name-2',
@@ -116,13 +116,13 @@ export const steps = [
 
       <p>
         Try scrolling right now, then exit the tour and see that you can again!
-      </p>`
+      </p>`,
   },
   {
     buttons: [builtInButtons.cancel, builtInButtons.back],
     id: 'noAttachTo',
     title: 'Centered Modals',
     classes: 'custom-class-name-1 custom-class-name-2',
-    text: 'If no attachTo is specified, the modal will appear in the center of the screen, as per the Shepherd docs.'
-  }
+    text: 'If no attachTo is specified, the modal will appear in the center of the screen, as per the Shepherd docs.',
+  },
 ];

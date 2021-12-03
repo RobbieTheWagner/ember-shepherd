@@ -10,7 +10,7 @@ const steps = [
     options: {
       attachTo: {
         element: '.test-element',
-        on: 'bottom'
+        on: 'bottom',
       },
       buttons: [builtInButtons.cancel, builtInButtons.next],
       classes: 'custom-class-name-1 custom-class-name-2',
@@ -19,9 +19,9 @@ const steps = [
       scrollTo: true,
       scrollToHandler() {
         return 'custom scrollToHandler';
-      }
-    }
-  }
+      },
+    },
+  },
 ];
 
 module('Unit | Service | tour', function (hooks) {
@@ -37,7 +37,7 @@ module('Unit | Service | tour', function (hooks) {
     }
 
     const service = this.owner.factoryFor('service:tour').create({
-      steps
+      steps,
     });
 
     service.set('tourObject', mockTourObject.create());
@@ -55,7 +55,7 @@ module('Unit | Service | tour', function (hooks) {
     }
 
     const service = this.owner.factoryFor('service:tour').create({
-      steps
+      steps,
     });
 
     service.set('tourObject', mockTourObject.create());
@@ -83,7 +83,7 @@ module('Unit | Service | tour', function (hooks) {
     }
 
     const service = this.owner.factoryFor('service:tour').create({
-      steps
+      steps,
     });
 
     service.set('tourObject', mockTourObject.create());
