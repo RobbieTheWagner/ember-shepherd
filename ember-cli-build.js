@@ -5,11 +5,11 @@ const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 module.exports = function (defaults) {
   const app = new EmberAddon(defaults, {
     babel: {
-      plugins: [require.resolve('ember-auto-import/babel-plugin')]
+      plugins: [require.resolve('ember-auto-import/babel-plugin')],
     },
     'ember-cli-babel': {
-      useBabelConfig: true
-    }
+      useBabelConfig: true,
+    },
   });
 
   /*
@@ -21,6 +21,11 @@ module.exports = function (defaults) {
 
   const { maybeEmbroider } = require('@embroider/test-setup');
   return maybeEmbroider(app, {
-    skipBabel: [{ package: 'velocity' }]
+    skipBabel: [
+      {
+        package: 'qunit',
+      },
+      { package: 'velocity' },
+    ],
   });
 };

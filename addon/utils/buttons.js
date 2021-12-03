@@ -36,6 +36,6 @@ export function makeButton(button) {
     disabled,
     label,
     secondary,
-    text
+    text,
   };
 }

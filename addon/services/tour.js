@@ -258,12 +258,12 @@ export default class TourService extends Service.extend(Evented) {
           buttons: [
             {
               text: 'Exit',
-              action: tour.cancel
-            }
+              action: tour.cancel,
+            },
           ],
           id: 'error',
           title: this.errorTitle,
-          text: this.messageForUser
+          text: this.messageForUser,
         });
         return;
       }
@@ -398,7 +398,7 @@ export default class TourService extends Service.extend(Evented) {
       keyboardNavigation,
       modal,
       modalContainer,
-      tourName
+      tourName,
     } = this;
 
     // Ensure `popperOptions` exists on `defaultStepOptions`
@@ -425,7 +425,7 @@ export default class TourService extends Service.extend(Evented) {
         keyboardNavigation,
         modalContainer: modalContainer || document.body,
         tourName,
-        useModalOverlay: modal
+        useModalOverlay: modal,
       });
 
       tourObject.on('start', bind(this, '_onTourStart'));

@@ -9,13 +9,13 @@ module('Unit | Utility | make-button', function () {
       const context = {
         next() {
           assert.ok(true, 'Action was called in calling context');
-        }
+        },
       };
 
       const buttonOpts = {
         type: 'next',
         classes: 'foo',
-        text: 'Suivant!'
+        text: 'Suivant!',
       };
 
       const button = makeButton.call(context, buttonOpts);
@@ -30,12 +30,12 @@ module('Unit | Utility | make-button', function () {
       const badButtonOpts = {
         type: 'cipher',
         classes: 'foo',
-        text: 'Encrypt'
+        text: 'Encrypt',
       };
       const goodButtonOpts = {
         type: 'next',
         classes: 'foo',
-        text: 'Encrypt'
+        text: 'Encrypt',
       };
 
       assert.throws(() => makeButton(badButtonOpts));

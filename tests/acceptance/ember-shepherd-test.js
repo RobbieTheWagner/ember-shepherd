@@ -38,23 +38,23 @@ module('Acceptance | Tour functionality tests', function (hooks) {
     test('Hides cancel link', async function (assert) {
       const defaultStepOptions = {
         cancelIcon: {
-          enabled: false
+          enabled: false,
         },
-        classes: 'shepherd-theme-arrows test-defaults'
+        classes: 'shepherd-theme-arrows test-defaults',
       };
 
       const steps = [
         {
           attachTo: {
             element: '.first-element',
-            on: 'bottom'
+            on: 'bottom',
           },
           buttons: [builtInButtons.cancel, builtInButtons.next],
           cancelIcon: {
-            enabled: false
+            enabled: false,
           },
-          id: 'step-without-cancel-icon'
-        }
+          id: 'step-without-cancel-icon',
+        },
       ];
 
       await visit('/docs/demo');
@@ -100,8 +100,8 @@ module('Acceptance | Tour functionality tests', function (hooks) {
         {
           selector: 'body',
           message: 'Body element not found 🤔',
-          title: 'Error'
-        }
+          title: 'Error',
+        },
       ];
 
       tour.set('requiredElements', requiredElements);
@@ -120,8 +120,8 @@ module('Acceptance | Tour functionality tests', function (hooks) {
         {
           selector: '👻',
           message: '👻 element not found',
-          title: 'Missing Required Elements'
-        }
+          title: 'Missing Required Elements',
+        },
       ];
 
       tour.set('requiredElements', requiredElements);
@@ -144,11 +144,11 @@ module('Acceptance | Tour functionality tests', function (hooks) {
         {
           attachTo: {
             element: '.first-element',
-            on: 'bottom'
+            on: 'bottom',
           },
           buttons: [builtInButtons.cancel, builtInButtons.next],
-          id: 'test-highlight'
-        }
+          id: 'test-highlight',
+        },
       ];
 
       await visit('/docs/demo');
@@ -170,11 +170,11 @@ module('Acceptance | Tour functionality tests', function (hooks) {
         {
           attachTo: {
             element: '.first-element',
-            on: 'bottom'
+            on: 'bottom',
           },
           buttons: [builtInButtons.cancel, builtInButtons.next],
-          id: 'test-attachTo-string'
-        }
+          id: 'test-attachTo-string',
+        },
       ];
 
       await tour.addSteps(steps);
@@ -195,11 +195,11 @@ module('Acceptance | Tour functionality tests', function (hooks) {
         {
           attachTo: {
             element: find('.first-element'),
-            on: 'bottom'
+            on: 'bottom',
           },
           buttons: [builtInButtons.cancel, builtInButtons.next],
-          id: 'test-attachTo-dom'
-        }
+          id: 'test-attachTo-dom',
+        },
       ];
 
       await tour.addSteps(steps);
@@ -217,27 +217,27 @@ module('Acceptance | Tour functionality tests', function (hooks) {
         {
           attachTo: {
             element: '.first-element',
-            on: 'bottom'
+            on: 'bottom',
           },
           buttons: [
             {
               classes: 'shepherd-button-secondary button-one',
-              text: 'button one'
+              text: 'button one',
             },
             {
               classes: 'shepherd-button-secondary button-two',
               text: 'button two',
               action() {
                 buttonActionCalled = true;
-              }
+              },
             },
             {
               classes: 'shepherd-button-secondary button-three',
-              text: 'button three'
-            }
+              text: 'button three',
+            },
           ],
-          id: 'test-buttons-custom-action'
-        }
+          id: 'test-buttons-custom-action',
+        },
       ];
 
       await visit('/docs/demo');
@@ -303,7 +303,7 @@ module('Acceptance | Tour functionality tests', function (hooks) {
         {
           attachTo: {
             element: '.first-element',
-            on: 'bottom'
+            on: 'bottom',
           },
           buttons: [builtInButtons.cancel, builtInButtons.next],
           id: 'intro',
@@ -316,8 +316,8 @@ module('Acceptance | Tour functionality tests', function (hooks) {
               'Scrolled correctly'
             );
             done();
-          }
-        }
+          },
+        },
       ];
 
       // Visit route
@@ -385,9 +385,8 @@ module('Acceptance | Tour functionality tests', function (hooks) {
       tour.show('usage');
       tour.hide();
 
-      assert.equal(
+      assert.false(
         tour.get('tourObject').currentStep.isOpen(),
-        false,
         'The step is hidden'
       );
     });

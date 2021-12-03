@@ -16,5 +16,5 @@ function patchTourServiceNoop(instance) {
 
 export default {
   name: 'tour',
-  initialize: patchTourServiceNoop
+  initialize: patchTourServiceNoop,
 };
