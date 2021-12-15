@@ -20,8 +20,8 @@ module('Unit | Utility | make-button', function () {
 
       const button = makeButton.call(context, buttonOpts);
 
-      assert.equal(button.classes, buttonOpts.classes);
-      assert.equal(button.text, buttonOpts.text);
+      assert.strictEqual(button.classes, buttonOpts.classes);
+      assert.strictEqual(button.text, buttonOpts.text);
 
       button.action();
     });
@@ -40,8 +40,11 @@ module('Unit | Utility | make-button', function () {
 
       assert.throws(() => makeButton(badButtonOpts));
 
-      assert.equal(makeButton(goodButtonOpts).text, goodButtonOpts.text);
-      assert.equal(makeButton(goodButtonOpts).classes, goodButtonOpts.classes);
+      assert.strictEqual(makeButton(goodButtonOpts).text, goodButtonOpts.text);
+      assert.strictEqual(
+        makeButton(goodButtonOpts).classes,
+        goodButtonOpts.classes
+      );
     });
   });
 });

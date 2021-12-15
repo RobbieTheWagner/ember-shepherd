@@ -74,7 +74,7 @@ module('Unit | Service | tour', function (hooks) {
 
     class mockTourObject extends EmberObject {
       start() {
-        assert.equal(
+        assert.strictEqual(
           steps[0].options.scrollToHandler(),
           'custom scrollToHandler',
           'The handler was passed through as an option on the step'

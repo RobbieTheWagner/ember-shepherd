@@ -275,7 +275,7 @@ module('Acceptance | Tour functionality tests', function (hooks) {
 
       document.querySelector('#ember-testing-container').scrollTop = 0;
 
-      assert.equal(
+      assert.strictEqual(
         document.querySelector('#ember-testing-container').scrollTop,
         0,
         'Scroll is initially 0'
@@ -310,7 +310,7 @@ module('Acceptance | Tour functionality tests', function (hooks) {
           scrollTo: true,
           scrollToHandler() {
             document.querySelector('#ember-testing-container').scrollTop = 120;
-            assert.equal(
+            assert.strictEqual(
               document.querySelector('#ember-testing-container').scrollTop,
               120,
               'Scrolled correctly'
@@ -326,7 +326,7 @@ module('Acceptance | Tour functionality tests', function (hooks) {
       await tour.addSteps(steps);
 
       document.querySelector('#ember-testing-container').scrollTop = 0;
-      assert.equal(
+      assert.strictEqual(
         document.querySelector('#ember-testing-container').scrollTop,
         0,
         'Scroll is initially 0'
@@ -346,7 +346,7 @@ module('Acceptance | Tour functionality tests', function (hooks) {
 
       document.querySelector('#ember-testing-container').scrollTop = 0;
 
-      assert.equal(
+      assert.strictEqual(
         document.querySelector('#ember-testing-container').scrollTop,
         0,
         'Scroll is initially 0'
@@ -369,7 +369,7 @@ module('Acceptance | Tour functionality tests', function (hooks) {
 
       tour.show('usage');
 
-      assert.equal(
+      assert.strictEqual(
         tour.get('tourObject').currentStep.el.querySelector('.shepherd-text')
           .textContent,
         'To use the tour service, simply inject it into your application and use it like this example.',
