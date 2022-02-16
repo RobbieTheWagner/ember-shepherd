@@ -1,3 +1,15 @@
+
+## v12.1.0 (2022-02-16)
+
+#### :house: Internal
+* [#983](https://github.com/shipshapecode/ember-shepherd/pull/983) ember-cli 4.1.0 ([@rwwagner90](https://github.com/rwwagner90))
+* [#975](https://github.com/shipshapecode/ember-shepherd/pull/975) ember-cli 4 ([@rwwagner90](https://github.com/rwwagner90))
+* [#952](https://github.com/shipshapecode/ember-shepherd/pull/952) Ember 3.28 ([@rwwagner90](https://github.com/rwwagner90))
+* [#950](https://github.com/shipshapecode/ember-shepherd/pull/950) Bump deps ([@rwwagner90](https://github.com/rwwagner90))
+
+#### Committers: 1
+- Robert Wagner ([@rwwagner90](https://github.com/rwwagner90))
+
 ## v12.0.0 (2021-09-16)
 
 #### :boom: Breaking Change
