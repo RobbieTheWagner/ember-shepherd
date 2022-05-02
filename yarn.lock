@@ -15003,9 +15003,9 @@ stylelint@^13.2.1:
     write-file-atomic "^3.0.3"
 
 stylelint@^14.2.0:
-  version "14.8.0"
-  resolved "https://registry.yarnpkg.com/stylelint/-/stylelint-14.8.0.tgz#506959bc1424610cdac9eaefca8fb2420292cf73"
-  integrity sha512-uIyIWMSBSVcj73Gn3nTvPyNsYdwTpxo1W6dWTIa1nm8JKgUi3FIobSXLgrRE6joLidoA0FdgAhCaqxwTF2ikrQ==
+  version "14.8.1"
+  resolved "https://registry.yarnpkg.com/stylelint/-/stylelint-14.8.1.tgz#86810ebbd7a3570519c6b11d63dc6e5ee3ff3057"
+  integrity sha512-0YxTop3wTeEVmQWhS7jjLFaBkvfPmffRiJ6eFIDlK++f3OklaobTYFJu32E5u/cIrFLbcW52pLqrYpihA/y0/w==
   dependencies:
     balanced-match "^2.0.0"
     colord "^2.9.2"
