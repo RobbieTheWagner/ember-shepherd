@@ -1,4 +1,13 @@
 
+
+## v13.0.0 (2022-08-26)
+
+#### :boom: Breaking Change
+* [#1166](https://github.com/shipshapecode/ember-shepherd/pull/1166) ember-cli 4.6, drop node 12 support ([@rwwagner90](https://github.com/rwwagner90))
+
+#### Committers: 1
+- Robert Wagner ([@rwwagner90](https://github.com/rwwagner90))
+
 ## v12.1.0 (2022-02-16)
 
 #### :house: Internal
