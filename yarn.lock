@@ -15054,7 +15054,7 @@ shellwords@^0.1.1:
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
 
-shepherd.js@^10.0.0:
+shepherd.js@^10.0.1:
   version "10.0.1"
   resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-10.0.1.tgz#f01772e1ad972771ab53822ae7496371ab5098e1"
   integrity sha512-R32v4b4b0N1gK/vxvRtdhty+SBZlBPcPTSYCwcaAQvFd0n6Xki7cRH6Sx0oD9WB/HCkqCNM1msyIyylXmq635w==
