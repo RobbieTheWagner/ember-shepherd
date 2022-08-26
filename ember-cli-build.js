@@ -3,14 +3,7 @@
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function (defaults) {
-  const app = new EmberAddon(defaults, {
-    babel: {
-      plugins: [require.resolve('ember-auto-import/babel-plugin')],
-    },
-    'ember-cli-babel': {
-      useBabelConfig: true,
-    },
-  });
+  const app = new EmberAddon(defaults, {});
 
   /*
     This build file specifies the options for the dummy test app of this

@@ -22,7 +22,6 @@
 /.template-lintrc.js
 /.travis.yml
 /.watchmanconfig
-/babel.config.js
 /bower.json
 /config/ember-try.js
 /config/flexi.js

@@ -1,14 +1,14 @@
 <DocsViewer as |viewer|>
   <viewer.nav as |nav|>
-    {{nav.section "Introduction"}}
-    {{nav.item "Introduction" "docs.index"}}
-    {{nav.item "Usage" "docs.usage"}}
+    <nav.section @label="Introduction" />
+    <nav.item @label="Introduction" @route="docs.index" />
+    <nav.item @label="Usage" @route="docs.usage" />
 
-    {{nav.section "Demo"}}
-    {{nav.item "Demo" "docs.demo"}}
+    <nav.section @label="Demo" />
+    <nav.item @label="Demo" @route="docs.demo" />
 
-    {{nav.section "FAQ"}}
-    {{nav.item "FAQ" "docs.faq"}}
+    <nav.section @label="FAQ" />
+    <nav.item @label="FAQ" @route="docs.faq" />
   </viewer.nav>
 
   <viewer.main>
