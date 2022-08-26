@@ -68,13 +68,13 @@
     "shepherd.js": "^10.0.0"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.16.0",
     "@babel/preset-env": "^7.16.0",
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.8.1",
     "@embroider/test-setup": "^1.8.3",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
+    "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
     "codeclimate-test-reporter": "^0.5.1",
     "ember-cli": "~4.6.0",
@@ -102,7 +102,7 @@
     "ember-svg-jar": "^2.3.4",
     "ember-template-lint": "^4.10.1",
     "ember-try": "^2.0.0",
-    "eslint": "^8.3.0",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-ember": "^11.0.2",
     "eslint-plugin-node": "^11.1.0",

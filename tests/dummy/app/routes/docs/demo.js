@@ -7,6 +7,7 @@ import { steps as defaultSteps, defaultStepOptions } from '../../data';
 
 export default class DocsDemoRoute extends Route {
   @service tour;
+
   disableScroll = false;
 
   async beforeModel() {
