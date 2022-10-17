@@ -8,8 +8,8 @@
     "tour",
     "shepherd"
   ],
-  "homepage": "http://shipshapecode.github.io/ember-shepherd/",
-  "repository": "https://github.com/shipshapecode/ember-shepherd",
+  "homepage": "http://rwwagner90.github.io/ember-shepherd/",
+  "repository": "https://github.com/rwwagner90/ember-shepherd",
   "license": "MIT",
   "author": {
     "name": "Robert Wagner",
@@ -49,7 +49,6 @@
   },
   "scripts": {
     "build": "ember build --environment=production",
-    "changelog": "github_changelog_generator -u shipshapecode -p ember-shepherd --since-tag v10.0.0 --max-issues 100 --exclude-labels dependencies,duplicate,question,invalid,wontfix",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
     "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix",
     "lint:hbs": "ember-template-lint .",
@@ -134,7 +133,7 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "https://shipshapecode.github.io/ember-shepherd/"
+    "demoURL": "https://rwwagner90.github.io/ember-shepherd/"
   },
   "release-it": {
     "plugins": {
