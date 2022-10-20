@@ -7732,9 +7732,9 @@ ember-source@~4.8.0:
     silent-error "^1.1.1"
 
 ember-svg-jar@^2.3.4:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/ember-svg-jar/-/ember-svg-jar-2.4.0.tgz#dba73114b0f60835e76e6a6a96b4d6764503667e"
-  integrity sha512-bkQc1jweoS4sqpx+jaqsZWmY/tFbjq5C5gX93IsZ9lE/sDA5qypvGbXmze9VIQuhIT4viT3T39q1mFoevaW2xw==
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/ember-svg-jar/-/ember-svg-jar-2.4.1.tgz#03c96a24601683ee5712fe51ae5c40d70c4d5048"
+  integrity sha512-zs5SUUOG/K/PvFIjzG7Rr2HT5go1IPC+TvOdwF/MsguDPREPoVUZMSPEAln/6q8OG8A+3DK/hHk2Q4Ot3KyDBg==
   dependencies:
     broccoli-caching-writer "^3.0.3"
     broccoli-concat "^4.2.5"
