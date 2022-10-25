@@ -1,5 +1,14 @@
 
 
+
+## v13.1.0 (2022-10-25)
+
+#### :house: Internal
+* [#1211](https://github.com/rwwagner90/ember-shepherd/pull/1211) ESLint 8, ember-cli 4.8 ([@rwwagner90](https://github.com/rwwagner90))
+
+#### Committers: 1
+- Robert Wagner ([@rwwagner90](https://github.com/rwwagner90))
+
 ## v13.0.1 (2022-08-26)
 
 ## v13.0.0 (2022-08-26)
