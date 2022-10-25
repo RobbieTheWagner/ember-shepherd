@@ -100,5 +100,11 @@
     "name": "v13.0.1",
     "sha": "599afada883f56edb420a5a5782eedf50103729e",
     "tag": "v13.0.1"
+  },
+  "main": {
+    "path": "versions/main",
+    "name": "main",
+    "sha": "5ec1b09615ed37a2ada7a64ffdd074a3adf90e32",
+    "tag": null
   }
 }
