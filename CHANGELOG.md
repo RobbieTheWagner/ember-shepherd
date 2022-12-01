@@ -1,6 +1,18 @@
 
 
 
+
+## v14.0.0 (2022-12-01)
+
+#### :boom: Breaking Change
+* [#1237](https://github.com/rwwagner90/ember-shepherd/pull/1237) Bump shepherd.js from 10.0.1 to 11.0.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+#### :house: Internal
+* [#1227](https://github.com/rwwagner90/ember-shepherd/pull/1227) Pin ember-data ([@rwwagner90](https://github.com/rwwagner90))
+
+#### Committers: 1
+- Robert Wagner ([@rwwagner90](https://github.com/rwwagner90))
+
 ## v13.1.0 (2022-10-25)
 
 #### :house: Internal
