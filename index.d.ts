@@ -1,5 +1,6 @@
 declare module 'ember-shepherd/services/tour' {
   import Shepherd from 'shepherd.js';
+  import Service from '@ember/service';
 
   export interface TourButton extends Shepherd.Step.StepOptionsButton {
     type: 'next' | 'back' | 'cancel';
@@ -11,7 +12,7 @@ declare module 'ember-shepherd/services/tour' {
     title: string;
   }
 
-  export default interface Tour {
+  export default interface Tour extends Service {
     classPrefix: string;
     confirmCancel: boolean;
     confirmCancelMessage: string | null;
