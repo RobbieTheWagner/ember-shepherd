@@ -6998,9 +6998,9 @@ ember-cli-clipboard@^0.16.0:
     ember-cli-htmlbars "^5.7.1"
 
 ember-cli-code-coverage@^2.0.0-beta.4:
-  version "2.0.0-beta.4"
-  resolved "https://registry.yarnpkg.com/ember-cli-code-coverage/-/ember-cli-code-coverage-2.0.0-beta.4.tgz#679cdeaaa91172104a9b096abc6d5386b02b6e1d"
-  integrity sha512-sCza3NosJ2B62yCKrZwHr/AYN1ln60cwW/WA3CqVOX4oulkFNpC9CFSlLbiiVaASP70q26ktauOAQ+DBL/wVYw==
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-code-coverage/-/ember-cli-code-coverage-2.0.0.tgz#57f8334612729906d86bfbdb29125b329adf19b2"
+  integrity sha512-fhowjPCe0mP+BYz6fz9GMY8/6XMIv42X6aCfM/ax7hf3iW086Qv5kRAd/8O4JLjER9kgEMFs4D6NJsrd4WZSaQ==
   dependencies:
     "@embroider/compat" "^0.47.0"
     "@embroider/core" "^0.47.0"
