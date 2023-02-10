@@ -118,7 +118,7 @@
     "release-it": "^15.4.0",
     "release-it-lerna-changelog": "^5.0.0",
     "sass": "^1.49.0",
-    "stylelint": "^14.2.0",
+    "stylelint": "^15.0.0",
     "stylelint-config-ship-shape": "^0.7.0",
     "webpack": "^5.74.0"
   },
