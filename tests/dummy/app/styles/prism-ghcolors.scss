@@ -2,7 +2,7 @@
  * GHColors theme by Avi Aryan (http://aviaryan.in)
  * Inspired by Github syntax coloring
  */
-@import url(https://fonts.googleapis.com/css?family=Inconsolata);
+@import "https://fonts.googleapis.com/css?family=Inconsolata";
 
 $color1: #6e698c;
 $keyword-color: #00009f;
@@ -11,22 +11,16 @@ $text-color: #493f8c;
 $bright-text: #01a2a6;
 $alt-text: #cfcef2;
 $dark-purple: #323040;
-
 $normal-font: 14pt;
 
 code[class*="language-"],
 pre[class*="language-"] {
   color: $text-color;
   direction: ltr;
-  font-family: 'Inconsolata', monospace;
+  font-family: Inconsolata, monospace;
   font-size: $normal-font;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  -webkit-hyphens: none;
   hyphens: none;
   line-height: 1.2em;
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
   tab-size: 4;
   text-align: left;
   text-shadow: none;
@@ -41,13 +35,6 @@ pre[class*="language-"] {
   margin: 0.5em 0;
   overflow: auto;
   padding: 1em;
-}
-
-pre[class*="language-"]::-moz-selection,
-pre[class*="language-"] ::-moz-selection,
-code[class*="language-"]::-moz-selection,
-code[class*="language-"] ::-moz-selection {
-  background: #b3d4fc;
 }
 
 pre[class*="language-"]::selection,

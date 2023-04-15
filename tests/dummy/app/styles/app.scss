@@ -12,7 +12,7 @@ $whiteish: #c8c7d5;
 
 .demo-page {
   a {
-    &.bottomButton {
+    &.bottom-button {
       background-color: $transparent;
       border: 2px solid $light-color;
       color: $light-color;
@@ -51,7 +51,7 @@ $whiteish: #c8c7d5;
     color: $button-dark;
   }
 
-  @media (max-width: 568px) {
+  @media (width <= 568px) {
     .button {
       display: block;
       margin: 1em auto 0;
@@ -76,6 +76,7 @@ $whiteish: #c8c7d5;
         }
       }
 
+      /* stylelint-disable selector-class-pattern */
       &[x-placement^="bottom"] {
         .popper__arrow {
           border-bottom-color: $background1;
@@ -96,6 +97,7 @@ $whiteish: #c8c7d5;
           border-top-color: $whiteish;
         }
       }
+      /* stylelint-enable selector-class-pattern */
 
       .shepherd-content {
         max-width: 100%;
@@ -112,19 +114,24 @@ $whiteish: #c8c7d5;
     }
   }
 
-  .shepherd-element.shepherd-theme-arrows .shepherd-content footer .shepherd-buttons li .shepherd-button {
+  .shepherd-element.shepherd-theme-arrows
+    .shepherd-content
+    footer
+    .shepherd-buttons
+    li
+    .shepherd-button {
     font-size: 0.75em;
     line-height: 0.75em;
     padding-top: 1em;
   }
 
   pre {
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    border: 1px solid rgb(0 0 0 / 15%);
     line-height: 1.4em;
     width: 100%;
   }
 
-  .pageTitle {
+  .page-title {
     color: $light-color;
     font-size: 50pt;
 
@@ -133,7 +140,7 @@ $whiteish: #c8c7d5;
     }
   }
 
-  @media only screen and (min-width: 40.0625em) {
+  @media only screen and (width >= 40.0625em) {
     h1,
     h2,
     h3,
@@ -170,7 +177,7 @@ $whiteish: #c8c7d5;
 }
 
 :root {
-  --brand-primary: #EF898B;
+  --brand-primary: #ef898b;
 }
 
 .hero {
