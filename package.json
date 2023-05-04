@@ -8,13 +8,13 @@
     "tour",
     "shepherd"
   ],
-  "homepage": "http://rwwagner90.github.io/ember-shepherd/",
-  "repository": "https://github.com/rwwagner90/ember-shepherd",
+  "homepage": "http://RobbieTheWagner.github.io/ember-shepherd/",
+  "repository": "https://github.com/RobbieTheWagner/ember-shepherd",
   "license": "MIT",
   "author": {
     "name": "Robert Wagner",
     "email": "rwwagner90@gmail.com",
-    "url": "https://github.com/rwwagner90"
+    "url": "https://github.com/RobbieTheWagner"
   },
   "contributors": [
     {
@@ -142,7 +142,7 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "https://rwwagner90.github.io/ember-shepherd/"
+    "demoURL": "https://RobbieTheWagner.github.io/ember-shepherd/"
   },
   "release-it": {
     "plugins": {

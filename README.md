@@ -8,7 +8,7 @@
 ![Download count all time](https://img.shields.io/npm/dt/ember-shepherd.svg)
 [![npm](https://img.shields.io/npm/dm/ember-shepherd.svg)]()
 [![Ember Observer Score](http://emberobserver.com/badges/ember-shepherd.svg)](http://emberobserver.com/addons/ember-shepherd)
-![CI Build](https://github.com/rwwagner90/ember-shepherd/workflows/CI%20Build/badge.svg)
+![CI Build](https://github.com/RobbieTheWagner/ember-shepherd/workflows/CI%20Build/badge.svg)
 [![Code Climate](https://codeclimate.com/github/rwwagner90/ember-shepherd/badges/gpa.svg)](https://codeclimate.com/github/rwwagner90/ember-shepherd)
 [![Test Coverage](https://codeclimate.com/github/rwwagner90/ember-shepherd/badges/coverage.svg)](https://codeclimate.com/github/rwwagner90/ember-shepherd/coverage)
 
@@ -28,7 +28,7 @@ ember install ember-shepherd
 ```
 ## Documentation
 
-[View Docs](http://rwwagner90.github.io/ember-shepherd/)
+[View Docs](http://RobbieTheWagner.github.io/ember-shepherd/)
 
 
 ## Contributing
