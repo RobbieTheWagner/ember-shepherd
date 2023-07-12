@@ -1468,12 +1468,12 @@
     resolve "^1.20.0"
     semver "^7.3.2"
 
-"@embroider/macros@^0.50.0 || ^1.0.0", "@embroider/macros@^1.0.0", "@embroider/macros@^1.10.0", "@embroider/macros@^1.8.1", "@embroider/macros@^1.8.3", "@embroider/macros@^1.9.0":
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/@embroider/macros/-/macros-1.10.0.tgz#af3844d5db48f001b85cfb096c76727c72ad6c1e"
-  integrity sha512-LMbfQGk/a+f6xtvAv5fq/wf2LRxETnbgSCLUf/z6ebzmuskOUxrke+uP55chF/loWrARi9g6erFQ7RDOUoBMSg==
+"@embroider/macros@^0.50.0 || ^1.0.0", "@embroider/macros@^1.0.0", "@embroider/macros@^1.10.0", "@embroider/macros@^1.12.2", "@embroider/macros@^1.8.1", "@embroider/macros@^1.8.3", "@embroider/macros@^1.9.0":
+  version "1.12.2"
+  resolved "https://registry.yarnpkg.com/@embroider/macros/-/macros-1.12.2.tgz#feaa0deb3a2329a6441f5a0790279bd85bd80d08"
+  integrity sha512-3AY1iWq9ctQESgTeKk6Hdw/E5ypAx793bK5WZHHYcmjJAIVfR6lHa6SBoNjDNuYRduabd2lN0VJq7StwL62ETg==
   dependencies:
-    "@embroider/shared-internals" "2.0.0"
+    "@embroider/shared-internals" "2.2.2"
     assert-never "^1.2.1"
     babel-import-util "^1.1.0"
     ember-cli-babel "^7.26.6"
@@ -1495,10 +1495,10 @@
     semver "^7.3.5"
     typescript-memoize "^1.0.1"
 
-"@embroider/shared-internals@2.0.0", "@embroider/shared-internals@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@embroider/shared-internals/-/shared-internals-2.0.0.tgz#d8205ec6944362aeecfbb51143db352430ced316"
-  integrity sha512-qZ2/xky9mWm5YC6noOa6AiAwgISEQ78YTZNv4SNu2PFgEK/H+Ha/3ddngzGSsnXkVnIHZyxIBzhxETonQYHY9g==
+"@embroider/shared-internals@2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@embroider/shared-internals/-/shared-internals-2.2.2.tgz#8f19c9a8621b4c3f061a4af5060a82ec024655eb"
+  integrity sha512-fOED89UjsNT8e/maA1P3co2D7q/UOmH3DMxqAlJyueyo57LKuVDXFDG6JUYiEyHb2H5eCrzIdGoHI5cz9rH3Ow==
   dependencies:
     babel-import-util "^1.1.0"
     ember-rfc176-data "^0.3.17"
@@ -1513,6 +1513,20 @@
   version "1.8.3"
   resolved "https://registry.yarnpkg.com/@embroider/shared-internals/-/shared-internals-1.8.3.tgz#52d868dc80016e9fe983552c0e516f437bf9b9f9"
   integrity sha512-N5Gho6Qk8z5u+mxLCcMYAoQMbN4MmH+z2jXwQHVs859bxuZTxwF6kKtsybDAASCtd2YGxEmzcc1Ja/wM28824w==
+  dependencies:
+    babel-import-util "^1.1.0"
+    ember-rfc176-data "^0.3.17"
+    fs-extra "^9.1.0"
+    js-string-escape "^1.0.1"
+    lodash "^4.17.21"
+    resolve-package-path "^4.0.1"
+    semver "^7.3.5"
+    typescript-memoize "^1.0.1"
+
+"@embroider/shared-internals@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@embroider/shared-internals/-/shared-internals-2.0.0.tgz#d8205ec6944362aeecfbb51143db352430ced316"
+  integrity sha512-qZ2/xky9mWm5YC6noOa6AiAwgISEQ78YTZNv4SNu2PFgEK/H+Ha/3ddngzGSsnXkVnIHZyxIBzhxETonQYHY9g==
   dependencies:
     babel-import-util "^1.1.0"
     ember-rfc176-data "^0.3.17"
@@ -7920,10 +7934,11 @@ ember-source@~4.12.0:
     silent-error "^1.1.1"
 
 ember-svg-jar@^2.3.4, ember-svg-jar@^2.4.2:
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/ember-svg-jar/-/ember-svg-jar-2.4.2.tgz#7ea2c987cc188647cdd01842631d6bd0cdbe4f22"
-  integrity sha512-TwtCwlxjp347+v7PK3xWpx7KXV3RDYogFe+WZA1+1ftiZqJfk9NzvXeMFA3thkhXmoT6IOYYnLR2ryjCmDiLsw==
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/ember-svg-jar/-/ember-svg-jar-2.4.3.tgz#d6e9acdf852ac7368523753dbae35bdc7449da82"
+  integrity sha512-dY3tA+7iKHa1C8x5MnAM+2kVLbb8j1ECdFAdR4Sys74nje79UFWtJDGERizW2ZSALnsqb3uRgEFINP0V3vCeeg==
   dependencies:
+    "@embroider/macros" "^1.12.2"
     broccoli-caching-writer "^3.0.3"
     broccoli-concat "^4.2.5"
     broccoli-funnel "^3.0.8"
@@ -15001,12 +15016,7 @@ safe-regex@^1.1.0:
   dependencies:
     ret "~0.1.10"
 
-safe-stable-stringify@^2.2.0:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/safe-stable-stringify/-/safe-stable-stringify-2.4.1.tgz#34694bd8a30575b7f94792aa51527551bd733d61"
-  integrity sha512-dVHE6bMtS/bnL2mwualjc6IxEv1F+OCUpA46pKUj6F8uDbUM0jCCulPqRNPSnWwGNKx5etqMjZYdXtrm5KJZGA==
-
-safe-stable-stringify@^2.4.2:
+safe-stable-stringify@^2.2.0, safe-stable-stringify@^2.4.2:
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/safe-stable-stringify/-/safe-stable-stringify-2.4.3.tgz#138c84b6f6edb3db5f8ef3ef7115b8f55ccbf886"
   integrity sha512-e2bDA2WJT0wxseVd4lsDP4+3ONX6HpMXQa1ZhFQ7SU+GjvORCmShbCMltrtIDfkYhVHrOcPtj+KhmDBdPdZD1g==
