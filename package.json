@@ -105,7 +105,7 @@
     "ember-source-channel-url": "^3.0.0",
     "ember-svg-jar": "^2.3.4",
     "ember-template-lint": "^5.7.2",
-    "ember-try": "^2.0.0",
+    "ember-try": "^3.0.0",
     "eslint": "^8.37.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-ember": "^11.5.0",
