@@ -115,7 +115,7 @@
     "loader.js": "^4.7.0",
     "prettier": "^2.8.7",
     "qunit": "^2.19.4",
-    "qunit-dom": "^2.0.0",
+    "qunit-dom": "^3.0.0",
     "release-it": "^15.4.0",
     "release-it-lerna-changelog": "^5.0.0",
     "sass": "^1.49.0",
