@@ -6462,9 +6462,9 @@ ember-cli-clipboard@^1.0.0:
     prop-types "^15.8.1"
 
 ember-cli-code-coverage@^2.0.0-beta.4:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/ember-cli-code-coverage/-/ember-cli-code-coverage-2.0.2.tgz#cff5353087d4b26864f5745a8048494deb5f48cd"
-  integrity sha512-SmsisTdgLxXf8u6Qb2MsPju+CL2Ktta6V6UwKvupnJGgkKgGOHg3yzMv0TqXg87yNWEw7LH2HcXqO1lSwmyr2A==
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/ember-cli-code-coverage/-/ember-cli-code-coverage-2.0.3.tgz#8e283b46417076b84309163be696bd141aa90054"
+  integrity sha512-xBItw4kPffuy4QVCniBSwvyzFJiwU/+tqTyoyshug9LtiRDOaOepPVuQ8Ig+e5sYmxp3OXXcaR9iK5IY2J62Zg==
   dependencies:
     babel-plugin-istanbul "^6.1.1"
     body-parser "^1.19.0"
