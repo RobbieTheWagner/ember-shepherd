@@ -1376,19 +1376,19 @@
   dependencies:
     ember-cli-babel "^7.26.6"
 
-"@ember/test-helpers@^2.9.3":
-  version "2.9.4"
-  resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-2.9.4.tgz#985022e9ba05cfc918bcf08b77cbb355f85b723e"
-  integrity sha512-z+Qs1NYWyIVDmrY6WdmOS5mdG1lJ5CFfzh6dRhLfs9lq45deDaDrVNcaCYhnNeJZTvUBK2XR2SvPcZm0RloXdA==
+"@ember/test-helpers@^3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-3.2.1.tgz#990159e64bfa7ae9743aca1f1ab65e7d80b22f37"
+  integrity sha512-DvJSihJPV4xshwEgBrFN4aUVc9m/Y/hVzwcslfSVq/h3dMWCyAj4+agkkdJPQrwBaE+H4IyGNzr555S7bTErEA==
   dependencies:
-    "@ember/test-waiters" "^3.0.0"
+    "@ember/test-waiters" "^3.0.2"
     "@embroider/macros" "^1.10.0"
-    "@embroider/util" "^1.9.0"
+    "@simple-dom/interface" "^1.4.0"
     broccoli-debug "^0.6.5"
     broccoli-funnel "^3.0.8"
+    ember-auto-import "^2.6.0"
     ember-cli-babel "^7.26.11"
-    ember-cli-htmlbars "^6.1.1"
-    ember-destroyable-polyfill "^2.0.3"
+    ember-cli-htmlbars "^6.2.0"
 
 "@ember/test-waiters@^3.0.0", "@ember/test-waiters@^3.0.2":
   version "3.0.2"
@@ -1459,7 +1459,7 @@
     lodash "^4.17.21"
     resolve "^1.20.0"
 
-"@embroider/util@^1.0.0", "@embroider/util@^1.9.0":
+"@embroider/util@^1.0.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@embroider/util/-/util-1.9.0.tgz#331c46bdf106c44cb1dd6baaa9030d322c13cfca"
   integrity sha512-9I63iJK6N01OHJafmS/BX0msUkTlmhFMIEmDl/SRNACVi0nS6QfNyTgTTeji1P/DALf6eobg/9t/N4VhS9G9QA==
@@ -6596,7 +6596,7 @@ ember-cli-htmlbars@^5.0.0, ember-cli-htmlbars@^5.3.1, ember-cli-htmlbars@^5.7.1:
     strip-bom "^4.0.0"
     walk-sync "^2.2.0"
 
-ember-cli-htmlbars@^6.0.1, ember-cli-htmlbars@^6.1.0, ember-cli-htmlbars@^6.1.1, ember-cli-htmlbars@^6.2.0, ember-cli-htmlbars@^6.3.0:
+ember-cli-htmlbars@^6.0.1, ember-cli-htmlbars@^6.1.0, ember-cli-htmlbars@^6.2.0, ember-cli-htmlbars@^6.3.0:
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-6.3.0.tgz#ac85f2bbd09788992ab7f9ca832cd044fb8e5798"
   integrity sha512-N9Y80oZfcfWLsqickMfRd9YByVcTGyhYRnYQ2XVPVrp6jyUyOeRWmEAPh7ERSXpp8Ws4hr/JB9QVQrn/yZa+Ag==
