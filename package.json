@@ -119,7 +119,7 @@
     "release-it": "^15.4.0",
     "release-it-lerna-changelog": "^5.0.0",
     "sass": "^1.49.0",
-    "stylelint": "^15.4.0",
+    "stylelint": "^16.2.0",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-standard-scss": "^11.0.0",
     "stylelint-prettier": "^3.0.0",
