@@ -28,8 +28,6 @@ module('Unit | Service | tour', function (hooks) {
   setupTest(hooks);
 
   test('it starts the tour when the `start` event is triggered', function (assert) {
-    assert.expect(1);
-
     class mockTourObject extends EmberObject {
       start() {
         assert.ok(true, 'The tour was started');
@@ -48,8 +46,6 @@ module('Unit | Service | tour', function (hooks) {
   });
 
   test('it allows another object to bind to events', function (assert) {
-    assert.expect(1);
-
     class mockTourObject extends EmberObject {
       next() {}
     }
@@ -70,14 +66,12 @@ module('Unit | Service | tour', function (hooks) {
   });
 
   test('it passes through a custom scrollToHandler option', function (assert) {
-    assert.expect(1);
-
     class mockTourObject extends EmberObject {
       start() {
         assert.strictEqual(
           steps[0].options.scrollToHandler(),
           'custom scrollToHandler',
-          'The handler was passed through as an option on the step'
+          'The handler was passed through as an option on the step',
         );
       }
     }

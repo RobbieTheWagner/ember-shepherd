@@ -84,7 +84,7 @@ export const steps = [
         </p>
         
         <p>
-          If you would like to enable modal, simply do this.get('tour').set('modal', true).
+          If you would like to enable modal, simply do this.tour.set('modal', true).
         </p>`,
   },
   {
@@ -111,7 +111,7 @@ export const steps = [
       <p>
         When navigating the user through a tour, you may want to disable scrolling, so they
         cannot mess up your carefully planned out, amazing tour. This is now easily achieved
-        with this.get('tour').set('disableScroll', true).
+        with this.tour.set('disableScroll', true).
       </p>
       
       <p>

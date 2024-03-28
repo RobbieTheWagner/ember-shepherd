@@ -8,15 +8,14 @@ A: Don't worry, it's not too bad!  You can just set up an action to start (or ca
 // app/routes/application.js
 
 import Route from "@ember/routing/route";
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default Route.extend({
-
   tour: service(),
 
   actions: {
     startTour() {
-      this.get('tour').start();
+      this.tour.start();
     }
   }
 });
