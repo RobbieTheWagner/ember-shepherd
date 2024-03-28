@@ -9,20 +9,20 @@ import { makeButton } from '../utils/buttons';
 import { elementIsHidden } from '../utils/dom';
 
 /**
- * Interaction with `ember-shepherd` is done entirely through the Tour service, which you can access from any object using the `Ember.inject` syntax:
+ * Interaction with `ember-shepherd` is done entirely through the Tour service, which you can access from any object using the `service` syntax:
  *
  * ```js
- * import Component from '@ember/component';
- * import { inject as service } from '@ember/service';
+ * import Component from '@glimmer/component';
+ * import { service } from '@ember/service';
  *
- * export default Component.extend({
+ * export default class MyCoolComponent extends Component {
  *
- *   tour: service()
+ *   @service tour;
  *
  *   // OR
  *
- *   tourService: service('tour')
- * });
+ *   @service('tour') tourService;
+ * };
  * ```
  *
  * The following configuration options can be `set` on the Tour service to control the way that Shepherd is used. **The only required option is `steps`, which is set via `addSteps`.**
@@ -70,7 +70,7 @@ export default class TourService extends Service.extend(Evented) {
    * It will be an object of a form something like:
    *
    * ```js
-   * this.get('tour').set('defaultStepOptions', {
+   * this.tour.set('defaultStepOptions', {
    *   classes: 'custom-class-name-1 custom-class-name-2',
    *   scrollTo: true,
    *   cancelIcon: {
@@ -155,7 +155,7 @@ export default class TourService extends Service.extend(Evented) {
    *
    * _Example_
    * ```js
-   * this.get('tour').set('requiredElements', [
+   * this.tour.set('requiredElements', [
    *   {
    *     selector: '.search-result-element',
    *     message: 'No search results found. Please execute another search, and try to start the tour again.',
@@ -185,7 +185,7 @@ export default class TourService extends Service.extend(Evented) {
    * You must pass an array of steps to `addSteps`, something like this:
    *
    * ```js
-   * this.get('tour').addSteps([
+   * this.tour.addSteps([
    *   {
    *     attachTo: {
    *       element:'.first-element',

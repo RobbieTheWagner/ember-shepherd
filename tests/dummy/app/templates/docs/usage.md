@@ -13,17 +13,17 @@ See the [Step docs](https://shepherdjs.dev/docs/Step.html) for all available Ste
 
 ```js
 // Start the tour
-this.get('tour').start();
+this.tour.start();
 
 //Show a specific step
-this.get('tour').show(id);
+this.tour.show(id);
 
 // Stop the tour
-this.get('tour').cancel();
+this.tour.cancel();
 
 // Go to the next step
-this.get('tour').next();
+this.tour.next();
 
 // Go to the previous step
-this.get('tour').back();
+this.tour.back();
 ```
