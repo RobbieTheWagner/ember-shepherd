@@ -12,76 +12,76 @@
 * [#1237](https://github.com/RobbieTheWagner/ember-shepherd/pull/1237) Bump shepherd.js from 10.0.1 to 11.0.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
 
 #### :house: Internal
-* [#1227](https://github.com/RobbieTheWagner/ember-shepherd/pull/1227) Pin ember-data ([@rwwagner90](https://github.com/RobbieTheWagner))
+* [#1227](https://github.com/RobbieTheWagner/ember-shepherd/pull/1227) Pin ember-data ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 #### Committers: 1
-- Robert Wagner ([@rwwagner90](https://github.com/RobbieTheWagner))
+- Robert Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 ## v13.1.0 (2022-10-25)
 
 #### :house: Internal
-* [#1211](https://github.com/RobbieTheWagner/ember-shepherd/pull/1211) ESLint 8, ember-cli 4.8 ([@rwwagner90](https://github.com/RobbieTheWagner))
+* [#1211](https://github.com/RobbieTheWagner/ember-shepherd/pull/1211) ESLint 8, ember-cli 4.8 ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 #### Committers: 1
-- Robert Wagner ([@rwwagner90](https://github.com/RobbieTheWagner))
+- Robert Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 ## v13.0.1 (2022-08-26)
 
 ## v13.0.0 (2022-08-26)
 
 #### :boom: Breaking Change
-* [#1166](https://github.com/RobbieTheWagner/ember-shepherd/pull/1166) ember-cli 4.6, drop node 12 support ([@rwwagner90](https://github.com/RobbieTheWagner))
+* [#1166](https://github.com/RobbieTheWagner/ember-shepherd/pull/1166) ember-cli 4.6, drop node 12 support ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 #### Committers: 1
-- Robert Wagner ([@rwwagner90](https://github.com/RobbieTheWagner))
+- Robert Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 ## v12.1.0 (2022-02-16)
 
 #### :house: Internal
-* [#983](https://github.com/RobbieTheWagner/ember-shepherd/pull/983) ember-cli 4.1.0 ([@rwwagner90](https://github.com/RobbieTheWagner))
-* [#975](https://github.com/RobbieTheWagner/ember-shepherd/pull/975) ember-cli 4 ([@rwwagner90](https://github.com/RobbieTheWagner))
-* [#952](https://github.com/RobbieTheWagner/ember-shepherd/pull/952) Ember 3.28 ([@rwwagner90](https://github.com/RobbieTheWagner))
-* [#950](https://github.com/RobbieTheWagner/ember-shepherd/pull/950) Bump deps ([@rwwagner90](https://github.com/RobbieTheWagner))
+* [#983](https://github.com/RobbieTheWagner/ember-shepherd/pull/983) ember-cli 4.1.0 ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+* [#975](https://github.com/RobbieTheWagner/ember-shepherd/pull/975) ember-cli 4 ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+* [#952](https://github.com/RobbieTheWagner/ember-shepherd/pull/952) Ember 3.28 ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+* [#950](https://github.com/RobbieTheWagner/ember-shepherd/pull/950) Bump deps ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 #### Committers: 1
-- Robert Wagner ([@rwwagner90](https://github.com/RobbieTheWagner))
+- Robert Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 ## v12.0.0 (2021-09-16)
 
 #### :boom: Breaking Change
-* [#779](https://github.com/RobbieTheWagner/ember-shepherd/pull/779) Ember 3.26, ember-auto-import 2 ([@rwwagner90](https://github.com/RobbieTheWagner))
+* [#779](https://github.com/RobbieTheWagner/ember-shepherd/pull/779) Ember 3.26, ember-auto-import 2 ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 #### :house: Internal
-* [#773](https://github.com/RobbieTheWagner/ember-shepherd/pull/773) Add dependabot automerge ([@rwwagner90](https://github.com/RobbieTheWagner))
-* [#654](https://github.com/RobbieTheWagner/ember-shepherd/pull/654) Update eslint-plugin-ember, fix lint ([@rwwagner90](https://github.com/RobbieTheWagner))
+* [#773](https://github.com/RobbieTheWagner/ember-shepherd/pull/773) Add dependabot automerge ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+* [#654](https://github.com/RobbieTheWagner/ember-shepherd/pull/654) Update eslint-plugin-ember, fix lint ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 #### Committers: 2
-- Robert Wagner ([@rwwagner90](https://github.com/RobbieTheWagner))
+- Robert Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
 - [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
 
 ## v11.0.2 (2020-12-14)
 
 #### :memo: Documentation
-* [#551](https://github.com/RobbieTheWagner/ember-shepherd/pull/551) Use the new CodeBlock format ([@rwwagner90](https://github.com/RobbieTheWagner))
+* [#551](https://github.com/RobbieTheWagner/ember-shepherd/pull/551) Use the new CodeBlock format ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 #### :house: Internal
-* [#634](https://github.com/RobbieTheWagner/ember-shepherd/pull/634) Switch from Travis to GitHub actions ([@rwwagner90](https://github.com/RobbieTheWagner))
-* [#633](https://github.com/RobbieTheWagner/ember-shepherd/pull/633) Ember 3.22 ([@rwwagner90](https://github.com/RobbieTheWagner))
+* [#634](https://github.com/RobbieTheWagner/ember-shepherd/pull/634) Switch from Travis to GitHub actions ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+* [#633](https://github.com/RobbieTheWagner/ember-shepherd/pull/633) Ember 3.22 ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 #### Committers: 2
-- Robert Wagner ([@rwwagner90](https://github.com/RobbieTheWagner))
+- Robert Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
 - [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
 
 ## v11.0.1 (2020-07-09)
 
 #### :rocket: Enhancement
-* [#450](https://github.com/RobbieTheWagner/ember-shepherd/pull/450) Add support for modalContainer, fix Tour options ([@rwwagner90](https://github.com/RobbieTheWagner))
+* [#450](https://github.com/RobbieTheWagner/ember-shepherd/pull/450) Add support for modalContainer, fix Tour options ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 #### :house: Internal
-* [#516](https://github.com/RobbieTheWagner/ember-shepherd/pull/516) Add embroider tests ([@rwwagner90](https://github.com/RobbieTheWagner))
+* [#516](https://github.com/RobbieTheWagner/ember-shepherd/pull/516) Add embroider tests ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 #### Committers: 2
-- Robert Wagner ([@rwwagner90](https://github.com/RobbieTheWagner))
+- Robert Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
 - [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
 
 # Changelog
@@ -92,7 +92,7 @@
 
 **Breaking changes:**
 
-- Shepherd.js v7 [\#432](https://github.com/RobbieTheWagner/ember-shepherd/pull/432) ([rwwagner90](https://github.com/RobbieTheWagner))
+- Shepherd.js v7 [\#432](https://github.com/RobbieTheWagner/ember-shepherd/pull/432) ([RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 ## [v10.0.2](https://github.com/RobbieTheWagner/ember-shepherd/tree/v10.0.2) (2020-02-08)
 
@@ -119,10 +119,10 @@
 
 **Merged pull requests:**
 
-- Update to Shepherd v6 [\#363](https://github.com/RobbieTheWagner/ember-shepherd/pull/363) ([rwwagner90](https://github.com/RobbieTheWagner))
+- Update to Shepherd v6 [\#363](https://github.com/RobbieTheWagner/ember-shepherd/pull/363) ([RobbieTheWagner](https://github.com/RobbieTheWagner))
 - Bump sass from 1.22.10 to 1.23.1 [\#351](https://github.com/RobbieTheWagner/ember-shepherd/pull/351) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
-- Ember 3.13 [\#350](https://github.com/RobbieTheWagner/ember-shepherd/pull/350) ([rwwagner90](https://github.com/RobbieTheWagner))
-- Add dependabot config [\#344](https://github.com/RobbieTheWagner/ember-shepherd/pull/344) ([rwwagner90](https://github.com/RobbieTheWagner))
+- Ember 3.13 [\#350](https://github.com/RobbieTheWagner/ember-shepherd/pull/350) ([RobbieTheWagner](https://github.com/RobbieTheWagner))
+- Add dependabot config [\#344](https://github.com/RobbieTheWagner/ember-shepherd/pull/344) ([RobbieTheWagner](https://github.com/RobbieTheWagner))
 - Update stylelint to the latest version 🚀 [\#342](https://github.com/RobbieTheWagner/ember-shepherd/pull/342) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
 
 ## [v9.0.0](https://github.com/RobbieTheWagner/ember-shepherd/tree/v9.0.0) (2019-08-29)
@@ -131,7 +131,7 @@
 
 **Breaking changes:**
 
-- Shepherd 5.x [\#338](https://github.com/RobbieTheWagner/ember-shepherd/pull/338) ([rwwagner90](https://github.com/RobbieTheWagner))
+- Shepherd 5.x [\#338](https://github.com/RobbieTheWagner/ember-shepherd/pull/338) ([RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 ## [v8.0.0](https://github.com/RobbieTheWagner/ember-shepherd/tree/v8.0.0) (2019-08-01)
 
@@ -139,7 +139,7 @@
 
 **Breaking changes:**
 
-- Shepherd 4 [\#333](https://github.com/RobbieTheWagner/ember-shepherd/pull/333) ([rwwagner90](https://github.com/RobbieTheWagner))
+- Shepherd 4 [\#333](https://github.com/RobbieTheWagner/ember-shepherd/pull/333) ([RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 **Implemented enhancements:**
 
@@ -151,7 +151,7 @@
 
 **Merged pull requests:**
 
-- Ember 3.11 [\#330](https://github.com/RobbieTheWagner/ember-shepherd/pull/330) ([rwwagner90](https://github.com/RobbieTheWagner))
+- Ember 3.11 [\#330](https://github.com/RobbieTheWagner/ember-shepherd/pull/330) ([RobbieTheWagner](https://github.com/RobbieTheWagner))
 - Update ember-prism to the latest version 🚀 [\#327](https://github.com/RobbieTheWagner/ember-shepherd/pull/327) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
 
 ## [v7.0.0](https://github.com/RobbieTheWagner/ember-shepherd/tree/v7.0.0) (2019-06-23)
@@ -160,7 +160,7 @@
 
 **Breaking changes:**
 
-- Remove body-scroll-lock, shepherd.js 3.0.0 [\#325](https://github.com/RobbieTheWagner/ember-shepherd/pull/325) ([rwwagner90](https://github.com/RobbieTheWagner))
+- Remove body-scroll-lock, shepherd.js 3.0.0 [\#325](https://github.com/RobbieTheWagner/ember-shepherd/pull/325) ([RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 **Closed issues:**
 
@@ -168,7 +168,7 @@
 
 **Merged pull requests:**
 
-- Greenkeeper/ember cli stylelint 3.0.1 [\#323](https://github.com/RobbieTheWagner/ember-shepherd/pull/323) ([rwwagner90](https://github.com/RobbieTheWagner))
+- Greenkeeper/ember cli stylelint 3.0.1 [\#323](https://github.com/RobbieTheWagner/ember-shepherd/pull/323) ([RobbieTheWagner](https://github.com/RobbieTheWagner))
 - Update stylelint-config-ship-shape to the latest version 🚀 [\#320](https://github.com/RobbieTheWagner/ember-shepherd/pull/320) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
 
 ## [v6.0.1](https://github.com/RobbieTheWagner/ember-shepherd/tree/v6.0.1) (2019-06-09)
@@ -181,11 +181,11 @@
 
 **Breaking changes:**
 
-- Ember 3.10, drop support for node 6 [\#316](https://github.com/RobbieTheWagner/ember-shepherd/pull/316) ([rwwagner90](https://github.com/RobbieTheWagner))
+- Ember 3.10, drop support for node 6 [\#316](https://github.com/RobbieTheWagner/ember-shepherd/pull/316) ([RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 **Implemented enhancements:**
 
-- Shepherd.js 2.9.0, bump other deps [\#317](https://github.com/RobbieTheWagner/ember-shepherd/pull/317) ([rwwagner90](https://github.com/RobbieTheWagner))
+- Shepherd.js 2.9.0, bump other deps [\#317](https://github.com/RobbieTheWagner/ember-shepherd/pull/317) ([RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 ## [v5.0.0](https://github.com/RobbieTheWagner/ember-shepherd/tree/v5.0.0) (2019-05-04)
 
@@ -205,7 +205,7 @@
 
 **Merged pull requests:**
 
-- Shepherd 2.8.0, bump various deps [\#309](https://github.com/RobbieTheWagner/ember-shepherd/pull/309) ([rwwagner90](https://github.com/RobbieTheWagner))
+- Shepherd 2.8.0, bump various deps [\#309](https://github.com/RobbieTheWagner/ember-shepherd/pull/309) ([RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 ## [v4.9.0](https://github.com/RobbieTheWagner/ember-shepherd/tree/v4.9.0) (2019-04-15)
 
@@ -213,7 +213,7 @@
 
 **Implemented enhancements:**
 
-- Update to Shepherd 2.6.0 [\#302](https://github.com/RobbieTheWagner/ember-shepherd/pull/302) ([rwwagner90](https://github.com/RobbieTheWagner))
+- Update to Shepherd 2.6.0 [\#302](https://github.com/RobbieTheWagner/ember-shepherd/pull/302) ([RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 **Closed issues:**
 
@@ -225,7 +225,7 @@
 
 **Implemented enhancements:**
 
-- Use ember-cli-addon-docs for documentation [\#297](https://github.com/RobbieTheWagner/ember-shepherd/pull/297) ([rwwagner90](https://github.com/RobbieTheWagner))
+- Use ember-cli-addon-docs for documentation [\#297](https://github.com/RobbieTheWagner/ember-shepherd/pull/297) ([RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 ## [v4.7.0](https://github.com/RobbieTheWagner/ember-shepherd/tree/v4.7.0) (2019-04-05)
 
@@ -233,8 +233,8 @@
 
 **Implemented enhancements:**
 
-- Use ember-auto-import to import disable-scroll, bump disable-scroll to 0.4.1 [\#296](https://github.com/RobbieTheWagner/ember-shepherd/pull/296) ([rwwagner90](https://github.com/RobbieTheWagner))
-- Use rootElement, if defined, rather than document.body [\#295](https://github.com/RobbieTheWagner/ember-shepherd/pull/295) ([rwwagner90](https://github.com/RobbieTheWagner))
+- Use ember-auto-import to import disable-scroll, bump disable-scroll to 0.4.1 [\#296](https://github.com/RobbieTheWagner/ember-shepherd/pull/296) ([RobbieTheWagner](https://github.com/RobbieTheWagner))
+- Use rootElement, if defined, rather than document.body [\#295](https://github.com/RobbieTheWagner/ember-shepherd/pull/295) ([RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 ## [v4.6.0](https://github.com/RobbieTheWagner/ember-shepherd/tree/v4.6.0) (2019-03-20)
 
@@ -286,7 +286,7 @@
 
 **Merged pull requests:**
 
-- Remove modal code [\#281](https://github.com/RobbieTheWagner/ember-shepherd/pull/281) ([rwwagner90](https://github.com/RobbieTheWagner))
+- Remove modal code [\#281](https://github.com/RobbieTheWagner/ember-shepherd/pull/281) ([RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 ## [v4.0.0-beta.15](https://github.com/RobbieTheWagner/ember-shepherd/tree/v4.0.0-beta.15) (2018-11-28)
 
@@ -304,7 +304,7 @@
 
 - Update style imports with latest Shepherd version [\#272](https://github.com/RobbieTheWagner/ember-shepherd/pull/272) ([BrianSipple](https://github.com/BrianSipple))
 - Run debounced modal opening positioning immediately [\#271](https://github.com/RobbieTheWagner/ember-shepherd/pull/271) ([scottkidder](https://github.com/scottkidder))
-- Bump deps [\#265](https://github.com/RobbieTheWagner/ember-shepherd/pull/265) ([rwwagner90](https://github.com/RobbieTheWagner))
+- Bump deps [\#265](https://github.com/RobbieTheWagner/ember-shepherd/pull/265) ([RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 ## [v4.0.0-beta.13](https://github.com/RobbieTheWagner/ember-shepherd/tree/v4.0.0-beta.13) (2018-10-23)
 
@@ -313,7 +313,7 @@
 **Implemented enhancements:**
 
 - Add helper for hiding a current step. [\#249](https://github.com/RobbieTheWagner/ember-shepherd/issues/249)
-- Add method to hide current step [\#261](https://github.com/RobbieTheWagner/ember-shepherd/pull/261) ([rwwagner90](https://github.com/RobbieTheWagner))
+- Add method to hide current step [\#261](https://github.com/RobbieTheWagner/ember-shepherd/pull/261) ([RobbieTheWagner](https://github.com/RobbieTheWagner))
 - Document required elements order; add requiredElements tests [\#239](https://github.com/RobbieTheWagner/ember-shepherd/pull/239) ([BrianSipple](https://github.com/BrianSipple))
 
 ## [v4.0.0-beta.12](https://github.com/RobbieTheWagner/ember-shepherd/tree/v4.0.0-beta.12) (2018-10-13)
@@ -333,8 +333,8 @@
 
 **Merged pull requests:**
 
-- Replace steps observer with manual `addSteps` method [\#260](https://github.com/RobbieTheWagner/ember-shepherd/pull/260) ([rwwagner90](https://github.com/RobbieTheWagner))
-- Move some utils around, add comments, \_ private methods [\#259](https://github.com/RobbieTheWagner/ember-shepherd/pull/259) ([rwwagner90](https://github.com/RobbieTheWagner))
+- Replace steps observer with manual `addSteps` method [\#260](https://github.com/RobbieTheWagner/ember-shepherd/pull/260) ([RobbieTheWagner](https://github.com/RobbieTheWagner))
+- Move some utils around, add comments, \_ private methods [\#259](https://github.com/RobbieTheWagner/ember-shepherd/pull/259) ([RobbieTheWagner](https://github.com/RobbieTheWagner))
 - Update addon installation to not look for extra tippy file [\#258](https://github.com/RobbieTheWagner/ember-shepherd/pull/258) ([BrianSipple](https://github.com/BrianSipple))
 
 ## [v4.0.0-beta.11](https://github.com/RobbieTheWagner/ember-shepherd/tree/v4.0.0-beta.11) (2018-10-09)
@@ -357,7 +357,7 @@
 
 - cleanupShepherdElements destroys \<body\> element in tests [\#246](https://github.com/RobbieTheWagner/ember-shepherd/issues/246)
 - Use Ember.set to set `this.tourObject` [\#251](https://github.com/RobbieTheWagner/ember-shepherd/pull/251) ([BrianSipple](https://github.com/BrianSipple))
-- Remove cleanupShepherdElements [\#247](https://github.com/RobbieTheWagner/ember-shepherd/pull/247) ([rwwagner90](https://github.com/RobbieTheWagner))
+- Remove cleanupShepherdElements [\#247](https://github.com/RobbieTheWagner/ember-shepherd/pull/247) ([RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 **Merged pull requests:**
 

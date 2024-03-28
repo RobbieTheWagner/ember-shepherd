@@ -8,8 +8,8 @@
     "tour",
     "shepherd"
   ],
-  "homepage": "http://RobbieTheWagner.github.io/ember-shepherd/",
-  "repository": "https://github.com/RobbieTheWagner/ember-shepherd",
+  "homepage": "http://shepherd-pro.github.io/ember-shepherd/",
+  "repository": "https://github.com/shepherd-pro/ember-shepherd",
   "license": "MIT",
   "author": {
     "name": "Robert Wagner",
@@ -79,6 +79,7 @@
     "@embroider/test-setup": "^3.0.3",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
+    "@release-it-plugins/lerna-changelog": "^6.1.0",
     "babel-plugin-dynamic-import-node": "^2.3.3",
     "broccoli-asset-rev": "^3.0.0",
     "codeclimate-test-reporter": "^0.5.1",
@@ -117,8 +118,7 @@
     "prettier": "^3.2.5",
     "qunit": "^2.20.1",
     "qunit-dom": "^3.0.0",
-    "release-it": "^15.4.0",
-    "release-it-lerna-changelog": "^5.0.0",
+    "release-it": "^17.1.1",
     "sass": "^1.49.0",
     "stylelint": "^15.11.0",
     "stylelint-config-standard-scss": "^11.0.0",
@@ -142,11 +142,11 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "https://RobbieTheWagner.github.io/ember-shepherd/"
+    "demoURL": "https://shepherd-pro.github.io/ember-shepherd/"
   },
   "release-it": {
     "plugins": {
-      "release-it-lerna-changelog": {
+      "@release-it-plugins/lerna-changelog": {
         "infile": "CHANGELOG.md",
         "launchEditor": true
       }
@@ -158,9 +158,5 @@
       "release": true,
       "tokenRef": "GITHUB_AUTH"
     }
-  },
-  "volta": {
-    "node": "16.15.1",
-    "yarn": "1.22.17"
   }
 }
