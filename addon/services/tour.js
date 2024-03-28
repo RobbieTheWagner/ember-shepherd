@@ -351,7 +351,7 @@ export default class TourService extends Service.extend(Evented) {
     const tourObject = this.tourObject;
     if (tourObject == undefined) {
       throw new Error(
-        'the Promise from addSteps must be in a resolved state before the tour can be started'
+        'the Promise from addSteps must be in a resolved state before the tour can be started',
       );
     }
     set(this, 'isActive', true);

@@ -23,7 +23,7 @@ export function makeButton(button) {
 
   assert(
     `'type' property must be one of 'back', 'cancel', or 'next'`,
-    builtInButtonTypes.includes(type)
+    builtInButtonTypes.includes(type),
   );
 
   const action = bind(this, function () {

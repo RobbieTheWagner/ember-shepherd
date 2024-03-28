@@ -4,8 +4,6 @@ import { module, test } from 'qunit';
 module('Unit | Utility | make-button', function () {
   module('Making an `action` handler for Shepherd button types', function () {
     test('returning an object with an `action` handler if a supported built-in button "type" is specified', async function (assert) {
-      assert.expect(3);
-
       const context = {
         next() {
           assert.ok(true, 'Action was called in calling context');
@@ -43,7 +41,7 @@ module('Unit | Utility | make-button', function () {
       assert.strictEqual(makeButton(goodButtonOpts).text, goodButtonOpts.text);
       assert.strictEqual(
         makeButton(goodButtonOpts).classes,
-        goodButtonOpts.classes
+        goodButtonOpts.classes,
       );
     });
   });

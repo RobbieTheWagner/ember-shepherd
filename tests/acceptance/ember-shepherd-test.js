@@ -65,7 +65,7 @@ module('Acceptance | Tour functionality tests', function (hooks) {
       tour.start();
 
       assert.notOk(
-        document.querySelector('.shepherd-element button.shepherd-cancel-icon')
+        document.querySelector('.shepherd-element button.shepherd-cancel-icon'),
       );
     });
 
@@ -77,7 +77,7 @@ module('Acceptance | Tour functionality tests', function (hooks) {
       assert.dom('.shepherd-enabled').exists();
 
       await click(
-        document.querySelector('.shepherd-content button.shepherd-cancel-icon')
+        document.querySelector('.shepherd-content button.shepherd-cancel-icon'),
       );
 
       assert.dom('.shepherd-enabled').doesNotExist();
@@ -138,8 +138,6 @@ module('Acceptance | Tour functionality tests', function (hooks) {
 
   module('Tour options', function () {
     test('Defaults applied', async function (assert) {
-      assert.expect(1);
-
       const stepsWithoutClasses = [
         {
           attachTo: {
@@ -159,13 +157,11 @@ module('Acceptance | Tour functionality tests', function (hooks) {
 
       assert.ok(
         document.querySelector('.custom-default-class'),
-        'defaults class applied'
+        'defaults class applied',
       );
     });
 
     test('configuration works with attachTo object when element is a simple string', async function (assert) {
-      assert.expect(1);
-
       const steps = [
         {
           attachTo: {
@@ -187,8 +183,6 @@ module('Acceptance | Tour functionality tests', function (hooks) {
     });
 
     test('configuration works with attachTo object when element is dom element', async function (assert) {
-      assert.expect(1);
-
       await visit('/docs/demo');
 
       const steps = [
@@ -209,8 +203,6 @@ module('Acceptance | Tour functionality tests', function (hooks) {
     });
 
     test('buttons work when type is not specified and passed action is triggered', async function (assert) {
-      assert.expect(4);
-
       let buttonActionCalled = false;
 
       const steps = [
@@ -248,15 +240,15 @@ module('Acceptance | Tour functionality tests', function (hooks) {
 
       assert.ok(
         document.querySelector('.button-one'),
-        'tour button one is visible'
+        'tour button one is visible',
       );
       assert.ok(
         document.querySelector('.button-two'),
-        'tour button two is visible'
+        'tour button two is visible',
       );
       assert.ok(
         document.querySelector('.button-three'),
-        'tour button three is visible'
+        'tour button three is visible',
       );
 
       await click(document.querySelector('.button-two'));
@@ -265,7 +257,6 @@ module('Acceptance | Tour functionality tests', function (hooks) {
     });
 
     test('scrollTo works with disableScroll on', async function (assert) {
-      assert.expect(2);
       // Setup controller tour settings
       tour.set('disableScroll', true);
       tour.set('scrollTo', true);
@@ -278,7 +269,7 @@ module('Acceptance | Tour functionality tests', function (hooks) {
       assert.strictEqual(
         document.querySelector('#ember-testing-container').scrollTop,
         0,
-        'Scroll is initially 0'
+        'Scroll is initially 0',
       );
 
       await tour.start();
@@ -289,13 +280,11 @@ module('Acceptance | Tour functionality tests', function (hooks) {
 
       assert.ok(
         document.querySelector('#ember-testing-container').scrollTop > 0,
-        'Scrolled down correctly'
+        'Scrolled down correctly',
       );
     });
 
     test('scrollTo works with a custom scrollToHandler', async function (assert) {
-      assert.expect(2);
-
       const done = assert.async();
 
       // Override default behavior
@@ -313,7 +302,7 @@ module('Acceptance | Tour functionality tests', function (hooks) {
             assert.strictEqual(
               document.querySelector('#ember-testing-container').scrollTop,
               120,
-              'Scrolled correctly'
+              'Scrolled correctly',
             );
             done();
           },
@@ -329,7 +318,7 @@ module('Acceptance | Tour functionality tests', function (hooks) {
       assert.strictEqual(
         document.querySelector('#ember-testing-container').scrollTop,
         0,
-        'Scroll is initially 0'
+        'Scroll is initially 0',
       );
 
       await tour.start();
@@ -337,7 +326,6 @@ module('Acceptance | Tour functionality tests', function (hooks) {
     });
 
     test('scrollTo works without a custom scrollToHandler', async function (assert) {
-      assert.expect(2);
       // Setup controller tour settings
       tour.set('scrollTo', true);
 
@@ -349,7 +337,7 @@ module('Acceptance | Tour functionality tests', function (hooks) {
       assert.strictEqual(
         document.querySelector('#ember-testing-container').scrollTop,
         0,
-        'Scroll is initially 0'
+        'Scroll is initially 0',
       );
 
       await tour.start();
@@ -358,13 +346,11 @@ module('Acceptance | Tour functionality tests', function (hooks) {
 
       assert.ok(
         document.querySelector('#ember-testing-container').scrollTop > 0,
-        'Scrolled correctly'
+        'Scrolled correctly',
       );
     });
 
     test('Show by id works', async function (assert) {
-      assert.expect(1);
-
       await visit('/docs/demo');
 
       tour.show('usage');
@@ -373,13 +359,11 @@ module('Acceptance | Tour functionality tests', function (hooks) {
         tour.get('tourObject').currentStep.el.querySelector('.shepherd-text')
           .textContent,
         'To use the tour service, simply inject it into your application and use it like this example.',
-        'Usage step shown'
+        'Usage step shown',
       );
     });
 
     test('hide method hides the current step', async function (assert) {
-      assert.expect(1);
-
       await visit('/docs/demo');
 
       tour.show('usage');
@@ -387,7 +371,7 @@ module('Acceptance | Tour functionality tests', function (hooks) {
 
       assert.false(
         tour.get('tourObject').currentStep.isOpen(),
-        'The step is hidden'
+        'The step is hidden',
       );
     });
   });
