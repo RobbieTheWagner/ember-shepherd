@@ -7873,28 +7873,7 @@ ember-source@~5.7.0:
     silent-error "^1.1.1"
     simple-html-tokenizer "^0.5.11"
 
-ember-svg-jar@^2.3.4:
-  version "2.4.7"
-  resolved "https://registry.yarnpkg.com/ember-svg-jar/-/ember-svg-jar-2.4.7.tgz#930bada6e6e1a84de121c5874f772465baa9c88b"
-  integrity sha512-W1PWqiQOAcNvUIomkZP5oi4JdV2eQPEuGLa1ic0LPhpx/OHKwtW35M1TTDQ+YWwCnKJf0uh/Bl8ZumVw38YXBQ==
-  dependencies:
-    "@embroider/macros" "^1.12.2"
-    broccoli-caching-writer "^3.0.3"
-    broccoli-concat "^4.2.5"
-    broccoli-funnel "^3.0.8"
-    broccoli-merge-trees "^4.2.0"
-    broccoli-persistent-filter "^3.1.2"
-    broccoli-plugin "^4.0.7"
-    broccoli-string-replace "^0.1.2"
-    broccoli-svg-optimizer "^2.1.0"
-    cheerio "^1.0.0-rc.12"
-    console-ui "^3.1.1"
-    ember-cli-babel "^7.26.6"
-    ember-cli-htmlbars "^5.7.1"
-    lodash "^4.17.15"
-    safe-stable-stringify "^2.2.0"
-
-ember-svg-jar@^2.4.7:
+ember-svg-jar@^2.3.4, ember-svg-jar@^2.4.7:
   version "2.4.9"
   resolved "https://registry.yarnpkg.com/ember-svg-jar/-/ember-svg-jar-2.4.9.tgz#6be24801005a433cbca0c930674659e6fdabdd36"
   integrity sha512-d/8rdE2nDUt6xVMpTqbohE4kHAaoY+P/7jWCWow3UQGtaGhvURXfKgo8TG/UVK+TfTgJInN6JcU76XLg+MWEtw==
