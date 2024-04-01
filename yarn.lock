@@ -7089,10 +7089,10 @@ ember-cli-clipboard@^1.1.0:
     ember-modifier "^3.2.7 || ^4.1.0"
     prop-types "^15.8.1"
 
-ember-cli-code-coverage@^2.0.0-beta.4:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/ember-cli-code-coverage/-/ember-cli-code-coverage-2.0.3.tgz#8e283b46417076b84309163be696bd141aa90054"
-  integrity sha512-xBItw4kPffuy4QVCniBSwvyzFJiwU/+tqTyoyshug9LtiRDOaOepPVuQ8Ig+e5sYmxp3OXXcaR9iK5IY2J62Zg==
+ember-cli-code-coverage@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-code-coverage/-/ember-cli-code-coverage-3.0.0.tgz#27de848e2cc4b4659cbf82df9b9193e272fba01e"
+  integrity sha512-IAVET5oKS0IkEAPUTKOzHlNk1Z+986//8LZmfqhkSGkGJ76tFLw8AAS+BloUctX7J/xCUNn/1voBVqb5oabMPw==
   dependencies:
     babel-plugin-istanbul "^6.1.1"
     body-parser "^1.19.0"
@@ -7101,6 +7101,7 @@ ember-cli-code-coverage@^2.0.0-beta.4:
     fs-extra "^9.0.0"
     istanbul-lib-coverage "^3.2.1"
     istanbul-lib-report "^3.0.1"
+    istanbul-lib-source-maps "^4.0.1"
     istanbul-reports "^3.1.6"
     node-dir "^0.1.17"
     walk-sync "^2.1.0"
@@ -9235,16 +9236,7 @@ fs-extra@^10.0.0:
     jsonfile "^6.0.1"
     universalify "^2.0.0"
 
-fs-extra@^11.1.0:
-  version "11.1.1"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-11.1.1.tgz#da69f7c39f3b002378b0954bb6ae7efdc0876e2d"
-  integrity sha512-MGIE4HOvQCeUCzmlHs0vXpih4ysz4wg9qiSAu6cd42lVwPbTM1TjV7RusoyQqMmk/95gdQZX72u+YW+c3eEpFQ==
-  dependencies:
-    graceful-fs "^4.2.0"
-    jsonfile "^6.0.1"
-    universalify "^2.0.0"
-
-fs-extra@^11.1.1:
+fs-extra@^11.1.0, fs-extra@^11.1.1:
   version "11.2.0"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-11.2.0.tgz#e70e17dfad64232287d01929399e0ea7c86b0e5b"
   integrity sha512-PmDi3uwK5nFuXh7XDTlVnS17xJS7vW36is2+w3xcv8SVxiB4NyATf4ctkVY5bkSjX0Y4nbvZCq1/EjtEyr9ktw==
@@ -11027,6 +11019,15 @@ istanbul-lib-report@^3.0.0, istanbul-lib-report@^3.0.1:
     istanbul-lib-coverage "^3.0.0"
     make-dir "^4.0.0"
     supports-color "^7.1.0"
+
+istanbul-lib-source-maps@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/istanbul-lib-source-maps/-/istanbul-lib-source-maps-4.0.1.tgz#895f3a709fcfba34c6de5a42939022f3e4358551"
+  integrity sha512-n3s8EwkdFIJCG3BPKBYvskgXGoy88ARzvegkitk60NxRdwltLOTaH7CUiMRXvwYorl0Q712iEjcWB+fK/MrWVw==
+  dependencies:
+    debug "^4.1.1"
+    istanbul-lib-coverage "^3.0.0"
+    source-map "^0.6.1"
 
 istanbul-reports@^3.1.6:
   version "3.1.6"
