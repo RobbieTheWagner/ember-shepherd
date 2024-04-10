@@ -28,6 +28,7 @@ module.exports = {
   rules: {
     'no-console': 'off',
     'ember/no-jquery': 'error',
+    'ember/no-runloop': 'off',
   },
   overrides: [
     // node files
