@@ -82,7 +82,6 @@
     "@release-it-plugins/lerna-changelog": "^6.1.0",
     "babel-plugin-dynamic-import-node": "^2.3.3",
     "broccoli-asset-rev": "^3.0.0",
-    "codeclimate-test-reporter": "^0.5.1",
     "concurrently": "^8.2.2",
     "ember-cli": "~5.7.0",
     "ember-cli-addon-docs": "^7.0.1",
@@ -124,9 +123,6 @@
     "stylelint-config-standard-scss": "^11.0.0",
     "stylelint-prettier": "^4.1.0",
     "webpack": "^5.90.3"
-  },
-  "resolutions": {
-    "**/colors": "1.4.0"
   },
   "peerDependencies": {
     "ember-source": "^4.0.0"
