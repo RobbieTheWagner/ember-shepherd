@@ -171,6 +171,9 @@ importers:
       release-it:
         specifier: ^17.1.1
         version: 17.10.0
+      rsvp:
+        specifier: ^4.8.5
+        version: 4.8.5
       sass:
         specifier: ^1.49.0
         version: 1.80.6
