@@ -6,8 +6,8 @@
 ## v15.0.0 (2024-03-28)
 
 #### :boom: Breaking Change
-* [#1636](https://github.com/shepherd-pro/ember-shepherd/pull/1636) Drop support for Ember < 4.8 and node < 18 ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
-* [#1373](https://github.com/shepherd-pro/ember-shepherd/pull/1373) ember/ember-cli 4.12 drop support for Ember < 4.4 ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+* [#1636](https://github.com/robbiethewagner/ember-shepherd/pull/1636) Drop support for Ember < 4.8 and node < 18 ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+* [#1373](https://github.com/robbiethewagner/ember-shepherd/pull/1373) ember/ember-cli 4.12 drop support for Ember < 4.4 ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
 
 #### Committers: 1
 - Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))

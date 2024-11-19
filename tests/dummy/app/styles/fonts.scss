@@ -1,50 +1,22 @@
 @import "https://fonts.googleapis.com/css?family=Pacifico";
 
 @font-face {
-  font-family: "Pier Sans";
-  font-style: italic;
+  font-family: "GT Pressura";
+  src:
+    url("../../fonts/GTPressura-Bold.woff2") format("woff2"),
+    url("../../fonts/GTPressura-Bold.woff") format("woff");
   font-weight: bold;
-  src: url("../../fonts/PierSans-BoldItalic.eot");
-  src:
-    url("../../fonts/PierSans-BoldItalic.eot?#iefix")
-      format("embedded-opentype"),
-    url("../../fonts/PierSans-BoldItalic.woff") format("woff"),
-    url("../../fonts/PierSans-BoldItalic.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Pier Sans";
-  font-style: italic;
-  font-weight: normal;
-  src: url("../../fonts/PierSans-Italic.eot");
-  src:
-    url("../../fonts/PierSans-Italic.eot?#iefix") format("embedded-opentype"),
-    url("../../fonts/PierSans-Italic.woff") format("woff"),
-    url("../../fonts/PierSans-Italic.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Pier Sans";
   font-style: normal;
-  font-weight: normal;
-  src: url("../../fonts/PierSans.eot");
-  src:
-    url("../../fonts/PierSans.eot?#iefix") format("embedded-opentype"),
-    url("../../fonts/PierSans.woff") format("woff"),
-    url("../../fonts/PierSans.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Pier Sans";
-  font-style: normal;
-  font-weight: bold;
-  src: url("../../fonts/PierSans-Bold.eot");
+  font-family: "Founders Grotesk";
   src:
-    url("../../fonts/PierSans-Bold.eot?#iefix") format("embedded-opentype"),
-    url("../../fonts/PierSans-Bold.woff") format("woff"),
-    url("../../fonts/PierSans-Bold.ttf") format("truetype");
+    url("../../fonts/FoundersGrotesk-Regular.woff2") format("woff2"),
+    url("../../fonts/FoundersGrotesk-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 // Fonts
 $f-pacifico: "Pacifico";
-$f-primary: "Pier Sans", sans-serif;

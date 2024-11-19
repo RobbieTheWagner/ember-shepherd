@@ -50,7 +50,7 @@ export const steps = [
   },
   {
     attachTo: {
-      element: '.install-element > pre',
+      element: '.install-element .shiki-code-block',
       on: 'bottom',
     },
     buttons: [builtInButtons.cancel, builtInButtons.back, builtInButtons.next],
@@ -61,7 +61,7 @@ export const steps = [
   },
   {
     attachTo: {
-      element: '.usage-element > pre',
+      element: '.usage-element .shiki-code-block',
       on: 'bottom',
     },
     buttons: [builtInButtons.cancel, builtInButtons.back, builtInButtons.next],

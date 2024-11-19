@@ -8,9 +8,7 @@
 ![Download count all time](https://img.shields.io/npm/dt/ember-shepherd.svg)
 [![npm](https://img.shields.io/npm/dm/ember-shepherd.svg)]()
 [![Ember Observer Score](http://emberobserver.com/badges/ember-shepherd.svg)](http://emberobserver.com/addons/ember-shepherd)
-![CI Build](https://github.com/shepherd-pro/ember-shepherd/workflows/CI%20Build/badge.svg)
-[![Code Climate](https://codeclimate.com/github/shepherd-pro/ember-shepherd/badges/gpa.svg)](https://codeclimate.com/github/shepherd-pro/ember-shepherd)
-[![Test Coverage](https://codeclimate.com/github/shepherd-pro/ember-shepherd/badges/coverage.svg)](https://codeclimate.com/github/shepherd-pro/ember-shepherd/coverage)
+[![CI](https://github.com/RobbieTheWagner/ember-shepherd/actions/workflows/ci.yml/badge.svg)](https://github.com/RobbieTheWagner/ember-shepherd/actions/workflows/ci.yml)
 
 This is an Ember wrapper for the [Shepherd](https://github.com/shipshapecode/shepherd), site tour, library. It provides additional functionality, on top of Shepherd, as well.
 

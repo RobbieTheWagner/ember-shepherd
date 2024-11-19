@@ -1,21 +1,45 @@
-@import "./prism-ghcolors";
 @import "./fonts";
+@import "./shepherd-theme";
 
-$background1: #3d2f53;
-$background2: #624b86;
-$button-dark: #75beaa;
-$light-color: #c1b5d3;
-$altlight-color: #7b7486;
 $panel-border: #d8d8d8;
 $transparent: transparent;
-$whiteish: #c8c7d5;
+
+html,
+body {
+  // font-family: "Founders Grotesk", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+}
+
+a,
+button {
+  transition: 0.25s ease-in-out;
+}
+
+.button {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.25s ease-in-out;
+}
+
+.button:hover {
+  background: #f3f5f5;
+  transform: translateX(10px) translateY(-10px);
+}
 
 .demo-page {
   a {
     &.bottom-button {
       background-color: $transparent;
-      border: 2px solid $light-color;
-      color: $light-color;
+      border: 2px solid black;
+      color: black;
       cursor: pointer;
       display: inline-block;
       font-size: 0.7em;
@@ -28,18 +52,18 @@ $whiteish: #c8c7d5;
       width: 150px;
 
       &:hover {
-        border: 2px solid $whiteish;
-        color: $whiteish;
+        border: 2px solid white;
+        color: white;
       }
     }
   }
 
   .panel {
-    background-color: $whiteish;
+    background-color: rgb(248 250 252);
     border-color: $panel-border;
     border-style: solid;
     border-width: 1px;
-    color: $background1;
+    color: black;
     font-size: 0.75em;
     margin-bottom: 1.25rem;
     padding: 1.25rem;
@@ -47,8 +71,8 @@ $whiteish: #c8c7d5;
   }
 
   .button.dark {
-    background: $light-color;
-    color: $button-dark;
+    background: white;
+    color: black;
   }
 
   @media (width <= 568px) {
@@ -58,73 +82,6 @@ $whiteish: #c8c7d5;
     }
   }
 
-  .shepherd-element {
-    &.shepherd-theme-arrows {
-      &.shepherd-has-title {
-        header {
-          background-color: $whiteish;
-          color: $background1;
-
-          h1,
-          h2,
-          h3,
-          h4,
-          h5,
-          h6 {
-            color: $background1;
-          }
-        }
-      }
-
-      /* stylelint-disable selector-class-pattern */
-      &[x-placement^="bottom"] {
-        .popper__arrow {
-          border-bottom-color: $background1;
-        }
-
-        &.shepherd-has-title .popper__arrow {
-          border-bottom-color: $whiteish;
-        }
-      }
-
-      &[x-placement^="top"] {
-        // stylelint-disable-next-line
-        .popper__arrow {
-          border-top-color: $background1;
-        }
-
-        &.shepherd-has-title .popper__arrow {
-          border-top-color: $whiteish;
-        }
-      }
-      /* stylelint-enable selector-class-pattern */
-
-      .shepherd-content {
-        max-width: 100%;
-        width: 400px;
-
-        .shepherd-text {
-          color: $whiteish;
-
-          a {
-            color: $altlight-color;
-          }
-        }
-      }
-    }
-  }
-
-  .shepherd-element.shepherd-theme-arrows
-    .shepherd-content
-    footer
-    .shepherd-buttons
-    li
-    .shepherd-button {
-    font-size: 0.75em;
-    line-height: 0.75em;
-    padding-top: 1em;
-  }
-
   pre {
     border: 1px solid rgb(0 0 0 / 15%);
     line-height: 1.4em;
@@ -132,7 +89,7 @@ $whiteish: #c8c7d5;
   }
 
   .page-title {
-    color: $light-color;
+    color: black;
     font-size: 50pt;
 
     .ember-title {
