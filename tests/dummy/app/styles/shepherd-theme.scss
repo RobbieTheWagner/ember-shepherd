@@ -52,7 +52,7 @@
 }
 
 pre {
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid rgb(0 0 0 / 15%);
   line-height: 1.4em;
 }
 
@@ -110,7 +110,7 @@ pre {
   display: none;
 }
 
-.shepherd-element .shepherd-arrow:after {
+.shepherd-element .shepherd-arrow::after {
   content: url("../img/arrow.svg");
   display: inline-block;
 }
@@ -120,8 +120,8 @@ pre {
   bottom: -35px;
 }
 
-.shepherd-element[data-popper-placement^="top"] .shepherd-arrow:after,
-.shepherd-element.shepherd-pinned-top .shepherd-arrow:after {
+.shepherd-element[data-popper-placement^="top"] .shepherd-arrow::after,
+.shepherd-element.shepherd-pinned-top .shepherd-arrow::after {
   transform: rotate(270deg);
 }
 
@@ -129,7 +129,7 @@ pre {
   top: -35px;
 }
 
-.shepherd-element[data-popper-placement^="bottom"] .shepherd-arrow:after {
+.shepherd-element[data-popper-placement^="bottom"] .shepherd-arrow::after {
   transform: rotate(90deg);
 }
 
@@ -138,8 +138,8 @@ pre {
   right: -35px;
 }
 
-.shepherd-element[data-popper-placement^="left"] .shepherd-arrow:after,
-.shepherd-element.shepherd-pinned-left .shepherd-arrow:after {
+.shepherd-element[data-popper-placement^="left"] .shepherd-arrow::after,
+.shepherd-element.shepherd-pinned-left .shepherd-arrow::after {
   transform: rotate(180deg);
 }
 
@@ -181,8 +181,8 @@ pre {
 .shepherd-text a:visited,
 .shepherd-text a:active {
   border-bottom: 1px dotted;
-  border-bottom-color: rgba(0, 0, 0, 0.75);
-  color: rgba(0, 0, 0, 0.75);
+  border-bottom-color: rgb(0 0 0 / 75%);
+  color: rgb(0 0 0 / 75%);
   text-decoration: none;
 }
 
