@@ -29,12 +29,12 @@ export default class DocsDemoRoute extends Route {
     return {
       links: [
         {
-          href: 'https://github.com/shepherd-pro/ember-shepherd',
+          href: 'https://github.com/robbiethewagner/ember-shepherd',
           text: 'Docs',
           type: 'href',
         },
         {
-          href: 'https://github.com/shepherd-pro/ember-shepherd',
+          href: 'https://github.com/robbiethewagner/ember-shepherd',
           text: 'GitHub',
           type: 'href',
         },
