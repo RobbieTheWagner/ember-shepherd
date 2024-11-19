@@ -1,4 +1,13 @@
 
+
+## v17.0.4 (2024-11-19)
+
+#### :house: Internal
+* [#1706](https://github.com/RobbieTheWagner/ember-shepherd/pull/1706) Go back to not full embroider ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### Committers: 1
+- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
 ## v17.0.3 (2024-11-19)
 
 ## v17.0.2 (2024-11-19)
