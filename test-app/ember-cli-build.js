@@ -13,9 +13,11 @@ module.exports = function (defaults) {
     },
   });
 
-  const { maybeEmbroider } = require('@embroider/test-setup');
+  return app.toTree();
 
-  return maybeEmbroider(app);
+  // const { maybeEmbroider } = require('@embroider/test-setup');
+
+  // return maybeEmbroider(app);
 
   // return require('@embroider/compat').compatBuild(app, Webpack, {
   //   staticAddonTrees: true,
