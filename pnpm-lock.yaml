@@ -21,8 +21,8 @@ importers:
         specifier: ^6.3.0
         version: 6.3.0
       shepherd.js:
-        specifier: ^11.2.0
-        version: 11.2.0
+        specifier: ^14.1.0
+        version: 14.1.0
     devDependencies:
       '@babel/eslint-parser':
         specifier: ^7.25.9
@@ -1410,6 +1410,9 @@ packages:
     engines: {node: '>= 16'}
     peerDependencies:
       release-it: ^14.0.0 || ^15.1.3 || ^16.0.0 || ^17.0.0
+
+  '@scarf/scarf@1.4.0':
+    resolution: {integrity: sha512-xxeapPiUXdZAE3che6f3xogoJPeZgig6omHEy1rIY5WVsB3H2BHNnZH+gHG6x91SCWyQCzWGsuL2Hh3ClO5/qQ==}
 
   '@simple-dom/document@1.4.0':
     resolution: {integrity: sha512-/RUeVH4kuD3rzo5/91+h4Z1meLSLP66eXqpVAw/4aZmYozkeqUkMprq0znL4psX/adEed5cBgiNJcfMz/eKZLg==}
@@ -3275,9 +3278,9 @@ packages:
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
 
-  deepmerge@4.3.1:
-    resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
-    engines: {node: '>=0.10.0'}
+  deepmerge-ts@7.1.3:
+    resolution: {integrity: sha512-qCSH6I0INPxd9Y1VtAiLpnYvz5O//6rCfJXKk0z66Up9/VOSr+1yS8XSKA5IWRxjocFGlzPyaZYe+jxq7OOLtQ==}
+    engines: {node: '>=16.0.0'}
 
   default-browser-id@5.0.0:
     resolution: {integrity: sha512-A6p/pu/6fyBcA1TRz/GqWYPViplrftcW2gZC9q79ngNCKAeR/X3gcEdXQHl4KNXV+3wgIJ1CPkJQ3IHM6lcsyA==}
@@ -7211,9 +7214,9 @@ packages:
   shellwords@0.1.1:
     resolution: {integrity: sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==}
 
-  shepherd.js@11.2.0:
-    resolution: {integrity: sha512-2hbz3N7GuuTjI7y3sfnoqKnH0cNhExx67IJtCTGQI2KhBEyvegsDYW5qjj5BlvvVtQjmL/O/J1GQEciwfoZWpw==}
-    engines: {node: 16.* || >= 18}
+  shepherd.js@14.1.0:
+    resolution: {integrity: sha512-nFJElQ0KLF0zaDBINHpnUeBQVEOfRPyDrYkJkOj4ziQIyvSkQeJogEIAWwtpCEIxZOWNXxMYXcPVErjGE9EP6Q==}
+    engines: {node: 18.* || >= 20}
 
   side-channel@1.0.6:
     resolution: {integrity: sha512-fDW/EZ6Q9RiO8eFG8Hj+7u/oW+XrPTIChwCOM2+th2A6OblDtYYIpve9m+KvI9Z4C9qSEXlaGR6bTEYHReuglA==}
@@ -9900,6 +9903,8 @@ snapshots:
       - bluebird
       - supports-color
 
+  '@scarf/scarf@1.4.0': {}
+
   '@simple-dom/document@1.4.0':
     dependencies:
       '@simple-dom/interface': 1.4.0
@@ -12369,7 +12374,7 @@ snapshots:
 
   deep-is@0.1.4: {}
 
-  deepmerge@4.3.1: {}
+  deepmerge-ts@7.1.3: {}
 
   default-browser-id@5.0.0: {}
 
@@ -17552,10 +17557,11 @@ snapshots:
 
   shellwords@0.1.1: {}
 
-  shepherd.js@11.2.0:
+  shepherd.js@14.1.0:
     dependencies:
       '@floating-ui/dom': 1.6.12
-      deepmerge: 4.3.1
+      '@scarf/scarf': 1.4.0
+      deepmerge-ts: 7.1.3
 
   side-channel@1.0.6:
     dependencies:
