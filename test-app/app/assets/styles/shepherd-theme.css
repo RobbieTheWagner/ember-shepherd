@@ -92,6 +92,7 @@ pre {
 
 .shepherd-element {
   border: solid 4px #16202d;
+  padding: 0;
 }
 
 .shepherd-element,
@@ -111,7 +112,7 @@ pre {
 }
 
 .shepherd-element .shepherd-arrow::after {
-  content: url("../img/arrow.svg");
+  content: url("/img/arrow.svg");
   display: inline-block;
 }
 
