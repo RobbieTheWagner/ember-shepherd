@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "description": "Test app for ember-shepherd addon",
-  "repository": "",
+  "repository": "https://github.com/RobbieTheWagner/ember-shepherd",
   "license": "MIT",
   "author": "",
   "directories": {
