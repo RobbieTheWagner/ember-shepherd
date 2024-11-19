@@ -23,3 +23,6 @@
 
 # broccoli-debug
 /DEBUG/
+
+# addon-docs
+tmp/

@@ -25,7 +25,7 @@ ember install ember-shepherd
 
 ## Documentation
 
-[View Docs](https://robbiethewagner.github.io/ember-shepherd/)
+[View Docs](https://RobbieTheWagner.github.io/ember-shepherd/)
 
 ## Contributing
 
