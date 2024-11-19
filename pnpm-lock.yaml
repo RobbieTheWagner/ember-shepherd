@@ -11,6 +11,12 @@ importers:
 
   .:
     devDependencies:
+      '@release-it-plugins/lerna-changelog':
+        specifier: ^6.1.0
+        version: 6.1.0(release-it@17.10.0)
+      '@release-it-plugins/workspaces':
+        specifier: ^4.2.0
+        version: 4.2.0(release-it@17.10.0)
       concurrently:
         specifier: ^8.2.0
         version: 8.2.2
@@ -20,6 +26,9 @@ importers:
       prettier-plugin-ember-template-tag:
         specifier: ^2.0.2
         version: 2.0.4(prettier@3.3.3)
+      release-it:
+        specifier: ^17.1.1
+        version: 17.10.0
 
   ember-shepherd:
     dependencies:
@@ -136,9 +145,6 @@ importers:
       '@glimmer/tracking':
         specifier: ^1.1.2
         version: 1.1.2
-      '@release-it-plugins/lerna-changelog':
-        specifier: ^6.1.0
-        version: 6.1.0(release-it@17.10.0)
       babel-plugin-dynamic-import-node:
         specifier: ^2.3.3
         version: 2.3.3
@@ -268,9 +274,6 @@ importers:
       qunit-dom:
         specifier: ^3.2.1
         version: 3.3.0
-      release-it:
-        specifier: ^17.10.0
-        version: 17.10.0
       shepherd.js:
         specifier: ^14.1.0
         version: 14.3.0
@@ -1560,6 +1563,12 @@ packages:
     engines: {node: '>= 16'}
     peerDependencies:
       release-it: ^14.0.0 || ^15.1.3 || ^16.0.0 || ^17.0.0
+
+  '@release-it-plugins/workspaces@4.2.0':
+    resolution: {integrity: sha512-hzQMdYWFnLBS/7dfasIWyeD2LUKeL7LT8ldxZgpzon90lW1cEU4Kpad78KmpZl1L188YHAbwVnboE+6i14jlEQ==}
+    engines: {node: '>= 16'}
+    peerDependencies:
+      release-it: ^14.0.0 || ^15.2.0 || ^16.0.0 || ^17.0.0
 
   '@rollup/plugin-babel@6.0.4':
     resolution: {integrity: sha512-YF7Y52kFdFT/xVSuVdjkV5ZdX/3YtmX0QulG+x0taQOtJdHYzVU61aSSkAgVJ7NOv6qPkIYiJSgSWWN/DM5sGw==}
@@ -8365,6 +8374,9 @@ packages:
     resolution: {integrity: sha512-Am1ousAhSLBeB9cG/7k7r2R0zj50uDRlZHPGbazid5s9rlF1F/QKYObEKSIunSjIOkJZqwRRLpvewjEkM7pSqg==}
     deprecated: Please see https://github.com/lydell/urix#deprecated
 
+  url-join@4.0.1:
+    resolution: {integrity: sha512-jk1+QP6ZJqyOiuEI9AEWQfju/nB2Pw466kbA0LEZljHwKeMgd9WrAEgEGxjPDD2+TNbbb37rTyhEfrCXfuKXnA==}
+
   url-join@5.0.0:
     resolution: {integrity: sha512-n2huDr9h9yzd6exQVnH/jU5mr+Pfx08LRXXZhkLLetAMESRj+anQsTAh940iMrIetKAmry9coFuZQ2jY8/p3WA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -8642,6 +8654,11 @@ packages:
   yam@1.0.0:
     resolution: {integrity: sha512-Hv9xxHtsJ9228wNhk03xnlDReUuWVvHwM4rIbjdAXYvHLs17xjuyF50N6XXFMN6N0omBaqgOok/MCK3At9fTAg==}
     engines: {node: ^4.5 || 6.* || >= 7.*}
+
+  yaml@2.6.1:
+    resolution: {integrity: sha512-7r0XPzioN/Q9kXBro/XPnA6kznR73DHq+GXh5ON7ZozRO6aMjbmiBuKste2wslTFkC5d1dw0GooOCepZXJ2SAg==}
+    engines: {node: '>= 14'}
+    hasBin: true
 
   yargs-parser@20.2.9:
     resolution: {integrity: sha512-y11nGElTIV+CT3Zv9t7VKl+Q3hTQoT9a1Qzezhhl6Rp21gJ/IVTW7Z3y9EWXhuUBC2Shnf+DX0antecpAwSP8w==}
@@ -10456,6 +10473,17 @@ snapshots:
     transitivePeerDependencies:
       - bluebird
       - supports-color
+
+  '@release-it-plugins/workspaces@4.2.0(release-it@17.10.0)':
+    dependencies:
+      detect-indent: 6.1.0
+      detect-newline: 3.1.0
+      release-it: 17.10.0
+      semver: 7.6.3
+      url-join: 4.0.1
+      validate-peer-dependencies: 1.2.0
+      walk-sync: 2.2.0
+      yaml: 2.6.1
 
   '@rollup/plugin-babel@6.0.4(@babel/core@7.26.0)(rollup@4.27.3)':
     dependencies:
@@ -19374,6 +19402,8 @@ snapshots:
 
   urix@0.1.0: {}
 
+  url-join@4.0.1: {}
+
   url-join@5.0.0: {}
 
   url-parse-lax@3.0.0:
@@ -19668,6 +19698,8 @@ snapshots:
     dependencies:
       fs-extra: 4.0.3
       lodash.merge: 4.6.2
+
+  yaml@2.6.1: {}
 
   yargs-parser@20.2.9: {}
 
