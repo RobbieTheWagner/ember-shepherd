@@ -1,0 +1,3 @@
+packages:
+  - 'ember-shepherd'
+  - 'test-app'
