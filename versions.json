@@ -125,24 +125,6 @@
     "sha": "e177fbea1b87776f25afb7a3aa5083876b1193b2",
     "tag": "v14.0.2"
   },
-  "v17.0.0": {
-    "path": "versions/v17.0.0",
-    "name": "v17.0.0",
-    "sha": "eed48e210f3b5f3a7d55a01a57496fa29ece548a",
-    "tag": "v17.0.0"
-  },
-  "v17.0.1": {
-    "path": "versions/v17.0.1",
-    "name": "v17.0.1",
-    "sha": "a04c7f7ac6157c8a513433f7f1cfad87e16361ee",
-    "tag": "v17.0.1"
-  },
-  "v17.0.4": {
-    "path": "versions/v17.0.4",
-    "name": "v17.0.4",
-    "sha": "8ae570b41b39e9dc58809fdbb1c56cf3c324ea1a",
-    "tag": "v17.0.4"
-  },
   "v17.0.5": {
     "path": "versions/v17.0.5",
     "name": "v17.0.5",
