@@ -1,6 +1,12 @@
 Usage
 ------------------------------------------------------------------------------
 
+The styles are no longer automatically added for Shepherd. You will need to add them to your styles manually. How you do this will vary depending on your app, but one possible way is to add this to your app's CSS:
+
+```css
+@import url("https://cdn.jsdelivr.net/npm/shepherd.js@14.3.0/dist/css/shepherd.min.css");
+```
+
 Most of the usage documentation can be found in the [API Reference for the Tour Service](api/services/tour).
 
 ## Step Options
