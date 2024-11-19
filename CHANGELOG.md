@@ -3,6 +3,27 @@
 
 
 
+
+## v16.0.0 (2024-11-19)
+
+#### :boom: Breaking Change
+* [#1693](https://github.com/RobbieTheWagner/ember-shepherd/pull/1693) Bump shepherd.js from 11.2.0 to 14.1.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+#### :rocket: Enhancement
+* [#1704](https://github.com/RobbieTheWagner/ember-shepherd/pull/1704) Add back support for Ember >= 4.4 ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### :memo: Documentation
+* [#1703](https://github.com/RobbieTheWagner/ember-shepherd/pull/1703) Update demo and docs ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+* [#1689](https://github.com/RobbieTheWagner/ember-shepherd/pull/1689) Update README.md with working docs link ([@zion](https://github.com/zion))
+
+#### :house: Internal
+* [#1702](https://github.com/RobbieTheWagner/ember-shepherd/pull/1702) Disable embroider-optimized ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+* [#1701](https://github.com/RobbieTheWagner/ember-shepherd/pull/1701) Switch to pnpm ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### Committers: 2
+- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+- Simeon ([@zion](https://github.com/zion))
+
 ## v15.0.0 (2024-03-28)
 
 #### :boom: Breaking Change
