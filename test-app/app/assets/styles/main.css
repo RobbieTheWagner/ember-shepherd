@@ -1,6 +1,6 @@
-@import "shepherd.js/dist/css/shepherd.css";
-@import "./fonts.css";
-@import "./shepherd-theme.css";
+@import url("shepherd.js/dist/css/shepherd.css");
+@import url("./fonts.css");
+@import url("./shepherd-theme.css");
 
 html,
 body {
@@ -90,7 +90,7 @@ button {
     font-size: 50pt;
 
     .ember-title {
-      font-family: "Pacifico";
+      font-family: Pacifico;
     }
   }
 
