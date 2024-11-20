@@ -1,0 +1,191 @@
+:root {
+  --ember-shiki-padding-x: 24px;
+  --ember-shiki-padding-y: 20px;
+  --ember-shiki-border-radius: 6px;
+  --ember-shiki-background-color: #161b22;
+  --ember-shiki-copy-background-color: #161b22;
+  --ember-shiki-line-number-color: rgb(115 138 148 / 40%);
+  --ember-shiki-font: ui-monospace, sfmono-regular, "SF Mono", menlo, monaco,
+    consolas, "Liberation Mono", "Courier New", monospace;
+  --ember-shiki-line-number-start: 1;
+  --ember-shiki-line-height: 1.7;
+  --ember-shiki-font-size: 0.875rem;
+  --ember-shiki-icon-copy: url('data:image/svg+xml,<svg fill="none" stroke="rgba(128,128,128,1)" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"></path></svg>');
+  --ember-shiki-icon-copied: url('data:image/svg+xml,<svg fill="none" stroke="rgba(128,128,128,1)" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0118 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3l1.5 1.5 3-3.75"></path></svg>');
+}
+
+.shiki-code-block {
+  overflow: auto;
+  font-size: var(--ember-shiki-font-size);
+  line-height: var(--ember-shiki-line-height);
+  font-family: var(--ember-shiki-font) !important;
+}
+
+.shiki-code-block__name,
+.code-tab-header {
+  background: var(--ember-shiki-background-color);
+  color: #fffd;
+  padding: var(--ember-shiki-padding-y) var(--ember-shiki-padding-x);
+  border-top-left-radius: var(--ember-shiki-border-radius);
+  border-top-right-radius: var(--ember-shiki-border-radius);
+  border-bottom: 1px solid var(--ember-shiki-line-number-color);
+}
+
+.code-tab-header {
+  padding: 0 var(--ember-shiki-padding-x);
+}
+
+.code-tab-header__name {
+  padding: var(--ember-shiki-padding-y) 0;
+  margin: 0 8px;
+  cursor: pointer;
+  display: inline-block;
+  opacity: 0.6;
+  transition:
+    0.1s ease-in-out opacity,
+    0.1s ease-in-out border-bottom-color;
+  border-bottom: 1px solid transparent;
+}
+
+.code-tab-header__name:first-child {
+  margin-left: 0;
+}
+
+.code-tab-header__name:hover {
+  opacity: 1;
+}
+
+.code-tab-header__name.active {
+  border-bottom-color: white;
+  opacity: 1;
+}
+
+.code-tab {
+  display: none;
+}
+
+.code-tab--active {
+  display: block;
+}
+
+.shiki {
+  margin: 0;
+  border-radius: var(--ember-shiki-border-radius);
+}
+
+.code-tab-container .shiki,
+.shiki-code-block__name + .shiki-code-block__code .shiki {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.shiki-code-block__code {
+  position: relative;
+}
+
+.shiki--loading {
+  background-color: var(--ember-shiki-background-color);
+  color: white;
+}
+
+.shiki code {
+  overflow-x: auto;
+  display: block;
+  font-family: var(--ember-shiki-font) !important;
+  font-size: var(--ember-shiki-font-size);
+  line-height: var(--ember-shiki-line-height);
+  padding: var(--ember-shiki-padding-y) 0;
+}
+
+.shiki code .line > span:first-of-type {
+  position: relative;
+}
+
+.shiki code .line {
+  padding: 0 var(--ember-shiki-padding-x);
+  box-sizing: border-box;
+  display: inline-block;
+  min-width: 100%;
+}
+
+.line.line--highlight-neutral {
+  background-color: var(--ember-shiki-line-number-color);
+}
+
+.line.line--highlight-add {
+  background-color: rgb(16 185 129 / 20%);
+}
+
+.line.line--highlight-add > span:first-of-type::before {
+  content: "+";
+  color: #10b981;
+  text-align: center;
+  position: absolute;
+  left: -16px;
+}
+
+.line.line--highlight-remove {
+  background-color: rgb(244 63 94 / 20%);
+  opacity: 0.7;
+}
+
+.line.line--highlight-remove > span:first-of-type::before {
+  content: "-";
+  color: #f43f5e;
+  text-align: center;
+  position: absolute;
+  left: -16px;
+}
+
+.line-numbers {
+  counter-reset: step;
+  counter-increment: step calc(var(--ember-shiki-line-number-start, 1) - 1);
+}
+
+/*
+* Set on first span inside line to it works together with line highlights
+*/
+.line-numbers code .line::before {
+  content: counter(step);
+  counter-increment: step;
+  width: 1em;
+  margin-right: 1.5em;
+  display: inline-block;
+  text-align: right;
+  color: var(--ember-shiki-line-number-color);
+}
+
+.shiki ::selection {
+  background: var(--ember-shiki-line-number-color);
+}
+
+.copy-button {
+  opacity: 0;
+  transition: 0.1s ease-in-out opacity;
+  background-image: var(--ember-shiki-icon-copy);
+  background-position: 50%;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: 1px solid #222;
+  border-radius: calc(var(--ember-shiki-border-radius) - 2px);
+  width: 40px;
+  height: 40px;
+  background-color: var(--ember-shiki-copy-background-color);
+  cursor: pointer;
+}
+
+.copy-button:hover {
+  border-color: var(--ember-shiki-line-number-color);
+}
+
+.shiki-code-block__code:hover .copy-button {
+  opacity: 1;
+}
+
+.copy-button--copied {
+  background-image: var(--ember-shiki-icon-copied);
+}
+
