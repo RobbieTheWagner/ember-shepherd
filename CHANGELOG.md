@@ -1,5 +1,14 @@
 
 
+
+## v17.0.7 (2024-11-20)
+
+#### :house: Internal
+* [#1707](https://github.com/RobbieTheWagner/ember-shepherd/pull/1707) Try embroider again ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### Committers: 1
+- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
 ## v17.0.6 (2024-11-20)
 
 ## v17.0.5 (2024-11-19)
