@@ -3,6 +3,15 @@
 
 
 
+
+## v17.1.2 (2024-11-26)
+
+#### :bug: Bug Fix
+* [#1710](https://github.com/RobbieTheWagner/ember-shepherd/pull/1710) Use EmberShepherdStepOptions type for steps ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### Committers: 1
+- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
 ## v17.1.1 (2024-11-26)
 
 #### :bug: Bug Fix
