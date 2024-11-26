@@ -3,10 +3,13 @@ import { set } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
 import Service from '@ember/service';
 import Evented from '@ember/object/evented';
-import { getOwner } from '@ember/application';
 import { bind } from '@ember/runloop';
-import { makeButton } from '../utils/buttons.js';
-import { elementIsHidden } from '../utils/dom.js';
+import { tracked } from '@glimmer/tracking';
+
+import { type StepOptions, type Tour } from 'shepherd.js';
+
+import { type EmberShepherdButton, makeButton } from '../utils/buttons.ts';
+import { elementIsHidden } from '../utils/dom.ts';
 
 /**
  * Interaction with `ember-shepherd` is done entirely through the Tour service, which you can access from any object using the `service` syntax:
@@ -30,6 +33,9 @@ import { elementIsHidden } from '../utils/dom.js';
  * @class Tour
  */
 export default class TourService extends Service.extend(Evented) {
+  declare tourObject: Tour;
+  declare tourName?: string;
+
   // Configuration Options
 
   /**
@@ -39,7 +45,7 @@ export default class TourService extends Service.extend(Evented) {
    * @property classPrefix
    * @type String
    */
-  classPrefix;
+  @tracked classPrefix?: string;
 
   /**
    * `confirmCancel` is a boolean flag, when set to `true` it will pop up a native browser
@@ -49,17 +55,17 @@ export default class TourService extends Service.extend(Evented) {
    * @property confirmCancel
    * @type Boolean
    */
-  confirmCancel = false;
+  @tracked confirmCancel = false;
 
   /**
    * `confirmCancelMessage` is a string to display in the confirm dialog when `confirmCancel`
    * is set to true.
    *
-   * @default null
+   * @default undefined
    * @property confirmCancelMessage
    * @type String
    */
-  confirmCancelMessage = null;
+  @tracked confirmCancelMessage?: string;
 
   /**
    * `defaultStepOptions` is used to set the options that will be applied to each step by default.
@@ -83,16 +89,16 @@ export default class TourService extends Service.extend(Evented) {
    *
    * @default {}
    * @property defaultStepOptions
-   * @type Object
+   * @type StepOptions
    */
-  defaultStepOptions = {};
+  defaultStepOptions: StepOptions = {};
 
   /**
-   * @default null
+   * @default undefined
    * @property errorTitle
    * @type String
    */
-  errorTitle = null;
+  @tracked errorTitle?: string;
 
   /**
    * Exiting the tour with the escape key will be enabled unless this is explicitly set to false.
@@ -101,14 +107,14 @@ export default class TourService extends Service.extend(Evented) {
    * @property exitOnEsc
    * @type Boolean
    */
-  exitOnEsc;
+  @tracked exitOnEsc?: boolean;
 
   /**
    * @default false
    * @property isActive
    * @type Boolean
    */
-  isActive = false;
+  @tracked isActive = false;
 
   /**
    * Navigating the tour via left and right arrow keys will be enabled unless this is explicitly set to false.
@@ -117,14 +123,14 @@ export default class TourService extends Service.extend(Evented) {
    * @property keyboardNavigation
    * @type Boolean
    */
-  keyboardNavigation;
+  @tracked keyboardNavigation?: boolean;
 
   /**
-   * @default null
+   * @default undefined
    * @property messageForUser
    * @type String
    */
-  messageForUser = null;
+  @tracked messageForUser?: string;
 
   /**
    * `modal` is a boolean, that should be set to true, if you would like the rest of the screen, other than the current element, greyed out, and the current element highlighted. If you do not need modal functionality, you can remove this option or set it to false.
@@ -135,7 +141,7 @@ export default class TourService extends Service.extend(Evented) {
    * @property modal
    * @type Boolean
    */
-  modal = false;
+  @tracked modal = false;
 
   /**
    * An optional container element for the modal. If not set, the modal will be appended to `document.body`.
@@ -143,7 +149,7 @@ export default class TourService extends Service.extend(Evented) {
    * @property modalContainer
    * @type HTMLElement
    */
-  modalContainer;
+  @tracked modalContainer?: HTMLElement;
 
   /**
    * `requiredElements` is an array of objects that indicate DOM elements that are **REQUIRED** by your tour and must
@@ -244,7 +250,7 @@ export default class TourService extends Service.extend(Evented) {
    * @returns {Promise} Promise that resolves when everything has been set up and shepherd is ready to use
    * @public
    */
-  addSteps(steps) {
+  addSteps(steps: Array<StepOptions>) {
     return this._initialize().then(() => {
       const tour = this.tourObject;
 
@@ -270,7 +276,10 @@ export default class TourService extends Service.extend(Evented) {
 
       steps.forEach((step) => {
         if (step.buttons) {
-          step.buttons = step.buttons.map(makeButton.bind(this), this);
+          step.buttons = (step.buttons as Array<EmberShepherdButton>).map(
+            makeButton.bind(this),
+            this,
+          );
         }
 
         tour.addStep(step);
@@ -286,6 +295,7 @@ export default class TourService extends Service.extend(Evented) {
    */
   back() {
     this.tourObject.back();
+    // @ts-expect-error TODO: refactor away from Evented mixin
     this.trigger('back');
   }
 
@@ -327,6 +337,7 @@ export default class TourService extends Service.extend(Evented) {
    */
   next() {
     this.tourObject.next();
+    // @ts-expect-error TODO: refactor away from Evented mixin
     this.trigger('next');
   }
 
@@ -337,7 +348,7 @@ export default class TourService extends Service.extend(Evented) {
    * @method show
    * @public
    */
-  show(id) {
+  show(id: string) {
     this.tourObject.show(id);
   }
 
@@ -365,6 +376,7 @@ export default class TourService extends Service.extend(Evented) {
    * @private
    */
   _onTourStart() {
+    // @ts-expect-error TODO: refactor away from Evented mixin
     this.trigger('start');
   }
 
@@ -375,10 +387,11 @@ export default class TourService extends Service.extend(Evented) {
    * @param {string} [completeOrCancel] 'complete' or 'cancel'
    * @private
    */
-  _onTourFinish(completeOrCancel) {
+  _onTourFinish(completeOrCancel: 'complete' | 'cancel') {
     if (!this.isDestroyed) {
       set(this, 'isActive', false);
     }
+    // @ts-expect-error TODO: refactor away from Evented mixin
     this.trigger(completeOrCancel);
   }
 
@@ -401,18 +414,9 @@ export default class TourService extends Service.extend(Evented) {
       tourName,
     } = this;
 
-    // Ensure `popperOptions` exists on `defaultStepOptions`
-    defaultStepOptions.popperOptions = defaultStepOptions.popperOptions || {};
-
-    let { rootElement } = getOwner(this);
-    if (typeof rootElement === 'string') {
-      rootElement = document.querySelector(rootElement);
-    }
-
-    // TODO: add something back here when we add `appendTo` support
-    // if (rootElement && !defaultStepOptions.tippyOptions.appendTo) {
-    //   defaultStepOptions.tippyOptions.appendTo = rootElement;
-    // }
+    // Ensure `floatingUIOptions` exists on `defaultStepOptions`
+    defaultStepOptions.floatingUIOptions =
+      defaultStepOptions.floatingUIOptions || {};
 
     return import('shepherd.js').then((module) => {
       const Shepherd = module.default;
@@ -450,18 +454,21 @@ export default class TourService extends Service.extend(Evented) {
 
     if (isPresent(requiredElements)) {
       /* istanbul ignore next: also can't test this due to things attached to root blowing up tests */
-      requiredElements.forEach((element) => {
-        const selectedElement = document.querySelector(element.selector);
+      requiredElements.forEach(
+        (element: { message: string; selector: string; title: string }) => {
+          const selectedElement = document.querySelector(element.selector);
 
-        if (
-          allElementsPresent &&
-          (!selectedElement || elementIsHidden(selectedElement))
-        ) {
-          allElementsPresent = false;
-          set(this, 'errorTitle', element.title);
-          set(this, 'messageForUser', element.message);
-        }
-      });
+          if (
+            allElementsPresent &&
+            (!selectedElement ||
+              elementIsHidden(selectedElement as HTMLElement))
+          ) {
+            allElementsPresent = false;
+            set(this, 'errorTitle', element.title);
+            set(this, 'messageForUser', element.message);
+          }
+        },
+      );
     }
     return allElementsPresent;
   }

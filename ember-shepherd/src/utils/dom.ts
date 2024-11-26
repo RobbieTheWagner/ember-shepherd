@@ -6,6 +6,6 @@
  * @private
  * @return {boolean} true if element is hidden
  */
-export function elementIsHidden(element) {
+export function elementIsHidden(element: HTMLElement) {
   return element.offsetWidth === 0 && element.offsetHeight === 0;
 }

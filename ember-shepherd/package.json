@@ -13,8 +13,14 @@
     "url": "https://github.com/RobbieTheWagner"
   },
   "exports": {
-    ".": "./dist/index.js",
-    "./*": "./dist/*.js",
+    ".": {
+      "types": "./declarations/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./declarations/*.d.ts",
+      "default": "./dist/*.js"
+    },
     "./addon-main.js": "./addon-main.cjs"
   },
   "files": [
@@ -23,15 +29,20 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup --config",
+    "build": "concurrently \"npm:build:*\" --names \"build:\"",
+    "build:js": "rollup --config",
+    "build:types": "tsc",
     "lint": "concurrently 'pnpm:lint:*(!fix)' --names 'lint:'",
     "lint:fix": "concurrently 'pnpm:lint:*:fix' --names 'fix:'",
     "lint:hbs": "ember-template-lint . --no-error-on-unmatched-pattern",
     "lint:hbs:fix": "ember-template-lint . --fix --no-error-on-unmatched-pattern",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
+    "lint:types": "tsc --emitDeclarationOnly false --noEmit",
     "prepack": "pnpm run build",
-    "start": "rollup --config --watch",
+    "start": "concurrently \"npm:start:*\" --names \"start:\"",
+    "start:js": "rollup --config --watch --no-watch.clearScreen",
+    "start:types": "tsc --watch",
     "test": "echo 'A v2 addon does not have tests, run tests in test-app'",
     "prepare": "pnpm run build"
   },
@@ -48,7 +59,10 @@
     "@embroider/addon-dev": "^4.3.1",
     "@rollup/plugin-babel": "^6.0.4",
     "babel-plugin-ember-template-compilation": "^2.2.5",
+    "@babel/plugin-transform-typescript": "^7.23.6",
+    "@tsconfig/ember": "^3.0.5",
     "concurrently": "^8.2.2",
+    "ember-source": "~5.12.0",
     "ember-template-lint": "^6.0.0",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
@@ -60,6 +74,7 @@
     "prettier-plugin-ember-template-tag": "^2.0.2",
     "rollup": "^4.16.4",
     "rollup-plugin-copy": "^3.5.0",
+    "typescript": "^5.4.2",
     "webpack": "^5.95.0"
   },
   "peerDependencies": {
@@ -77,6 +92,13 @@
     "main": "addon-main.cjs",
     "app-js": {
       "./services/tour.js": "./dist/_app_/services/tour.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "declarations/*"
+      ]
     }
   }
 }
