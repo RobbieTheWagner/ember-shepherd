@@ -1,6 +1,14 @@
 import { bind } from '@ember/runloop';
 import { assert } from '@ember/debug';
 
+import { type StepOptionsButton } from 'shepherd.js';
+
+import type TourService from '../services/tour';
+
+export type EmberShepherdButton = StepOptionsButton & {
+  type: 'back' | 'cancel' | 'next';
+};
+
 /**
  * Creates a button of the specified type, with the given classes and text
  *
@@ -13,7 +21,7 @@ import { assert } from '@ember/debug';
  * @private
  * @return {{action: *, classes: *, text: *}} Description here
  */
-export function makeButton(button) {
+export function makeButton(this: TourService, button: EmberShepherdButton): StepOptionsButton {
   const { classes, disabled, label, secondary, text, type } = button;
   const builtInButtonTypes = ['back', 'cancel', 'next'];
 

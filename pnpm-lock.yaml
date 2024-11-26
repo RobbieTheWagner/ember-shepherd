@@ -13,10 +13,10 @@ importers:
     devDependencies:
       '@release-it-plugins/lerna-changelog':
         specifier: ^6.1.0
-        version: 6.1.0(release-it@17.10.0)
+        version: 6.1.0(release-it@17.10.0(typescript@5.7.2))
       '@release-it-plugins/workspaces':
         specifier: ^4.2.0
-        version: 4.2.0(release-it@17.10.0)
+        version: 4.2.0(release-it@17.10.0(typescript@5.7.2))
       concurrently:
         specifier: ^8.2.0
         version: 8.2.2
@@ -28,7 +28,7 @@ importers:
         version: 2.0.4(prettier@3.3.3)
       release-it:
         specifier: ^17.1.1
-        version: 17.10.0
+        version: 17.10.0(typescript@5.7.2)
 
   ember-shepherd:
     dependencies:
@@ -48,6 +48,9 @@ importers:
       '@babel/eslint-parser':
         specifier: ^7.24.1
         version: 7.25.9(@babel/core@7.26.0)(eslint@8.57.1)
+      '@babel/plugin-transform-typescript':
+        specifier: ^7.23.6
+        version: 7.25.9(@babel/core@7.26.0)
       '@babel/runtime':
         specifier: ^7.24.4
         version: 7.26.0
@@ -57,6 +60,9 @@ importers:
       '@rollup/plugin-babel':
         specifier: ^6.0.4
         version: 6.0.4(@babel/core@7.26.0)(rollup@4.27.3)
+      '@tsconfig/ember':
+        specifier: ^3.0.5
+        version: 3.0.8
       babel-plugin-ember-template-compilation:
         specifier: ^2.2.5
         version: 2.3.0
@@ -96,6 +102,9 @@ importers:
       rollup-plugin-copy:
         specifier: ^3.5.0
         version: 3.5.0
+      typescript:
+        specifier: ^5.4.2
+        version: 5.7.2
       webpack:
         specifier: ^5.95.0
         version: 5.96.1
@@ -279,13 +288,13 @@ importers:
         version: 14.3.0
       stylelint:
         specifier: ^16.10.0
-        version: 16.10.0
+        version: 16.10.0(typescript@5.7.2)
       stylelint-config-standard:
         specifier: ^36.0.1
-        version: 36.0.1(stylelint@16.10.0)
+        version: 36.0.1(stylelint@16.10.0(typescript@5.7.2))
       stylelint-prettier:
         specifier: ^5.0.2
-        version: 5.0.2(prettier@3.3.3)(stylelint@16.10.0)
+        version: 5.0.2(prettier@3.3.3)(stylelint@16.10.0(typescript@5.7.2))
       tracked-built-ins:
         specifier: ^3.3.0
         version: 3.3.0
@@ -1719,6 +1728,9 @@ packages:
 
   '@tootallnate/quickjs-emscripten@0.23.0':
     resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
+
+  '@tsconfig/ember@3.0.8':
+    resolution: {integrity: sha512-OVnIsZIt/8q0VEtcdz3rRryNrm6gdJTxXlxefkGIrkZnME0wqslmwHlUEZ7mvh377df9FqBhNKrYNarhCW8zJA==}
 
   '@types/acorn@4.0.6':
     resolution: {integrity: sha512-veQTnWP+1D/xbxVrPC3zHnCZRjSrKfhbMUlEA43iMZLu7EsnTtkJklIuwrCPbOi8YkvDQAiW05VQQFvvz9oieQ==}
@@ -8266,6 +8278,11 @@ packages:
   typescript-memoize@1.1.1:
     resolution: {integrity: sha512-GQ90TcKpIH4XxYTI2F98yEQYZgjNMOGPpOgdjIBhaLaWji5HPWlRnZ4AeA1hfBxtY7bCGDJsqDDHk/KaHOl5bA==}
 
+  typescript@5.7.2:
+    resolution: {integrity: sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
   uc.micro@1.0.6:
     resolution: {integrity: sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==}
 
@@ -10460,13 +10477,13 @@ snapshots:
       '@pnpm/network.ca-file': 1.0.2
       config-chain: 1.1.13
 
-  '@release-it-plugins/lerna-changelog@6.1.0(release-it@17.10.0)':
+  '@release-it-plugins/lerna-changelog@6.1.0(release-it@17.10.0(typescript@5.7.2))':
     dependencies:
       execa: 5.1.1
       lerna-changelog: 2.2.0
       lodash.template: 4.5.0
       mdast-util-from-markdown: 1.3.1
-      release-it: 17.10.0
+      release-it: 17.10.0(typescript@5.7.2)
       tmp: 0.2.3
       validate-peer-dependencies: 2.2.0
       which: 2.0.2
@@ -10474,11 +10491,11 @@ snapshots:
       - bluebird
       - supports-color
 
-  '@release-it-plugins/workspaces@4.2.0(release-it@17.10.0)':
+  '@release-it-plugins/workspaces@4.2.0(release-it@17.10.0(typescript@5.7.2))':
     dependencies:
       detect-indent: 6.1.0
       detect-newline: 3.1.0
-      release-it: 17.10.0
+      release-it: 17.10.0(typescript@5.7.2)
       semver: 7.6.3
       url-join: 4.0.1
       validate-peer-dependencies: 1.2.0
@@ -10585,6 +10602,8 @@ snapshots:
   '@tootallnate/once@1.1.2': {}
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
+
+  '@tsconfig/ember@3.0.8': {}
 
   '@types/acorn@4.0.6':
     dependencies:
@@ -12897,12 +12916,14 @@ snapshots:
       object-assign: 4.1.1
       vary: 1.1.2
 
-  cosmiconfig@9.0.0:
+  cosmiconfig@9.0.0(typescript@5.7.2):
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       parse-json: 5.2.0
+    optionalDependencies:
+      typescript: 5.7.2
 
   cross-spawn@5.1.0:
     dependencies:
@@ -18007,14 +18028,14 @@ snapshots:
     dependencies:
       jsesc: 3.0.2
 
-  release-it@17.10.0:
+  release-it@17.10.0(typescript@5.7.2):
     dependencies:
       '@iarna/toml': 2.2.5
       '@octokit/rest': 20.1.1
       async-retry: 1.3.3
       chalk: 5.3.0
       ci-info: 4.1.0
-      cosmiconfig: 9.0.0
+      cosmiconfig: 9.0.0(typescript@5.7.2)
       execa: 8.0.0
       git-url-parse: 14.0.0
       globby: 14.0.2
@@ -18780,22 +18801,22 @@ snapshots:
 
   styled_string@0.0.1: {}
 
-  stylelint-config-recommended@14.0.1(stylelint@16.10.0):
+  stylelint-config-recommended@14.0.1(stylelint@16.10.0(typescript@5.7.2)):
     dependencies:
-      stylelint: 16.10.0
+      stylelint: 16.10.0(typescript@5.7.2)
 
-  stylelint-config-standard@36.0.1(stylelint@16.10.0):
+  stylelint-config-standard@36.0.1(stylelint@16.10.0(typescript@5.7.2)):
     dependencies:
-      stylelint: 16.10.0
-      stylelint-config-recommended: 14.0.1(stylelint@16.10.0)
+      stylelint: 16.10.0(typescript@5.7.2)
+      stylelint-config-recommended: 14.0.1(stylelint@16.10.0(typescript@5.7.2))
 
-  stylelint-prettier@5.0.2(prettier@3.3.3)(stylelint@16.10.0):
+  stylelint-prettier@5.0.2(prettier@3.3.3)(stylelint@16.10.0(typescript@5.7.2)):
     dependencies:
       prettier: 3.3.3
       prettier-linter-helpers: 1.0.0
-      stylelint: 16.10.0
+      stylelint: 16.10.0(typescript@5.7.2)
 
-  stylelint@16.10.0:
+  stylelint@16.10.0(typescript@5.7.2):
     dependencies:
       '@csstools/css-parser-algorithms': 3.0.4(@csstools/css-tokenizer@3.0.3)
       '@csstools/css-tokenizer': 3.0.3
@@ -18804,7 +18825,7 @@ snapshots:
       '@dual-bundle/import-meta-resolve': 4.1.0
       balanced-match: 2.0.0
       colord: 2.9.3
-      cosmiconfig: 9.0.0
+      cosmiconfig: 9.0.0(typescript@5.7.2)
       css-functions-list: 3.2.3
       css-tree: 3.0.1
       debug: 4.3.7(supports-color@8.1.1)
@@ -19298,6 +19319,8 @@ snapshots:
       is-typedarray: 1.0.0
 
   typescript-memoize@1.1.1: {}
+
+  typescript@5.7.2: {}
 
   uc.micro@1.0.6: {}
 
