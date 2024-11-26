@@ -11,7 +11,7 @@ Most of the usage documentation can be found in the [API Reference for the Tour 
 
 ## Step Options
 
-See the [Step docs](https://shepherdjs.dev/docs/Step.html) for all available Step options.
+See the [Step docs](https://docs.shepherdjs.dev/api/step/interfaces/stepoptions/) for all available Step options.
 
 ## Interacting with `ember-shepherd`
 
