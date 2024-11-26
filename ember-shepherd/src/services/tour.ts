@@ -11,6 +11,10 @@ import { type StepOptions, type Tour } from 'shepherd.js';
 import { type EmberShepherdButton, makeButton } from '../utils/buttons.ts';
 import { elementIsHidden } from '../utils/dom.ts';
 
+interface EmberShepherdStepOptions extends Omit<StepOptions, 'buttons'> {
+  buttons?: Array<EmberShepherdButton>;
+}
+
 /**
  * Interaction with `ember-shepherd` is done entirely through the Tour service, which you can access from any object using the `service` syntax:
  *
@@ -250,9 +254,7 @@ export default class TourService extends Service.extend(Evented) {
    * @returns {Promise} Promise that resolves when everything has been set up and shepherd is ready to use
    * @public
    */
-  addSteps(
-    steps: Array<StepOptions & { buttons: Array<EmberShepherdButton> }>,
-  ) {
+  addSteps(steps: Array<EmberShepherdStepOptions>) {
     return this._initialize().then(() => {
       const tour = this.tourObject;
 
