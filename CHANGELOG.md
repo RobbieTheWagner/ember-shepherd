@@ -1,6 +1,15 @@
 
 
 
+
+## v17.1.0 (2024-11-26)
+
+#### :rocket: Enhancement
+* [#1708](https://github.com/RobbieTheWagner/ember-shepherd/pull/1708) Add types ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### Committers: 1
+- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
 ## v17.0.8 (2024-11-20)
 
 ## v17.0.7 (2024-11-20)
