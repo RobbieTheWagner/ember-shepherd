@@ -250,7 +250,9 @@ export default class TourService extends Service.extend(Evented) {
    * @returns {Promise} Promise that resolves when everything has been set up and shepherd is ready to use
    * @public
    */
-  addSteps(steps: Array<StepOptions>) {
+  addSteps(
+    steps: Array<StepOptions & { buttons: Array<EmberShepherdButton> }>,
+  ) {
     return this._initialize().then(() => {
       const tour = this.tourObject;
 
@@ -276,10 +278,7 @@ export default class TourService extends Service.extend(Evented) {
 
       steps.forEach((step) => {
         if (step.buttons) {
-          step.buttons = (step.buttons as Array<EmberShepherdButton>).map(
-            makeButton.bind(this),
-            this,
-          );
+          step.buttons = step.buttons.map(makeButton.bind(this), this);
         }
 
         tour.addStep(step);
