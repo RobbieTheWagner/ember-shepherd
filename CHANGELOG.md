@@ -2,6 +2,15 @@
 
 
 
+
+## v17.1.1 (2024-11-26)
+
+#### :bug: Bug Fix
+* [#1709](https://github.com/RobbieTheWagner/ember-shepherd/pull/1709) Update button types ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### Committers: 1
+- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
 ## v17.1.0 (2024-11-26)
 
 #### :rocket: Enhancement
