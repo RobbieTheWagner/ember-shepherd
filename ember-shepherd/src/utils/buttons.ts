@@ -21,7 +21,10 @@ export type EmberShepherdButton = StepOptionsButton & {
  * @private
  * @return {{action: *, classes: *, text: *}} Description here
  */
-export function makeButton(this: TourService, button: EmberShepherdButton): StepOptionsButton {
+export function makeButton(
+  this: TourService,
+  button: EmberShepherdButton,
+): EmberShepherdButton {
   const { classes, disabled, label, secondary, text, type } = button;
   const builtInButtonTypes = ['back', 'cancel', 'next'];
 
@@ -45,5 +48,6 @@ export function makeButton(this: TourService, button: EmberShepherdButton): Step
     label,
     secondary,
     text,
+    type,
   };
 }
