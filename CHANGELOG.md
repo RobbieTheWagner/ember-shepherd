@@ -4,6 +4,15 @@
 
 
 
+
+## v17.1.3 (2024-11-27)
+
+#### :bug: Bug Fix
+* [#1711](https://github.com/RobbieTheWagner/ember-shepherd/pull/1711) Use tracked properties for everything ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### Committers: 1
+- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
 ## v17.1.2 (2024-11-26)
 
 #### :bug: Bug Fix
