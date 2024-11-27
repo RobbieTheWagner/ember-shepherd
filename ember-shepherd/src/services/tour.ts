@@ -1,5 +1,3 @@
-/* eslint-disable ember/avoid-leaking-state-in-ember-objects */
-import { set } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
 import Service from '@ember/service';
 import Evented from '@ember/object/evented';
@@ -37,7 +35,6 @@ interface EmberShepherdStepOptions extends Omit<StepOptions, 'buttons'> {
  * @class Tour
  */
 export default class TourService extends Service.extend(Evented) {
-  declare tourObject: Tour;
   declare tourName?: string;
 
   // Configuration Options
@@ -95,7 +92,7 @@ export default class TourService extends Service.extend(Evented) {
    * @property defaultStepOptions
    * @type StepOptions
    */
-  defaultStepOptions: StepOptions = {};
+  @tracked defaultStepOptions: StepOptions = {};
 
   /**
    * @default undefined
@@ -165,7 +162,7 @@ export default class TourService extends Service.extend(Evented) {
    *
    * _Example_
    * ```js
-   * this.tour.set('requiredElements', [
+   * this.tour.requiredElements = [
    *   {
    *     selector: '.search-result-element',
    *     message: 'No search results found. Please execute another search, and try to start the tour again.',
@@ -176,7 +173,7 @@ export default class TourService extends Service.extend(Evented) {
    *     message: 'User not logged in, please log in to start this tour.',
    *     title: 'Please login'
    *   },
-   * ]);
+   * ];
    * ```
 
    * > **default value:** `[]`
@@ -185,8 +182,15 @@ export default class TourService extends Service.extend(Evented) {
    * @property requiredElements
    * @type Array
    */
-  requiredElements = [];
-  steps = [];
+  @tracked requiredElements = [];
+
+  /**
+   * A reference to the Shepherd Tour instance.
+   *
+   * @property tourObject
+   * @type Tour
+   */
+  @tracked declare tourObject: Tour;
 
   /**
    * Take a set of steps, create a tour object based on the current configuration and load the shepherd.js dependency.
@@ -366,7 +370,7 @@ export default class TourService extends Service.extend(Evented) {
         'the Promise from addSteps must be in a resolved state before the tour can be started',
       );
     }
-    set(this, 'isActive', true);
+    this.isActive = true;
     tourObject.start();
   }
 
@@ -390,7 +394,7 @@ export default class TourService extends Service.extend(Evented) {
    */
   _onTourFinish(completeOrCancel: 'complete' | 'cancel') {
     if (!this.isDestroyed) {
-      set(this, 'isActive', false);
+      this.isActive = false;
     }
     // @ts-expect-error TODO: refactor away from Evented mixin
     this.trigger(completeOrCancel);
@@ -437,7 +441,7 @@ export default class TourService extends Service.extend(Evented) {
       tourObject.on('complete', bind(this, '_onTourFinish', 'complete'));
       tourObject.on('cancel', bind(this, '_onTourFinish', 'cancel'));
 
-      set(this, 'tourObject', tourObject);
+      this.tourObject = tourObject;
     });
   }
 
@@ -465,8 +469,8 @@ export default class TourService extends Service.extend(Evented) {
               elementIsHidden(selectedElement as HTMLElement))
           ) {
             allElementsPresent = false;
-            set(this, 'errorTitle', element.title);
-            set(this, 'messageForUser', element.message);
+            this.errorTitle = element.title;
+            this.messageForUser = element.message;
           }
         },
       );
