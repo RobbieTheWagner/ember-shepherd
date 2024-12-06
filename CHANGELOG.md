@@ -5,6 +5,18 @@
 
 
 
+
+## v17.1.4 (2024-12-06)
+
+#### :bug: Bug Fix
+* [#1712](https://github.com/RobbieTheWagner/ember-shepherd/pull/1712) Make button type optional ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### :house: Internal
+* [#1713](https://github.com/RobbieTheWagner/ember-shepherd/pull/1713) Add addon-docs deploy action ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### Committers: 1
+- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
 ## v17.1.3 (2024-11-27)
 
 #### :bug: Bug Fix
