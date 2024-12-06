@@ -6,7 +6,7 @@ import { type StepOptionsButton } from 'shepherd.js';
 import type TourService from '../services/tour';
 
 export type EmberShepherdButton = StepOptionsButton & {
-  type: 'back' | 'cancel' | 'next';
+  type?: 'back' | 'cancel' | 'next';
 };
 
 /**
