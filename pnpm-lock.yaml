@@ -38,6 +38,9 @@ importers:
       '@embroider/addon-shim':
         specifier: ^1.9.0
         version: 1.9.0
+      '@embroider/macros':
+        specifier: ^1.16.9
+        version: 1.16.9
       decorator-transforms:
         specifier: ^2.3.0
         version: 2.3.0(@babel/core@7.26.0)
