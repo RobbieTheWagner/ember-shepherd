@@ -1,7 +1,10 @@
 import { isEmpty, isPresent } from '@ember/utils';
 import Service from '@ember/service';
 import Evented from '@ember/object/evented';
+import { registerDestructor } from '@ember/destroyable';
+import type Owner from '@ember/owner';
 import { bind } from '@ember/runloop';
+import { isTesting, macroCondition } from '@embroider/macros';
 import { tracked } from '@glimmer/tracking';
 
 import { type StepOptions, type Tour } from 'shepherd.js';
@@ -199,6 +202,12 @@ export default class TourService extends Service.extend(Evented) {
    * @type Tour
    */
   @tracked declare tourObject: Tour;
+
+  constructor(owner: Owner) {
+    super(owner);
+
+    registerDestructor(this, () => this.tourObject.cancel());
+  }
 
   /**
    * Take a set of steps, create a tour object based on the current configuration and load the shepherd.js dependency.
@@ -441,8 +450,16 @@ export default class TourService extends Service.extend(Evented) {
         defaultStepOptions,
         exitOnEsc,
         keyboardNavigation,
-        modalContainer: modalContainer || document.body,
-        stepsContainer: stepsContainer || document.body,
+        modalContainer:
+          modalContainer ??
+          (isTesting()
+            ? (document.querySelector('#ember-testing') as HTMLElement)
+            : document.body),
+        stepsContainer:
+          stepsContainer ??
+          (isTesting()
+            ? (document.querySelector('#ember-testing') as HTMLElement)
+            : document.body),
         tourName,
         useModalOverlay: modal,
       });
