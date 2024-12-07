@@ -11,6 +11,7 @@ module.exports = function (defaults) {
     'ember-cli-addon-docs': {
       documentingAddonAt: '../ember-shepherd',
     },
+    'ember-cli-babel': { enableTypeScriptTransform: true },
   });
 
   return app.toTree();

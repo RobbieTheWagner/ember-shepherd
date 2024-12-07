@@ -6,15 +6,11 @@ module.exports = {
   // https://github.com/ember-cli/eslint-plugin-ember?tab=readme-ov-file#gtsgjs
   overrides: [
     {
-      files: ['**/*.js'],
+      files: ['**/*.js', '**/*.ts'],
       env: { browser: true },
-      parser: '@babel/eslint-parser',
+      parser: '@typescript-eslint/parser',
       parserOptions: {
         ecmaVersion: 'latest',
-        sourceType: 'module',
-        babelOptions: {
-          root: __dirname,
-        },
       },
       plugins: ['ember', 'import'],
       extends: [
@@ -26,6 +22,40 @@ module.exports = {
         // require relative imports use full extensions
         'import/extensions': ['error', 'always', { ignorePackages: true }],
         'ember/no-runloop': 'off',
+      },
+    },
+    // ts files
+    {
+      files: ['**/*.ts'],
+      extends: [
+        'eslint:recommended',
+        'plugin:ember/recommended',
+        'plugin:@typescript-eslint/eslint-recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:prettier/recommended',
+      ],
+      rules: {
+        // require relative imports use full extensions
+        'import/extensions': ['error', 'always', { ignorePackages: true }],
+        'ember/no-runloop': 'off',
+      },
+    },
+    {
+      files: ['**/*.gts'],
+      parser: 'ember-eslint-parser',
+      plugins: ['ember', 'import'],
+      extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/eslint-recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:ember/recommended',
+        'plugin:ember/recommended-gts',
+        'plugin:prettier/recommended',
+      ],
+      rules: {
+        // require relative imports use full extensions
+        'import/extensions': ['error', 'always', { ignorePackages: true }],
+        // Add any custom rules here
       },
     },
     {
@@ -41,7 +71,7 @@ module.exports = {
       rules: {
         // require relative imports use full extensions
         'import/extensions': ['error', 'always', { ignorePackages: true }],
-        'ember/no-runloop': 'off',
+        // Add any custom rules here
       },
     },
     // node files

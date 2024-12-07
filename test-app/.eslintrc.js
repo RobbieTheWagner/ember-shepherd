@@ -2,18 +2,11 @@
 
 module.exports = {
   root: true,
-  parser: '@babel/eslint-parser',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module',
-    requireConfigFile: false,
-    babelOptions: {
-      plugins: [
-        ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true }],
-      ],
-    },
   },
-  plugins: ['ember'],
+  plugins: ['ember', '@typescript-eslint'],
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
@@ -26,6 +19,15 @@ module.exports = {
     'ember/no-runloop': 'off',
   },
   overrides: [
+    // ts files
+    {
+      files: ['**/*.ts'],
+      extends: [
+        'plugin:@typescript-eslint/eslint-recommended',
+        'plugin:@typescript-eslint/recommended',
+      ],
+      rules: {},
+    },
     // node files
     {
       files: [
@@ -34,16 +36,12 @@ module.exports = {
         './.stylelintrc.js',
         './.template-lintrc.js',
         './ember-cli-build.js',
-        './postcss.config.js',
         './testem.js',
         './blueprints/*/index.js',
         './config/**/*.js',
         './lib/*/index.js',
         './server/**/*.js',
       ],
-      parserOptions: {
-        sourceType: 'script',
-      },
       env: {
         browser: false,
         node: true,

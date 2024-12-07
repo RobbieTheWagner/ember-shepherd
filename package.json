@@ -19,6 +19,7 @@
     "test:ember": "pnpm --filter '*' test:ember"
   },
   "devDependencies": {
+    "@glint/core": "^1.2.1",
     "@release-it-plugins/lerna-changelog": "^6.1.0",
     "@release-it-plugins/workspaces": "^4.2.0",
     "concurrently": "^8.2.2",
