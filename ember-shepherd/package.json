@@ -1,6 +1,6 @@
 {
   "name": "ember-shepherd",
-  "version": "17.1.4",
+  "version": "17.2.0",
   "description": "An Ember wrapper for the site tour library Shepherd.",
   "keywords": [
     "ember-addon"

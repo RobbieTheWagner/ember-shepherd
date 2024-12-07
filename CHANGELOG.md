@@ -6,6 +6,15 @@
 
 
 
+
+## v17.2.0 (2024-12-07)
+
+#### :rocket: Enhancement
+* [#1714](https://github.com/RobbieTheWagner/ember-shepherd/pull/1714) Add support for `stepsContainer` ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### Committers: 1
+- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
 ## v17.1.4 (2024-12-06)
 
 #### :bug: Bug Fix
