@@ -7,6 +7,15 @@
 
 
 
+
+## v17.3.0 (2024-12-07)
+
+#### :rocket: Enhancement
+* [#1715](https://github.com/RobbieTheWagner/ember-shepherd/pull/1715) Add destructor and set container when testing ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### Committers: 1
+- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
 ## v17.2.0 (2024-12-07)
 
 #### :rocket: Enhancement
