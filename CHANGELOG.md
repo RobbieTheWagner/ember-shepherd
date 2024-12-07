@@ -8,6 +8,18 @@
 
 
 
+
+## v17.3.1 (2024-12-07)
+
+#### :bug: Bug Fix
+* [#1716](https://github.com/RobbieTheWagner/ember-shepherd/pull/1716) Ensure `tourObject` is defined before using it ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### :house: Internal
+* [#1717](https://github.com/RobbieTheWagner/ember-shepherd/pull/1717) Run TypeScript blueprints ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### Committers: 1
+- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
 ## v17.3.0 (2024-12-07)
 
 #### :rocket: Enhancement
