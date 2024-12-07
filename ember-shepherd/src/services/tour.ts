@@ -4,7 +4,7 @@ import Evented from '@ember/object/evented';
 import { registerDestructor } from '@ember/destroyable';
 import type Owner from '@ember/owner';
 import { bind } from '@ember/runloop';
-import { isTesting, macroCondition } from '@embroider/macros';
+import { isTesting } from '@embroider/macros';
 import { tracked } from '@glimmer/tracking';
 
 import { type StepOptions, type Tour } from 'shepherd.js';
