@@ -201,12 +201,12 @@ export default class TourService extends Service.extend(Evented) {
    * @property tourObject
    * @type Tour
    */
-  @tracked declare tourObject: Tour;
+  @tracked declare tourObject?: Tour;
 
   constructor(owner: Owner) {
     super(owner);
 
-    registerDestructor(this, () => this.tourObject.cancel());
+    registerDestructor(this, () => this.tourObject?.cancel());
   }
 
   /**
@@ -277,7 +277,7 @@ export default class TourService extends Service.extend(Evented) {
    */
   addSteps(steps: Array<EmberShepherdStepOptions>) {
     return this._initialize().then(() => {
-      const tour = this.tourObject;
+      const tour = this.tourObject as Tour;
 
       // Return nothing if there are no steps
       if (isEmpty(steps)) {
@@ -316,7 +316,7 @@ export default class TourService extends Service.extend(Evented) {
    * @public
    */
   back() {
-    this.tourObject.back();
+    this.tourObject?.back();
     // @ts-expect-error TODO: refactor away from Evented mixin
     this.trigger('back');
   }
@@ -328,7 +328,7 @@ export default class TourService extends Service.extend(Evented) {
    * @public
    */
   cancel() {
-    this.tourObject.cancel();
+    this.tourObject?.cancel();
   }
 
   /**
@@ -338,7 +338,7 @@ export default class TourService extends Service.extend(Evented) {
    * @public
    */
   complete() {
-    this.tourObject.complete();
+    this.tourObject?.complete();
   }
 
   /**
@@ -348,7 +348,7 @@ export default class TourService extends Service.extend(Evented) {
    * @public
    */
   hide() {
-    this.tourObject.hide();
+    this.tourObject?.hide();
   }
 
   /**
@@ -358,7 +358,7 @@ export default class TourService extends Service.extend(Evented) {
    * @public
    */
   next() {
-    this.tourObject.next();
+    this.tourObject?.next();
     // @ts-expect-error TODO: refactor away from Evented mixin
     this.trigger('next');
   }
@@ -371,7 +371,7 @@ export default class TourService extends Service.extend(Evented) {
    * @public
    */
   show(id: string) {
-    this.tourObject.show(id);
+    this.tourObject?.show(id);
   }
 
   /**
