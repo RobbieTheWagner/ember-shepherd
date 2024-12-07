@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="63px" viewBox="0 0 32 63" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>docs</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <g id="docs" transform="translate(1.000000, 2.000000)" stroke-width="2">
+            <g id="book-open-2-outline-64" transform="translate(0.000000, 31.000000)" stroke="#DA4843">
+                <path d="M12,9.65 L4,7" id="Shape"></path>
+                <path d="M12,15.35 L4,12.65" id="Shape"></path>
+                <path d="M4,19 L12,21.65" id="Shape"></path>
+                <path d="M18,9.65 L26,7" id="Shape"></path>
+                <path d="M18,15.35 L26,12.65" id="Shape"></path>
+                <path d="M26,19 L18,21.65" id="Shape"></path>
+                <polygon id="Shape" points="0 0 15 5 30 0 30 23 15 28 0 23"></polygon>
+            </g>
+            <g id="book-open-2-outline-64" stroke="#624B86">
+                <path d="M12,9.65 L4,7" id="Shape"></path>
+                <path d="M12,15.35 L4,12.65" id="Shape"></path>
+                <path d="M4,19 L12,21.65" id="Shape"></path>
+                <path d="M18,9.65 L26,7" id="Shape"></path>
+                <path d="M18,15.35 L26,12.65" id="Shape"></path>
+                <path d="M26,19 L18,21.65" id="Shape"></path>
+                <polygon id="Shape" points="0 0 15 5 30 0 30 23 15 28 0 23"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
