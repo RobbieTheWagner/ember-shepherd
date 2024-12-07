@@ -185,6 +185,14 @@ export default class TourService extends Service.extend(Evented) {
   @tracked requiredElements = [];
 
   /**
+   * An optional container element for the steps. If not set, the steps will be appended to `document.body`.
+   * @default undefined
+   * @property stepsContainer
+   * @type HTMLElement
+   */
+  @tracked stepsContainer?: HTMLElement;
+
+  /**
    * A reference to the Shepherd Tour instance.
    *
    * @property tourObject
@@ -416,6 +424,7 @@ export default class TourService extends Service.extend(Evented) {
       keyboardNavigation,
       modal,
       modalContainer,
+      stepsContainer,
       tourName,
     } = this;
 
@@ -433,6 +442,7 @@ export default class TourService extends Service.extend(Evented) {
         exitOnEsc,
         keyboardNavigation,
         modalContainer: modalContainer || document.body,
+        stepsContainer: stepsContainer || document.body,
         tourName,
         useModalOverlay: modal,
       });
