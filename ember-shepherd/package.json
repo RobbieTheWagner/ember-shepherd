@@ -36,42 +36,39 @@
     "dist"
   ],
   "scripts": {
-    "build": "concurrently 'pnpm:build:*'",
-    "build:js": "rollup --config",
-    "build:types": "glint --declaration",
-    "lint": "concurrently 'pnpm:lint:*(!fix)' --names 'lint:'",
-    "lint:fix": "concurrently 'pnpm:lint:*:fix' --names 'fix:'",
+    "build": "rollup --config",
+    "lint": "concurrently \"pnpm:lint:*(!fix)\" --names \"lint:\"",
+    "lint:fix": "concurrently \"pnpm:lint:*:fix\" --names \"fix:\"",
     "lint:hbs": "ember-template-lint . --no-error-on-unmatched-pattern",
     "lint:hbs:fix": "ember-template-lint . --fix --no-error-on-unmatched-pattern",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
     "lint:types": "glint",
     "prepack": "concurrently 'pnpm:build:*'",
-    "start": "concurrently 'pnpm:start:*'",
-    "start:js": "rollup --config --watch --no-watch.clearScreen",
-    "start:types": "glint --declaration --watch",
+    "start": "rollup --config --watch",
     "test": "echo 'A v2 addon does not have tests, run tests in test-app'"
   },
   "dependencies": {
-    "@babel/core": "^7.26.0",
     "@embroider/addon-shim": "^1.9.0",
     "@embroider/macros": "^1.16.9",
     "decorator-transforms": "^2.3.0",
     "shepherd.js": "^14.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.4",
-    "@babel/plugin-transform-typescript": "^7.24.4",
-    "@babel/runtime": "^7.24.4",
-    "@embroider/addon-dev": "^4.3.1",
+    "@babel/core": "^7.25.2",
+    "@babel/plugin-transform-typescript": "^7.25.2",
+    "@babel/runtime": "^7.25.6",
+    "@embroider/addon-dev": "^7.1.0",
     "@glint/core": "^1.4.0",
     "@glint/environment-ember-loose": "^1.4.0",
     "@glint/environment-ember-template-imports": "^1.4.0",
     "@glint/template": "^1.4.0",
     "@rollup/plugin-babel": "^6.0.4",
     "@tsconfig/ember": "^3.0.8",
+    "@typescript-eslint/eslint-plugin": "^8.13.0",
+    "@typescript-eslint/parser": "^8.13.0",
     "babel-plugin-ember-template-compilation": "^2.3.0",
-    "concurrently": "^8.2.2",
+    "concurrently": "^9.0.1",
     "ember-source": "~5.12.0",
     "ember-template-lint": "^6.0.0",
     "eslint": "^8.57.1",
@@ -89,9 +86,6 @@
   },
   "peerDependencies": {
     "ember-source": "^3.28.0 || >= 4.0.0"
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org"
   },
   "ember": {
     "edition": "octane"
