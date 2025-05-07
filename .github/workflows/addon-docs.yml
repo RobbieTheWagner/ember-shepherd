@@ -32,8 +32,6 @@ jobs:
           fi
       - uses: pnpm/action-setup@v4
         if: env.SHORT_CIRCUIT == 'false'
-        with:
-          version: 9
       - uses: actions/setup-node@v4
         if: env.SHORT_CIRCUIT == 'false'
         with:
