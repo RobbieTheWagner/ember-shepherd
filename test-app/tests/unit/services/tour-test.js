@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-runloop */
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 import EmberObject from '@ember/object';

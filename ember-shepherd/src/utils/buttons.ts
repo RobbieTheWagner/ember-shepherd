@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-runloop */
 import { bind } from '@ember/runloop';
 import { assert } from '@ember/debug';
 

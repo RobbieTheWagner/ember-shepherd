@@ -2,13 +2,13 @@
 
 ### Q: Woah, events? How does that work with buttons?
 
-A: Don't worry, it's not too bad!  You can just set up an action to start (or cancel, or advance, etc.) the tour like so:
+A: Don't worry, it's not too bad! You can just set up an action to start (or cancel, or advance, etc.) the tour like so:
 
 ```js
 // app/routes/application.js
 
 import Route from "@ember/routing/route";
-import { service } from '@ember/service';
+import { service } from "@ember/service";
 
 export default Route.extend({
   tour: service(),
@@ -16,8 +16,8 @@ export default Route.extend({
   actions: {
     startTour() {
       this.tour.start();
-    }
-  }
+    },
+  },
 });
 ```
 
