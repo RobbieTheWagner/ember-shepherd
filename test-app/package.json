@@ -80,7 +80,7 @@
     "ember-resolver": "^13.1.0",
     "ember-shepherd": "workspace:*",
     "ember-shiki": "^0.3.0",
-    "ember-source": "~6.4.0",
+    "ember-source": "~5.12.0",
     "ember-source-channel-url": "^3.0.0",
     "ember-svg-jar": "^2.6.0",
     "ember-template-imports": "^4.3.0",
