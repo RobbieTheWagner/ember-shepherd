@@ -41,7 +41,7 @@
     "@glint/template": "^1.4.0",
     "@tsconfig/ember": "^3.0.8",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
+    "@typescript-eslint/parser": "^8.32.1",
     "broccoli-asset-rev": "^3.0.0",
     "concurrently": "^8.2.2",
     "ember-auto-import": "^2.10.0",
