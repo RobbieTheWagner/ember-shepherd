@@ -81,7 +81,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-qunit": "^8.1.2",
     "loader.js": "^4.7.0",
-    "prettier": "^3.4.1",
+    "prettier": "^3.6.1",
     "qunit": "^2.22.0",
     "qunit-dom": "^3.3.0",
     "shepherd.js": "^14.5.0",
