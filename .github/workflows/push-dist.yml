@@ -14,6 +14,8 @@ on:
 jobs:
   push-dist:
     name: Push dist
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
