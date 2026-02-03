@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-runloop */
 import { isEmpty, isPresent } from '@ember/utils';
 import Service from '@ember/service';
 import Evented from '@ember/object/evented';
@@ -206,6 +207,7 @@ export default class TourService extends Service.extend(Evented) {
   constructor(owner: Owner) {
     super(owner);
 
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     registerDestructor(this, () => this.tourObject?.cancel());
   }
 
@@ -289,6 +291,7 @@ export default class TourService extends Service.extend(Evented) {
           buttons: [
             {
               text: 'Exit',
+              // eslint-disable-next-line @typescript-eslint/no-misused-promises, @typescript-eslint/unbound-method
               action: tour.cancel,
             },
           ],
@@ -318,6 +321,7 @@ export default class TourService extends Service.extend(Evented) {
   back() {
     this.tourObject?.back();
     // @ts-expect-error TODO: refactor away from Evented mixin
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     this.trigger('back');
   }
 
@@ -327,8 +331,8 @@ export default class TourService extends Service.extend(Evented) {
    * @method cancel
    * @public
    */
-  cancel() {
-    this.tourObject?.cancel();
+  async cancel() {
+    await this.tourObject?.cancel();
   }
 
   /**
@@ -360,6 +364,7 @@ export default class TourService extends Service.extend(Evented) {
   next() {
     this.tourObject?.next();
     // @ts-expect-error TODO: refactor away from Evented mixin
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     this.trigger('next');
   }
 
@@ -380,7 +385,7 @@ export default class TourService extends Service.extend(Evented) {
    * @method start
    * @public
    */
-  start() {
+  async start() {
     const tourObject = this.tourObject;
     if (tourObject == undefined) {
       throw new Error(
@@ -388,7 +393,7 @@ export default class TourService extends Service.extend(Evented) {
       );
     }
     this.isActive = true;
-    tourObject.start();
+    await tourObject.start();
   }
 
   /**
@@ -399,6 +404,7 @@ export default class TourService extends Service.extend(Evented) {
    */
   _onTourStart() {
     // @ts-expect-error TODO: refactor away from Evented mixin
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     this.trigger('start');
   }
 
@@ -414,6 +420,7 @@ export default class TourService extends Service.extend(Evented) {
       this.isActive = false;
     }
     // @ts-expect-error TODO: refactor away from Evented mixin
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     this.trigger(completeOrCancel);
   }
 

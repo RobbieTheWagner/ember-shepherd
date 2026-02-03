@@ -1,3 +1,7 @@
 packages:
-  - 'ember-shepherd'
-  - 'test-app'
+  - ember-shepherd
+  - test-app
+
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - ember-modal-dialog

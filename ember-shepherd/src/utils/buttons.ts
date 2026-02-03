@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-runloop */
 import { bind } from '@ember/runloop';
 import { assert } from '@ember/debug';
 
@@ -38,7 +39,7 @@ export function makeButton(
   );
 
   const action = bind(this, function () {
-    this[type]();
+    void this[type]();
   });
 
   return {

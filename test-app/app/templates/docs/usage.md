@@ -1,5 +1,4 @@
-Usage
-------------------------------------------------------------------------------
+## Usage
 
 The styles are no longer automatically added for Shepherd. You will need to add them to your styles manually. How you do this will vary depending on your app, but one possible way is to add this to your app's CSS:
 
@@ -15,7 +14,7 @@ See the [Step docs](https://docs.shepherdjs.dev/api/step/interfaces/stepoptions/
 
 ## Interacting with `ember-shepherd`
 
-`ember-shepherd` uses the [`Ember.Evented`](http://emberjs.com/api/classes/Ember.Evented.html) mixin to manage events.  The API is demonstrated below.
+`ember-shepherd` uses the [`Ember.Evented`](http://emberjs.com/api/classes/Ember.Evented.html) mixin to manage events. The API is demonstrated below.
 
 ```js
 // Start the tour
