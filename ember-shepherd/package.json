@@ -3,7 +3,11 @@
   "version": "17.3.1",
   "description": "An Ember wrapper for the site tour library Shepherd.",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "tour",
+    "shepherd",
+    "user journey",
+    "site tour"
   ],
   "repository": "https://github.com/RobbieTheWagner/ember-shepherd",
   "license": "MIT",
