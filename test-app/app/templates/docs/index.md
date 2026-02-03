@@ -1,5 +1,4 @@
-ember-shepherd
-==============================================================================
+# ember-shepherd
 
 <a href="https://shipshape.io/"><img src="http://i.imgur.com/DWHQjA5.png" alt="Ship Shape" width="100" height="100"/></a>
 
@@ -11,8 +10,7 @@ ember-shepherd
 [![Ember Observer Score](http://emberobserver.com/badges/ember-shepherd.svg)](http://emberobserver.com/addons/ember-shepherd)
 [![CI](https://github.com/RobbieTheWagner/ember-shepherd/actions/workflows/ci.yml/badge.svg)](https://github.com/RobbieTheWagner/ember-shepherd/actions/workflows/ci.yml)
 
-Installation
-------------------------------------------------------------------------------
+## Installation
 
 ```
 ember install ember-shepherd

@@ -1,4 +1,3 @@
-/* eslint-disable ember/avoid-leaking-state-in-ember-objects */
 import Route from '@ember/routing/route';
 import config from '../../config/environment';
 import { inject as service } from '@ember/service';
@@ -49,6 +48,7 @@ export default class DocsDemoRoute extends Route {
 
   activate() {
     if (config.environment !== 'test') {
+      // eslint-disable-next-line ember/no-runloop
       scheduleOnce('afterRender', this, this._startTour);
     }
   }
