@@ -10,7 +10,7 @@
     "site tour"
   ],
   "repository": "https://github.com/RobbieTheWagner/ember-shepherd",
-  "license": "MIT",
+  "license": "AGPL-3.0",
   "author": {
     "name": "Robert Wagner",
     "email": "rwwagner90@gmail.com",
@@ -37,7 +37,8 @@
   "files": [
     "addon-main.cjs",
     "declarations",
-    "dist"
+    "dist",
+    "LICENSE.md"
   ],
   "scripts": {
     "build": "rollup --config",
