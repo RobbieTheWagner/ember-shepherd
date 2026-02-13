@@ -4,4 +4,5 @@ packages:
 
 onlyBuiltDependencies:
   - '@parcel/watcher'
+  - core-js
   - ember-modal-dialog
