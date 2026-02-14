@@ -1,4 +1,5 @@
 {
+  "version": "17.3.1",
   "private": true,
   "repository": "https://github.com/RobbieTheWagner/ember-shepherd",
   "license": "AGPL-3.0",
@@ -20,35 +21,12 @@
   },
   "devDependencies": {
     "@glint/core": "^1.5.2",
-    "@release-it-plugins/lerna-changelog": "^6.1.0",
-    "@release-it-plugins/workspaces": "^4.2.1",
     "concurrently": "^9.2.1",
     "prettier": "^3.8.1",
     "prettier-plugin-ember-template-tag": "^2.1.3",
-    "release-it": "^17.11.0"
+    "release-plan": "^0.17.4"
   },
   "engines": {
     "node": ">= 20"
-  },
-  "release-it": {
-    "plugins": {
-      "@release-it-plugins/workspaces": {
-        "workspaces": [
-          "ember-shepherd"
-        ]
-      },
-      "@release-it-plugins/lerna-changelog": {
-        "infile": "CHANGELOG.md"
-      }
-    },
-    "git": {
-      "tagName": "v${version}"
-    },
-    "github": {
-      "release": true,
-      "tokenRef": "GITHUB_AUTH"
-    },
-    "npm": false
-  },
-  "version": "17.3.1"
+  }
 }
