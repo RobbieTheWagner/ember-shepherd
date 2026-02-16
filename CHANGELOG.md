@@ -1,5 +1,25 @@
 # Changelog
 
+## Release (2026-02-16)
+
+* ember-shepherd 18.0.0 (major)
+
+#### :boom: Breaking Change
+* `ember-shepherd`
+  * [#1816](https://github.com/RobbieTheWagner/ember-shepherd/pull/1816) Update to shepherd.js 15 ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+  * [#1815](https://github.com/RobbieTheWagner/ember-shepherd/pull/1815) Update license to AGPL ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+  * [#1808](https://github.com/RobbieTheWagner/ember-shepherd/pull/1808) Drop support for Ember < 4.8 ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### :house: Internal
+* Other
+  * [#1817](https://github.com/RobbieTheWagner/ember-shepherd/pull/1817) release-it -> release-plan ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+  * [#1807](https://github.com/RobbieTheWagner/ember-shepherd/pull/1807) node 20 / pnpm 10 ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+* `ember-shepherd`
+  * [#1729](https://github.com/RobbieTheWagner/ember-shepherd/pull/1729) Update blueprints ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### Committers: 1
+- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
 
 
 
