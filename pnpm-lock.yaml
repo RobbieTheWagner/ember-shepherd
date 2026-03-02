@@ -179,8 +179,8 @@ importers:
         specifier: ~5.7.0
         version: 5.7.0(@glint/template@1.7.4)
       '@ember-data/store':
-        specifier: ~5.7.0
-        version: 5.7.0(@ember-data/tracking@5.7.0(@ember/test-waiters@4.1.1(@glint/template@1.7.4))(@glint/template@1.7.4))(@ember/test-waiters@4.1.1(@glint/template@1.7.4))(@glint/template@1.7.4)
+        specifier: ~5.8.1
+        version: 5.8.1(@babel/core@7.29.0)(@ember/test-waiters@4.1.1(@glint/template@1.7.4))(@glint/template@1.7.4)
       '@ember/optional-features':
         specifier: ^2.3.0
         version: 2.3.0
@@ -240,7 +240,7 @@ importers:
         version: 6.10.0(@types/node@25.2.0)(babel-core@6.26.3)(ejs@3.1.10)(handlebars@4.7.8)(underscore@1.13.7)
       ember-cli-addon-docs:
         specifier: ^10.1.0
-        version: 10.1.0(23897ba001a3fb2f8b8ffac18985faef)
+        version: 10.1.0(5d6272b6c5027cf1a6755532002f3356)
       ember-cli-addon-docs-yuidoc:
         specifier: ^1.1.0
         version: 1.1.0
@@ -1119,6 +1119,17 @@ packages:
     resolution: {integrity: sha512-Kw5kbfHNFgOgIepEfmDIYLi5CNiLKjxtx0vQkNtXvHD1PCBPIpnoFZdiTs2NnnKP1obedgU59us6PTE1G+AOHg==}
     peerDependencies:
       '@ember-data/tracking': 5.7.0
+      '@ember/test-waiters': ^3.1.0 || ^4.0.0
+    peerDependenciesMeta:
+      '@ember-data/tracking':
+        optional: true
+      '@ember/test-waiters':
+        optional: true
+
+  '@ember-data/store@5.8.1':
+    resolution: {integrity: sha512-8OqAL6aqDpbv3jCH70qQhA0HJtbTM0oFl2gRuJ2gXq0tx7WhOU7f3IwQEHX646O2x43RdtsPKhbc27rXxQdFGw==}
+    peerDependencies:
+      '@ember-data/tracking': 5.8.1
       '@ember/test-waiters': ^3.1.0 || ^4.0.0
     peerDependenciesMeta:
       '@ember-data/tracking':
@@ -9681,6 +9692,17 @@ snapshots:
       - '@glint/template'
       - supports-color
 
+  '@ember-data/store@5.8.1(@babel/core@7.29.0)(@ember/test-waiters@4.1.1(@glint/template@1.7.4))(@glint/template@1.7.4)':
+    dependencies:
+      '@embroider/macros': 1.19.6(@glint/template@1.7.4)
+      '@warp-drive/core': 5.8.1(@babel/core@7.29.0)(@glint/template@1.7.4)
+    optionalDependencies:
+      '@ember/test-waiters': 4.1.1(@glint/template@1.7.4)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@glint/template'
+      - supports-color
+
   '@ember-data/tracking@5.7.0(@ember/test-waiters@4.1.1(@glint/template@1.7.4))(@glint/template@1.7.4)':
     dependencies:
       '@ember/test-waiters': 4.1.1(@glint/template@1.7.4)
@@ -13528,7 +13550,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  ember-cli-addon-docs@10.1.0(23897ba001a3fb2f8b8ffac18985faef):
+  ember-cli-addon-docs@10.1.0(5d6272b6c5027cf1a6755532002f3356):
     dependencies:
       '@csstools/postcss-sass': 5.1.1(postcss@8.5.6)
       '@ember/render-modifiers': 3.0.0(@glint/template@1.7.4)(ember-source@6.10.1(@glimmer/component@1.1.2(@babel/core@7.29.0))(rsvp@4.8.5))
@@ -13599,7 +13621,7 @@ snapshots:
       '@ember-data/adapter': 5.7.0(@glint/template@1.7.4)
       '@ember-data/model': 5.7.0(@glint/template@1.7.4)
       '@ember-data/serializer': 5.7.0(@glint/template@1.7.4)
-      '@ember-data/store': 5.7.0(@ember-data/tracking@5.7.0(@ember/test-waiters@4.1.1(@glint/template@1.7.4))(@glint/template@1.7.4))(@ember/test-waiters@4.1.1(@glint/template@1.7.4))(@glint/template@1.7.4)
+      '@ember-data/store': 5.8.1(@babel/core@7.29.0)(@ember/test-waiters@4.1.1(@glint/template@1.7.4))(@glint/template@1.7.4)
       ember-inflector: 6.0.0(@babel/core@7.29.0)
     transitivePeerDependencies:
       - '@babel/core'
