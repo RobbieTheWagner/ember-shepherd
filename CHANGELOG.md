@@ -1,5 +1,10 @@
 # Changelog
 
+
+
+
+
+
 ## Release (2026-02-16)
 
 * ember-shepherd 18.0.0 (major)
