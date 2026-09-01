@@ -170,8 +170,8 @@ importers:
         specifier: ~5.7.0
         version: 5.7.0(@glint/template@1.7.4)
       '@ember-data/request':
-        specifier: ~5.7.0
-        version: 5.7.0(@glint/template@1.7.4)
+        specifier: ~5.8.1
+        version: 5.8.1(@babel/core@7.29.0)(@glint/template@1.7.4)
       '@ember-data/request-utils':
         specifier: ~5.8.1
         version: 5.8.1(@babel/core@7.29.0)(@glint/template@1.7.4)(ember-inflector@6.0.0(@babel/core@7.29.0))
@@ -1108,6 +1108,9 @@ packages:
 
   '@ember-data/request@5.7.0':
     resolution: {integrity: sha512-Yr0dDnC+AY0x9Ek8Lfk/2kK+X4LW4GEfie3RmrGZyQRFLeryE2DiJdBXITM/a/YLnu98+kRa0BPDVcHBOgpLVw==}
+
+  '@ember-data/request@5.8.1':
+    resolution: {integrity: sha512-ZyvBr/JQNoPmBkBVhAW0hKPi5WTagEMqQuzH9JmyzduuFXPHLGqdxL/8bBVwm1k6TqjaUM6y0y1/24o/Y5XGgA==}
 
   '@ember-data/rfc395-data@0.0.4':
     resolution: {integrity: sha512-tGRdvgC9/QMQSuSuJV45xoyhI0Pzjm7A9o/MVVA3HakXIImJbbzx/k/6dO9CUEQXIyS2y0fW6C1XaYOG7rY0FQ==}
@@ -9721,6 +9724,15 @@ snapshots:
       '@embroider/macros': 1.19.6(@glint/template@1.7.4)
       '@warp-drive/core': 5.7.0(@glint/template@1.7.4)
     transitivePeerDependencies:
+      - '@glint/template'
+      - supports-color
+
+  '@ember-data/request@5.8.1(@babel/core@7.29.0)(@glint/template@1.7.4)':
+    dependencies:
+      '@embroider/macros': 1.19.6(@glint/template@1.7.4)
+      '@warp-drive/core': 5.8.1(@babel/core@7.29.0)(@glint/template@1.7.4)
+    transitivePeerDependencies:
+      - '@babel/core'
       - '@glint/template'
       - supports-color
 
