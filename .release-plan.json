@@ -1,22 +1,8 @@
 {
   "solution": {
     "ember-shepherd": {
-      "impact": "major",
-      "oldVersion": "17.3.1",
-      "newVersion": "18.0.0",
-      "tagName": "latest",
-      "constraints": [
-        {
-          "impact": "major",
-          "reason": "Appears in changelog section :boom: Breaking Change"
-        },
-        {
-          "impact": "patch",
-          "reason": "Appears in changelog section :house: Internal"
-        }
-      ],
-      "pkgJSONPath": "./ember-shepherd/package.json"
+      "oldVersion": "18.0.0"
     }
   },
-  "description": "## Release (2026-02-16)\n\n* ember-shepherd 18.0.0 (major)\n\n#### :boom: Breaking Change\n* `ember-shepherd`\n  * [#1816](https://github.com/RobbieTheWagner/ember-shepherd/pull/1816) Update to shepherd.js 15 ([@RobbieTheWagner](https://github.com/RobbieTheWagner))\n  * [#1815](https://github.com/RobbieTheWagner/ember-shepherd/pull/1815) Update license to AGPL ([@RobbieTheWagner](https://github.com/RobbieTheWagner))\n  * [#1808](https://github.com/RobbieTheWagner/ember-shepherd/pull/1808) Drop support for Ember < 4.8 ([@RobbieTheWagner](https://github.com/RobbieTheWagner))\n\n#### :house: Internal\n* Other\n  * [#1817](https://github.com/RobbieTheWagner/ember-shepherd/pull/1817) release-it -> release-plan ([@RobbieTheWagner](https://github.com/RobbieTheWagner))\n  * [#1807](https://github.com/RobbieTheWagner/ember-shepherd/pull/1807) node 20 / pnpm 10 ([@RobbieTheWagner](https://github.com/RobbieTheWagner))\n* `ember-shepherd`\n  * [#1729](https://github.com/RobbieTheWagner/ember-shepherd/pull/1729) Update blueprints ([@RobbieTheWagner](https://github.com/RobbieTheWagner))\n\n#### Committers: 1\n- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))\n"
+  "description": "\n\n\n\n"
 }
